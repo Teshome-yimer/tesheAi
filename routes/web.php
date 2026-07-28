@@ -21,6 +21,12 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [LoginController::class, 'login']);
     Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
     Route::post('/register', [RegisterController::class, 'register']);
+
+    // Social Auth
+    Route::get('/auth/google', [\App\Http\Controllers\Auth\SocialAuthController::class, 'googleRedirect'])->name('auth.google');
+    Route::get('/auth/google/callback', [\App\Http\Controllers\Auth\SocialAuthController::class, 'googleCallback'])->name('auth.google.callback');
+    Route::get('/auth/github', [\App\Http\Controllers\Auth\SocialAuthController::class, 'githubRedirect'])->name('auth.github');
+    Route::get('/auth/github/callback', [\App\Http\Controllers\Auth\SocialAuthController::class, 'githubCallback'])->name('auth.github.callback');
 });
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
@@ -45,10 +51,24 @@ Route::middleware('auth')->prefix('student')->name('student.')->group(function (
     Route::get('/lesson/{courseSlug}/{lessonSlug}', [CourseViewerController::class, 'lesson'])->name('lesson');
     Route::post('/progress/complete', [CourseViewerController::class, 'markComplete'])->name('progress.complete');
     Route::post('/progress/update', [CourseViewerController::class, 'updateProgress'])->name('progress.update');
+    Route::get('/video/{lesson}', [\App\Http\Controllers\Admin\VideoController::class, 'stream'])->name('video.stream');
+
+// File download — public route (controller handles auth check)
+Route::get('/files/download/{file}', [\App\Http\Controllers\Student\FileController::class, 'download'])->name('files.download');
+});
+
+// Admin auth (sign-in only, no register)
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', fn () => auth()->check() && auth()->user()->isAdmin()
+        ? redirect()->route('admin.dashboard')
+        : redirect()->route('admin.login'));
+    Route::get('/login', [Admin\AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [Admin\AuthController::class, 'login'])->middleware('throttle:5,1');
+    Route::post('/logout', [Admin\AuthController::class, 'logout'])->name('logout')->middleware('auth');
 });
 
 // Admin area
-Route::middleware(['auth', \App\Http\Middleware\AdminMiddleware::class])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware([\App\Http\Middleware\AdminMiddleware::class])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [Admin\DashboardController::class, 'index'])->name('dashboard');
 
     // Courses
@@ -74,10 +94,21 @@ Route::middleware(['auth', \App\Http\Middleware\AdminMiddleware::class])->prefix
 
     // Students
     Route::get('/students', [Admin\StudentController::class, 'index'])->name('students.index');
+    Route::post('/users', [Admin\StudentController::class, 'store'])->name('users.store');
+    Route::put('/users/{user}', [Admin\StudentController::class, 'update'])->name('users.update');
+    Route::delete('/users/{user}', [Admin\StudentController::class, 'destroy'])->name('users.destroy');
     Route::get('/students/enroll', [Admin\StudentController::class, 'enrollForm'])->name('students.enroll-form');
     Route::post('/students/enroll', [Admin\StudentController::class, 'enroll'])->name('students.enroll');
 
-    // Coupons
+    // File Manager
+    Route::get('/courses/{course}/files', [Admin\FileController::class, 'index'])->name('courses.files');
+    Route::post('/lessons/{lesson}/files', [Admin\FileController::class, 'upload'])->name('lessons.files.upload');
+    Route::delete('/files/{file}', [Admin\FileController::class, 'destroy'])->name('files.destroy');
+    Route::post('/files/{file}/toggle-free', [Admin\FileController::class, 'toggleFree'])->name('files.toggle-free');
+
+    // Video Upload
+    Route::post('/lessons/{lesson}/video', [Admin\VideoController::class, 'upload'])->name('lessons.video.upload');
+    Route::delete('/lessons/{lesson}/video', [Admin\VideoController::class, 'delete'])->name('lessons.video.delete');
     Route::get('/coupons', [Admin\CouponController::class, 'index'])->name('coupons.index');
     Route::get('/coupons/create', [Admin\CouponController::class, 'create'])->name('coupons.create');
     Route::post('/coupons', [Admin\CouponController::class, 'store'])->name('coupons.store');

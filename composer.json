@@ -8,6 +8,7 @@
     "require": {
         "php": "^8.2",
         "laravel/framework": "^12.0",
+        "laravel/socialite": "^5.26",
         "laravel/tinker": "^2.10.1"
     },
     "require-dev": {
@@ -74,12 +75,15 @@
     },
     "config": {
         "optimize-autoloader": true,
-        "preferred-install": "dist",
+        "preferred-install": {
+            "phpseclib/phpseclib": "dist"
+        },
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "php-http/discovery": true
-        }
+        },
+        "process-timeout": 0
     },
     "minimum-stability": "stable",
     "prefer-stable": true

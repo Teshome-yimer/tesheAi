@@ -16,7 +16,10 @@ class CourseViewerController extends Controller
     public function show(string $slug)
     {
         $course = Course::with(['sections.lessons'])->where('slug', $slug)->firstOrFail();
-        $this->authorize('view', $course);
+
+        if (!auth()->user()->isAdmin() && !auth()->user()->isEnrolledIn($course->id)) {
+            return redirect()->route('course.show', $slug)->with('error', 'Please enroll first.');
+        }
 
         $firstLesson = $course->lessons()->orderBy('order')->first();
         if ($firstLesson) {

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Lesson;
 use App\Models\Section;
+use App\Support\YoutubeUrl;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -51,6 +52,7 @@ class ContentController extends Controller
         ]);
         $data['course_id'] = $section->course_id;
         $data['slug'] = Str::slug($request->title) . '-' . uniqid();
+        $data['video_url'] = YoutubeUrl::normalize($data['video_url'] ?? null);
         $section->lessons()->create($data);
         return back()->with('success', 'Lesson added!');
     }
@@ -65,6 +67,7 @@ class ContentController extends Controller
             'order'            => 'nullable|integer',
             'is_free_preview'  => 'sometimes|boolean',
         ]);
+        $data['video_url'] = YoutubeUrl::normalize($data['video_url'] ?? null);
         $lesson->update($data);
         return back()->with('success', 'Lesson updated!');
     }

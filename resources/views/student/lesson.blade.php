@@ -2,65 +2,77 @@
 @section('title', $lesson->title . ' - ' . $course->title)
 @push('styles')
 <style>
-.viewer-layout { display:grid; grid-template-columns:320px 1fr; height:calc(100vh - 70px); overflow:hidden; }
-.sidebar-lessons { overflow-y:auto; border-right:1px solid var(--border); background:var(--bg2); }
-.sidebar-header { padding:20px; border-bottom:1px solid var(--border); position:sticky; top:0; background:var(--bg2); z-index:10; }
-.sidebar-header h3 { font-size:0.9rem; font-weight:700; margin-bottom:10px; }
-.sidebar-section { border-bottom:1px solid var(--border); }
-.sidebar-section-title { padding:12px 16px; background:var(--bg3); font-size:0.8rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
-.sidebar-lesson { display:flex; align-items:center; gap:10px; padding:12px 16px; font-size:0.85rem; cursor:pointer; transition:.15s; border-left:3px solid transparent; text-decoration:none; color:var(--text); }
-.sidebar-lesson:hover { background:rgba(99,102,241,.08); }
-.sidebar-lesson.active { background:rgba(99,102,241,.12); border-left-color:var(--indigo); color:var(--indigo); }
-.sidebar-lesson.completed .check { color:var(--success); }
-.sidebar-lesson .check { width:18px; height:18px; border-radius:50%; border:2px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:0.7rem; flex-shrink:0; }
-.sidebar-lesson.completed .check { border-color:var(--success); background:rgba(16,185,129,.2); }
-.lesson-main { overflow-y:auto; }
-.lesson-topbar { padding:16px 28px; border-bottom:1px solid var(--border); background:var(--bg2); display:flex; align-items:center; justify-content:space-between; gap:16px; }
-.video-wrap { position:relative; padding-bottom:56.25%; background:#000; }
+.viewer-wrap { display:grid; grid-template-columns:300px 1fr; height:calc(100vh - 65px); overflow:hidden; }
+.sidebar { overflow-y:auto; background:var(--bg2); border-right:1px solid var(--border); display:flex; flex-direction:column; }
+.sidebar-head { padding:16px; border-bottom:1px solid var(--border); position:sticky; top:0; background:var(--bg2); z-index:5; }
+.sidebar-head h3 { font-size:0.85rem; font-weight:700; margin-bottom:8px; color:var(--text); line-height:1.3; }
+.prog-label { display:flex; justify-content:space-between; font-size:0.72rem; color:var(--muted); margin-top:6px; }
+.sec-title { padding:8px 14px; background:var(--bg3); font-size:0.72rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; border-bottom:1px solid var(--border); }
+.l-item { display:flex; align-items:center; gap:10px; padding:10px 14px; border-left:3px solid transparent; text-decoration:none; color:var(--text); font-size:0.83rem; transition:.15s; border-bottom:1px solid rgba(255,255,255,.03); }
+.l-item:hover { background:rgba(99,102,241,.08); color:var(--text); }
+.l-item.active { background:rgba(99,102,241,.12); border-left-color:var(--indigo); color:var(--indigo); }
+.l-item.done .check { border-color:var(--success); background:rgba(16,185,129,.2); color:var(--success); }
+.check { width:18px; height:18px; border-radius:50%; border:2px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:0.65rem; flex-shrink:0; }
+.l-dur { margin-left:auto; color:var(--muted); font-size:0.73rem; flex-shrink:0; }
+
+/* Main area */
+.main-area { overflow-y:auto; display:flex; flex-direction:column; }
+.topbar { padding:12px 20px; border-bottom:1px solid var(--border); background:var(--bg2); display:flex; align-items:center; justify-content:space-between; gap:12px; flex-shrink:0; }
+.video-wrap { position:relative; padding-bottom:56.25%; background:#000; flex-shrink:0; }
 .video-wrap iframe { position:absolute; inset:0; width:100%; height:100%; border:none; }
-.lesson-content { padding:32px; max-width:860px; }
-.lesson-nav { display:flex; gap:12px; justify-content:space-between; margin-top:28px; }
+.no-video { padding-bottom:30%; background:linear-gradient(135deg,#13131a,#1a1a24); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; color:var(--muted); }
+
+/* Instructor card */
+.instructor-card { display:flex; align-items:center; gap:14px; background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:16px 20px; margin:20px 20px 0; }
+.inst-avatar { width:52px; height:52px; border-radius:50%; object-fit:cover; background:linear-gradient(135deg,var(--indigo),var(--cyan)); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.2rem; flex-shrink:0; }
+.inst-name { font-weight:700; font-size:0.95rem; }
+.inst-role { color:var(--cyan); font-size:0.8rem; margin-top:2px; }
+.inst-bio { color:var(--muted); font-size:0.82rem; margin-top:4px; line-height:1.5; }
+
+.lesson-body { padding:20px; flex:1; }
+.lesson-desc { color:var(--muted); line-height:1.7; font-size:0.9rem; margin-bottom:20px; }
+.nav-btns { display:flex; justify-content:space-between; gap:12px; padding:16px 20px; border-top:1px solid var(--border); background:var(--bg2); flex-shrink:0; }
+
 @media(max-width:768px) {
-    .viewer-layout { grid-template-columns:1fr; }
-    .sidebar-lessons { max-height:300px; border-right:none; border-bottom:1px solid var(--border); }
+    .viewer-wrap { grid-template-columns:1fr; }
+    .sidebar { max-height:260px; border-right:none; border-bottom:1px solid var(--border); }
 }
 </style>
 @endpush
 @section('content')
-@php $progressPct = $progress['percentage']; @endphp
 
-<div class="viewer-layout" style="height:calc(100vh - 65px);">
+<div class="viewer-wrap">
 
     {{-- Sidebar --}}
-    <div class="sidebar-lessons">
-        <div class="sidebar-header">
-            <h3>{{ Str::limit($course->title, 30) }}</h3>
-            <div class="progress-bar"><div class="progress-fill" style="width:{{ $progressPct }}%"></div></div>
-            <div style="text-align:right;font-size:0.75rem;color:var(--muted);margin-top:4px;">{{ $progressPct }}% complete</div>
+    <div class="sidebar">
+        <div class="sidebar-head">
+            <h3>{{ $course->title }}</h3>
+            <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:{{ $progress['percentage'] }}%"></div></div>
+            <div class="prog-label"><span>{{ $progress['completed'] }}/{{ $progress['total'] }} lessons</span><span id="prog-pct">{{ $progress['percentage'] }}%</span></div>
         </div>
 
         @foreach($course->sections as $section)
-        <div class="sidebar-section">
-            <div class="sidebar-section-title">📂 {{ $section->title }}</div>
-            @foreach($section->lessons as $sLesson)
-            @php $isComp = in_array($sLesson->id, $completedIds); $isCurr = $sLesson->id == $lesson->id; @endphp
-            <a href="{{ route('student.lesson', [$course->slug, $sLesson->slug ?? $sLesson->id]) }}"
-               class="sidebar-lesson {{ $isCurr ? 'active' : '' }} {{ $isComp ? 'completed' : '' }}">
-                <div class="check">{{ $isComp ? '✓' : '' }}</div>
-                <span style="flex:1;line-height:1.3;">{{ $sLesson->title }}</span>
-                <span style="color:var(--muted);font-size:0.75rem;">{{ $sLesson->duration_minutes }}m</span>
+        <div>
+            <div class="sec-title">{{ $section->title }}</div>
+            @foreach($section->lessons as $sl)
+            @php $done = in_array($sl->id, $completedIds); $cur = $sl->id == $lesson->id; @endphp
+            <a href="{{ route('student.lesson', [$course->slug, $sl->slug ?? $sl->id]) }}"
+               class="l-item {{ $cur ? 'active' : '' }} {{ $done ? 'done' : '' }}">
+                <div class="check">{{ $done ? '✓' : '' }}</div>
+                <span style="flex:1;line-height:1.3;">{{ $sl->title }}</span>
+                <span class="l-dur">{{ $sl->duration_minutes }}m</span>
             </a>
             @endforeach
         </div>
         @endforeach
     </div>
 
-    {{-- Main lesson area --}}
-    <div class="lesson-main">
-        <div class="lesson-topbar">
+    {{-- Main --}}
+    <div class="main-area">
+        <div class="topbar">
             <div>
-                <div style="font-size:0.8rem;color:var(--muted);margin-bottom:2px;">{{ $course->title }}</div>
-                <h2 style="font-size:1rem;font-weight:700;">{{ $lesson->title }}</h2>
+                <div style="font-size:0.75rem;color:var(--muted);">{{ $course->title }}</div>
+                <div style="font-weight:700;font-size:0.95rem;">{{ $lesson->title }}</div>
             </div>
             <button id="complete-btn" onclick="markComplete()"
                 class="btn {{ $isCompleted ? 'btn-secondary' : 'btn-primary' }} btn-sm"
@@ -69,27 +81,72 @@
             </button>
         </div>
 
-        @if($lesson->video_url)
+        {{-- Video --}}
+        @if($lesson->video_type === 'local' && $lesson->video_path)
         <div class="video-wrap">
-            <iframe src="{{ $lesson->video_url }}" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+            <video id="lesson-video" controls controlslist="nodownload"
+                   style="position:absolute;inset:0;width:100%;height:100%;background:#000;"
+                   preload="metadata"
+                   oncontextmenu="return false;">
+                <source src="{{ route('student.video.stream', $lesson) }}" type="video/mp4">
+            </video>
+        </div>
+        @elseif($lesson->video_url)
+        <div class="video-wrap">
+            <iframe id="lesson-iframe" src="{{ $lesson->video_url }}"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+        @else
+        <div style="padding:60px 0;background:linear-gradient(135deg,#13131a,#1a1a24);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:var(--muted);">
+            <div style="font-size:3rem;">🎥</div>
+            <div>Video ቶሎ ይጨምራል / Video coming soon</div>
         </div>
         @endif
 
-        <div class="lesson-content">
-            @if($lesson->description)
-            <p style="color:var(--muted);line-height:1.7;margin-bottom:24px;">{{ $lesson->description }}</p>
-            @endif
-
-            <div class="lesson-nav">
-                @if($prevLesson)
-                <a href="{{ route('student.lesson', [$course->slug, $prevLesson->slug ?? $prevLesson->id]) }}" class="btn btn-secondary">← ቀዳሚ / Prev</a>
-                @else
-                <div></div>
-                @endif
-                @if($nextLesson)
-                <a href="{{ route('student.lesson', [$course->slug, $nextLesson->slug ?? $nextLesson->id]) }}" class="btn btn-primary">ቀጣይ / Next →</a>
-                @endif
+        {{-- Elapsed time bar (local video only) --}}
+        @if($lesson->video_type === 'local' && $lesson->video_path)
+        <div id="elapsed-bar" style="background:var(--bg3);padding:10px 20px;display:flex;align-items:center;gap:12px;font-size:0.82rem;color:var(--muted);">
+            <span>⏱</span>
+            <div style="flex:1;background:var(--bg2);border-radius:99px;height:4px;overflow:hidden;">
+                <div id="elapsed-fill" style="height:100%;background:var(--indigo);border-radius:99px;width:0%;transition:width .5s;"></div>
             </div>
+            <span id="elapsed-text">0:00 / 0:00</span>
+        </div>
+        @endif
+
+        {{-- Instructor Info --}}
+        <div class="instructor-card">
+            <div class="inst-avatar">T</div>
+            <div>
+                <div class="inst-name">Teshe Yimer</div>
+                <div class="inst-role">Senior Full Stack Developer</div>
+                <div class="inst-bio">Laravel, React, MySQL ባለሙያ • 10+ ዓመት ልምድ • 5,000+ ተማሪዎች</div>
+            </div>
+        </div>
+
+        {{-- Lesson content --}}
+        <div class="lesson-body">
+            @if($lesson->description)
+            <p class="lesson-desc">{{ $lesson->description }}</p>
+            @endif
+        </div>
+
+        {{-- Nav --}}
+        <div class="nav-btns">
+            @if($prevLesson)
+            <a href="{{ route('student.lesson', [$course->slug, $prevLesson->slug ?? $prevLesson->id]) }}" class="btn btn-secondary">← ቀዳሚ</a>
+            @else <div></div> @endif
+
+            @if($nextLesson)
+            <a href="{{ route('student.lesson', [$course->slug, $nextLesson->slug ?? $nextLesson->id]) }}"
+               id="next-btn" class="btn btn-primary" onclick="markAndNext(event, this.href)">
+               ቀጣይ → Next
+            </a>
+            @else
+            <a href="{{ route('student.dashboard') }}" class="btn btn-cyan">🏆 Course Complete!</a>
+            @endif
         </div>
     </div>
 </div>
@@ -99,33 +156,73 @@
 <script>
 const LESSON_ID = {{ $lesson->id }};
 const COURSE_ID = {{ $course->id }};
+const CSRF     = document.querySelector('meta[name=csrf-token]').content;
 
 async function markComplete() {
     const btn = document.getElementById('complete-btn');
-    btn.disabled = true; btn.textContent = 'Saving...';
-    const res = await fetch('{{ route("student.progress.complete") }}', {
+    btn.disabled = true; btn.textContent = '...';
+    const res  = await fetch('{{ route("student.progress.complete") }}', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content },
+        headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': CSRF },
         body: JSON.stringify({ lesson_id: LESSON_ID, course_id: COURSE_ID })
     });
     const data = await res.json();
     if (data.success) {
         btn.textContent = '✅ Completed';
-        btn.classList.remove('btn-primary');
-        btn.classList.add('btn-secondary');
-        // Update sidebar check
-        const sidebarItems = document.querySelectorAll('.sidebar-lesson');
-        sidebarItems.forEach(item => {
-            if (item.classList.contains('active')) {
-                item.classList.add('completed');
-                item.querySelector('.check').textContent = '✓';
-            }
-        });
-        // Update progress bar
-        const pct = data.progress.percentage;
-        document.querySelector('.progress-fill').style.width = pct + '%';
-        document.querySelector('.sidebar-header div[style*="text-align:right"]').textContent = pct + '% complete';
+        btn.classList.replace('btn-primary', 'btn-secondary');
+        document.querySelectorAll('.l-item.active .check').forEach(c => { c.textContent = '✓'; c.closest('.l-item').classList.add('done'); });
+        document.getElementById('prog-fill').style.width = data.progress.percentage + '%';
+        document.getElementById('prog-pct').textContent  = data.progress.percentage + '%';
     }
+}
+
+async function markAndNext(e, nextUrl) {
+    if (document.getElementById('complete-btn').textContent.includes('Mark')) {
+        e.preventDefault();
+        await markComplete();
+        setTimeout(() => window.location = nextUrl, 400);
+    }
+}
+
+// ── Elapsed time for local video ──────────────────────────
+function fmtTime(s) {
+    s = Math.floor(s);
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return m + ':' + String(sec).padStart(2, '0');
+}
+
+const video = document.getElementById('lesson-video');
+if (video) {
+    let lastSave = 0;
+
+    video.addEventListener('timeupdate', () => {
+        const pct  = video.duration ? (video.currentTime / video.duration) * 100 : 0;
+        const fill = document.getElementById('elapsed-fill');
+        const txt  = document.getElementById('elapsed-text');
+        if (fill) fill.style.width = pct + '%';
+        if (txt)  txt.textContent  = fmtTime(video.currentTime) + ' / ' + fmtTime(video.duration || 0);
+
+        // Save progress every 10 seconds
+        if (Math.floor(video.currentTime) - lastSave >= 10) {
+            lastSave = Math.floor(video.currentTime);
+            fetch('{{ route("student.progress.update") }}', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': CSRF },
+                body: JSON.stringify({ lesson_id: LESSON_ID, course_id: COURSE_ID, watched_seconds: Math.floor(video.currentTime) })
+            });
+        }
+    });
+
+    // Auto-mark complete when 90% watched
+    video.addEventListener('timeupdate', () => {
+        if (video.duration && (video.currentTime / video.duration) >= 0.9) {
+            const btn = document.getElementById('complete-btn');
+            if (btn && !btn.disabled && btn.textContent.includes('Mark')) {
+                markComplete();
+            }
+        }
+    });
 }
 </script>
 @endpush

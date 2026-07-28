@@ -169,6 +169,38 @@
     </div>
 </section>
 
+{{-- Meet Your Instructor --}}
+<section class="section-gap" style="background:var(--bg3); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="container">
+        <div class="section-title">
+            <h2>አሰልጣኝዎን ያግኙ / <span class="grad-text">Meet Your Instructor</span></h2>
+            <p>ከባለሙያ ይማሩ / Learn from the industry expert</p>
+        </div>
+        <div style="display:flex; gap:48px; align-items:center; flex-wrap:wrap; justify-content:center;">
+            <div style="flex:1; min-width:280px; text-align:center;">
+                <img src="{{ asset('images/teshome_photo_1.jpg') }}" alt="Teshome" style="width:280px; height:280px; border-radius:50%; object-fit:cover; object-position:top; border:4px solid var(--indigo); box-shadow:0 12px 40px rgba(99,102,241,0.25);">
+            </div>
+            <div style="flex:2; min-width:320px;">
+                <h3 style="font-size:2rem; font-weight:800; margin-bottom:8px;">ተሾመ / Teshome</h3>
+                <p style="color:var(--cyan); font-weight:600; margin-bottom:18px; font-size:1.1rem;">ከፍተኛ ዌብ ዲቬሎፐር እና አሰልጣኝ / Senior Web Developer & Instructor</p>
+                <p style="color:var(--muted); line-height:1.8; font-size:1.05rem; margin-bottom:24px;">
+                    ተሾመ ከ 5 ዓመት በላይ በሶፍትዌር ልማት ኢንዱስትሪ ውስጥ ያሳለፈ፣ በርካታ ሙሉ ስታክ (Full-Stack) ፕሮጀክቶችን የሰራ እና በላራቬል (Laravel)፣ ሪኤክት (React) እና MySQL ቴክኖሎጂዎች ላይ ሰፊ ልምድ ያለው ባለሙያ ነው። ዛሬውኑ ይቀላቀሉ እና የዌብ ዲቬሎፕመንት ጉዞዎን ይጀምሩ!
+                </p>
+                <div style="display:flex; gap:16px;">
+                    <div style="background:var(--bg2); padding:14px 24px; border-radius:10px; border:1px solid var(--border); text-align:center; min-width:120px;">
+                        <div style="font-weight:800; color:var(--indigo); font-size:1.2rem;">5+ ዓመት</div>
+                        <div style="font-size:0.8rem; color:var(--muted); margin-top:2px;">ልምድ / Experience</div>
+                    </div>
+                    <div style="background:var(--bg2); padding:14px 24px; border-radius:10px; border:1px solid var(--border); text-align:center; min-width:120px;">
+                        <div style="font-weight:800; color:var(--indigo); font-size:1.2rem;">5,000+</div>
+                        <div style="font-size:0.8rem; color:var(--muted); margin-top:2px;">ተማሪዎች / Students</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 {{-- Testimonials --}}
 <section class="section-gap">
     <div class="container">
@@ -177,15 +209,15 @@
         </div>
         <div class="testimonials-grid">
             @foreach([
-                ['name'=>'አብዱ ሀሰን','role'=>'Full Stack Developer','text'=>'ይህ ኮርስ ሕይወቴን ቀይሯል። ከምዝገባ 3 ወር ውስጥ የፈለኩትን ሥራ አገኘሁ። This course changed my life!','letter'=>'አ'],
-                ['name'=>'Sara Tesfaye','role'=>'Web Developer','text'=>'The Amharic + English mix made it so easy to understand. Best investment I have made for my career!','letter'=>'S'],
-                ['name'=>'ዳዊት ገ/ሕይወት','role'=>'Freelancer','text'=>'አስተማሪው በጣም ጥሩ ነው። ቪዲዮዎቹ ግልጽ ናቸው። ሁሉም ሰው ይህን ኮርስ መውሰድ አለበት።','letter'=>'ዳ'],
+                ['name'=>'አብዱ ሀሰን','role'=>'Full Stack Developer','text'=>'ይህ ኮርስ ሕይወቴን ቀይሯል። ከምዝገባ 3 ወር ውስጥ የፈለኩትን ሥራ አገኘሁ። This course changed my life!','img'=>asset('images/teshome_photo_2.jpg')],
+                ['name'=>'Sara Tesfaye','role'=>'Web Developer','text'=>'The Amharic + English mix made it so easy to understand. Best investment I have made for my career!','img'=>asset('images/teshome_photo_3.jpg')],
+                ['name'=>'ዳዊት ገ/ሕይወት','role'=>'Freelancer','text'=>'አስተማሪው በጣም ጥሩ ነው። ቪዲዮዎቹ ግልጽ ናቸው። ሁሉም ሰው ይህን ኮርስ መውሰድ አለበት።','img'=>asset('images/teshome_photo_4.jpg')],
             ] as $t)
             <div class="testi-card">
                 <div class="testi-stars">★★★★★</div>
                 <p class="testi-text">"{{ $t['text'] }}"</p>
                 <div class="testi-author">
-                    <div class="testi-avatar">{{ $t['letter'] }}</div>
+                    <img src="{{ $t['img'] }}" alt="{{ $t['name'] }}" class="testi-avatar" style="object-fit:cover;">
                     <div>
                         <div class="testi-name">{{ $t['name'] }}</div>
                         <div class="testi-role">{{ $t['role'] }}</div>

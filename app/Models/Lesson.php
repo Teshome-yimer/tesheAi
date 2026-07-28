@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\LessonFile;
+use App\Models\LessonProgress;
 
 class Lesson extends Model
 {
     protected $fillable = [
-        'section_id', 'course_id', 'title', 'slug', 'video_url',
+        'section_id', 'course_id', 'title', 'slug', 'video_url', 'video_path', 'video_type',
         'description', 'duration_minutes', 'order', 'is_free_preview',
     ];
 
@@ -26,6 +28,11 @@ class Lesson extends Model
     public function progress()
     {
         return $this->hasMany(LessonProgress::class);
+    }
+
+    public function files()
+    {
+        return $this->hasMany(LessonFile::class)->orderBy('order');
     }
 
     public function getRouteKeyName(): string

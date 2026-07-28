@@ -65,7 +65,14 @@ class PaymentController extends Controller
         }
 
         $order->update(['status' => 'failed']);
-        return back()->with('error', 'Payment initialization failed: ' . ($result['message'] ?? ''));
+
+        $errorMsg = is_array($result['message'] ?? '') 
+            ? implode(', ', $result['message']) 
+            : ($result['message'] ?? 'Unknown error');
+
+        \Log::error('Chapa init failed', ['result' => $result, 'order' => $order->id]);
+
+        return back()->with('error', 'Payment initialization failed: ' . $errorMsg);
     }
 
     public function chapaReturn(Request $request, int $order)

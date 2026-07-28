@@ -33,8 +33,8 @@
 .lesson-item:hover { background:rgba(99,102,241,.05); }
 .lesson-icon { color:var(--muted); font-size:0.9rem; }
 .free-badge { margin-left:auto; background:rgba(16,185,129,.15); color:#10b981; padding:2px 8px; border-radius:4px; font-size:0.72rem; font-weight:600; }
-.instructor-section { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:32px; margin-bottom:32px; display:flex; gap:24px; align-items:start; }
-.instructor-avatar { width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg,var(--indigo),var(--cyan)); display:flex; align-items:center; justify-content:center; font-size:2rem; font-weight:700; flex-shrink:0; }
+.instructor-section { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:32px; margin-bottom:32px; display:flex; gap:24px; align-items:center; }
+.instructor-avatar { width:120px; height:120px; border-radius:50%; background:linear-gradient(135deg,var(--indigo),var(--cyan)); display:flex; align-items:center; justify-content:center; font-size:2rem; font-weight:700; flex-shrink:0; }
 .faq-item { border:1px solid var(--border); border-radius:8px; margin-bottom:8px; overflow:hidden; }
 .faq-q { padding:16px 20px; cursor:pointer; font-weight:600; display:flex; justify-content:space-between; background:var(--bg3); }
 .faq-a { padding:16px 20px; color:var(--muted); font-size:0.9rem; line-height:1.6; display:none; }
@@ -111,13 +111,12 @@
                 @endforelse
             </div>
 
-            {{-- Instructor --}}
             <div class="instructor-section" style="margin-bottom:32px;">
-                <div class="instructor-avatar">T</div>
+                <img src="{{ asset('images/teshome_photo_1.jpg') }}" alt="Teshome" class="instructor-avatar" style="object-fit:cover; object-position:top; border:2px solid var(--indigo);">
                 <div>
-                    <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:4px;">Instructor Name</h3>
-                    <p style="color:var(--cyan);font-size:0.85rem;margin-bottom:12px;">Senior Full Stack Developer</p>
-                    <p style="color:var(--muted);font-size:0.9rem;line-height:1.6;">10+ ዓመት ልምድ ያለው ዌብ ዲቬሎፐር። Laravel እና React ባለሙያ። Professional web developer with 10+ years of experience in Laravel, React, and MySQL.</p>
+                    <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:4px;">ተሾመ / Teshome</h3>
+                    <p style="color:var(--cyan);font-size:0.85rem;margin-bottom:12px;font-weight:600;">Senior Full Stack Developer & Instructor</p>
+                    <p style="color:var(--muted);font-size:0.9rem;line-height:1.6;">ተሾመ ከ 5 ዓመት በላይ በሶፍትዌር ልማት ልምድ ያለው ዌብ ዲቬሎፐር ነው። Laravel እና React ባለሙያ። Web developer with 5+ years of experience specializing in Laravel, React, and MySQL.</p>
                 </div>
             </div>
 
@@ -126,12 +125,12 @@
                 <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:20px;">ተማሪዎች ምን ይላሉ / Student Reviews</h2>
                 <div style="display:grid;gap:16px;">
                     @foreach([
-                        ['name'=>'Kebede Alemu','text'=>'ከሁሉ ጥሩ ኮርስ ነው! ምዝገባዬ ሕይወቴን ቀይሯል።','letter'=>'K'],
-                        ['name'=>'Helen Mekonen','text'=>'The videos are very clear. I landed a job after 2 months!','letter'=>'H'],
+                        ['name'=>'Kebede Alemu','text'=>'ከሁሉ ጥሩ ኮርስ ነው! ምዝገባዬ ሕይወቴን ቀይሯል።','img'=>asset('images/teshome_photo_3.jpg')],
+                        ['name'=>'Helen Mekonen','text'=>'The videos are very clear. I landed a job after 2 months!','img'=>asset('images/teshome_photo_4.jpg')],
                     ] as $r)
                     <div class="card" style="padding:20px;">
                         <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-                            <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--indigo),var(--cyan));display:flex;align-items:center;justify-content:center;font-weight:700;">{{ $r['letter'] }}</div>
+                            <img src="{{ $r['img'] }}" alt="{{ $r['name'] }}" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:1px solid var(--border);">
                             <div>
                                 <div style="font-weight:600;font-size:0.9rem;">{{ $r['name'] }}</div>
                                 <div style="color:#fbbf24;font-size:0.8rem;">★★★★★</div>

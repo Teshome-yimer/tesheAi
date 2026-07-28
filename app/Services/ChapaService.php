@@ -29,8 +29,8 @@ class ChapaService
                 'callback_url'  => route('payment.chapa.callback'),
                 'return_url'    => $data['return_url'],
                 'customization' => [
-                    'title'       => config('app.name'),
-                    'description' => $data['description'] ?? 'Course Purchase',
+                    'title'       => 'EduPlatform',
+                    'description' => substr(preg_replace('/[^a-zA-Z0-9\s\-_\.]/', '', 'Course Enrollment'), 0, 50),
                 ],
             ]);
 
@@ -38,7 +38,12 @@ class ChapaService
             return ['success' => true, 'checkout_url' => $response->json('data.checkout_url')];
         }
 
-        return ['success' => false, 'message' => $response->json('message', 'Payment initialization failed')];
+        $message = $response->json('message', 'Payment initialization failed');
+        if (is_array($message)) {
+            $message = implode(', ', array_map(fn($v) => is_array($v) ? implode(', ', $v) : $v, $message));
+        }
+
+        return ['success' => false, 'message' => $message];
     }
 
     public function verifyPayment(string $txRef): array
