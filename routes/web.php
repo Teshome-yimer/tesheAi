@@ -41,6 +41,23 @@ Route::middleware('auth')->group(function () {
     Route::get('/payment/stripe/success', [PaymentController::class, 'stripeSuccess'])->name('payment.stripe.success');
 });
 
+// Free PDF documents — for registered (logged-in) users only
+Route::middleware('auth')->prefix('documents')->name('documents.')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Student\DocumentController::class, 'index'])->name('index');
+    Route::get('/{document}/read', [\App\Http\Controllers\Student\DocumentController::class, 'read'])->name('read');
+    Route::get('/{document}/view', [\App\Http\Controllers\Student\DocumentController::class, 'view'])->name('view');
+    Route::get('/{document}/download', [\App\Http\Controllers\Student\DocumentController::class, 'download'])->name('download');
+});
+
+// Online quizzes — for registered (logged-in) users only
+Route::middleware('auth')->prefix('quizzes')->name('quizzes.')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Student\QuizController::class, 'index'])->name('index');
+    Route::get('/{quiz}/take', [\App\Http\Controllers\Student\QuizController::class, 'take'])->name('take');
+    Route::post('/{quiz}/question/{question}/check', [\App\Http\Controllers\Student\QuizController::class, 'check'])->name('question.check');
+    Route::post('/{quiz}/submit', [\App\Http\Controllers\Student\QuizController::class, 'submit'])->name('submit');
+    Route::get('/result/{attempt}', [\App\Http\Controllers\Student\QuizController::class, 'result'])->name('result');
+});
+
 // Chapa callback (no CSRF)
 Route::post('/payment/chapa/callback', [PaymentController::class, 'chapaCallback'])->name('payment.chapa.callback')->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
 
@@ -105,6 +122,24 @@ Route::middleware([\App\Http\Middleware\AdminMiddleware::class])->prefix('admin'
     Route::post('/lessons/{lesson}/files', [Admin\FileController::class, 'upload'])->name('lessons.files.upload');
     Route::delete('/files/{file}', [Admin\FileController::class, 'destroy'])->name('files.destroy');
     Route::post('/files/{file}/toggle-free', [Admin\FileController::class, 'toggleFree'])->name('files.toggle-free');
+
+    // PDF Documents (free library)
+    Route::get('/documents', [Admin\DocumentController::class, 'index'])->name('documents.index');
+    Route::post('/documents', [Admin\DocumentController::class, 'store'])->name('documents.store');
+    Route::put('/documents/{document}', [Admin\DocumentController::class, 'update'])->name('documents.update');
+    Route::post('/documents/{document}/toggle-publish', [Admin\DocumentController::class, 'togglePublish'])->name('documents.toggle-publish');
+    Route::delete('/documents/{document}', [Admin\DocumentController::class, 'destroy'])->name('documents.destroy');
+
+    // Quizzes (online exams)
+    Route::get('/quizzes', [Admin\QuizController::class, 'index'])->name('quizzes.index');
+    Route::post('/quizzes', [Admin\QuizController::class, 'store'])->name('quizzes.store');
+    Route::put('/quizzes/{quiz}', [Admin\QuizController::class, 'update'])->name('quizzes.update');
+    Route::post('/quizzes/{quiz}/toggle-publish', [Admin\QuizController::class, 'togglePublish'])->name('quizzes.toggle-publish');
+    Route::delete('/quizzes/{quiz}', [Admin\QuizController::class, 'destroy'])->name('quizzes.destroy');
+    Route::get('/quizzes/{quiz}/questions', [Admin\QuizController::class, 'questions'])->name('quizzes.questions');
+    Route::post('/quizzes/{quiz}/questions', [Admin\QuizController::class, 'storeQuestion'])->name('quizzes.questions.store');
+    Route::put('/quiz-questions/{question}', [Admin\QuizController::class, 'updateQuestion'])->name('quizzes.questions.update');
+    Route::delete('/quiz-questions/{question}', [Admin\QuizController::class, 'destroyQuestion'])->name('quizzes.questions.destroy');
 
     // Video Upload
     Route::post('/lessons/{lesson}/video', [Admin\VideoController::class, 'upload'])->name('lessons.video.upload');

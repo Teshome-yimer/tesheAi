@@ -131,7 +131,11 @@
     <div class="container">
         <div class="section-title">
             <h2>ኮርሶቻችን / <span class="grad-text">Our Courses</span></h2>
-            <p>ተገቢ ኮርሱን ምረጡ እና ዛሬ ጀምሩ</p>
+            @if(!empty($search))
+                <p>🔍 "{{ $search }}" ውጤት: {{ $courses->count() }} ኮርስ(ኮርሶች) ተገኝተዋል — <a href="{{ url('/') }}#courses" style="color:var(--cyan);">ሁሉንም አሳይ / Clear</a></p>
+            @else
+                <p>ተገቢ ኮርሱን ምረጡ እና ዛሬ ጀምሩ</p>
+            @endif
         </div>
         <div class="courses-grid">
             @forelse($courses as $course)

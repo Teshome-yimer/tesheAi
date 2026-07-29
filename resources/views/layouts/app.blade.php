@@ -27,17 +27,57 @@
 
         /* Navbar */
         .navbar {
-            background: rgba(10,10,15,0.95);
+            background: rgba(10,10,15,0.97);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
-            padding: 16px 0;
             position: sticky; top: 0; z-index: 100;
         }
-        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
-        .nav-logo { font-size: 1.4rem; font-weight: 800; background: linear-gradient(135deg, var(--indigo), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .nav-links { display: flex; gap: 24px; align-items: center; }
-        .nav-links a { color: var(--muted); font-size: 0.9rem; font-weight: 500; transition: color .2s; }
-        .nav-links a:hover { color: var(--text); }
+        .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 6px; height: 60px; }
+        .nav-logo { font-size: 1.35rem; font-weight: 800; background: linear-gradient(135deg, var(--indigo), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-right: 10px; flex-shrink: 0; }
+
+        /* Nav items + dropdowns */
+        .nav-menu { display: flex; align-items: center; gap: 2px; flex: 1; }
+        .nav-item { position: relative; }
+        .nav-item > .nav-top-link { display: flex; align-items: center; gap: 5px; padding: 10px 14px; border-radius: 8px; color: var(--text); font-size: 0.9rem; font-weight: 600; cursor: pointer; background: none; border: none; font-family: inherit; transition: background .15s; white-space: nowrap; }
+        .nav-item > .nav-top-link:hover, .nav-item.open > .nav-top-link { background: var(--bg3); color: var(--text); }
+        .nav-caret { font-size: 0.6rem; color: var(--muted); transition: transform .15s; }
+        .nav-item.open .nav-caret { transform: rotate(180deg); }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; min-width: 240px; background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 8px; box-shadow: 0 16px 40px rgba(0,0,0,.5); z-index: 200; }
+        .nav-item.open .dropdown-menu { display: block; }
+        .dropdown-menu a { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 8px; color: var(--text); font-size: 0.875rem; font-weight: 500; }
+        .dropdown-menu a:hover { background: rgba(99,102,241,.12); color: var(--cyan); }
+        .dropdown-menu .dd-label { padding: 8px 14px 4px; font-size: 0.68rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 700; }
+        .dropdown-menu .dd-divider { height: 1px; background: var(--border); margin: 6px 8px; }
+
+        /* Mega panel (Exercises style) */
+        .mega-panel { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); width: min(760px, 92vw); background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 24px; box-shadow: 0 20px 60px rgba(0,0,0,.6); z-index: 200; }
+        .nav-item.open .mega-panel { display: block; }
+        .mega-title { font-size: 0.72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; background: linear-gradient(135deg, var(--indigo), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 16px; }
+        .mega-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+        .mega-card { border: 1px solid var(--border); border-radius: 12px; padding: 20px 16px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; transition: border-color .15s, transform .15s; background: var(--bg); }
+        .mega-card:hover { border-color: var(--indigo); transform: translateY(-2px); }
+        .mega-card .mc-icon { font-size: 1.8rem; }
+        .mega-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
+        .mega-card p { font-size: 0.76rem; color: var(--muted); flex: 1; }
+
+        /* Search */
+        .nav-search { display: flex; align-items: center; margin-left: auto; flex-shrink: 1; min-width: 0; }
+        .nav-search input { background: var(--bg3); border: 1px solid var(--border); border-radius: 24px 0 0 24px; border-right: none; color: var(--text); padding: 8px 16px; font-size: 0.85rem; outline: none; width: 180px; max-width: 32vw; transition: border-color .2s, width .2s; font-family: inherit; }
+        .nav-search input:focus { border-color: var(--indigo); width: 220px; }
+        .nav-search input::placeholder { color: var(--muted); font-style: italic; }
+        .nav-search button { background: var(--bg3); border: 1px solid var(--border); border-left: none; border-radius: 0 24px 24px 0; color: var(--muted); padding: 8px 14px 8px 8px; cursor: pointer; font-size: 0.85rem; }
+        .nav-search button:hover { color: var(--cyan); }
+
+        .nav-actions { display: flex; align-items: center; gap: 10px; margin-left: 12px; flex-shrink: 0; }
+        .nav-actions .nav-plain-link { color: var(--muted); font-size: 0.875rem; font-weight: 600; padding: 8px 6px; white-space: nowrap; }
+        .nav-actions .nav-plain-link:hover { color: var(--text); }
+
+        /* Topic bar (second tier) */
+        .subnav { background: var(--bg2); border-bottom: 1px solid var(--border); }
+        .subnav-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+        .subnav-inner::-webkit-scrollbar { display: none; }
+        .subnav-inner a { color: var(--muted); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; padding: 11px 14px; white-space: nowrap; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; }
+        .subnav-inner a:hover { color: var(--cyan); border-bottom-color: var(--cyan); }
         .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; border: none; transition: all .2s; text-decoration: none; }
         .btn-primary { background: linear-gradient(135deg, var(--indigo), #8b5cf6); color: #fff; }
         .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(99,102,241,.4); color: #fff; }
@@ -77,12 +117,17 @@
         .badge-danger { background: rgba(239,68,68,.2); color: var(--danger); }
 
         /* Hamburger */
-        .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: 10px; flex-shrink: 0; }
         .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); }
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .hamburger { display: flex; }
-            .nav-links { display: none; position: absolute; top: 65px; left: 0; right: 0; background: var(--bg2); border-bottom: 1px solid var(--border); flex-direction: column; padding: 20px; gap: 16px; }
-            .nav-links.open { display: flex; }
+            .nav-menu { display: none; position: absolute; top: 60px; left: 0; right: 0; background: var(--bg2); border-bottom: 1px solid var(--border); flex-direction: column; align-items: stretch; padding: 12px; gap: 4px; box-shadow: 0 20px 40px rgba(0,0,0,.5); }
+            .nav-menu.open { display: flex; }
+            .nav-item > .nav-top-link { width: 100%; justify-content: space-between; }
+            .dropdown-menu, .mega-panel { position: static; transform: none; width: 100%; min-width: 0; box-shadow: none; margin-top: 4px; }
+            .nav-search input { width: 110px; }
+            .nav-search input:focus { width: 130px; }
+            .nav-actions .nav-plain-link { display: none; }
         }
 
         /* Progress bar */
@@ -102,31 +147,121 @@
     @stack('styles')
 </head>
 <body>
+@php $navCourses = \App\Models\Course::where('is_published', true)->orderBy('title')->take(10)->get(); @endphp
 <nav class="navbar">
     <div class="nav-inner">
         <a href="/" class="nav-logo">🎓 EduPlatform</a>
-        <button class="hamburger" onclick="this.nextElementSibling.classList.toggle('open')">
-            <span></span><span></span><span></span>
-        </button>
-        <div class="nav-links">
-            <a href="/">መነሻ / Home</a>
+
+        <div class="nav-menu" id="navMenu">
+            {{-- Courses dropdown --}}
+            <div class="nav-item">
+                <button type="button" class="nav-top-link" data-dd>ትምህርቶች / Courses <span class="nav-caret">▼</span></button>
+                <div class="dropdown-menu">
+                    <div class="dd-label">Premium Courses</div>
+                    @forelse($navCourses as $navCourse)
+                        <a href="{{ route('course.show', $navCourse) }}">📚 {{ $navCourse->title }}</a>
+                    @empty
+                        <a href="/#courses">📚 ኮርሶች በቅርቡ ይመጣሉ</a>
+                    @endforelse
+                    <div class="dd-divider"></div>
+                    <a href="/#courses">🗂️ ሁሉንም ኮርሶች ይመልከቱ / Browse All</a>
+                </div>
+            </div>
+
+            {{-- Resources dropdown --}}
+            <div class="nav-item">
+                <button type="button" class="nav-top-link" data-dd>መርጃዎች / Resources <span class="nav-caret">▼</span></button>
+                <div class="dropdown-menu">
+                    <div class="dd-label">Free for members</div>
+                    <a href="{{ route('documents.index') }}">📄 ነጻ ሰነዶች / Free PDFs</a>
+                    <a href="{{ route('quizzes.index') }}">📝 ፈተናዎች / Quizzes</a>
+                    <div class="dd-divider"></div>
+                    @auth
+                        @if(auth()->user()->isAdmin())
+                            <a href="{{ route('admin.dashboard') }}">🛠️ Admin Panel</a>
+                        @else
+                            <a href="{{ route('student.dashboard') }}">🎯 የእኔ ትምህርቶች / My Learning</a>
+                        @endif
+                    @else
+                        <a href="{{ route('register') }}">✨ ተመዝገብና በነጻ ተጠቀም</a>
+                    @endauth
+                </div>
+            </div>
+
+            {{-- Practice mega panel --}}
+            <div class="nav-item">
+                <button type="button" class="nav-top-link" data-dd>ልምምድ / Practice <span class="nav-caret">▼</span></button>
+                <div class="mega-panel">
+                    <div class="mega-title">EduPlatform Practice</div>
+                    <div class="mega-grid">
+                        <div class="mega-card">
+                            <div class="mc-icon">📝</div>
+                            <h4>Quizzes</h4>
+                            <p>እውቀትዎን በ A–D ምርጫ ፈተናዎች ይፈትሹ</p>
+                            <a href="{{ route('quizzes.index') }}" class="btn btn-primary btn-sm">Browse Quizzes</a>
+                        </div>
+                        <div class="mega-card">
+                            <div class="mc-icon">📄</div>
+                            <h4>Free PDFs</h4>
+                            <p>ነጻ የትምህርት ሰነዶችን ያንብቡ እና ያውርዱ</p>
+                            <a href="{{ route('documents.index') }}" class="btn btn-primary btn-sm">Browse PDFs</a>
+                        </div>
+                        <div class="mega-card">
+                            <div class="mc-icon">📚</div>
+                            <h4>Courses</h4>
+                            <p>ሙሉ የቪዲዮ ኮርሶች በፕሪሚየም ጥራት</p>
+                            <a href="/#courses" class="btn btn-primary btn-sm">Browse Courses</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Search --}}
+        <form class="nav-search" method="GET" action="{{ url('/') }}#courses">
+            <input type="text" name="q" placeholder="Search..." value="{{ request('q') }}" aria-label="Search courses">
+            <button type="submit" aria-label="Search">🔍</button>
+        </form>
+
+        <div class="nav-actions">
             @auth
                 @if(auth()->user()->isAdmin())
-                    <a href="{{ route('admin.dashboard') }}">Admin Panel</a>
+                    <a href="{{ route('admin.dashboard') }}" class="nav-plain-link">Admin</a>
                 @else
-                    <a href="{{ route('student.dashboard') }}">Dashboard</a>
+                    <a href="{{ route('student.dashboard') }}" class="nav-plain-link">Dashboard</a>
                 @endif
                 <form method="POST" action="{{ route('logout') }}" style="display:inline">
                     @csrf
                     <button type="submit" class="btn btn-secondary btn-sm">ውጣ / Logout</button>
                 </form>
             @else
-                <a href="{{ route('login') }}">ግባ / Login</a>
-                <a href="{{ route('register') }}" class="btn btn-primary btn-sm">ተመዝገብ / Register</a>
+                <a href="{{ route('login') }}" class="nav-plain-link">ግባ / Login</a>
+                <a href="{{ route('register') }}" class="btn btn-primary btn-sm">ተመዝገብ / Sign Up</a>
             @endauth
         </div>
+
+        <button class="hamburger" onclick="document.getElementById('navMenu').classList.toggle('open')" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
     </div>
 </nav>
+
+{{-- Topic bar --}}
+<div class="subnav">
+    <div class="subnav-inner">
+        <a href="/">Home</a>
+        @foreach($navCourses as $navCourse)
+            <a href="{{ route('course.show', $navCourse) }}">{{ $navCourse->title }}</a>
+        @endforeach
+        <a href="{{ route('documents.index') }}">Free PDFs</a>
+        <a href="{{ route('quizzes.index') }}">Quizzes</a>
+        @auth
+            @if(!auth()->user()->isAdmin())
+                <a href="{{ route('student.dashboard') }}">My Learning</a>
+            @endif
+        @endauth
+    </div>
+</div>
 
 <main>
     <div class="container" style="padding-top:20px;">
@@ -149,5 +284,26 @@
     </div>
 </footer>
 @stack('scripts')
+<script>
+// Dropdown toggles: click to open, click outside or Esc to close
+document.querySelectorAll('[data-dd]').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var item = btn.closest('.nav-item');
+        var wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.nav-item.open').forEach(function (o) { o.classList.remove('open'); });
+        if (!wasOpen) item.classList.add('open');
+    });
+});
+document.addEventListener('click', function () {
+    document.querySelectorAll('.nav-item.open').forEach(function (o) { o.classList.remove('open'); });
+});
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') document.querySelectorAll('.nav-item.open').forEach(function (o) { o.classList.remove('open'); });
+});
+document.querySelectorAll('.dropdown-menu, .mega-panel').forEach(function (p) {
+    p.addEventListener('click', function (e) { e.stopPropagation(); });
+});
+</script>
 </body>
 </html>

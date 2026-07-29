@@ -81,6 +81,8 @@
 
         <div class="nav-section">Content</div>
         <a href="{{ route('admin.courses.index') }}" class="{{ request()->routeIs('admin.courses*') ? 'active' : '' }}">📚 Courses</a>
+        <a href="{{ route('admin.documents.index') }}" class="{{ request()->routeIs('admin.documents*') ? 'active' : '' }}">📄 PDF Documents</a>
+        <a href="{{ route('admin.quizzes.index') }}" class="{{ request()->routeIs('admin.quizzes*') ? 'active' : '' }}">📝 Quizzes</a>
 
         <div class="nav-section">Business</div>
         <a href="{{ route('admin.orders.index') }}" class="{{ request()->routeIs('admin.orders*') ? 'active' : '' }}">💰 Orders</a>
