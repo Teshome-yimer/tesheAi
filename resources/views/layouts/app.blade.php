@@ -61,15 +61,15 @@
         .mega-card p { font-size: 0.76rem; color: var(--muted); flex: 1; }
 
         /* Search */
-        .nav-search { display: flex; align-items: center; margin-left: auto; flex-shrink: 1; min-width: 0; }
-        .nav-search input { background: var(--bg3); border: 1px solid var(--border); border-radius: 24px 0 0 24px; border-right: none; color: var(--text); padding: 8px 16px; font-size: 0.85rem; outline: none; width: 180px; max-width: 32vw; transition: border-color .2s, width .2s; font-family: inherit; }
-        .nav-search input:focus { border-color: var(--indigo); width: 220px; }
+        .nav-search { display: flex; align-items: center; margin-left: auto; flex-shrink: 0; }
+        .nav-search input { background: var(--bg3); border: 1px solid var(--border); border-radius: 24px 0 0 24px; border-right: none; color: var(--text); padding: 8px 16px; font-size: 0.85rem; outline: none; width: 220px; transition: border-color .2s; font-family: inherit; }
+        .nav-search input:focus { border-color: var(--indigo); }
         .nav-search input::placeholder { color: var(--muted); font-style: italic; }
-        .nav-search button { background: var(--bg3); border: 1px solid var(--border); border-left: none; border-radius: 0 24px 24px 0; color: var(--muted); padding: 8px 14px 8px 8px; cursor: pointer; font-size: 0.85rem; }
+        .nav-search button { background: var(--bg3); border: 1px solid var(--border); border-left: none; border-radius: 0 24px 24px 0; color: var(--muted); padding: 8px 14px 8px 8px; cursor: pointer; font-size: 0.85rem; flex-shrink: 0; }
         .nav-search button:hover { color: var(--cyan); }
 
-        .nav-actions { display: flex; align-items: center; gap: 10px; margin-left: 12px; flex-shrink: 0; }
-        .nav-actions .nav-plain-link { color: var(--muted); font-size: 0.875rem; font-weight: 600; padding: 8px 6px; white-space: nowrap; }
+        .nav-actions { display: flex; align-items: center; gap: 16px; margin-left: 20px; flex-shrink: 0; }
+        .nav-actions .nav-plain-link { color: var(--muted); font-size: 0.875rem; font-weight: 600; white-space: nowrap; }
         .nav-actions .nav-plain-link:hover { color: var(--text); }
 
         /* Topic bar (second tier) */
