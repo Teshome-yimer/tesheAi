@@ -20,7 +20,7 @@
 @endif
 
 {{-- New user form (toggled) --}}
-<div id="new-user-panel" style="display:{{ $errors->has('email') || $errors->has('password') ? 'block' : 'none' }};background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:20px;">
+<div id="new-user-panel" style="display:{{ $errors->has('email') || $errors->has('password') || $errors->has('role') ? 'block' : 'none' }};background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:20px;">
     <h3 style="font-weight:700;margin-bottom:14px;">➕ New user</h3>
     <form method="POST" action="{{ route('admin.users.store') }}">
         @csrf
@@ -38,9 +38,19 @@
                 <input type="text" name="phone" class="form-control" value="{{ old('phone') }}">
             </div>
             <div>
+                <label style="display:block;font-size:0.72rem;color:var(--muted);margin-bottom:4px;">Role *</label>
+                <select name="role" class="form-control" required>
+                    <option value="student" {{ old('role', 'student') === 'student' ? 'selected' : '' }}>User (Student)</option>
+                    <option value="admin" {{ old('role') === 'admin' ? 'selected' : '' }}>Admin (only one allowed)</option>
+                </select>
+            </div>
+            <div>
                 <label style="display:block;font-size:0.72rem;color:var(--muted);margin-bottom:4px;">Password *</label>
                 <input type="password" name="password" class="form-control" autocomplete="new-password" required>
             </div>
+        </div>
+        <div style="font-size:0.75rem;color:var(--muted);margin-bottom:14px;">
+            Selecting <strong style="color:#fbbf24;">Admin</strong> makes this user the only admin account that can access the admin panel.
         </div>
         <div style="display:flex;gap:8px;">
             <button type="submit" class="btn btn-primary btn-sm">💾 Create user</button>

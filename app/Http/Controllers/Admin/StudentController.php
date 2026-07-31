@@ -37,14 +37,20 @@ class StudentController extends Controller
             'name'     => 'required|string|max:255',
             'email'    => 'required|email|max:255|unique:users,email',
             'phone'    => 'nullable|string|max:30',
+            'role'     => 'required|in:student,admin',
             'password' => 'required|string|min:6',
         ]);
 
-        // New users are always created as regular users (single-admin policy)
-        $data['role'] = 'student';
-        User::create($data);
+        $user = User::create($data);
 
-        return back()->with('success', 'New user created!');
+        // Single-admin policy: creating a new admin demotes every other admin.
+        if ($data['role'] === 'admin') {
+            User::where('id', '!=', $user->id)->where('role', 'admin')->update(['role' => 'student']);
+        }
+
+        return back()->with('success', $data['role'] === 'admin'
+            ? 'New admin created. This is now the only admin login.'
+            : 'New user created!');
     }
 
     public function update(Request $request, User $user)
