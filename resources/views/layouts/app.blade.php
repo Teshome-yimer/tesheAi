@@ -32,11 +32,12 @@
             border-bottom: 1px solid var(--border);
             position: sticky; top: 0; z-index: 100;
         }
-        .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 6px; height: 60px; }
+        .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 6px; min-height: 60px; }
         .nav-logo { font-size: 1.35rem; font-weight: 800; background: linear-gradient(135deg, var(--indigo), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-right: 10px; flex-shrink: 0; }
 
         /* Nav items + dropdowns */
         .nav-menu { display: flex; align-items: center; gap: 2px; flex: 1; }
+        .nav-utilities { display: flex; align-items: center; gap: 12px; margin-left: auto; flex-shrink: 0; }
         .nav-item { position: relative; }
         .nav-item > .nav-top-link { display: flex; align-items: center; gap: 5px; padding: 10px 14px; border-radius: 8px; color: var(--text); font-size: 0.9rem; font-weight: 600; cursor: pointer; background: none; border: none; font-family: inherit; transition: background .15s; white-space: nowrap; }
         .nav-item > .nav-top-link:hover, .nav-item.open > .nav-top-link { background: var(--bg3); color: var(--text); }
@@ -71,6 +72,7 @@
         .nav-actions { display: flex; align-items: center; gap: 16px; margin-left: 20px; flex-shrink: 0; }
         .nav-actions .nav-plain-link { color: var(--muted); font-size: 0.875rem; font-weight: 600; white-space: nowrap; }
         .nav-actions .nav-plain-link:hover { color: var(--text); }
+        .mobile-menu-actions { display: none; }
 
         /* Topic bar (second tier) */
         .subnav { background: var(--bg2); border-bottom: 1px solid var(--border); }
@@ -119,17 +121,26 @@
         .badge-danger { background: rgba(239,68,68,.2); color: var(--danger); }
 
         /* Hamburger */
-        .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: 10px; flex-shrink: 0; }
+        .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: 0; flex-shrink: 0; }
         .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); }
         @media (max-width: 900px) {
+            .nav-inner { flex-wrap: wrap; row-gap: 10px; padding-top: 10px; padding-bottom: 10px; }
+            .nav-logo { margin-right: 0; font-size: 1.15rem; }
+            .nav-utilities { order: 2; margin-left: auto; gap: 10px; }
             .hamburger { display: flex; }
-            .nav-menu { display: none; position: absolute; top: 60px; left: 0; right: 0; background: var(--bg2); border-bottom: 1px solid var(--border); flex-direction: column; align-items: stretch; padding: 12px; gap: 4px; box-shadow: 0 20px 40px rgba(0,0,0,.5); }
+            .nav-menu { display: none; order: 3; flex: 0 0 100%; width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; flex-direction: column; align-items: stretch; padding: 12px; gap: 4px; box-shadow: 0 20px 40px rgba(0,0,0,.35); }
             .nav-menu.open { display: flex; }
             .nav-item > .nav-top-link { width: 100%; justify-content: space-between; }
             .dropdown-menu, .mega-panel { position: static; transform: none; width: 100%; min-width: 0; box-shadow: none; margin-top: 4px; }
-            .nav-search input { width: 110px; }
-            .nav-search input:focus { width: 130px; }
+            .nav-search { margin-left: 0; }
+            .nav-search input { width: 96px; }
+            .nav-search input:focus { width: 120px; }
+            .nav-actions { margin-left: 0; gap: 10px; }
             .nav-actions .nav-plain-link { display: none; }
+            .nav-actions form { display: none !important; }
+            .mobile-menu-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--border); }
+            .mobile-menu-actions .btn { width: 100%; justify-content: center; }
+            .subnav { display: none; }
         }
 
         /* Progress bar */
@@ -217,33 +228,49 @@
                     </div>
                 </div>
             </div>
+
+            <div class="mobile-menu-actions">
+                @auth
+                    @if(auth()->user()->isAdmin())
+                        <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary btn-sm">Admin Dashboard</a>
+                    @else
+                        <a href="{{ route('student.dashboard') }}" class="btn btn-secondary btn-sm">Student Dashboard</a>
+                    @endif
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="btn btn-secondary btn-sm">ውጣ / Logout</button>
+                    </form>
+                @endauth
+            </div>
         </div>
 
-        {{-- Search --}}
-        <form class="nav-search" method="GET" action="{{ url('/') }}#courses">
-            <input type="text" name="q" placeholder="Search..." value="{{ request('q') }}" aria-label="Search courses">
-            <button type="submit" aria-label="Search">🔍</button>
-        </form>
+        <div class="nav-utilities">
+            {{-- Search --}}
+            <form class="nav-search" method="GET" action="{{ url('/') }}#courses">
+                <input type="text" name="q" placeholder="Search..." value="{{ request('q') }}" aria-label="Search courses">
+                <button type="submit" aria-label="Search">🔍</button>
+            </form>
 
-        <div class="nav-actions">
-            @auth
-                @if(auth()->user()->isAdmin())
-                    <a href="{{ route('admin.dashboard') }}" class="nav-plain-link">Admin</a>
+            <div class="nav-actions">
+                @auth
+                    @if(auth()->user()->isAdmin())
+                        <a href="{{ route('admin.dashboard') }}" class="nav-plain-link">Admin</a>
+                    @else
+                        <a href="{{ route('student.dashboard') }}" class="nav-plain-link">Dashboard</a>
+                    @endif
+                    <form method="POST" action="{{ route('logout') }}" style="display:inline">
+                        @csrf
+                        <button type="submit" class="btn btn-secondary btn-sm">ውጣ / Logout</button>
+                    </form>
                 @else
-                    <a href="{{ route('student.dashboard') }}" class="nav-plain-link">Dashboard</a>
-                @endif
-                <form method="POST" action="{{ route('logout') }}" style="display:inline">
-                    @csrf
-                    <button type="submit" class="btn btn-secondary btn-sm">ውጣ / Logout</button>
-                </form>
-            @else
-                <!-- Login/Register moved to home banner -->
-            @endauth
-        </div>
+                    <!-- Login/Register moved to home banner -->
+                @endauth
+            </div>
 
-        <button class="hamburger" onclick="document.getElementById('navMenu').classList.toggle('open')" aria-label="Menu">
-            <span></span><span></span><span></span>
-        </button>
+            <button class="hamburger" onclick="document.getElementById('navMenu').classList.toggle('open')" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
     </div>
 </nav>
 
