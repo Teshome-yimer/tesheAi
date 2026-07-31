@@ -55,6 +55,12 @@
 {{-- Hero --}}
 <section class="hero">
     <div class="container">
+        @guest
+        <div style="margin-bottom: 24px; display: flex; justify-content: center; gap: 16px;">
+            <a href="{{ route('login') }}" class="btn btn-gold">ግባ / Login</a>
+            <a href="{{ route('register') }}" class="btn btn-gold">ተመዝገብ / Sign Up</a>
+        </div>
+        @endguest
         <div class="hero-badge">🇪🇹 አዲስ ኮርሶች ተጨምረዋል / New Courses Available</div>
         <h1>ከዜሮ ወደ <span class="grad-text">ፕሮፌሽናል</span><br>ዲቬሎፐር ሁን</h1>
         <p>ላራቬል፣ ሪኤክት እና MySQL ተጠቅምህ ሙሉ ስታክ ዌብ ዲቬሎፐር ሁን። Learn modern web development in Amharic + English.</p>

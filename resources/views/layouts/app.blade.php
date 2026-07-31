@@ -85,6 +85,8 @@
         .btn-secondary:hover { border-color: var(--indigo); color: var(--indigo); }
         .btn-cyan { background: linear-gradient(135deg, var(--cyan), #0891b2); color: #000; font-weight: 700; }
         .btn-cyan:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(34,211,238,.4); color: #000; }
+        .btn-gold { background: linear-gradient(135deg, #fffbeb, #fde68a); color: #1a1a24; font-weight: 700; border: 1px solid #fcd34d; }
+        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(253, 230, 138, 0.3); color: #000; }
         .btn-sm { padding: 6px 14px; font-size: 0.8rem; }
         .btn-danger { background: var(--danger); color: #fff; }
 
@@ -235,8 +237,7 @@
                     <button type="submit" class="btn btn-secondary btn-sm">ውጣ / Logout</button>
                 </form>
             @else
-                <a href="{{ route('login') }}" class="nav-plain-link">ግባ / Login</a>
-                <a href="{{ route('register') }}" class="btn btn-primary btn-sm">ተመዝገብ / Sign Up</a>
+                <!-- Login/Register moved to home banner -->
             @endauth
         </div>
 
