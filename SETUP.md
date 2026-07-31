@@ -33,6 +33,26 @@ php artisan serve
 | Admin   | admin@course.com    | password |
 | Student | student@course.com  | password |
 
+## Admin Recovery
+
+If you cannot log in to the admin panel, you can recover access with artisan commands after installing dependencies.
+
+```bash
+# Create a new admin or promote an existing user to admin
+php artisan admin:create admin@example.com StrongPassword123 --name="Admin User"
+
+# Reset the current admin password
+php artisan admin:reset-password NewStrongPassword123
+
+# Reset a specific admin by email
+php artisan admin:reset-password NewStrongPassword123 --email=admin@example.com
+```
+
+Notes:
+- Only one admin account is kept active at a time.
+- Creating a new admin demotes any other existing admin to `student`.
+- These commands work only after `composer install` and normal Laravel setup are complete.
+
 ## Payment Keys
 
 ### Chapa (Ethiopian ETB)

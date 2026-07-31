@@ -47,11 +47,12 @@ class CheckProject extends Command
         $this->line('Published:' . ($course->is_published ? ' YES' : ' NO'));
 
         $this->info('');
-        $this->info('--- Credentials ---');
-        $this->line('Admin:    ' . $admin->email . '  /  password');
-        $this->line('Student:  ' . $student->email . '  /  password');
+        $this->info('--- Accounts ---');
+        $this->line('Admin email:   ' . ($admin?->email ?? 'Not found'));
+        $this->line('Student email: ' . ($student?->email ?? 'Not found'));
+        $this->line('Passwords are not displayed. Use admin:create or admin:reset-password for recovery.');
 
-        $enrolled = Enrollment::where('user_id', $student->id)->first();
+        $enrolled = $student ? Enrollment::where('user_id', $student->id)->first() : null;
         $this->line('Student enrolled: ' . ($enrolled ? 'YES' : 'NO - enroll via admin panel'));
 
         $coupon = Coupon::where('is_active', true)->first();
