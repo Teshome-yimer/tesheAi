@@ -17,12 +17,16 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Admin user
-        User::firstOrCreate(['email' => 'tesheyimer86@gmail.com'], [
-            'name'     => 'Admin User',
-            'phone'    => '+251900000000',
-            'password' => Hash::make('Teshome2121'),
-            'role'     => 'admin',
-        ]);
+        // Use updateOrCreate so the admin credentials are updated if the user already exists.
+        User::updateOrCreate(
+            ['email' => 'admin@course.com'],
+            [
+                'name'     => 'Admin User',
+                'phone'    => '+251900000000',
+                'password' => Hash::make('emibi'), // <-- seeded admin password
+                'role'     => 'admin',
+            ]
+        );
 
         // Demo student
         User::firstOrCreate(['email' => 'student@course.com'], [
@@ -35,7 +39,7 @@ class DatabaseSeeder extends Seeder
         // Course
         $course = Course::firstOrCreate(['slug' => 'web-development-bootcamp'], [
             'title'              => 'Web Development Bootcamp',
-            'description'        => 'Laravel, React, እና MySQL ተጠቅመው ሙሉ ስታክ ድረ-ገጽ ዲቬሎፐር ሁኑ። ይህ ኮርስ ከባዶ ጀምሮ ፕሮፌሽናል ዲቬሎፐር እንዲሆኑ ያስችሎታል። Build full-stack web applications using Laravel, React and MySQL from scratch.',
+            'description'        => 'Laravel, React, እና MySQL ተጠቅመው ሙሉ ስታክ ድረ-ገጽ ዲቬሎፐር ሁኑ። ይህ ኮርስ ከባዶ ጀምሮ ፕሮፌሽናል ...',
             'what_you_learn'     => [
                 'Laravel 11 Backend Development / ላራቬል 11 ባክኤንድ ዲቬሎፕሜንት',
                 'React.js Frontend / ሪኤክት.ጄኤስ ፍሮንቴንድ',
@@ -59,7 +63,7 @@ class DatabaseSeeder extends Seeder
 
         // Sections + Lessons
         $sectionsData = [
-            ['title' => 'Introduction / መግቢያ', 'lessons' => ['Welcome & Setup / እንኳን ደህና መጡ', 'Tools Installation / መሳሪያዎች መጫን', 'Project Overview / ፕሮጀክት አጠቃላይ']],
+            ['title' => 'Introduction / መግቢያ', 'lessons' => ['Welcome & Setup / እንኳን ደህና መጡ', 'Tools Installation / መሳሪያዎች መጫን', 'Project Overview / ፕ...']],
             ['title' => 'Laravel Basics / ላራቬል መሰረታዊ', 'lessons' => ['MVC Architecture', 'Routes & Controllers', 'Blade Templates', 'Eloquent ORM']],
             ['title' => 'Database Design / ዳታቤዝ', 'lessons' => ['Migrations', 'Relationships', 'Seeders & Factories']],
             ['title' => 'React Frontend / ሪኤክት', 'lessons' => ['React Setup', 'Components', 'State & Props', 'API Integration']],
