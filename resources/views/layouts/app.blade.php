@@ -246,15 +246,15 @@
 
         <div class="nav-utilities">
             {{-- Search --}}
-            <form class="nav-search" method="GET" action="{{ url('/') }}#courses">
-                <input type="text" name="q" placeholder="Search..." value="{{ request('q') }}" aria-label="Search courses">
+            <form class="nav-search" method="GET" action="{{ url('/') }}" onsubmit="scrollToCourses(event, this)">
+                <input type="text" name="q" placeholder="Search courses..." value="{{ request('q') }}" aria-label="Search courses" id="nav-search-input">
                 <button type="submit" aria-label="Search">🔍</button>
             </form>
 
             <div class="nav-actions">
                 @auth
                     @if(auth()->user()->isAdmin())
-                        <a href="{{ route('admin.dashboard') }}" class="nav-plain-link">Admin</a>
+                        <a href="{{ route('admin.dashboard') }}" class="nav-plain-link" style="color:var(--indigo);">⚙️ Admin</a>
                     @else
                         <a href="{{ route('student.dashboard') }}" class="nav-plain-link">Dashboard</a>
                     @endif
@@ -263,7 +263,8 @@
                         <button type="submit" class="btn btn-secondary btn-sm">ውጣ / Logout</button>
                     </form>
                 @else
-                    <!-- Login/Register moved to home banner -->
+                    <a href="{{ route('login') }}" class="nav-plain-link">ግባ / Login</a>
+                    <a href="{{ route('register') }}" class="btn btn-primary btn-sm">ተመዝገብ</a>
                 @endauth
             </div>
 
@@ -332,6 +333,28 @@ document.addEventListener('keydown', function (e) {
 document.querySelectorAll('.dropdown-menu, .mega-panel').forEach(function (p) {
     p.addEventListener('click', function (e) { e.stopPropagation(); });
 });
+
+// Search: if on homepage scroll to courses, otherwise navigate
+function scrollToCourses(e, form) {
+    var q = document.getElementById('nav-search-input').value.trim();
+    var onHome = window.location.pathname === '/';
+    if (onHome) {
+        e.preventDefault();
+        var section = document.getElementById('courses');
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Filter courses if search term provided
+            if (q) {
+                var cards = document.querySelectorAll('.course-card');
+                cards.forEach(function(card) {
+                    var title = card.querySelector('.course-title')?.textContent.toLowerCase() || '';
+                    card.style.display = title.includes(q.toLowerCase()) ? '' : 'none';
+                });
+            }
+        }
+    }
+    // else let form submit normally with ?q=...
+}
 </script>
 </body>
 </html>
