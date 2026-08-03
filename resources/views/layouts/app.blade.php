@@ -263,9 +263,6 @@
                         @csrf
                         <button type="submit" class="btn btn-secondary btn-sm">ውጣ / Logout</button>
                     </form>
-                @else
-                    <a href="{{ route('login') }}" class="nav-plain-link">ግባ / Login</a>
-                    <a href="{{ route('register') }}" class="btn btn-primary btn-sm">ተመዝገብ</a>
                 @endauth
             </div>
 
