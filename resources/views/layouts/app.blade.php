@@ -245,11 +245,7 @@
         </div>
 
         <div class="nav-utilities">
-            {{-- Search --}}
-            <form class="nav-search" method="GET" action="{{ url('/') }}" onsubmit="scrollToCourses(event, this)">
-                <input type="text" name="q" placeholder="Search courses..." value="{{ request('q') }}" aria-label="Search courses" id="nav-search-input">
-                <button type="submit" aria-label="Search">🔍</button>
-            </form>
+            {{-- No search in navbar - moved to homepage --}}
 
             <div class="nav-actions">
                 @auth

@@ -70,6 +70,19 @@
                 <a href="{{ route('register') }}" class="btn btn-secondary" style="padding:14px 32px;">ነፃ ተመዝገቡ / Free Sign Up</a>
             @endguest
         </div>
+
+        {{-- Search bar --}}
+        <div style="margin-top:36px;max-width:520px;margin-left:auto;margin-right:auto;">
+            <form onsubmit="searchCourses(event, this)" style="display:flex;gap:0;border-radius:99px;overflow:hidden;border:2px solid var(--indigo);background:var(--bg2);">
+                <input type="text" id="hero-search" placeholder="ኮርስ ፈልግ / Search courses..." autocomplete="off"
+                    style="flex:1;background:transparent;border:none;color:var(--text);padding:14px 22px;font-size:1rem;outline:none;font-family:inherit;">
+                <button type="submit"
+                    style="background:linear-gradient(135deg,var(--indigo),var(--cyan));color:#fff;border:none;padding:14px 24px;cursor:pointer;font-size:1rem;font-weight:700;white-space:nowrap;">
+                    🔍 ፈልግ
+                </button>
+            </form>
+            <div id="search-results" style="display:none;background:var(--bg2);border:1px solid var(--border);border-radius:12px;margin-top:8px;overflow:hidden;text-align:left;"></div>
+        </div>
     </div>
 </section>
 
@@ -253,3 +266,59 @@
 </div>
 
 @endsection
+
+@push('scripts')
+<script>
+// Live search: filter course cards on the page
+const allCourseData = [
+    @foreach($courses as $c)
+    { title: "{{ addslashes($c->title) }}", url: "{{ route('course.show', $c) }}", desc: "{{ addslashes(Str::limit($c->description, 80)) }}", price: "{{ number_format($c->price_etb) }} ETB" },
+    @endforeach
+];
+
+function searchCourses(e, form) {
+    e.preventDefault();
+    const q = document.getElementById('hero-search').value.trim().toLowerCase();
+    if (!q) {
+        document.getElementById('search-results').style.display = 'none';
+        document.getElementById('courses').scrollIntoView({ behavior: 'smooth' });
+        return;
+    }
+
+    const filtered = allCourseData.filter(c =>
+        c.title.toLowerCase().includes(q) || c.desc.toLowerCase().includes(q)
+    );
+
+    const box = document.getElementById('search-results');
+    if (filtered.length === 0) {
+        box.innerHTML = '<div style="padding:16px;color:var(--muted);text-align:center;">ምንም ኮርስ አልተገኘም / No courses found</div>';
+    } else {
+        box.innerHTML = filtered.map(c =>
+            `<a href="${c.url}" style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border);color:var(--text);gap:12px;">
+                <div>
+                    <div style="font-weight:600;font-size:0.9rem;">📚 ${c.title}</div>
+                    <div style="color:var(--muted);font-size:0.78rem;margin-top:2px;">${c.desc}</div>
+                </div>
+                <span style="color:var(--cyan);font-weight:700;white-space:nowrap;">${c.price}</span>
+            </a>`
+        ).join('');
+    }
+    box.style.display = 'block';
+    box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// Close search results on outside click
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('#hero-search') && !e.target.closest('#search-results') && !e.target.closest('form')) {
+        document.getElementById('search-results').style.display = 'none';
+    }
+});
+
+// Live filter as user types
+document.getElementById('hero-search')?.addEventListener('input', function() {
+    if (this.value.trim() === '') {
+        document.getElementById('search-results').style.display = 'none';
+    }
+});
+</script>
+@endpush
