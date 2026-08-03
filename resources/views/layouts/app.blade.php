@@ -140,7 +140,12 @@
             .nav-actions form { display: none !important; }
             .mobile-menu-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--border); }
             .mobile-menu-actions .btn { width: 100%; justify-content: center; }
-            .subnav { display: none; }
+        /* Topic bar responsive */
+        @media (max-width: 900px) {
+            .subnav { display: block; overflow-x: auto; }
+            .subnav-inner { gap: 0; }
+            .subnav-inner a { font-size: 0.75rem; padding: 10px 12px; }
+        }
         }
 
         /* Progress bar */
