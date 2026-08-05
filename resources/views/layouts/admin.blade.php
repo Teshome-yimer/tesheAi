@@ -36,7 +36,9 @@
 
         /* Main */
         .admin-main { flex:1; overflow-x:hidden; }
-        .admin-topbar { background:var(--bg2); border-bottom:1px solid var(--border); padding:16px 28px; display:flex; align-items:center; justify-content:space-between; sticky; top:0; z-index:50; }
+        .admin-topbar { background:var(--bg2); border-bottom:1px solid var(--border); padding:16px 28px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:50; }
+        .admin-menu-btn { display:none; background:transparent; border:1px solid var(--border); color:var(--text); width:38px; height:38px; border-radius:10px; font-size:1.1rem; cursor:pointer; }
+        .admin-menu-btn:hover { border-color:var(--indigo); }
         .admin-content { padding:32px 28px; max-width:1200px; }
         .page-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:28px; }
         .page-title { font-size:1.5rem; font-weight:800; }
@@ -66,6 +68,19 @@
         .flash { padding:12px 18px; border-radius:8px; margin-bottom:20px; font-size:0.875rem; font-weight:500; }
         .flash-success { background:rgba(16,185,129,.15); border:1px solid var(--success); color:var(--success); }
         .flash-error { background:rgba(239,68,68,.15); border:1px solid var(--danger); color:var(--danger); }
+
+        .admin-backdrop { display:none; position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:80; }
+
+        @media (max-width: 900px) {
+            body { display:block; }
+            .admin-sidebar { position:fixed; left:0; top:0; height:100vh; width:min(86vw, 300px); transform:translateX(-100%); transition:transform .18s ease; z-index:90; }
+            .admin-sidebar.open { transform:translateX(0); }
+            .admin-main { width:100%; }
+            .admin-topbar { padding:14px 16px; }
+            .admin-content { padding:18px 16px; }
+            .admin-menu-btn { display:inline-flex; align-items:center; justify-content:center; }
+            .admin-backdrop.show { display:block; }
+        }
     </style>
     @stack('styles')
 </head>
@@ -91,6 +106,9 @@
         <div class="nav-section">Users</div>
         <a href="{{ route('admin.students.index') }}" class="{{ request()->routeIs('admin.students*') ? 'active' : '' }}">👥 Students</a>
         <a href="{{ route('admin.students.enroll-form') }}">➕ Manual Enroll</a>
+
+        <div class="nav-section">Files</div>
+        <a href="{{ route('admin.courses.index') }}" class="{{ request()->routeIs('admin.courses.files*') ? 'active' : '' }}">📎 File Manager</a>
     </nav>
     <div class="sidebar-bottom">
         <div style="font-size:0.8rem;font-weight:600;margin-bottom:4px;">{{ auth()->user()->name }}</div>
@@ -101,9 +119,14 @@
     </div>
 </aside>
 
+<div class="admin-backdrop" id="adminBackdrop"></div>
+
 <div class="admin-main">
     <div class="admin-topbar">
-        <h1 style="font-size:1rem;font-weight:700;">@yield('title', 'Dashboard')</h1>
+        <div style="display:flex;align-items:center;gap:10px;min-width:0;">
+            <button type="button" class="admin-menu-btn" id="adminMenuBtn" aria-label="Menu">☰</button>
+            <h1 style="font-size:1rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">@yield('title', 'Dashboard')</h1>
+        </div>
         <div style="display:flex;align-items:center;gap:16px;">
             <span style="color:var(--muted);font-size:0.85rem;">{{ now()->format('M d, Y') }}</span>
             <a href="/" style="color:var(--muted);font-size:0.85rem;">← View Site</a>
@@ -120,5 +143,38 @@
     </div>
 </div>
 @stack('scripts')
+<script>
+    (function () {
+        var btn = document.getElementById('adminMenuBtn');
+        var sidebar = document.querySelector('.admin-sidebar');
+        var backdrop = document.getElementById('adminBackdrop');
+        if (!btn || !sidebar || !backdrop) return;
+
+        function openMenu() {
+            sidebar.classList.add('open');
+            backdrop.classList.add('show');
+        }
+
+        function closeMenu() {
+            sidebar.classList.remove('open');
+            backdrop.classList.remove('show');
+        }
+
+        btn.addEventListener('click', function () {
+            if (sidebar.classList.contains('open')) closeMenu();
+            else openMenu();
+        });
+
+        backdrop.addEventListener('click', closeMenu);
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeMenu();
+        });
+
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 900) closeMenu();
+        });
+    })();
+</script>
 </body>
 </html>

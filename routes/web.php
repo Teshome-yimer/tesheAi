@@ -65,13 +65,14 @@ Route::post('/payment/chapa/callback', [PaymentController::class, 'chapaCallback
 Route::middleware('auth')->prefix('student')->name('student.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/course/{slug}', [CourseViewerController::class, 'show'])->name('course');
-    Route::get('/lesson/{courseSlug}/{lessonSlug}', [CourseViewerController::class, 'lesson'])->name('lesson');
     Route::post('/progress/complete', [CourseViewerController::class, 'markComplete'])->name('progress.complete');
     Route::post('/progress/update', [CourseViewerController::class, 'updateProgress'])->name('progress.update');
     Route::get('/video/{lesson}', [\App\Http\Controllers\Admin\VideoController::class, 'stream'])->name('video.stream');
+});
 
-// File download — public route (controller handles auth check)
-Route::get('/files/download/{file}', [\App\Http\Controllers\Student\FileController::class, 'download'])->name('files.download');
+// Lesson viewer — guests can view free preview lessons
+Route::prefix('student')->name('student.')->group(function () {
+    Route::get('/lesson/{courseSlug}/{lessonSlug}', [CourseViewerController::class, 'lesson'])->name('lesson');
 });
 
 // Admin auth (sign-in only, no register)
