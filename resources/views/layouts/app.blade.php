@@ -121,7 +121,7 @@
         .badge-danger { background: rgba(239,68,68,.2); color: var(--danger); }
 
         /* Hamburger */
-        .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: 0; flex-shrink: 0; }
+        .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: 16px; flex-shrink: 0; padding: 4px; }
         .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); }
         @media (max-width: 900px) {
             .nav-inner { flex-wrap: wrap; row-gap: 10px; padding-top: 10px; padding-bottom: 10px; }
@@ -234,7 +234,20 @@
                 </div>
             </div>
 
+            @guest
+            <div class="nav-item">
+                <a href="{{ route('login') }}" class="nav-top-link" style="color: var(--text); font-weight: 600;">🔑 ግባ / Login</a>
+            </div>
+            <div class="nav-item" style="display: flex; align-items: center; margin-left: 6px;">
+                <a href="{{ route('register') }}" class="btn btn-cyan btn-sm" style="border-radius: 20px; padding: 7px 18px; font-weight: 700;">✨ ተመዝገብ / Register</a>
+            </div>
+            @endguest
+
             <div class="mobile-menu-actions">
+                @guest
+                    <a href="{{ route('login') }}" class="btn btn-secondary btn-sm">🔑 ግባ / Login</a>
+                    <a href="{{ route('register') }}" class="btn btn-cyan btn-sm">✨ ተመዝገብ / Register</a>
+                @endguest
                 @auth
                     @if(auth()->user()->isAdmin())
                         <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary btn-sm">Admin Dashboard</a>
@@ -253,6 +266,10 @@
             {{-- No search in navbar - moved to homepage --}}
 
             <div class="nav-actions">
+                @guest
+                    <a href="{{ route('login') }}" class="nav-plain-link" style="color: var(--text); font-weight: 600;">🔑 Login</a>
+                    <a href="{{ route('register') }}" class="btn btn-cyan btn-sm" style="border-radius: 20px; padding: 6px 16px; font-weight: 700;">✨ Register</a>
+                @endguest
                 @auth
                     @if(auth()->user()->isAdmin())
                         <a href="{{ route('admin.dashboard') }}" class="nav-plain-link" style="color:var(--indigo);">⚙️ Admin</a>
