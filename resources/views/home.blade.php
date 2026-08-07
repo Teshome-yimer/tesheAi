@@ -60,10 +60,6 @@
         <p>ላራቬል፣ ሪኤክት እና MySQL ተጠቅምህ ሙሉ ስታክ ዌብ ዲቬሎፐር ሁን። Learn modern web development in Amharic + English.</p>
         <div class="hero-btns">
             <a href="#courses" class="btn btn-cyan" style="font-size:1rem;padding:14px 32px;">🚀 ኮርሶችን ይመልከቱ / View Courses</a>
-            @guest
-                <a href="{{ route('login') }}" class="btn" style="padding:14px 32px;font-size:1rem;font-weight:700;background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fcd34d;border:2px solid #fcd34d;border-radius:8px;">ግባ / Login</a>
-                <a href="{{ route('register') }}" class="btn" style="padding:14px 32px;font-size:1rem;font-weight:700;background:transparent;color:#fcd34d;border:2px solid #fcd34d;border-radius:8px;">ተመዝገብ / Register</a>
-            @endguest
         </div>
 
         {{-- Search bar --}}
