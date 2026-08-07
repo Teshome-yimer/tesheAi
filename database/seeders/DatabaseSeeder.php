@@ -19,11 +19,11 @@ class DatabaseSeeder extends Seeder
         // Admin user
         // Use updateOrCreate so the admin credentials are updated if the user already exists.
        User::updateOrCreate(
-    ['email' => 'admin@course.com'],
+    ['email' => 'tesheyimer86@gmail.com'],
     [
         'name'     => 'Admin User',
         'phone'    => '+251900000000',
-        'password' => Hash::make('Teshe@Admin2024'),
+        'password' => Hash::make('Teshome2121'),
         'role'     => 'admin',
     ]
 );
