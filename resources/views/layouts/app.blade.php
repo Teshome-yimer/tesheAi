@@ -21,7 +21,7 @@
             --danger: #ef4444;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; overflow-x: hidden; }
         a { color: var(--cyan); text-decoration: none; }
         a:hover { color: var(--indigo); }
 
@@ -234,15 +234,6 @@
                 </div>
             </div>
 
-            @guest
-            <div class="nav-item">
-                <a href="{{ route('login') }}" class="nav-top-link" style="color: var(--text); font-weight: 600;">🔑 ግባ / Login</a>
-            </div>
-            <div class="nav-item" style="display: flex; align-items: center; margin-left: 6px;">
-                <a href="{{ route('register') }}" class="btn btn-cyan btn-sm" style="border-radius: 20px; padding: 7px 18px; font-weight: 700;">✨ ተመዝገብ / Register</a>
-            </div>
-            @endguest
-
             <div class="mobile-menu-actions">
                 @guest
                     <a href="{{ route('login') }}" class="btn btn-secondary btn-sm">🔑 ግባ / Login</a>
@@ -263,22 +254,20 @@
         </div>
 
         <div class="nav-utilities">
-            {{-- No search in navbar - moved to homepage --}}
-
             <div class="nav-actions">
                 @guest
-                    <a href="{{ route('login') }}" class="nav-plain-link" style="color: var(--text); font-weight: 600;">🔑 Login</a>
-                    <a href="{{ route('register') }}" class="btn btn-cyan btn-sm" style="border-radius: 20px; padding: 6px 16px; font-weight: 700;">✨ Register</a>
+                    <a href="{{ route('login') }}" class="nav-plain-link" style="color: var(--text); font-weight: 600; font-size: 0.85rem; padding: 6px 10px; white-space: nowrap;">🔑 Login</a>
+                    <a href="{{ route('register') }}" class="btn btn-cyan btn-sm" style="border-radius: 20px; padding: 5px 14px; font-weight: 700; font-size: 0.82rem; white-space: nowrap;">✨ Register</a>
                 @endguest
                 @auth
                     @if(auth()->user()->isAdmin())
-                        <a href="{{ route('admin.dashboard') }}" class="nav-plain-link" style="color:var(--indigo);">⚙️ Admin</a>
+                        <a href="{{ route('admin.dashboard') }}" class="nav-plain-link" style="color:var(--indigo); white-space: nowrap;">⚙️ Admin</a>
                     @else
-                        <a href="{{ route('student.dashboard') }}" class="nav-plain-link">Dashboard</a>
+                        <a href="{{ route('student.dashboard') }}" class="nav-plain-link" style="white-space: nowrap;">Dashboard</a>
                     @endif
                     <form method="POST" action="{{ route('logout') }}" style="display:inline">
                         @csrf
-                        <button type="submit" class="btn btn-secondary btn-sm">ውጣ / Logout</button>
+                        <button type="submit" class="btn btn-secondary btn-sm" style="white-space: nowrap;">ውጣ / Logout</button>
                     </form>
                 @endauth
             </div>
