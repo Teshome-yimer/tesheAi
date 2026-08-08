@@ -10,6 +10,10 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Student\DashboardController;
 use App\Http\Controllers\Student\CourseViewerController;
 use App\Http\Controllers\Admin;
+use App\Http\Controllers\SitemapController;
+
+// Sitemap
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
 // Public
 Route::get('/', [HomeController::class, 'index'])->name('home');
