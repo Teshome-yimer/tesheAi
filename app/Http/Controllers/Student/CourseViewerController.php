@@ -26,38 +26,59 @@ class CourseViewerController extends Controller
             return redirect()->route('student.lesson', [$slug, $firstLesson->slug ?? $firstLesson->id]);
         }
 
-        return view('student.course-viewer', compact('course'));
+        // Gracefully handle empty course (no lessons)
+        return redirect()->route('student.dashboard')
+            ->with('error', 'ይህ ኮርስ ገና ትምህርቶች አልተጫኑበትም። / This course has no lessons yet.');
     }
 
     public function lesson(string $courseSlug, string $lessonSlug)
     {
         $course = Course::with(['sections.lessons'])->where('slug', $courseSlug)->firstOrFail();
 
-        if (!auth()->user()->isEnrolledIn($course->id)) {
-            return redirect()->route('course.show', $courseSlug)->with('error', 'Please enroll first.');
-        }
-
         $lesson = Lesson::where('course_id', $course->id)
             ->where(function ($q) use ($lessonSlug) {
                 $q->where('slug', $lessonSlug)->orWhere('id', $lessonSlug);
             })->firstOrFail();
 
-        $progress = $this->enrollmentService->getCourseProgress(auth()->id(), $course->id);
+        // Check access: free preview OR enrolled OR admin
+        $canAccess = $lesson->is_free_preview
+            || (auth()->check() && auth()->user()->isAdmin())
+            || (auth()->check() && auth()->user()->isEnrolledIn($course->id));
 
-        $completedIds = LessonProgress::where('user_id', auth()->id())
-            ->where('course_id', $course->id)
-            ->where('is_completed', true)
-            ->pluck('lesson_id')
-            ->toArray();
+        if (!$canAccess) {
+            if (!auth()->check()) {
+                return redirect()->route('login')
+                    ->with('error', 'ይህን ትምህርት ለማየት ይግቡ / Please login first.');
+            }
+            return redirect()->route('checkout', $course->slug)
+                ->with('error', 'ይህን ኮርስ ይቀላቀሉ / Please enroll to watch this lesson.');
+        }
 
-        $allLessons = $course->lessons()->orderBy('order')->get();
+        $progress = $this->enrollmentService->getCourseProgress(
+            auth()->id() ?? 0, $course->id
+        );
+
+        $completedIds = auth()->check()
+            ? LessonProgress::where('user_id', auth()->id())
+                ->where('course_id', $course->id)
+                ->where('is_completed', true)
+                ->pluck('lesson_id')
+                ->toArray()
+            : [];
+
+        $allLessons   = $course->lessons()->orderBy('order')->get();
         $currentIndex = $allLessons->search(fn($l) => $l->id === $lesson->id);
-        $prevLesson = $currentIndex > 0 ? $allLessons[$currentIndex - 1] : null;
-        $nextLesson = $currentIndex < $allLessons->count() - 1 ? $allLessons[$currentIndex + 1] : null;
+        $prevLesson   = $currentIndex > 0 ? $allLessons[$currentIndex - 1] : null;
+        $nextLesson   = $currentIndex < $allLessons->count() - 1 ? $allLessons[$currentIndex + 1] : null;
+        $isCompleted  = in_array($lesson->id, $completedIds);
 
-        $isCompleted = in_array($lesson->id, $completedIds);
+        // Load files
+        $lesson->load('files');
 
-        return view('student.lesson', compact('course', 'lesson', 'progress', 'completedIds', 'prevLesson', 'nextLesson', 'isCompleted'));
+        return view('student.lesson', compact(
+            'course', 'lesson', 'progress', 'completedIds',
+            'prevLesson', 'nextLesson', 'isCompleted'
+        ));
     }
 
     public function markComplete(Request $request)

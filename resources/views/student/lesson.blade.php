@@ -131,6 +131,35 @@
             @if($lesson->description)
             <p class="lesson-desc">{{ $lesson->description }}</p>
             @endif
+
+            {{-- Files / Downloads --}}
+            @php $files = $lesson->files; @endphp
+            @if($files->count() > 0)
+            <div style="margin-top:8px;">
+                <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:12px;color:var(--cyan);">📎 ፋይሎች / Downloads</h3>
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                    @foreach($files as $file)
+                    @php
+                        $canDownload = $file->is_free || (auth()->check() && (auth()->user()->isAdmin() || auth()->user()->isEnrolledIn($file->course_id)));
+                    @endphp
+                    <div style="display:flex;align-items:center;gap:12px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px 16px;">
+                        <span style="font-size:1.5rem;">{{ $file->icon }}</span>
+                        <div style="flex:1;">
+                            <div style="font-weight:600;font-size:0.88rem;">{{ $file->title }}</div>
+                            <div style="color:var(--muted);font-size:0.75rem;">{{ strtoupper($file->file_type) }} · {{ $file->file_size_formatted }}
+                                @if($file->is_free) · <span style="color:var(--success);">🔓 Free</span> @endif
+                            </div>
+                        </div>
+                        @if($canDownload)
+                        <a href="{{ route('files.download', $file) }}" class="btn btn-primary btn-sm">⬇ Download</a>
+                        @else
+                        <a href="{{ route('checkout', $course->slug) }}" class="btn btn-secondary btn-sm">🔒 Enroll</a>
+                        @endif
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+            @endif
         </div>
 
         {{-- Nav --}}

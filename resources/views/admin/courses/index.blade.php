@@ -37,6 +37,7 @@
                 <td>
                     <div style="display:flex;gap:8px;flex-wrap:wrap;">
                         <a href="{{ route('admin.courses.content', $course) }}" class="btn btn-secondary btn-sm">📝 Content</a>
+                        <a href="{{ route('admin.courses.files', $course) }}" class="btn btn-secondary btn-sm">📎 Files</a>
                         <a href="{{ route('admin.courses.edit', $course) }}" class="btn btn-secondary btn-sm">✏️ Edit</a>
                         <form method="POST" action="{{ route('admin.courses.toggle-publish', $course) }}" style="display:inline">
                             @csrf

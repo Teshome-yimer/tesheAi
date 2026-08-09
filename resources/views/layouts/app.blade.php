@@ -21,7 +21,7 @@
             --danger: #ef4444;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; overflow-x: hidden; }
         a { color: var(--cyan); text-decoration: none; }
         a:hover { color: var(--indigo); }
 
@@ -30,7 +30,7 @@
             background: rgba(10,10,15,0.97);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
-            position: sticky; top: 0; z-index: 100;
+            position: sticky; top: 0; z-index: 300; /* raised z-index to keep above content */
         }
         .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 6px; min-height: 60px; }
         .nav-logo { font-size: 1.35rem; font-weight: 800; background: linear-gradient(135deg, var(--indigo), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-right: 10px; flex-shrink: 0; }
@@ -43,7 +43,7 @@
         .nav-item > .nav-top-link:hover, .nav-item.open > .nav-top-link { background: var(--bg3); color: var(--text); }
         .nav-caret { font-size: 0.6rem; color: var(--muted); transition: transform .15s; }
         .nav-item.open .nav-caret { transform: rotate(180deg); }
-        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; min-width: 240px; background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 8px; box-shadow: 0 16px 40px rgba(0,0,0,.5); z-index: 200; }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; min-width: 240px; background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 8px; box-shadow: 0 10px 30px rgba(0,0,0,.45); }
         .nav-item.open .dropdown-menu { display: block; }
         .dropdown-menu a { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 8px; color: var(--text); font-size: 0.875rem; font-weight: 500; }
         .dropdown-menu a:hover { background: rgba(99,102,241,.12); color: var(--cyan); }
@@ -51,11 +51,11 @@
         .dropdown-menu .dd-divider { height: 1px; background: var(--border); margin: 6px 8px; }
 
         /* Mega panel (Exercises style) */
-        .mega-panel { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); width: min(760px, 92vw); background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 24px; box-shadow: 0 20px 60px rgba(0,0,0,.6); z-index: 200; }
+        .mega-panel { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); width: min(760px, 92vw); background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 16px; box-shadow: 0 12px 40px rgba(0,0,0,.45); }
         .nav-item.open .mega-panel { display: block; }
-        .mega-title { font-size: 0.72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; background: linear-gradient(135deg, var(--indigo), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 16px; }
+        .mega-title { font-size: 0.72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; background: linear-gradient(135deg, var(--indigo), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .mega-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
-        .mega-card { border: 1px solid var(--border); border-radius: 12px; padding: 20px 16px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; transition: border-color .15s, transform .15s; background: var(--bg); }
+        .mega-card { border: 1px solid var(--border); border-radius: 12px; padding: 20px 16px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; transition: transform .12s, border-color .12s; }
         .mega-card:hover { border-color: var(--indigo); transform: translateY(-2px); }
         .mega-card .mc-icon { font-size: 1.8rem; }
         .mega-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
@@ -63,10 +63,10 @@
 
         /* Search */
         .nav-search { display: flex; align-items: center; margin-left: auto; flex-shrink: 0; }
-        .nav-search input { background: var(--bg3); border: 1px solid var(--border); border-radius: 24px 0 0 24px; border-right: none; color: var(--text); padding: 8px 16px; font-size: 0.85rem; outline: none; width: 220px; transition: border-color .2s; font-family: inherit; }
+        .nav-search input { background: var(--bg3); border: 1px solid var(--border); border-radius: 24px 0 0 24px; border-right: none; color: var(--text); padding: 8px 16px; font-size: 0.85rem; outline: none; transition: width .15s; }
         .nav-search input:focus { border-color: var(--indigo); }
         .nav-search input::placeholder { color: var(--muted); font-style: italic; }
-        .nav-search button { background: var(--bg3); border: 1px solid var(--border); border-left: none; border-radius: 0 24px 24px 0; color: var(--muted); padding: 8px 14px 8px 8px; cursor: pointer; font-size: 0.85rem; flex-shrink: 0; }
+        .nav-search button { background: var(--bg3); border: 1px solid var(--border); border-left: none; border-radius: 0 24px 24px 0; color: var(--muted); padding: 8px 14px 8px 8px; cursor: pointer; }
         .nav-search button:hover { color: var(--cyan); }
 
         .nav-actions { display: flex; align-items: center; gap: 16px; margin-left: 20px; flex-shrink: 0; }
@@ -78,9 +78,9 @@
         .subnav { background: var(--bg2); border-bottom: 1px solid var(--border); }
         .subnav-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 4px; overflow-x: auto; scrollbar-width: none; }
         .subnav-inner::-webkit-scrollbar { display: none; }
-        .subnav-inner a { color: var(--muted); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; padding: 11px 14px; white-space: nowrap; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; }
+        .subnav-inner a { color: var(--muted); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; padding: 11px 14px; white-space: nowrap; border-bottom: 2px solid transparent; }
         .subnav-inner a:hover { color: var(--cyan); border-bottom-color: var(--cyan); }
-        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; border: none; transition: all .2s; text-decoration: none; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; border: none; transition: all .2s; }
         .btn-primary { background: linear-gradient(135deg, var(--indigo), #8b5cf6); color: #fff; }
         .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(99,102,241,.4); color: #fff; }
         .btn-secondary { background: transparent; border: 1px solid var(--border); color: var(--text); }
@@ -108,7 +108,7 @@
         /* Forms */
         .form-group { margin-bottom: 20px; }
         .form-label { display: block; margin-bottom: 6px; font-size: 0.85rem; font-weight: 500; color: var(--muted); }
-        .form-control { width: 100%; background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 12px 16px; border-radius: 8px; font-size: 0.95rem; outline: none; transition: border-color .2s; }
+        .form-control { width: 100%; background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 12px 16px; border-radius: 8px; font-size: 0.95rem; outline: none; transition: border-color .15s; }
         .form-control:focus { border-color: var(--indigo); }
         .form-control::placeholder { color: var(--muted); }
         .invalid-feedback { color: var(--danger); font-size: 0.8rem; margin-top: 4px; }
@@ -121,15 +121,18 @@
         .badge-danger { background: rgba(239,68,68,.2); color: var(--danger); }
 
         /* Hamburger */
-        .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: 0; flex-shrink: 0; }
-        .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); }
+        .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: 16px; flex-shrink: 0; padding: 4px; }
+        .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); transition: transform .18s, opacity .18s; }
+
+        /* MOBILE NAV: smoother open/close with fade/slide and proper stacking */
         @media (max-width: 900px) {
             .nav-inner { flex-wrap: wrap; row-gap: 10px; padding-top: 10px; padding-bottom: 10px; }
             .nav-logo { margin-right: 0; font-size: 1.15rem; }
             .nav-utilities { order: 2; margin-left: auto; gap: 10px; }
             .hamburger { display: flex; }
-            .nav-menu { display: flex; order: 3; flex: 0 0 100%; width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; flex-direction: column; align-items: stretch; padding: 12px; gap: 4px; box-shadow: 0 20px 40px rgba(0,0,0,.35); transform: translateY(-8px); opacity: 0; pointer-events: none; transition: transform .25s ease, opacity .25s ease; position: relative; z-index: 250; }
-            .nav-menu.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+            /* Mobile nav: smoother open/close with fade/slide and proper stacking */
+            .nav-menu { display: flex; order: 3; flex: 0 0 100%; width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; flex-direction: column; align-items: stretch; padding: 12px; gap: 4px; box-shadow: 0 20px 40px rgba(0,0,0,.35); transform: translateY(-8px); opacity: 0; pointer-events: none; transition: transform .25s ease, opacity .25s ease, max-height .28s ease; max-height: 0; overflow: hidden; z-index: 250; }
+            .nav-menu.open { transform: translateY(0); opacity: 1; pointer-events: auto; max-height: 1200px; }
             .nav-item > .nav-top-link { width: 100%; justify-content: space-between; }
             .dropdown-menu, .mega-panel { position: static; transform: none; width: 100%; min-width: 0; box-shadow: none; margin-top: 4px; }
             .nav-search { margin-left: 0; }
@@ -235,6 +238,10 @@
             </div>
 
             <div class="mobile-menu-actions">
+                @guest
+                    <a href="{{ route('login') }}" class="btn btn-secondary btn-sm">🔑 ግባ / Login</a>
+                    <a href="{{ route('register') }}" class="btn btn-cyan btn-sm">✨ ተመዝገብ / Register</a>
+                @endguest
                 @auth
                     @if(auth()->user()->isAdmin())
                         <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary btn-sm">Admin Dashboard</a>
@@ -253,18 +260,20 @@
         </div>
 
         <div class="nav-utilities">
-            {{-- No search in navbar - moved to homepage --}}
-
             <div class="nav-actions">
+                @guest
+                    <a href="{{ route('login') }}" class="nav-plain-link" style="color: var(--text); font-weight: 600; font-size: 0.85rem; padding: 6px 10px; white-space: nowrap;">🔑 Login</a>
+                    <a href="{{ route('register') }}" class="btn btn-cyan btn-sm" style="border-radius: 20px; padding: 5px 14px; font-weight: 700; font-size: 0.82rem; white-space: nowrap;">✨ Register</a>
+                @endguest
                 @auth
                     @if(auth()->user()->isAdmin())
-                        <a href="{{ route('admin.dashboard') }}" class="nav-plain-link" style="color:var(--indigo);">⚙️ Admin</a>
+                        <a href="{{ route('admin.dashboard') }}" class="nav-plain-link" style="color:var(--indigo); white-space: nowrap;">⚙️ Admin</a>
                     @else
-                        <a href="{{ route('student.dashboard') }}" class="nav-plain-link">Dashboard</a>
+                        <a href="{{ route('student.dashboard') }}" class="nav-plain-link" style="white-space: nowrap;">Dashboard</a>
                     @endif
                     <form method="POST" action="{{ route('logout') }}" style="display:inline">
                         @csrf
-                        <button type="submit" class="btn btn-secondary btn-sm">ውጣ / Logout</button>
+                        <button type="submit" class="btn btn-secondary btn-sm" style="white-space: nowrap;">ውጣ / Logout</button>
                     </form>
                 @else
                     <a href="{{ route('login') }}" class="nav-plain-link">ግባ / Login</a>
@@ -272,7 +281,11 @@
                 @endauth
             </div>
 
+<<<<<<< HEAD
             <button id="hambtn" class="hamburger" aria-expanded="false" aria-controls="navMenu" aria-label="Open menu">
+=======
+            <button class="hamburger" onclick="toggleNav()" aria-label="Menu" aria-expanded="false" id="hamburgerBtn">
+>>>>>>> origin/main
                 <span></span><span></span><span></span>
             </button>
         </div>
@@ -338,6 +351,22 @@ document.addEventListener('keydown', function (e) {
 document.querySelectorAll('.dropdown-menu, .mega-panel').forEach(function (p) {
     p.addEventListener('click', function (e) { e.stopPropagation(); });
 });
+
+// Mobile nav toggle: smoother and updates aria-expanded
+function toggleNav() {
+    var menu = document.getElementById('navMenu');
+    var btn = document.getElementById('hamburgerBtn');
+    var open = menu.classList.contains('open');
+    if (open) {
+        menu.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+    } else {
+        menu.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        // close any open dropdowns inside
+        document.querySelectorAll('.nav-item.open').forEach(function (o) { o.classList.remove('open'); });
+    }
+}
 
 // Search: if on homepage scroll to courses, otherwise navigate
 function scrollToCourses(e, form) {

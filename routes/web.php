@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CheckoutController;
@@ -10,6 +11,10 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Student\DashboardController;
 use App\Http\Controllers\Student\CourseViewerController;
 use App\Http\Controllers\Admin;
+use App\Http\Controllers\SitemapController;
+
+// Sitemap
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
 // Public
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -28,7 +33,19 @@ Route::middleware('guest')->group(function () {
     Route::get('/auth/github', [\App\Http\Controllers\Auth\SocialAuthController::class, 'githubRedirect'])->name('auth.github');
     Route::get('/auth/github/callback', [\App\Http\Controllers\Auth\SocialAuthController::class, 'githubCallback'])->name('auth.github.callback');
 });
+
+// Primary logout (POST only) — keeps CSRF protection intact
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
+
+// Safe GET fallback for convenience (avoids 419 when someone visits /logout directly).
+// Prefer the POST form with @csrf in the UI; this GET route is a convenience and only
+// runs for authenticated users to avoid accidental logouts for guests.
+Route::middleware('auth')->get('/logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect('/login');
+})->name('logout.get');
 
 // Checkout (requires auth)
 Route::middleware('auth')->group(function () {
@@ -65,13 +82,14 @@ Route::post('/payment/chapa/callback', [PaymentController::class, 'chapaCallback
 Route::middleware('auth')->prefix('student')->name('student.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/course/{slug}', [CourseViewerController::class, 'show'])->name('course');
-    Route::get('/lesson/{courseSlug}/{lessonSlug}', [CourseViewerController::class, 'lesson'])->name('lesson');
     Route::post('/progress/complete', [CourseViewerController::class, 'markComplete'])->name('progress.complete');
     Route::post('/progress/update', [CourseViewerController::class, 'updateProgress'])->name('progress.update');
     Route::get('/video/{lesson}', [\App\Http\Controllers\Admin\VideoController::class, 'stream'])->name('video.stream');
+});
 
-// File download — public route (controller handles auth check)
-Route::get('/files/download/{file}', [\App\Http\Controllers\Student\FileController::class, 'download'])->name('files.download');
+// Lesson viewer — guests can view free preview lessons
+Route::prefix('student')->name('student.')->group(function () {
+    Route::get('/lesson/{courseSlug}/{lessonSlug}', [CourseViewerController::class, 'lesson'])->name('lesson');
 });
 
 // Admin auth (sign-in only, no register)
@@ -83,6 +101,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/login', [Admin\AuthController::class, 'login'])->middleware('throttle:5,1');
     Route::post('/logout', [Admin\AuthController::class, 'logout'])->name('logout')->middleware('auth');
 });
+
+// Safe GET fallback for admin logout (convenience) — protected by auth middleware.
+Route::middleware('auth')->get('/admin/logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect()->route('admin.login');
+})->name('admin.logout.get');
 
 // Admin area
 Route::middleware([\App\Http\Middleware\AdminMiddleware::class])->prefix('admin')->name('admin.')->group(function () {
