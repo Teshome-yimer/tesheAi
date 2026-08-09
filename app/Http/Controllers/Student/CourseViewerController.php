@@ -26,7 +26,9 @@ class CourseViewerController extends Controller
             return redirect()->route('student.lesson', [$slug, $firstLesson->slug ?? $firstLesson->id]);
         }
 
-        return view('student.course-viewer', compact('course'));
+        // Gracefully handle empty course (no lessons)
+        return redirect()->route('student.dashboard')
+            ->with('error', 'ይህ ኮርስ ገና ትምህርቶች አልተጫኑበትም። / This course has no lessons yet.');
     }
 
     public function lesson(string $courseSlug, string $lessonSlug)

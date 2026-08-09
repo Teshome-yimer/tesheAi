@@ -33,8 +33,8 @@
         @foreach($enrollments as $enrollment)
         @php $progress = $enrollment->progress; @endphp
         <div class="enroll-card">
-            @if($enrollment->course->thumbnail)
-                <img src="{{ Storage::url($enrollment->course->thumbnail) }}" alt="" class="enroll-thumb" style="height:160px;object-fit:cover;width:100%;">
+            @if($enrollment->course->thumbnail && file_exists(storage_path('app/' . $enrollment->course->thumbnail)))
+                <img src="{{ Storage::url($enrollment->course->thumbnail) }}" alt="{{ $enrollment->course->title }}" class="enroll-thumb" style="height:160px;object-fit:cover;width:100%;">
             @else
                 <div class="enroll-thumb">🎓</div>
             @endif
