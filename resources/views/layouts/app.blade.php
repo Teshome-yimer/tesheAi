@@ -130,11 +130,9 @@
             .nav-logo { margin-right: 0; font-size: 1.15rem; }
             .nav-utilities { order: 2; margin-left: auto; gap: 10px; }
             .hamburger { display: flex; }
-
-            /* Start collapsed */
-            .nav-menu { display: flex; order: 3; flex: 0 0 100%; width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; flex-direction: column; align-items: stretch; padding: 12px; gap: 4px; box-shadow: 0 20px 40px rgba(0,0,0,.35); max-height: 0; overflow: hidden; opacity: 0; transform: translateY(-6px); transition: max-height .28s ease, opacity .28s ease, transform .28s ease; z-index: 200; }
-            .nav-menu.open { max-height: 1200px; opacity: 1; transform: translateY(0); }
-
+            /* Mobile nav: smoother open/close with fade/slide and proper stacking */
+            .nav-menu { display: flex; order: 3; flex: 0 0 100%; width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; flex-direction: column; align-items: stretch; padding: 12px; gap: 4px; box-shadow: 0 20px 40px rgba(0,0,0,.35); transform: translateY(-8px); opacity: 0; pointer-events: none; transition: transform .25s ease, opacity .25s ease, max-height .28s ease; max-height: 0; overflow: hidden; z-index: 250; }
+            .nav-menu.open { transform: translateY(0); opacity: 1; pointer-events: auto; max-height: 1200px; }
             .nav-item > .nav-top-link { width: 100%; justify-content: space-between; }
             .dropdown-menu, .mega-panel { position: static; transform: none; width: 100%; min-width: 0; box-shadow: none; margin-top: 4px; }
             .nav-search { margin-left: 0; }
@@ -145,12 +143,12 @@
             .nav-actions form { display: none !important; }
             .mobile-menu-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--border); }
             .mobile-menu-actions .btn { width: 100%; justify-content: center; }
+            .nav-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 200; opacity: 0; transition: opacity .2s; pointer-events: none; }
+            .nav-overlay.show { opacity: 1; pointer-events: auto; }
         /* Topic bar responsive */
-        @media (max-width: 900px) {
             .subnav { display: block; overflow-x: auto; }
             .subnav-inner { gap: 0; }
             .subnav-inner a { font-size: 0.75rem; padding: 10px 12px; }
-        }
         }
 
         /* Progress bar */
@@ -254,6 +252,9 @@
                         @csrf
                         <button type="submit" class="btn btn-secondary btn-sm">ውጣ / Logout</button>
                     </form>
+                @else
+                    <a href="{{ route('login') }}" class="btn btn-primary btn-sm">ግባ / Login</a>
+                    <a href="{{ route('register') }}" class="btn btn-secondary btn-sm">ተመዝገብ / Register</a>
                 @endauth
             </div>
         </div>
@@ -274,15 +275,23 @@
                         @csrf
                         <button type="submit" class="btn btn-secondary btn-sm" style="white-space: nowrap;">ውጣ / Logout</button>
                     </form>
+                @else
+                    <a href="{{ route('login') }}" class="nav-plain-link">ግባ / Login</a>
+                    <a href="{{ route('register') }}" class="btn btn-primary btn-sm">ተመዝገብ / Register</a>
                 @endauth
             </div>
 
+<<<<<<< HEAD
+            <button id="hambtn" class="hamburger" aria-expanded="false" aria-controls="navMenu" aria-label="Open menu">
+=======
             <button class="hamburger" onclick="toggleNav()" aria-label="Menu" aria-expanded="false" id="hamburgerBtn">
+>>>>>>> origin/main
                 <span></span><span></span><span></span>
             </button>
         </div>
     </div>
 </nav>
+<div id="navOverlay" class="nav-overlay" hidden></div>
 
 {{-- Topic bar --}}
 <div class="subnav">
@@ -380,6 +389,35 @@ function scrollToCourses(e, form) {
     }
     // else let form submit normally with ?q=...
 }
+
+// Mobile menu: hamburger + overlay handling
+(function(){
+    const hambtn = document.getElementById('hambtn');
+    const navMenu = document.getElementById('navMenu');
+    const navOverlay = document.getElementById('navOverlay');
+    function setMenu(open){
+        navMenu.classList.toggle('open', !!open);
+        if(open){
+            navOverlay.hidden = false; navOverlay.classList.add('show');
+            hambtn && hambtn.setAttribute('aria-expanded','true');
+            document.body.style.overflow = 'hidden';
+        } else {
+            navOverlay.classList.remove('show');
+            hambtn && hambtn.setAttribute('aria-expanded','false');
+            document.body.style.overflow = '';
+            setTimeout(function(){ if(!navOverlay.classList.contains('show')) navOverlay.hidden = true; }, 260);
+        }
+    }
+    if(hambtn){
+        hambtn.addEventListener('click', function(e){ e.stopPropagation(); setMenu(!navMenu.classList.contains('open')); });
+    }
+    if(navOverlay){ navOverlay.addEventListener('click', function(){ setMenu(false); }); }
+    window.addEventListener('resize', function(){ if(window.innerWidth > 900){ setMenu(false); navOverlay.hidden = true; } });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') setMenu(false); });
+    // close mobile menu when a nav link is clicked
+    document.querySelectorAll('.nav-menu a').forEach(function(a){ a.addEventListener('click', function(){ if(window.innerWidth <= 900) setMenu(false); }); });
+})();
+
 </script>
 </body>
 </html>
