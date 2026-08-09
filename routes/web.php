@@ -38,13 +38,12 @@ Route::middleware('guest')->group(function () {
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
 // Safe GET fallback for convenience (avoids 419 when someone visits /logout directly).
-// Prefer the POST form with @csrf in the UI; this GET route only logs out if a user is authenticated.
-Route::get('/logout', function () {
-    if (auth()->check()) {
-        Auth::logout();
-        request()->session()->invalidate();
-        request()->session()->regenerateToken();
-    }
+// Prefer the POST form with @csrf in the UI; this GET route is a convenience and only
+// runs for authenticated users to avoid accidental logouts for guests.
+Route::middleware('auth')->get('/logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
     return redirect('/login');
 })->name('logout.get');
 
@@ -103,13 +102,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/logout', [Admin\AuthController::class, 'logout'])->name('logout')->middleware('auth');
 });
 
-// Safe GET fallback for admin logout (convenience)
-Route::get('/admin/logout', function () {
-    if (auth()->check()) {
-        Auth::logout();
-        request()->session()->invalidate();
-        request()->session()->regenerateToken();
-    }
+// Safe GET fallback for admin logout (convenience) — protected by auth middleware.
+Route::middleware('auth')->get('/admin/logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
     return redirect()->route('admin.login');
 })->name('admin.logout.get');
 
