@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CheckoutController;
@@ -32,7 +33,20 @@ Route::middleware('guest')->group(function () {
     Route::get('/auth/github', [\App\Http\Controllers\Auth\SocialAuthController::class, 'githubRedirect'])->name('auth.github');
     Route::get('/auth/github/callback', [\App\Http\Controllers\Auth\SocialAuthController::class, 'githubCallback'])->name('auth.github.callback');
 });
+
+// Primary logout (POST only) — keeps CSRF protection intact
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
+
+// Safe GET fallback for convenience (avoids 419 when someone visits /logout directly).
+// Prefer the POST form with @csrf in the UI; this GET route only logs out if a user is authenticated.
+Route::get('/logout', function () {
+    if (auth()->check()) {
+        Auth::logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+    }
+    return redirect('/login');
+})->name('logout.get');
 
 // Checkout (requires auth)
 Route::middleware('auth')->group(function () {
@@ -88,6 +102,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/login', [Admin\AuthController::class, 'login'])->middleware('throttle:5,1');
     Route::post('/logout', [Admin\AuthController::class, 'logout'])->name('logout')->middleware('auth');
 });
+
+// Safe GET fallback for admin logout (convenience)
+Route::get('/admin/logout', function () {
+    if (auth()->check()) {
+        Auth::logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+    }
+    return redirect()->route('admin.login');
+})->name('admin.logout.get');
 
 // Admin area
 Route::middleware([\App\Http\Middleware\AdminMiddleware::class])->prefix('admin')->name('admin.')->group(function () {
