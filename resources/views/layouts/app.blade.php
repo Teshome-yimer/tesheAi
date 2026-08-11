@@ -153,12 +153,6 @@
         }
         }
 
-        /* Emergency fix: ensure mobile nav is hidden by default and only visible when .open is added */
-        @media (max-width: 900px) {
-            .nav-menu { max-height: 0 !important; opacity: 0 !important; overflow: hidden !important; transform: translateY(-6px) !important; pointer-events: none !important; }
-            .nav-menu.open { max-height: 1200px !important; opacity: 1 !important; transform: translateY(0) !important; pointer-events: auto !important; }
-        }
-
         /* Progress bar */
         .progress-bar { background: var(--bg3); border-radius: 99px; height: 6px; overflow: hidden; }
         .progress-fill { height: 100%; background: linear-gradient(90deg, var(--indigo), var(--cyan)); border-radius: 99px; transition: width .4s ease; }
