@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use Laravel\Socialite\Facades\Socialite;
 
 class SocialAuthController extends Controller
 {
@@ -54,65 +55,27 @@ class SocialAuthController extends Controller
         return redirect('https://github.com/login/oauth/authorize?' . $params);
     }
 
-    public function githubCallback(Request $request)
+    public function githubCallback()
     {
-        if ($request->has('error') || !$request->has('code')) {
-            return redirect()->route('login')->with('error', 'GitHub login cancelled.');
+        try {
+            $githubUser = Socialite::driver('github')->user();
+
+            $user = User::updateOrCreate([
+                'github_id' => $githubUser->getId(),
+            ], [
+                'name' => $githubUser->getName() ?? $githubUser->getNickname(),
+                'email' => $githubUser->getEmail() ?? $githubUser->getId() . '@github.local',
+                'github_token' => $githubUser->token,
+                'avatar' => $githubUser->getAvatar(),
+                'password' => bcrypt(Str::random(16)),
+            ]);
+
+            Auth::login($user);
+
+            return redirect()->intended('/dashboard');
+        } catch (\Exception $e) {
+            return redirect()->route('login')->with('error', 'GitHub login failed: ' . $e->getMessage());
         }
-
-        // Exchange code for token
-        $tokenRes = Http::withoutVerifying()->post('https://github.com/login/oauth/access_token', [
-            'client_id'     => config('services.github.client_id'),
-            'client_secret' => config('services.github.client_secret'),
-            'code'          => $request->code,
-            'redirect_uri'  => config('services.github.redirect'),
-        ])->withHeaders(['Accept' => 'application/json']);
-
-        $accessToken = null;
-        // Github returns form-encoded by default
-        $body = $tokenRes->body();
-        parse_str($body, $parsed);
-        $accessToken = $parsed['access_token'] ?? $tokenRes->json('access_token');
-
-        if (!$accessToken) {
-            return redirect()->route('login')->with('error', 'GitHub authentication failed.');
-        }
-
-        // Get user
-        $userRes = Http::withoutVerifying()
-            ->withToken($accessToken)
-            ->withHeaders(['Accept' => 'application/vnd.github+json'])
-            ->get('https://api.github.com/user');
-
-        $githubUser = $userRes->json();
-
-        // Get email if not public
-        $email = $githubUser['email'] ?? null;
-        if (!$email) {
-            $emails = Http::withoutVerifying()
-                ->withToken($accessToken)
-                ->get('https://api.github.com/user/emails')
-                ->json();
-            foreach ($emails as $e) {
-                if ($e['primary'] && $e['verified']) {
-                    $email = $e['email'];
-                    break;
-                }
-            }
-        }
-
-        if (!$email) {
-            return redirect()->route('login')->with('error', 'Could not get email from GitHub.');
-        }
-
-        $user = $this->findOrCreateUser([
-            'name'     => $githubUser['name'] ?? $githubUser['login'],
-            'email'    => $email,
-            'provider' => 'github',
-        ]);
-
-        Auth::login($user, true);
-        return $this->redirectAfterLogin($user);
     }
 
     // ── Helpers ─────────────────────────────────────────────
