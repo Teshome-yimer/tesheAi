@@ -177,3 +177,13 @@ Route::middleware([\App\Http\Middleware\AdminMiddleware::class])->prefix('admin'
     Route::put('/coupons/{coupon}', [Admin\CouponController::class, 'update'])->name('coupons.update');
     Route::delete('/coupons/{coupon}', [Admin\CouponController::class, 'destroy'])->name('coupons.destroy');
 });
+
+// Temporary route to run migrations via HTTP (remove after use)
+Route::get('/run-migrate', function () {
+    try {
+        \Artisan::call('migrate', ['--force' => true]);
+        return 'Migration completed successfully: <pre>' . \Artisan::output() . '</pre>';
+    } catch (\Exception $e) {
+        return 'Migration failed: ' . $e->getMessage();
+    }
+});
