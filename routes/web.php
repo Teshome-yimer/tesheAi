@@ -12,6 +12,8 @@ use App\Http\Controllers\Student\DashboardController;
 use App\Http\Controllers\Student\CourseViewerController;
 use App\Http\Controllers\Admin;
 use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 
 // Sitemap
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
@@ -32,6 +34,14 @@ Route::middleware('guest')->group(function () {
     Route::get('/auth/google/callback', [\App\Http\Controllers\Auth\SocialAuthController::class, 'googleCallback'])->name('auth.google.callback');
     Route::get('/auth/github', [\App\Http\Controllers\Auth\SocialAuthController::class, 'githubRedirect'])->name('auth.github');
     Route::get('/auth/github/callback', [\App\Http\Controllers\Auth\SocialAuthController::class, 'githubCallback'])->name('auth.github.callback');
+
+    // Password Reset (request form + send link)
+    Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+    Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+    // Password Reset (reset form + update)
+    Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+    Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 });
 
 // Primary logout (POST only) — keeps CSRF protection intact
