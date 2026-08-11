@@ -58,7 +58,8 @@ class SocialAuthController extends Controller
     public function githubCallback()
     {
         try {
-            $githubUser = Socialite::driver('github')->user();
+            // Use stateless() to avoid session state mismatch (mobile / cross-site redirects)
+            $githubUser = Socialite::driver('github')->stateless()->user();
 
             $user = User::updateOrCreate([
                 'github_id' => $githubUser->getId(),
@@ -73,7 +74,9 @@ class SocialAuthController extends Controller
             Auth::login($user);
 
             return redirect()->intended('/dashboard');
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
+            // Log the full error and return a clear message to the user
+            \Log::error('GitHub Auth Error: ' . $e->getMessage());
             return redirect()->route('login')->with('error', 'GitHub login failed: ' . $e->getMessage());
         }
     }
