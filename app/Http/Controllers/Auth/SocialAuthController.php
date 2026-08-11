@@ -87,7 +87,7 @@ class SocialAuthController extends Controller
 
             Auth::login($user);
 
-            return redirect()->intended('/dashboard');
+            return redirect()->intended('/');
         } catch (\Throwable $e) {
             \Log::error('GitHub Auth Error: ' . $e->getMessage());
             return redirect()->route('login')->with('error', 'GitHub login failed: ' . $e->getMessage());
