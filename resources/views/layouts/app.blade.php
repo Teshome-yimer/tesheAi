@@ -32,7 +32,7 @@
             border-bottom: 1px solid var(--border);
             position: sticky; top: 0; z-index: 300; /* raised z-index to keep above content */
         }
-        .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 6px; min-height: 60px; position: relative; }
+        .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 6px; min-height: 60px; }
         .nav-logo { font-size: 1.35rem; font-weight: 800; background: linear-gradient(135deg, var(--indigo), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; back[...]
 
         /* Nav items + dropdowns */
@@ -97,7 +97,6 @@
         .flash-success { background: rgba(16,185,129,.15); border: 1px solid var(--success); color: var(--success); }
         .flash-error { background: rgba(239,68,68,.15); border: 1px solid var(--danger); color: var(--danger); }
         .flash-info { background: rgba(99,102,241,.15); border: 1px solid var(--indigo); color: var(--indigo); }
-        .flash-info { background: rgba(99,102,241,.15); border: 1px solid var(--indigo); color: var(--indigo); }
 
         /* Cards */
         .card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
@@ -125,58 +124,33 @@
         .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: 16px; flex-shrink: 0; padding: 4px; }
         .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); transition: transform .18s, opacity .18s; }
 
-        /* MOBILE NAV: compact open/close positioned dropdown */
+        /* MOBILE NAV: smoother open/close with fade/slide and proper stacking */
         @media (max-width: 900px) {
             .nav-inner { flex-wrap: wrap; row-gap: 10px; padding-top: 10px; padding-bottom: 10px; }
             .nav-logo { margin-right: 0; font-size: 1.15rem; }
             .nav-utilities { order: 2; margin-left: auto; gap: 10px; }
             .hamburger { display: flex; }
 
-            /* Start collapsed - compact card aligned to the right under the hamburger */
-            .nav-menu {
-                display: flex;
-                order: 3;
-                position: absolute;
-                top: calc(100% + 8px);
-                right: 18px;
-                width: auto;
-                max-width: 260px;
-                background: var(--bg2);
-                border: 1px solid var(--border);
-                border-radius: 10px;
-                flex-direction: column;
-                align-items: stretch;
-                padding: 10px 14px;
-                gap: 6px;
-                box-shadow: 0 10px 24px rgba(0,0,0,.3);
-                max-height: 0;
-                overflow: hidden;
-                opacity: 0;
-                transform: translateY(-6px) scale(.99);
-                transform-origin: top right;
-                transition: max-height .28s ease, opacity .28s ease, transform .28s ease;
-                z-index: 600;
-            }
-            .nav-menu.open { max-height: 800px; opacity: 1; transform: translateY(0) scale(1); }
+            /* Start collapsed */
+            .nav-menu { display: flex; order: 3; flex: 0 0 100%; width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; flex-direction: column; align-items: stretch; padding: 12px; gap: 4px; box-shadow: 0 20px 40px rgba(0,0,0,.35); max-height: 0; overflow: hidden; opacity: 0; transform: translateY(-6px); transition: max-height .28s ease, opacity .28s ease, transform .28s ease; z-index: 200; }
+            .nav-menu.open { max-height: 1200px; opacity: 1; transform: translateY(0); }
 
-            .nav-item > .nav-top-link { width: 100%; justify-content: space-between; padding: 6px 8px; font-size: 0.95rem; border-radius: 6px; }
-            .dropdown-menu, .mega-panel { position: static; transform: none; width: 100%; min-width: 0; box-shadow: none; margin-top: 4px; padding: 6px 0; }
+            .nav-item > .nav-top-link { width: 100%; justify-content: space-between; }
+            .dropdown-menu, .mega-panel { position: static; transform: none; width: 100%; min-width: 0; box-shadow: none; margin-top: 4px; }
             .nav-search { margin-left: 0; }
             .nav-search input { width: 96px; }
             .nav-search input:focus { width: 120px; }
             .nav-actions { margin-left: 0; gap: 10px; }
             .nav-actions .nav-plain-link { display: none; }
             .nav-actions form { display: none !important; }
-            .mobile-menu-actions { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
-            /* Make action links compact and subtle rather than full-width buttons */
-            .mobile-menu-actions .btn { width: auto; padding: 6px 8px; font-size: 0.9rem; border-radius: 6px; background: transparent; border: none; justify-content: flex-start; color: var(--text); font-weight: 600; }
-            .mobile-menu-actions .btn:hover { background: rgba(99,102,241,.06); color: var(--cyan); }
-            .mobile-menu-actions form { margin: 0; }
-            .mobile-menu-actions form button { width: auto; padding: 6px 8px; background: transparent; border: none; color: var(--text); font-weight: 600; }
-
-            /* Compact dropdown links */
-            .dropdown-menu a { padding: 6px 0; font-size: 0.9rem; border-radius: 4px; }
-            .dropdown-menu .dd-label { padding: 6px 8px 4px; font-size: 0.68rem; }
+            .mobile-menu-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--border); }
+            .mobile-menu-actions .btn { width: 100%; justify-content: center; }
+        /* Topic bar responsive */
+        @media (max-width: 900px) {
+            .subnav { display: block; overflow-x: auto; }
+            .subnav-inner { gap: 0; }
+            .subnav-inner a { font-size: 0.75rem; padding: 10px 12px; }
+        }
         }
 
         /* Progress bar */
@@ -210,7 +184,7 @@
                     @forelse($navCourses as $navCourse)
                         <a href="{{ route('course.show', $navCourse) }}">📚 {{ $navCourse->title }}</a>
                     @empty
-                        <a href="/#!#courses">📚 ኮርሶች በቅርቡ ይመጣሉ</a>
+                        <a href="/#courses">📚 ኮርሶች በቅርቡ ይመጣሉ</a>
                     @endforelse
                     <div class="dd-divider"></div>
                     <a href="/#courses">🗂️ ሁሉንም ኮርሶች ይመልከቱ / Browse All</a>
