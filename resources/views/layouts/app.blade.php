@@ -132,7 +132,7 @@
             .hamburger { display: flex; }
 
             /* Start collapsed */
-            .nav-menu { display: flex; order: 3; flex: 0 0 100%; width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; flex-direction: column; align-items: stretch; padding: 12px; gap: 4px; box-shadow: 0 20px 40px rgba(0,0,0,.35); max-height: 0; overflow: hidden; opacity: 0; transform: translateY(-6px); transition: max-height .28s ease, opacity .28s ease, transform .28s ease; z-index: 200; }
+            .nav-menu { display: flex; order: 3; flex: 0 0 100%; width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; flex-direction: column; align-items: st[...]
             .nav-menu.open { max-height: 1200px; opacity: 1; transform: translateY(0); }
 
             .nav-item > .nav-top-link { width: 100%; justify-content: space-between; }
@@ -151,6 +151,12 @@
             .subnav-inner { gap: 0; }
             .subnav-inner a { font-size: 0.75rem; padding: 10px 12px; }
         }
+        }
+
+        /* Emergency fix: ensure mobile nav is hidden by default and only visible when .open is added */
+        @media (max-width: 900px) {
+            .nav-menu { max-height: 0 !important; opacity: 0 !important; overflow: hidden !important; transform: translateY(-6px) !important; pointer-events: none !important; }
+            .nav-menu.open { max-height: 1200px !important; opacity: 1 !important; transform: translateY(0) !important; pointer-events: auto !important; }
         }
 
         /* Progress bar */
