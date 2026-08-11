@@ -58,24 +58,37 @@ class SocialAuthController extends Controller
     public function githubCallback()
     {
         try {
-            // Use stateless() to avoid session state mismatch (mobile / cross-site redirects)
             $githubUser = Socialite::driver('github')->stateless()->user();
+            $email = $githubUser->getEmail() ?? $githubUser->getId() . '@github.local';
 
-            $user = User::updateOrCreate([
-                'github_id' => $githubUser->getId(),
-            ], [
-                'name' => $githubUser->getName() ?? $githubUser->getNickname(),
-                'email' => $githubUser->getEmail() ?? $githubUser->getId() . '@github.local',
-                'github_token' => $githubUser->token,
-                'avatar' => $githubUser->getAvatar(),
-                'password' => bcrypt(Str::random(16)),
-            ]);
+            // Find existing user by email or github_id
+            $user = User::where('email', $email)
+                        ->orWhere('github_id', $githubUser->getId())
+                        ->first();
+
+            if ($user) {
+                // Update existing user with GitHub info if missing
+                $user->update([
+                    'github_id' => $githubUser->getId(),
+                    'github_token' => $githubUser->token,
+                    'avatar' => $user->avatar ?? $githubUser->getAvatar(),
+                ]);
+            } else {
+                // Create brand new user
+                $user = User::create([
+                    'name' => $githubUser->getName() ?? $githubUser->getNickname(),
+                    'email' => $email,
+                    'github_id' => $githubUser->getId(),
+                    'github_token' => $githubUser->token,
+                    'avatar' => $githubUser->getAvatar(),
+                    'password' => bcrypt(Str::random(16)),
+                ]);
+            }
 
             Auth::login($user);
 
             return redirect()->intended('/dashboard');
         } catch (\Throwable $e) {
-            // Log the full error and return a clear message to the user
             \Log::error('GitHub Auth Error: ' . $e->getMessage());
             return redirect()->route('login')->with('error', 'GitHub login failed: ' . $e->getMessage());
         }
