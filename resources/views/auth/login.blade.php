@@ -5,8 +5,8 @@
 .auth-wrap { min-height:calc(100vh - 140px); display:flex; align-items:center; justify-content:center; padding:40px 24px; }
 .auth-card { background:var(--bg2); border:1px solid var(--border); border-radius:20px; padding:48px; width:100%; max-width:440px; }
 .auth-logo { text-align:center; margin-bottom:32px; }
-.auth-logo .logo { font-size:2.5rem; font-weight:900; background:linear-gradient(135deg,var(--indigo),var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-cli[...] 
-.social-btn { display:flex; align-items:center; justify-content:center; gap:12px; width:100%; padding:13px; border-radius:10px; font-weight:600; font-size:0.95rem; cursor:pointer; border:1px solid [...] 
+.auth-logo .logo { font-size:2.5rem; font-weight:900; background:linear-gradient(135deg,var(--indigo),var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.social-btn { display:flex; align-items:center; justify-content:center; gap:12px; width:100%; padding:13px; border-radius:10px; font-weight:600; font-size:0.95rem; cursor:pointer; border:1px solid var(--border); background:var(--bg3); color:var(--text); text-decoration:none; transition:.2s; margin-bottom:12px; }
 .social-btn:hover { transform:translateY(-2px); }
 .social-btn.google:hover { border-color:#ea4335; background:rgba(234,67,53,.08); color:var(--text); }
 .social-btn.github:hover { border-color:#fff; background:rgba(255,255,255,.08); color:var(--text); }
@@ -59,10 +59,9 @@
             <label class="form-label">የይለፍ ቃል / Password</label>
             <input type="password" name="password" class="form-control" placeholder="••••••••" required>
         </div>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px;">
             <input type="checkbox" name="remember" id="remember" style="accent-color:var(--indigo);">
             <label for="remember" style="font-size:0.85rem;color:var(--muted);">ያስታውሰኝ / Remember me</label>
-            <a href="{{ route('password.request') }}" style="margin-left:auto;color:var(--indigo);font-weight:600;font-size:0.85rem;">Forgot Password?</a>
         </div>
         <button type="submit" class="btn btn-cyan" style="width:100%;justify-content:center;padding:14px;font-size:1rem;">ግባ / Sign In</button>
     </form>
