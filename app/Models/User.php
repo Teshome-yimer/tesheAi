@@ -10,7 +10,8 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected $fillable = ['name', 'email', 'phone', 'password', 'role'];
+    // Add github fields to mass-assignable attributes so SocialAuthController can create/update users
+    protected $fillable = ['name', 'email', 'phone', 'password', 'role', 'github_id', 'github_token', 'avatar'];
 
     protected $hidden = ['password', 'remember_token'];
 
