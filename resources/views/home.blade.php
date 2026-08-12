@@ -1,4 +1,28 @@
 @extends('layouts.app')
+@push('head')
+    <!-- Standard Meta Tags for Google SEO -->
+    <meta name="description" content="ከዜሮ ተነስተው በይዘታቸው ጥራት ባላቸው የላራቬል (Laravel 11)፣ ሪኤክት (React.js) እና MySQL ትምህርቶች ሙሉ ስታክ (Full-Stack) ዌብ ዲቬሎፐር ይሁኑ።">
+    <meta name="keywords" content="Laravel Amharic, React Amharic, Web Development Ethiopia, learn coding Amharic, EduPlatform">
+    <meta name="author" content="Teshome">
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    <!-- Open Graph / Social Media Preview Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="EduPlatform - ምርጥ ኦንላይን የኮዲንግ ትምህርቶች">
+    <meta property="og:description" content="በአማርኛ እና በእንግሊዝኛ የተዘጋጁ ዘመናዊ የዌብ ዲቬሎፕመንት ኮርሶች።">
+
+    <!-- Google Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "EduPlatform",
+      "url": "{{ url('/') }}",
+      "description": "በአማርኛ እና በእንግሊዝኛ የተዘጋጁ ዘመናዊ የዌብ ዲቬሎፕመንት ትምህርቶች"
+    }
+    </script>
+@endpush
 @section('title', 'EduPlatform - ምርጥ ኦንላይን ትምህርቶች')
 @push('styles')
 <style>
