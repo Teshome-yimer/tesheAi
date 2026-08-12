@@ -163,6 +163,7 @@
         /* Footer */
         footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 40px 0; margin-top: 80px; text-align: center; color: var(--muted); }
     </style>
+    @stack('head')
     @stack('styles')
 </head>
 <body>
