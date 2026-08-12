@@ -21,6 +21,9 @@ Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap')
 // Public
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/course/{slug}', [CourseController::class, 'show'])->name('course.show');
+// login route timer
+Route::post('/login', [AuthController::class, 'login'])
+    ->middleware('throttle:login');
 
 // Auth
 Route::middleware('guest')->group(function () {
