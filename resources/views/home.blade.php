@@ -1,5 +1,15 @@
 @extends('layouts.app')
+
 @section('title', 'EduPlatform - ምርጥ ኦንላይን ትምህርቶች')
+
+@push('meta')
+<meta name="description" content="ላራቬል፣ ሪኤክት እና MySQL ተጠቅመው ሙሉ ስታክ ዌብ ዲቬሎፐር ይሁኑ። በኢትዮጵያ ምርጡ የዌብ ዲቬሎፕመንት ትምህርት በይነመረብ።">
+<meta property="og:title" content="EduPlatform - ከዜሮ ወደ ፕሮፌሽናል ዲቬሎፐር ሁን">
+<meta property="og:description" content="ላራቬል፣ ሪኤክት እና MySQL ተጠቅመው ሙሉ ስታክ ዌብ ዲቬሎፐር ይሁኑ።">
+<meta property="og:image" content="{{ asset('images/teshome_photo_1.jpg') }}">
+<meta property="og:url" content="{{ url('/') }}">
+@endpush
+
 @push('styles')
 <style>
 .hero { padding: 100px 0 80px; text-align: center; position: relative; overflow: hidden; }
@@ -50,6 +60,7 @@
 .section-gap { padding: 80px 0; }
 </style>
 @endpush
+
 @section('content')
 
 {{-- Hero --}}
@@ -57,14 +68,14 @@
     <div class="container">
         <div class="hero-badge">🇪🇹 አዲስ ኮርሶች ተጨምረዋል / New Courses Available</div>
         <h1>ከዜሮ ወደ <span class="grad-text">ፕሮፌሽናል</span><br>ዲቬሎፐር ሁን</h1>
-        <p>ላራቬል፣ ሪኤክት እና MySQL ተጠቅምህ ሙሉ ስታክ ዌብ ዲቬሎፐር ሁን። Learn modern web development in Amharic + English.</p>
+        <p>ላራቬል፣ ሪኤክት እና MySQL ተጠቅመው ሙሉ ስታክ ዌብ ዲቬሎፐር ሁኑ። Learn modern web development in Amharic + English.</p>
         <div class="hero-btns">
             <a href="#courses" class="btn btn-cyan" style="font-size:1rem;padding:14px 32px;">🚀 ኮርሶችን ይመልከቱ / View Courses</a>
         </div>
 
         {{-- Search bar --}}
         <div style="margin-top:36px;max-width:520px;margin-left:auto;margin-right:auto;">
-            <form onsubmit="searchCourses(event, this)" style="display:flex;gap:0;border-radius:99px;overflow:hidden;border:2px solid var(--indigo);background:var(--bg2);">
+            <form id="search-form" style="display:flex;gap:0;border-radius:99px;overflow:hidden;border:2px solid var(--indigo);background:var(--bg2);">
                 <input type="text" id="hero-search" placeholder="ኮርስ ፈልግ / Search courses..." autocomplete="off"
                     style="flex:1;background:transparent;border:none;color:var(--text);padding:14px 22px;font-size:1rem;outline:none;font-family:inherit;">
                 <button type="submit"
@@ -104,7 +115,7 @@
     <div class="container">
         <div class="section-title">
             <h2>ምን ይማራሉ? / <span class="grad-text">What You'll Learn</span></h2>
-            <p>ይህ ኮርስ ሲጨርሱ ሙሉ ስታክ ዌብ ዲቬሎፐር ይሆናሉ</p>
+            <p>ይህንን ኮርስ ሲጨርሱ ሙሉ ስታክ ዌብ ዲቬሎፐር ይሆናሉ</p>
         </div>
         @if(isset($featuredCourse) && $featuredCourse)
             @php $items = $featuredCourse->what_you_learn ?? []; @endphp
@@ -144,7 +155,7 @@
             @if(!empty($search))
                 <p>🔍 "{{ $search }}" ውጤት: {{ $courses->count() }} ኮርስ(ኮርሶች) ተገኝተዋል — <a href="{{ url('/') }}#courses" style="color:var(--cyan);">ሁሉንም አሳይ / Clear</a></p>
             @else
-                <p>ተገቢ ኮርሱን ምረጡ እና ዛሬ ጀምሩ</p>
+                <p>ተገቢውን ኮርስ ምረጡ እና ዛሬ ጀምሩ</p>
             @endif
         </div>
         <div class="courses-grid">
@@ -177,7 +188,7 @@
                 </div>
             </div>
             @empty
-            <p style="color:var(--muted);text-align:center;grid-column:1/-1;">ኮርስ አልተጠቃ / No courses yet.</p>
+            <p style="color:var(--muted);text-align:center;grid-column:1/-1;">ኮርስ አልተካተተም / No courses yet.</p>
             @endforelse
         </div>
     </div>
@@ -260,19 +271,24 @@
 
 @push('scripts')
 <script>
-// Live search: filter course cards on the page
-const allCourseData = [
-    @foreach($courses as $c)
-    { title: "{{ addslashes($c->title) }}", url: "{{ route('course.show', $c) }}", desc: "{{ addslashes(Str::limit($c->description, 80)) }}", price: "{{ number_format($c->price_etb) }} ETB" },
-    @endforeach
-];
+// Safe Course JSON parsing using Laravel json_encode
+const allCourseData = @json($courses->map(function($c) {
+    return [
+        'title' => $c->title,
+        'url'   => route('course.show', $c->slug ?? $c->id),
+        'desc'  => Str::limit($c->description, 80),
+        'price' => number_format($c->price_etb) . ' ETB'
+    ];
+}));
 
-function searchCourses(e, form) {
+document.getElementById('search-form')?.addEventListener('submit', function(e) {
     e.preventDefault();
     const q = document.getElementById('hero-search').value.trim().toLowerCase();
+    const box = document.getElementById('search-results');
+
     if (!q) {
-        document.getElementById('search-results').style.display = 'none';
-        document.getElementById('courses').scrollIntoView({ behavior: 'smooth' });
+        box.style.display = 'none';
+        document.getElementById('courses')?.scrollIntoView({ behavior: 'smooth' });
         return;
     }
 
@@ -280,7 +296,6 @@ function searchCourses(e, form) {
         c.title.toLowerCase().includes(q) || c.desc.toLowerCase().includes(q)
     );
 
-    const box = document.getElementById('search-results');
     if (filtered.length === 0) {
         box.innerHTML = '<div style="padding:16px;color:var(--muted);text-align:center;">ምንም ኮርስ አልተገኘም / No courses found</div>';
     } else {
@@ -296,11 +311,11 @@ function searchCourses(e, form) {
     }
     box.style.display = 'block';
     box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-}
+});
 
 // Close search results on outside click
 document.addEventListener('click', function(e) {
-    if (!e.target.closest('#hero-search') && !e.target.closest('#search-results') && !e.target.closest('form')) {
+    if (!e.target.closest('#hero-search') && !e.target.closest('#search-results') && !e.target.closest('#search-form')) {
         document.getElementById('search-results').style.display = 'none';
     }
 });

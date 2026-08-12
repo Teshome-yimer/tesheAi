@@ -1,2 +1,11 @@
 User-agent: *
-Disallow:
+Allow: /
+
+# የAdmin፣ Login እና ሚስጥራዊ ገጾች Google ላይ እንዳይታዩ መከልከል
+Disallow: /admin/
+Disallow: /login
+Disallow: /register
+Disallow: /password/
+
+# Sitemap (ካለህ)
+Sitemap: https://tesheai.com/sitemap.xml
