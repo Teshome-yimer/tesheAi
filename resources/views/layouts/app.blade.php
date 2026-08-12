@@ -30,20 +30,20 @@
             background: rgba(10,10,15,0.97);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
-            position: sticky; top: 0; z-index: 300; /* raised z-index to keep above content */
+            position: sticky; top: 0; z-index: 100;
         }
         .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 6px; min-height: 60px; }
-        .nav-logo { font-size: 1.35rem; font-weight: 800; background: linear-gradient(135deg, var(--indigo), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; back[...]
+        .nav-logo { font-size: 1.35rem; font-weight: 800; background: linear-gradient(135deg, var(--indigo), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-right: 10px; flex-shrink: 0; }
 
         /* Nav items + dropdowns */
         .nav-menu { display: flex; align-items: center; gap: 2px; flex: 1; }
         .nav-utilities { display: flex; align-items: center; gap: 12px; margin-left: auto; flex-shrink: 0; }
         .nav-item { position: relative; }
-        .nav-item > .nav-top-link { display: flex; align-items: center; gap: 5px; padding: 10px 14px; border-radius: 8px; color: var(--text); font-size: 0.9rem; font-weight: 600; cursor: pointer; [...]
+        .nav-item > .nav-top-link { display: flex; align-items: center; gap: 5px; padding: 10px 14px; border-radius: 8px; color: var(--text); font-size: 0.9rem; font-weight: 600; cursor: pointer; background: none; border: none; font-family: inherit; transition: background .15s; white-space: nowrap; }
         .nav-item > .nav-top-link:hover, .nav-item.open > .nav-top-link { background: var(--bg3); color: var(--text); }
         .nav-caret { font-size: 0.6rem; color: var(--muted); transition: transform .15s; }
         .nav-item.open .nav-caret { transform: rotate(180deg); }
-        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; min-width: 240px; background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 8px; box-sh[...]
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; min-width: 240px; background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 8px; box-shadow: 0 16px 40px rgba(0,0,0,.5); z-index: 200; }
         .nav-item.open .dropdown-menu { display: block; }
         .dropdown-menu a { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 8px; color: var(--text); font-size: 0.875rem; font-weight: 500; }
         .dropdown-menu a:hover { background: rgba(99,102,241,.12); color: var(--cyan); }
@@ -51,11 +51,11 @@
         .dropdown-menu .dd-divider { height: 1px; background: var(--border); margin: 6px 8px; }
 
         /* Mega panel (Exercises style) */
-        .mega-panel { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); width: min(760px, 92vw); background: var(--bg2); border: 1px solid var(--border); border[...]
+        .mega-panel { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); width: min(760px, 92vw); background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 24px; box-shadow: 0 20px 60px rgba(0,0,0,.6); z-index: 200; }
         .nav-item.open .mega-panel { display: block; }
-        .mega-title { font-size: 0.72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; background: linear-gradient(135deg, var(--indigo), var(--cyan)); -webkit-background-cl[...]
+        .mega-title { font-size: 0.72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; background: linear-gradient(135deg, var(--indigo), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 16px; }
         .mega-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
-        .mega-card { border: 1px solid var(--border); border-radius: 12px; padding: 20px 16px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; transition:[...]
+        .mega-card { border: 1px solid var(--border); border-radius: 12px; padding: 20px 16px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; transition: border-color .15s, transform .15s; background: var(--bg); }
         .mega-card:hover { border-color: var(--indigo); transform: translateY(-2px); }
         .mega-card .mc-icon { font-size: 1.8rem; }
         .mega-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
@@ -63,10 +63,10 @@
 
         /* Search */
         .nav-search { display: flex; align-items: center; margin-left: auto; flex-shrink: 0; }
-        .nav-search input { background: var(--bg3); border: 1px solid var(--border); border-radius: 24px 0 0 24px; border-right: none; color: var(--text); padding: 8px 16px; font-size: 0.85rem; ou[...]
+        .nav-search input { background: var(--bg3); border: 1px solid var(--border); border-radius: 24px 0 0 24px; border-right: none; color: var(--text); padding: 8px 16px; font-size: 0.85rem; outline: none; width: 220px; transition: border-color .2s; font-family: inherit; }
         .nav-search input:focus { border-color: var(--indigo); }
         .nav-search input::placeholder { color: var(--muted); font-style: italic; }
-        .nav-search button { background: var(--bg3); border: 1px solid var(--border); border-left: none; border-radius: 0 24px 24px 0; color: var(--muted); padding: 8px 14px 8px 8px; cursor: point[...]
+        .nav-search button { background: var(--bg3); border: 1px solid var(--border); border-left: none; border-radius: 0 24px 24px 0; color: var(--muted); padding: 8px 14px 8px 8px; cursor: pointer; font-size: 0.85rem; flex-shrink: 0; }
         .nav-search button:hover { color: var(--cyan); }
 
         .nav-actions { display: flex; align-items: center; gap: 16px; margin-left: 20px; flex-shrink: 0; }
@@ -78,9 +78,9 @@
         .subnav { background: var(--bg2); border-bottom: 1px solid var(--border); }
         .subnav-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 4px; overflow-x: auto; scrollbar-width: none; }
         .subnav-inner::-webkit-scrollbar { display: none; }
-        .subnav-inner a { color: var(--muted); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; padding: 11px 14px; white-space: nowrap; border-bottom: 2px so[...]
+        .subnav-inner a { color: var(--muted); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; padding: 11px 14px; white-space: nowrap; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; }
         .subnav-inner a:hover { color: var(--cyan); border-bottom-color: var(--cyan); }
-        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; border: none; transition: all .2s;[...]
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; border: none; transition: all .2s; text-decoration: none; }
         .btn-primary { background: linear-gradient(135deg, var(--indigo), #8b5cf6); color: #fff; }
         .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(99,102,241,.4); color: #fff; }
         .btn-secondary { background: transparent; border: 1px solid var(--border); color: var(--text); }
@@ -108,7 +108,7 @@
         /* Forms */
         .form-group { margin-bottom: 20px; }
         .form-label { display: block; margin-bottom: 6px; font-size: 0.85rem; font-weight: 500; color: var(--muted); }
-        .form-control { width: 100%; background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 12px 16px; border-radius: 8px; font-size: 0.95rem; outline: none; transi[...]
+        .form-control { width: 100%; background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 12px 16px; border-radius: 8px; font-size: 0.95rem; outline: none; transition: border-color .2s; }
         .form-control:focus { border-color: var(--indigo); }
         .form-control::placeholder { color: var(--muted); }
         .invalid-feedback { color: var(--danger); font-size: 0.8rem; margin-top: 4px; }
@@ -120,39 +120,6 @@
         .badge-success { background: rgba(16,185,129,.2); color: var(--success); }
         .badge-danger { background: rgba(239,68,68,.2); color: var(--danger); }
 
-        /* Hamburger */
-        .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: 16px; flex-shrink: 0; padding: 4px; }
-        .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); transition: transform .18s, opacity .18s; }
-
-        /* MOBILE NAV: smoother open/close with fade/slide and proper stacking */
-        @media (max-width: 900px) {
-            .nav-inner { flex-wrap: wrap; row-gap: 10px; padding-top: 10px; padding-bottom: 10px; }
-            .nav-logo { margin-right: 0; font-size: 1.15rem; }
-            .nav-utilities { order: 2; margin-left: auto; gap: 10px; }
-            .hamburger { display: flex; }
-
-            /* Start collapsed */
-            .nav-menu { display: flex; order: 3; flex: 0 0 100%; width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; flex-direction: column; align-items: st[...]
-            .nav-menu.open { max-height: 1200px; opacity: 1; transform: translateY(0); }
-
-            .nav-item > .nav-top-link { width: 100%; justify-content: space-between; }
-            .dropdown-menu, .mega-panel { position: static; transform: none; width: 100%; min-width: 0; box-shadow: none; margin-top: 4px; }
-            .nav-search { margin-left: 0; }
-            .nav-search input { width: 96px; }
-            .nav-search input:focus { width: 120px; }
-            .nav-actions { margin-left: 0; gap: 10px; }
-            .nav-actions .nav-plain-link { display: none; }
-            .nav-actions form { display: none !important; }
-            .mobile-menu-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--border); }
-            .mobile-menu-actions .btn { width: 100%; justify-content: center; }
-        /* Topic bar responsive */
-      
-            .subnav { display: block; overflow-x: auto; }
-            .subnav-inner { gap: 0; }
-            .subnav-inner a { font-size: 0.75rem; padding: 10px 12px; }
-        
-        }
-
         /* Progress bar */
         .progress-bar { background: var(--bg3); border-radius: 99px; height: 6px; overflow: hidden; }
         .progress-fill { height: 100%; background: linear-gradient(90deg, var(--indigo), var(--cyan)); border-radius: 99px; transition: width .4s ease; }
@@ -163,6 +130,35 @@
         .table td { padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
         .table tr:last-child td { border-bottom: none; }
         .table tbody tr:hover { background: var(--bg3); }
+
+        /* Hamburger */
+        .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: 16px; flex-shrink: 0; padding: 4px; }
+        .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); }
+        
+        /* Mobile responsive adjustments */
+        @media (max-width: 900px) {
+            .nav-inner { flex-wrap: wrap; row-gap: 10px; padding-top: 10px; padding-bottom: 10px; }
+            .nav-logo { margin-right: 0; font-size: 1.15rem; }
+            .nav-utilities { order: 2; margin-left: auto; gap: 10px; }
+            .hamburger { display: flex; }
+            .nav-menu { display: none; order: 3; flex: 0 0 100%; width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; flex-direction: column; align-items: stretch; padding: 12px; gap: 4px; box-shadow: 0 20px 40px rgba(0,0,0,.35); }
+            .nav-menu.open { display: flex; }
+            .nav-item > .nav-top-link { width: 100%; justify-content: space-between; }
+            .dropdown-menu, .mega-panel { position: static; transform: none; width: 100%; min-width: 0; box-shadow: none; margin-top: 4px; }
+            .nav-search { margin-left: 0; }
+            .nav-search input { width: 96px; }
+            .nav-search input:focus { width: 120px; }
+            .nav-actions { margin-left: 0; gap: 10px; }
+            .nav-actions .nav-plain-link { display: none; }
+            .nav-actions form { display: none !important; }
+            .mobile-menu-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--border); }
+            .mobile-menu-actions .btn { width: 100%; justify-content: center; }
+
+            /* Topic bar responsive */
+            .subnav { display: block; overflow-x: auto; }
+            .subnav-inner { gap: 0; }
+            .subnav-inner a { font-size: 0.75rem; padding: 10px 12px; }
+        }
 
         /* Footer */
         footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 40px 0; margin-top: 80px; text-align: center; color: var(--muted); }
@@ -262,7 +258,7 @@
             <div class="nav-actions">
                 @guest
                     <a href="{{ route('login') }}" class="nav-plain-link" style="color: var(--text); font-weight: 600; font-size: 0.85rem; padding: 6px 10px; white-space: nowrap;">🔑 Login</a>
-                    <a href="{{ route('register') }}" class="btn btn-cyan btn-sm" style="border-radius: 20px; padding: 5px 14px; font-weight: 700; font-size: 0.82rem; white-space: nowrap;">✨ Re[...]
+                    <a href="{{ route('register') }}" class="btn btn-cyan btn-sm" style="border-radius: 20px; padding: 5px 14px; font-weight: 700; font-size: 0.82rem; white-space: nowrap;">✨ Register</a>
                 @endguest
                 @auth
                     @if(auth()->user()->isAdmin())
@@ -277,7 +273,7 @@
                 @endauth
             </div>
 
-            <button class="hamburger" onclick="toggleNav()" aria-label="Menu" aria-expanded="false" id="hamburgerBtn">
+            <button class="hamburger" onclick="document.getElementById('navMenu').classList.toggle('open')" aria-label="Menu">
                 <span></span><span></span><span></span>
             </button>
         </div>
@@ -342,22 +338,6 @@ document.addEventListener('keydown', function (e) {
 document.querySelectorAll('.dropdown-menu, .mega-panel').forEach(function (p) {
     p.addEventListener('click', function (e) { e.stopPropagation(); });
 });
-
-// Mobile nav toggle: smoother and updates aria-expanded
-function toggleNav() {
-    var menu = document.getElementById('navMenu');
-    var btn = document.getElementById('hamburgerBtn');
-    var open = menu.classList.contains('open');
-    if (open) {
-        menu.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
-    } else {
-        menu.classList.add('open');
-        btn.setAttribute('aria-expanded', 'true');
-        // close any open dropdowns inside
-        document.querySelectorAll('.nav-item.open').forEach(function (o) { o.classList.remove('open'); });
-    }
-}
 
 // Search: if on homepage scroll to courses, otherwise navigate
 function scrollToCourses(e, form) {
