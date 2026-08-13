@@ -250,8 +250,8 @@
 
             <div class="mobile-menu-actions">
                 @guest
-                    <a href="{{ route('login') }}" class="btn btn-secondary btn-sm">🔑 ግባ / Login</a>
-                    <a href="{{ route('register') }}" class="btn btn-cyan btn-sm">✨ ተመዝገብ / Register</a>
+                    <a href="{{ route('login') }}" class="btn btn-secondary btn-sm">🔑sign in</a>
+                    <a href="{{ route('register') }}" class="btn btn-cyan btn-sm">✨ sign up</a>
                 @endguest
                 @auth
                     @if(auth()->user()->isAdmin())
