@@ -197,27 +197,37 @@ Route::middleware([\App\Http\Middleware\AdminMiddleware::class])->prefix('admin'
     
      ///new thumbnail route
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Log;
 
 Route::get('/storage/thumbnails/{filename}', function ($filename) {
-    // 🛡️ Path Traversal Security: ከ አቃፊው ውጭ የመሄድ ሙከራዎችን (../) ይከለክላል
-    $filename = basename($filename);
+    // 🛡️ የፓዝ ትራቨርሳል (path traversal) ጥቃትን ለመከላከል የፋይሉን ስም ብቻ እንወስዳለን።
+    // ማንኛውንም ../ ወይም / የያዘ ስም ያጸዳል።
+    $safe_filename = basename($filename);
 
     // 1. መጀመሪያ storage/app/public/thumbnails/ ውስጥ ይፈልጋል
-    $path = storage_path('app/public/thumbnails/' . $filename);
+    $path = storage_path('app/public/thumbnails/' . $safe_filename);
 
     // 2. እዚያ ከሌለ storage/app/thumbnails/ ውስጥ ይፈልጋል
     if (!file_exists($path)) {
-        $path = storage_path('app/thumbnails/' . $filename);
+        $path = storage_path('app/thumbnails/' . $safe_filename);
     }
 
     // ፋይሉ በጭራሽ ከሌለ 404 ይሰጣል
     if (!file_exists($path)) {
-        abort(404);
+        abort(404, 'File not found.');
     }
 
+    // ፋይሉን ለማንበብ ፍቃድ መኖሩን እናረጋግጥ
+    if (!is_readable($path)) {
+        Log::error("File exists but is not readable: " . $path);
+        abort(500, 'File permission error.');
+    }
+
+    // ፋይሉን እና የፋይል ዝርዝሩን (mime type) እናንብብ
     $file = file_get_contents($path);
     $type = mime_content_type($path);
 
+    // ምስሉን እንደ Response እንላክ
     $response = Response::make($file, 200);
     $response->header("Content-Type", $type);
 
