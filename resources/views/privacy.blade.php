@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('title', 'Privacy Policy - TesheAI')
@@ -18,6 +17,6 @@
     <p class="mb-4">We may use cookies and similar technologies, including third-party vendor cookies like Google AdSense, to serve ads based on your visit to our website and other websites.</p>
 
     <h2 class="text-xl font-semibold mt-6 mb-3 text-white">4. Contact Us</h2>
-    <p>If you have any questions about this Privacy Policy, please contact us at: <a href="mailto:teshome.yimer.tawuye@gmail.com" class="text-blue-400 underline">teshome.yimer.tawuye@gmail.com</a></p>
+    <p>If you have any questions about this Privacy Policy, please contact us at: <a href="mailto:tesheyimer86@gmail.com" class="text-blue-400 underline">tesheyimer86@gmail.com</a></p>
 </div>
 @endsection
