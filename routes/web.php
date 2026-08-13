@@ -194,4 +194,32 @@ Route::middleware([\App\Http\Middleware\AdminMiddleware::class])->prefix('admin'
     Route::put('/coupons/{coupon}', [Admin\CouponController::class, 'update'])->name('coupons.update');
     Route::delete('/coupons/{coupon}', [Admin\CouponController::class, 'destroy'])->name('coupons.destroy');
 });
+    
+     ///new thumbnail route
+use Illuminate\Support\Facades\Response;
 
+Route::get('/storage/thumbnails/{filename}', function ($filename) {
+    // 🛡️ Path Traversal Security: ከ አቃፊው ውጭ የመሄድ ሙከራዎችን (../) ይከለክላል
+    $filename = basename($filename);
+
+    // 1. መጀመሪያ storage/app/public/thumbnails/ ውስጥ ይፈልጋል
+    $path = storage_path('app/public/thumbnails/' . $filename);
+
+    // 2. እዚያ ከሌለ storage/app/thumbnails/ ውስጥ ይፈልጋል
+    if (!file_exists($path)) {
+        $path = storage_path('app/thumbnails/' . $filename);
+    }
+
+    // ፋይሉ በጭራሽ ከሌለ 404 ይሰጣል
+    if (!file_exists($path)) {
+        abort(404);
+    }
+
+    $file = file_get_contents($path);
+    $type = mime_content_type($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
+});
