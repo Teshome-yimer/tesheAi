@@ -3,48 +3,39 @@
 @section('title', 'Contact Us - TesheAI')
 
 @section('content')
-<div class="relative min-h-screen py-16 px-4 flex items-center justify-center overflow-hidden bg-gray-950">
-    <!-- Golden Background Glow Effects -->
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-gradient-to-tr from-amber-500/25 via-yellow-500/15 to-transparent rounded-full blur-3xl pointer-events-none"></div>
-
-    <!-- Main Centered Golden Card -->
-    <div class="relative w-full max-w-2xl bg-gray-900/90 backdrop-blur-2xl border-2 border-amber-500/40 rounded-3xl p-8 md:p-12 shadow-[0_0_50px_rgba(245,158,11,0.15)] text-center">
+<div style="background: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #022c22 100%); min-height: 100vh; padding: 40px 15px; font-family: system-ui, -apple-system, sans-serif;">
+    <div style="max-width: 650px; margin: 0 auto; background: rgba(6, 78, 59, 0.6); backdrop-filter: blur(12px); border: 2px solid #10b981; border-radius: 24px; padding: 35px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); text-align: center;">
         
-        <!-- Icon -->
-        <div class="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-gradient-to-br from-yellow-400 via-amber-500 to-amber-700 text-3xl shadow-xl shadow-amber-500/30 mb-6 hover:scale-105 transition-transform duration-300">
-            ✉️
+        <!-- Header -->
+        <div style="margin-bottom: 30px;">
+            <div style="font-size: 50px; margin-bottom: 10px;">✉️</div>
+            <h1 style="color: #34d399; font-size: 34px; font-weight: 800; margin: 0; text-transform: uppercase; text-shadow: 0 2px 10px rgba(52, 211, 153, 0.3);">
+                Get In Touch
+            </h1>
+            <p style="color: #d1fae5; font-size: 14px; margin-top: 10px;">
+                Have questions, need support, or want to collaborate? Reach out to us anytime!
+            </p>
         </div>
 
-        <h1 class="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-amber-400 to-yellow-500 mb-3">
-            Get In Touch
-        </h1>
-        <p class="text-amber-100/80 text-sm max-w-md mx-auto mb-10 leading-relaxed">
-            Have questions, need support, or want to collaborate? Reach out to us anytime!
-        </p>
-
-        <!-- Contact Cards -->
-        <div class="grid sm:grid-cols-2 gap-5 text-left">
-            <a href="mailto:tesheyimer86@gmail.com" class="group p-6 rounded-2xl bg-gray-950/60 border border-amber-500/30 hover:border-yellow-400 hover:bg-gray-950 transition-all duration-300 flex items-center space-x-4 shadow-lg hover:-translate-y-1">
-                <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-2xl text-yellow-400">
-                    📧
-                </div>
+        <!-- Contact Items Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; text-align: left;">
+            
+            <a href="mailto:tesheyimer86@gmail.com" style="text-decoration: none; background: rgba(2, 44, 34, 0.8); border: 1px solid #10b981; padding: 18px; border-radius: 16px; display: flex; align-items: center; gap: 15px;">
+                <div style="font-size: 28px;">📧</div>
                 <div>
-                    <h2 class="text-xs font-black text-amber-400 uppercase tracking-widest">Email Address</h2>
-                    <span class="text-yellow-200 font-bold text-xs md:text-sm block mt-1 group-hover:underline">
-                        tesheyimer86@gmail.com
-                    </span>
+                    <h2 style="color: #facc15; font-size: 11px; font-weight: 800; text-transform: uppercase; margin: 0 0 3px 0; letter-spacing: 1px;">Email Address</h2>
+                    <span style="color: #6ee7b7; font-size: 13px; font-weight: 700; word-break: break-all;">tesheyimer86@gmail.com</span>
                 </div>
             </a>
 
-            <div class="group p-6 rounded-2xl bg-gray-950/60 border border-amber-500/30 hover:border-yellow-400 hover:bg-gray-950 transition-all duration-300 flex items-center space-x-4 shadow-lg hover:-translate-y-1">
-                <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-2xl text-yellow-400">
-                    📍
-                </div>
+            <div style="background: rgba(2, 44, 34, 0.8); border: 1px solid #10b981; padding: 18px; border-radius: 16px; display: flex; align-items: center; gap: 15px;">
+                <div style="font-size: 28px;">📍</div>
                 <div>
-                    <h2 class="text-xs font-black text-amber-400 uppercase tracking-widest">Location</h2>
-                    <p class="text-yellow-100 font-bold text-sm mt-1">Dessie, Ethiopia</p>
+                    <h2 style="color: #facc15; font-size: 11px; font-weight: 800; text-transform: uppercase; margin: 0 0 3px 0; letter-spacing: 1px;">Location</h2>
+                    <span style="color: #ffffff; font-size: 14px; font-weight: 700;">Dessie, Ethiopia</span>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
