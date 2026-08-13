@@ -3,69 +3,70 @@
 @section('title', 'Terms of Service - TesheAI')
 
 @section('content')
-<div class="relative min-h-screen py-16 px-4 overflow-hidden flex items-center justify-center">
-    <!-- Glow Background Effects -->
-    <div class="absolute top-1/4 right-1/2 translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute bottom-10 left-10 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="relative min-h-screen py-16 px-4 flex items-center justify-center overflow-hidden bg-gray-950">
+    <!-- Golden Background Glow Effects -->
+    <div class="absolute top-1/4 right-1/2 translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-amber-500/20 via-yellow-500/10 to-transparent rounded-full blur-3xl pointer-events-none"></div>
 
-    <div class="relative w-full max-w-4xl bg-gray-900/60 backdrop-blur-xl border border-gray-800/80 rounded-3xl p-6 md:p-12 shadow-2xl shadow-cyan-950/20">
+    <!-- Main Centered Golden Card -->
+    <div class="relative w-full max-w-4xl bg-gray-900/90 backdrop-blur-2xl border-2 border-amber-500/40 rounded-3xl p-8 md:p-14 shadow-[0_0_50px_rgba(245,158,11,0.15)]">
+        
         <!-- Header -->
-        <div class="flex items-center space-x-4 mb-8 border-b border-gray-800/80 pb-6">
-            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-blue-500 to-cyan-400 flex items-center justify-center text-2xl shadow-lg shadow-cyan-500/20">
+        <div class="flex items-center space-x-5 mb-10 border-b border-amber-500/30 pb-6">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-yellow-400 via-amber-500 to-amber-700 flex items-center justify-center text-3xl shadow-lg shadow-amber-500/30">
                 📜
             </div>
             <div>
-                <h1 class="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-cyan-400">
+                <h1 class="text-3xl md:text-5xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-amber-400 to-yellow-500">
                     Terms of Service
                 </h1>
-                <p class="text-xs text-cyan-400/80 mt-1 uppercase tracking-widest font-semibold">TesheAI Platform Guidelines</p>
+                <p class="text-xs text-amber-400/90 mt-1 uppercase tracking-widest font-bold">TesheAI Platform Guidelines</p>
             </div>
         </div>
 
-        <p class="text-gray-300 text-base leading-relaxed mb-8 bg-gray-800/30 p-4 rounded-xl border border-gray-800/50">
-            By using <span class="text-cyan-400 font-bold">TesheAI</span>, you agree to comply with and be bound by the following Terms and Conditions of service.
+        <p class="text-amber-100/90 text-base leading-relaxed mb-8 bg-amber-950/30 p-5 rounded-2xl border border-amber-500/30">
+            By using <span class="text-yellow-400 font-extrabold">TesheAI</span>, you agree to comply with and be bound by the following Terms and Conditions of service.
         </p>
 
-        <!-- Cards Container -->
-        <div class="space-y-5">
-            <div class="group p-6 rounded-2xl bg-gray-800/20 border border-gray-800/80 hover:border-cyan-500/40 hover:bg-gray-800/40 transition-all duration-300">
-                <h2 class="text-lg font-bold text-cyan-400 group-hover:text-cyan-300 flex items-center gap-2 mb-2">
-                    <span class="text-sm px-2 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20">01</span>
+        <!-- Content Cards -->
+        <div class="space-y-6">
+            <div class="group p-6 rounded-2xl bg-gray-950/60 border border-amber-500/20 hover:border-yellow-400/60 transition-all duration-300 shadow-md">
+                <h2 class="text-xl font-bold text-yellow-400 flex items-center gap-3 mb-2 tracking-wide">
+                    <span class="text-xs px-2.5 py-1 rounded-lg bg-amber-500/20 text-yellow-300 border border-amber-500/40 font-black">01</span>
                     Use of Platform
                 </h2>
-                <p class="text-gray-400 text-sm leading-relaxed pl-9">
-                    All learning materials, code samples, and tutorials are provided for personal educational use only. Unauthorized distribution or copying is prohibited.
+                <p class="text-amber-100/80 text-sm leading-relaxed pl-10">
+                    All learning materials, code samples, and tutorials are provided for personal educational use only. Unauthorized distribution is strictly prohibited.
                 </p>
             </div>
 
-            <div class="group p-6 rounded-2xl bg-gray-800/20 border border-gray-800/80 hover:border-cyan-500/40 hover:bg-gray-800/40 transition-all duration-300">
-                <h2 class="text-lg font-bold text-cyan-400 group-hover:text-cyan-300 flex items-center gap-2 mb-2">
-                    <span class="text-sm px-2 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20">02</span>
+            <div class="group p-6 rounded-2xl bg-gray-950/60 border border-amber-500/20 hover:border-yellow-400/60 transition-all duration-300 shadow-md">
+                <h2 class="text-xl font-bold text-yellow-400 flex items-center gap-3 mb-2 tracking-wide">
+                    <span class="text-xs px-2.5 py-1 rounded-lg bg-amber-500/20 text-yellow-300 border border-amber-500/40 font-black">02</span>
                     User Accounts
                 </h2>
-                <p class="text-gray-400 text-sm leading-relaxed pl-9">
+                <p class="text-amber-100/80 text-sm leading-relaxed pl-10">
                     Users are responsible for keeping their login credentials secure and for all actions taking place within their account.
                 </p>
             </div>
 
-            <div class="group p-6 rounded-2xl bg-gray-800/20 border border-gray-800/80 hover:border-cyan-500/40 hover:bg-gray-800/40 transition-all duration-300">
-                <h2 class="text-lg font-bold text-cyan-400 group-hover:text-cyan-300 flex items-center gap-2 mb-2">
-                    <span class="text-sm px-2 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20">03</span>
+            <div class="group p-6 rounded-2xl bg-gray-950/60 border border-amber-500/20 hover:border-yellow-400/60 transition-all duration-300 shadow-md">
+                <h2 class="text-xl font-bold text-yellow-400 flex items-center gap-3 mb-2 tracking-wide">
+                    <span class="text-xs px-2.5 py-1 rounded-lg bg-amber-500/20 text-yellow-300 border border-amber-500/40 font-black">03</span>
                     Service Updates
                 </h2>
-                <p class="text-gray-400 text-sm leading-relaxed pl-9">
+                <p class="text-amber-100/80 text-sm leading-relaxed pl-10">
                     We reserve the right to add, modify, or remove educational content or website features at any time to improve the platform experience.
                 </p>
             </div>
 
-            <div class="group p-6 rounded-2xl bg-gray-800/20 border border-gray-800/80 hover:border-cyan-500/40 hover:bg-gray-800/40 transition-all duration-300">
-                <h2 class="text-lg font-bold text-cyan-400 group-hover:text-cyan-300 flex items-center gap-2 mb-2">
-                    <span class="text-sm px-2 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20">04</span>
+            <div class="group p-6 rounded-2xl bg-gray-950/60 border border-amber-500/20 hover:border-yellow-400/60 transition-all duration-300 shadow-md">
+                <h2 class="text-xl font-bold text-yellow-400 flex items-center gap-3 mb-2 tracking-wide">
+                    <span class="text-xs px-2.5 py-1 rounded-lg bg-amber-500/20 text-yellow-300 border border-amber-500/40 font-black">04</span>
                     Contact Information
                 </h2>
-                <p class="text-gray-400 text-sm leading-relaxed pl-9">
+                <p class="text-amber-100/80 text-sm leading-relaxed pl-10">
                     Questions about these Terms should be sent to: 
-                    <a href="mailto:tesheyimer86@gmail.com" class="text-cyan-400 font-semibold underline hover:text-cyan-300 transition-colors">tesheyimer86@gmail.com</a>
+                    <a href="mailto:tesheyimer86@gmail.com" class="text-yellow-400 font-bold underline hover:text-yellow-300 transition-colors">tesheyimer86@gmail.com</a>
                 </p>
             </div>
         </div>
