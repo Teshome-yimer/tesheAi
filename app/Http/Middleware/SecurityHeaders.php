@@ -23,14 +23,15 @@ class SecurityHeaders
         $response->headers->set('Referrer-Policy', 'strict-origin-when-cross-origin');
         $response->headers->set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
 
-        // Content Security Policy (CSP) configured for Grade A Security + Google AdSense Support
+        // Content Security Policy (CSP) - Grade A Maintained + Video Player Support
         $csp = "default-src 'self'; "
              . "script-src 'self' 'unsafe-inline' 'unsafe-eval' https: https://pagead2.googlesyndication.com https://www.googletagservices.com https://adservice.google.com https://www.google.com; "
              . "style-src 'self' 'unsafe-inline' https:; "
              . "img-src 'self' data: https: https://pagead2.googlesyndication.com https://www.google.com; "
              . "font-src 'self' https: data:; "
              . "connect-src 'self' https: https://pagead2.googlesyndication.com https://ep2.adtrafficquality.google; "
-             . "frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://ep2.adtrafficquality.google https://www.google.com;";
+             // Grade A ሳይነካ የተፈቀዱ የተወሰኑ የቪዲዮ ምንጮች ብቻ
+             . "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://drive.google.com https://player.vimeo.com https://*.bunnycdn.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://ep2.adtrafficquality.google https://www.google.com;";
 
         $response->headers->set('Content-Security-Policy', $csp);
 
