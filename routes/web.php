@@ -25,6 +25,10 @@ Route::get('/course/{slug}', [CourseController::class, 'show'])->name('course.sh
 Route::post('/login', [AuthController::class, 'login'])
     ->middleware('throttle:login');
 
+
+Route::view('/privacy-policy', 'privacy')->name('privacy');
+Route::view('/terms', 'terms')->name('terms');
+Route::view('/contact', 'contact')->name('contact');
 // Auth
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
