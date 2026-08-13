@@ -194,3 +194,20 @@ Route::middleware([\App\Http\Middleware\AdminMiddleware::class])->prefix('admin'
     Route::put('/coupons/{coupon}', [Admin\CouponController::class, 'update'])->name('coupons.update');
     Route::delete('/coupons/{coupon}', [Admin\CouponController::class, 'destroy'])->name('coupons.destroy');
 });
+//new test route
+
+use Illuminate\Support\Facades\Artisan;
+
+Route::get('/fix-storage-link', function () {
+    // የቀደመውን link ለማፅዳትና አዲሱን ለማስገባት
+    $target = storage_path('app/public');
+    $shortcut = public_path('storage');
+
+    if (file_exists($shortcut)) {
+        unlink($shortcut);
+    }
+
+    Artisan::call('storage:link');
+
+    return 'Storage Link successfully created!';
+});
