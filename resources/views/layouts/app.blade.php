@@ -329,6 +329,13 @@
     <div class="container">
         <p style="font-size:0.9rem;">© {{ date('Y') }} EduPlatform. All rights reserved. | Made with ❤️ for Ethiopian learners</p>
     </div>
+    <div class="flex justify-center space-x-4 text-sm text-gray-400 mt-4 mb-2">
+    <a href="{{ route('privacy') }}" class="hover:underline">Privacy Policy</a>
+    <span>|</span>
+    <a href="{{ route('terms') }}" class="hover:underline">Terms of Service</a>
+    <span>|</span>
+    <a href="{{ route('contact') }}" class="hover:underline">Contact Us</a>
+</div>
 </footer>
 @stack('scripts')
 <script>
