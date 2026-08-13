@@ -3,31 +3,43 @@
 @section('title', 'Contact Us - TesheAI')
 
 @section('content')
-<div class="max-w-3xl mx-auto px-4 py-12">
-    <div class="bg-gray-900/80 border border-gray-800 rounded-2xl p-6 md:p-10 backdrop-blur-sm shadow-xl text-center">
-        <div class="inline-flex p-3 bg-cyan-500/10 rounded-full mb-4 border border-cyan-500/20">
-            <span class="text-3xl">✉️</span>
+<div class="relative min-h-screen py-16 px-4 overflow-hidden flex items-center justify-center">
+    <!-- Glow Background Effects -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-cyan-500/15 to-blue-600/15 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative w-full max-w-2xl bg-gray-900/60 backdrop-blur-xl border border-gray-800/80 rounded-3xl p-8 md:p-12 shadow-2xl shadow-cyan-950/20 text-center">
+        <!-- Animated Icon -->
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-gradient-to-tr from-cyan-500 to-blue-600 text-3xl shadow-xl shadow-cyan-500/25 mb-6 hover:scale-105 transition-transform duration-300">
+            ✉️
         </div>
-        <h1 class="text-2xl md:text-3xl font-bold text-white mb-2">Contact Us</h1>
-        <p class="text-gray-400 text-sm mb-8 max-w-md mx-auto">
-            Have questions, feedback, or need help with a course? Feel free to reach out to us!
+
+        <h1 class="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-100 to-cyan-400 mb-3">
+            Get In Touch
+        </h1>
+        <p class="text-gray-400 text-sm max-w-md mx-auto mb-10 leading-relaxed">
+            Have questions, need support, or want to collaborate? Reach out to us anytime!
         </p>
 
-        <div class="grid md:grid-cols-2 gap-4 text-left">
-            <div class="bg-gray-800/40 p-5 rounded-xl border border-gray-800 flex items-start space-x-4">
-                <span class="text-2xl">📧</span>
-                <div>
-                    <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">Email Address</h2>
-                    <a href="mailto:tesheyimer86@gmail.com" class="text-cyan-400 font-medium hover:underline text-sm block mt-1">
-                        tesheyimer86@gmail.com
-                    </a>
+        <!-- Contact Info Cards -->
+        <div class="grid sm:grid-cols-2 gap-4 text-left">
+            <a href="mailto:tesheyimer86@gmail.com" class="group p-6 rounded-2xl bg-gray-800/30 border border-gray-800/80 hover:border-cyan-500/50 hover:bg-gray-800/60 transition-all duration-300 flex items-center space-x-4 shadow-lg hover:-translate-y-1">
+                <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-xl text-cyan-400 group-hover:scale-110 transition-transform">
+                    📧
                 </div>
-            </div>
-
-            <div class="bg-gray-800/40 p-5 rounded-xl border border-gray-800 flex items-start space-x-4">
-                <span class="text-2xl">📍</span>
                 <div>
-                    <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">Location</h2>
+                    <h2 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Email Address</h2>
+                    <span class="text-cyan-400 font-medium text-xs md:text-sm block mt-1 group-hover:underline">
+                        tesheyimer86@gmail.com
+                    </span>
+                </div>
+            </a>
+
+            <div class="group p-6 rounded-2xl bg-gray-800/30 border border-gray-800/80 hover:border-cyan-500/50 hover:bg-gray-800/60 transition-all duration-300 flex items-center space-x-4 shadow-lg hover:-translate-y-1">
+                <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-xl text-blue-400 group-hover:scale-110 transition-transform">
+                    📍
+                </div>
+                <div>
+                    <h2 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Location</h2>
                     <p class="text-gray-200 font-medium text-sm mt-1">Dessie, Ethiopia</p>
                 </div>
             </div>
