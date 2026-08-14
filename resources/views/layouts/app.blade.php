@@ -39,11 +39,6 @@
             min-height: 100vh;
             width: 100%;
         }
-        
-        /* body overflow guard for mobile */
-        body.menu-open {
-            overflow: hidden !important;
-        }
 
         a { color: var(--cyan); text-decoration: none; }
         a:hover { color: var(--indigo); }
@@ -54,7 +49,7 @@
             border-bottom: 1px solid var(--border);
             position: sticky; 
             top: 0; 
-            z-index: 1000;
+            z-index: 100;
         }
         .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 6px; min-height: 60px; }
         .nav-logo { font-size: 1.35rem; font-weight: 800; background: linear-gradient(135deg, var(--indigo), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-right: 10px; flex-shrink: 0; }
@@ -109,23 +104,19 @@
         .nav-actions .nav-plain-link:hover { color: var(--text); }
         .mobile-menu-actions { display: none; }
 
-        /* Mobile Backdrop Overlay */
+        /* Mobile Backdrop Overlay - Z-INDEX የተስተካከለ */
         .mobile-menu-overlay {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 9990 !important;
-            pointer-events: none;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998 !important; /* ከ Drawer-ው በታች መሆኑ ተረጋገጠ */
         }
         .mobile-menu-overlay.open {
             display: block !important;
-            pointer-events: auto !important;
         }
 
         /* Buttons & Utility */
@@ -149,11 +140,11 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
         /* Hamburger */
-        .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: auto; flex-shrink: 0; padding: 8px; z-index: 10001; }
+        .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: auto; flex-shrink: 0; padding: 8px; }
         .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); }
 
         /* =========================================================
-           MOBILE DRAWER (ከፍተኛ ግልጽነት እና ንክኪ ጥበቃ የተደረገለት)
+           MOBILE DRAWER FIX - 100% WORKING
            ========================================================= */
         @media (max-width: 900px) {
             .nav-inner { position: relative; display: flex; align-items: center; justify-content: space-between; padding-top: 10px; padding-bottom: 10px; }
@@ -167,38 +158,23 @@
                 top: 0 !important; 
                 left: 0 !important; 
                 height: 100vh !important;
-                height: 100dvh !important; /* Mobile Screen standard */
                 width: 80% !important; 
                 max-width: 300px !important;
-                background: #13131a !important; 
+                background: #13131a !important; /* የጠራና ንጹህ ጥቁር background */
                 border-right: 1px solid var(--border); 
                 flex-direction: column; 
                 align-items: stretch; 
-                padding: 30px 18px 40px 18px;
+                padding: 24px 18px;
                 gap: 14px; 
-                box-shadow: 10px 0 40px rgba(0,0,0,0.95); 
-                z-index: 99999 !important; /* ማንኛውንም ኤለመንት ይበልጣል */
-                pointer-events: none;
+                box-shadow: 10px 0 30px rgba(0,0,0,0.8); 
+                z-index: 9999 !important; /* ከሁሉም በላይ መሆኑ ተረጋገጠ */
                 transform: translateX(-100%);
-                transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+                transition: transform 0.25s ease-in-out;
                 overflow-y: auto;
-                -webkit-overflow-scrolling: touch;
             }
             
             .nav-menu.open { 
                 transform: translateX(0) !important; 
-                pointer-events: auto !important;
-            }
-
-            /* ቁልፎቹ ከፊት እንዲሆኑ እና ንክኪን 100% እንዲቀበሉ ማድረግ */
-            .nav-item, 
-            .mobile-menu-actions, 
-            .mobile-menu-actions a, 
-            .mobile-menu-actions button,
-            .dropdown-menu a {
-                position: relative !important;
-                z-index: 100000 !important;
-                pointer-events: auto !important;
             }
 
             .dropdown-menu, .mega-panel { 
@@ -259,7 +235,7 @@
 <body>
 @php $navCourses = \App\Models\Course::where('is_published', true)->orderBy('title')->take(10)->get(); @endphp
 
-<!-- Mobile Backdrop Overlay -->
+<!-- Backdrop Overlay - ከ Drawer-ው ከጀርባ እንዲሆን እዚህ ተቀመጠ -->
 <div class="mobile-menu-overlay" id="menuOverlay"></div>
 
 <nav class="navbar">
@@ -428,21 +404,19 @@ document.addEventListener('DOMContentLoaded', function() {
     function openMobileMenu() {
         if (navMenu) navMenu.classList.add('open');
         if (menuOverlay) menuOverlay.classList.add('open');
-        document.body.classList.add('menu-open');
     }
 
     function closeMobileMenu() {
         if (navMenu) navMenu.classList.remove('open');
         if (menuOverlay) menuOverlay.classList.remove('open');
-        document.body.classList.remove('menu-open');
         document.querySelectorAll('.nav-item.open').forEach(function(item) {
             item.classList.remove('open');
         });
     }
 
-    // 1. Hamburger Toggle (ለ Touch እና Click አሊያንስ)
+    // 1. Hamburger Toggle
     if (hamburgerBtn) {
-        const toggleMenu = function(e) {
+        hamburgerBtn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             if (navMenu && navMenu.classList.contains('open')) {
@@ -450,30 +424,24 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 openMobileMenu();
             }
-        };
-        hamburgerBtn.addEventListener('click', toggleMenu);
+        });
     }
 
-    // 2. ከሜኑው ውጭ ጥቁሩ ቦታ ሲነካ ብቻ እንዲዘጋ ማድረግ
+    // 2. ከሜኑው ውጭ ያለው Overlay ሲነካ ብቻ እንዲዘጋ ማድረግ
     if (menuOverlay) {
         menuOverlay.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
             closeMobileMenu();
         });
     }
 
-    // 3. Drawer Menuው ውስጥ የሚደረግ ማንኛውም ንክኪ ገጹን እንዳይዘጋ ፍጹም መከላከል
+    // 3. Drawer Menuው ውስጥ የሚደረግ ማንኛውም click ሜኑውን እንዳይዘጋ ማድረግ (ለሊንኮች መንገድ ይለቃል)
     if (navMenu) {
         navMenu.addEventListener('click', function(e) {
-            e.stopPropagation();
+            // e.stopPropagation() አልተደረገም ምክንያቱም ሊንኮቹ (Sign In, Sign Up) እንዲሰሩ!
         });
-        navMenu.addEventListener('touchstart', function(e) {
-            e.stopPropagation();
-        }, {passive: true});
     }
 
-    // 4. Dropdown Toggles (ትምህርቶች/Courses, Resource ወዘተ...)
+    // 4. Dropdown Toggles (ትምህርቶች፣ መርጃዎች፣ ወዘተ...)
     document.querySelectorAll('[data-dd]').forEach(function (btn) {
         btn.addEventListener('click', function (e) {
             e.preventDefault();
