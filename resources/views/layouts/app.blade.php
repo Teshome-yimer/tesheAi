@@ -48,10 +48,28 @@
         /* Nav items + dropdowns */
         .nav-menu { display: flex; align-items: center; gap: 2px; flex: 1; }
         .nav-utilities { display: flex; align-items: center; gap: 12px; margin-left: auto; flex-shrink: 0; }
-        .nav-item { position: relative; }
-        .nav-item > .nav-top-link { display: flex; align-items: center; gap: 5px; padding: 10px 14px; border-radius: 8px; color: var(--text); font-size: 0.9rem; font-weight: 600; cursor: pointer; background: none; border: none; font-family: inherit; transition: background .15s; white-space: nowrap; width: 100%; text-align: left; }
+        .nav-item { position: relative; width: 100%; }
+        .nav-item > .nav-top-link { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between;
+            gap: 5px; 
+            padding: 12px 14px; 
+            border-radius: 8px; 
+            color: var(--text); 
+            font-size: 0.9rem; 
+            font-weight: 600; 
+            cursor: pointer; 
+            background: none; 
+            border: none; 
+            font-family: inherit; 
+            transition: background .15s; 
+            white-space: nowrap; 
+            width: 100%; 
+            text-align: left; 
+        }
         .nav-item > .nav-top-link:hover, .nav-item.open > .nav-top-link { background: var(--bg3); color: var(--text); }
-        .nav-caret { font-size: 0.6rem; color: var(--muted); transition: transform .15s; margin-left: auto; }
+        .nav-caret { font-size: 0.6rem; color: var(--muted); transition: transform .15s; }
         .nav-item.open .nav-caret { transform: rotate(180deg); }
         
         .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; min-width: 240px; background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 8px; box-shadow: 0 16px 40px rgba(0,0,0,.5); z-index: 200; }
@@ -77,7 +95,7 @@
         .nav-actions .nav-plain-link:hover { color: var(--text); }
         .mobile-menu-actions { display: none; }
 
-        /* Mobile Backdrop Overlay */
+        /* Mobile Backdrop Overlay - ተስተካክሏል */
         .mobile-menu-overlay {
             display: none;
             position: fixed;
@@ -86,7 +104,7 @@
             width: 100vw;
             height: 100vh;
             background: rgba(0, 0, 0, 0.7);
-            z-index: 99990;
+            z-index: 9990;
             cursor: pointer;
         }
         .mobile-menu-overlay.open {
@@ -99,7 +117,7 @@
         .subnav-inner::-webkit-scrollbar { display: none; }
         .subnav-inner a { color: var(--muted); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; padding: 11px 14px; white-space: nowrap; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; }
         .subnav-inner a:hover { color: var(--cyan); border-bottom-color: var(--cyan); }
-        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; border: none; transition: all .2s; text-decoration: none; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; border: none; transition: all .2s; text-decoration: none; }
         .btn-primary { background: linear-gradient(135deg, var(--indigo), #8b5cf6); color: #fff; }
         .btn-secondary { background: transparent; border: 1px solid var(--border); color: var(--text); }
         .btn-cyan { background: linear-gradient(135deg, var(--cyan), #0891b2); color: #000; font-weight: 700; }
@@ -117,7 +135,7 @@
         .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: 16px; flex-shrink: 0; padding: 4px; }
         .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); }
 
-        /* Mobile Drawer */
+        /* Mobile Drawer - Z-Index እና Clickable ሁኔታ ተስተካክሏል */
         @media (max-width: 900px) {
             .nav-inner { position: relative; flex-wrap: wrap; row-gap: 10px; padding-top: 10px; padding-bottom: 10px; }
             .nav-logo { margin-right: 0; font-size: 1.15rem; }
@@ -141,7 +159,8 @@
                 padding: 24px 18px; 
                 gap: 12px; 
                 box-shadow: 10px 0 30px rgba(0,0,0,0.8); 
-                z-index: 99999;
+                z-index: 99999 !important; /* ከ Overlay ሙሉ በሙሉ በላይ እንዲሆን */
+                pointer-events: auto !important;
                 transform: translateX(-100%);
                 transition: transform 0.3s ease-in-out;
                 overflow-y: auto;
@@ -166,8 +185,6 @@
             
             .nav-item > .nav-top-link { 
                 width: 100%; 
-                justify-content: space-between; 
-                padding: 12px 14px; 
                 background: var(--bg3); 
                 border-radius: 8px; 
             }
@@ -391,7 +408,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 1. Hamburger button toggle
     if (hamburgerBtn) {
         hamburgerBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
+            e.preventDefault();
             if (navMenu.classList.contains('open')) {
                 closeMobileMenu();
             } else {
@@ -411,7 +428,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('[data-dd]').forEach(function (btn) {
         btn.addEventListener('click', function (e) {
             e.preventDefault();
-            e.stopPropagation();
             var item = btn.closest('.nav-item');
             var isOpen = item.classList.contains('open');
 
