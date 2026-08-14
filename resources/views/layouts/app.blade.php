@@ -432,15 +432,27 @@ function closeMobileMenu() {
 }
 
 if (hamburgerBtn) {
-    hamburgerBtn.addEventListener('click', toggleMobileMenu);
+    hamburgerBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleMobileMenu();
+    });
 }
 
-// በጎን ባዶ ቦታ ሲነካ እንዲዘጋ
+// ከ Drawer ውጪ ያለውን ባዶ ቦታ (Dark Backdrop) ሲነኩ ብቻ እንዲዘጋ
 if (menuOverlay) {
-    menuOverlay.addEventListener('click', closeMobileMenu);
+    menuOverlay.addEventListener('click', function() {
+        closeMobileMenu();
+    });
 }
 
-// Dropdown toggles: click to open, click outside or Esc to close
+// Drawer-ው (ሜኑው) ውስጥ ሲነካ Event-ው ወደ ላይ አልፎ ሜኑውን እንዳይዘጋው መከላከል
+if (navMenu) {
+    navMenu.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+}
+
+// Dropdown toggles (በውስጥ ላሉት ንዑስ ሜኑዎች)
 document.querySelectorAll('[data-dd]').forEach(function (btn) {
     btn.addEventListener('click', function (e) {
         e.stopPropagation();
@@ -451,19 +463,17 @@ document.querySelectorAll('[data-dd]').forEach(function (btn) {
     });
 });
 
+// ከ Dropdown ውጪ ሲነካ ንዑስ ሜኑዎችን መዝጋት
 document.addEventListener('click', function () {
     document.querySelectorAll('.nav-item.open').forEach(function (o) { o.classList.remove('open'); });
 });
 
+// ESC ሲነካ መዝጋት
 document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
         document.querySelectorAll('.nav-item.open').forEach(function (o) { o.classList.remove('open'); });
         closeMobileMenu();
     }
-});
-
-document.querySelectorAll('.dropdown-menu, .mega-panel').forEach(function (p) {
-    p.addEventListener('click', function (e) { e.stopPropagation(); });
 });
 
 // Search: if on homepage scroll to courses, otherwise navigate
