@@ -49,12 +49,13 @@
         .nav-menu { display: flex; align-items: center; gap: 2px; flex: 1; }
         .nav-utilities { display: flex; align-items: center; gap: 12px; margin-left: auto; flex-shrink: 0; }
         .nav-item { position: relative; }
-        .nav-item > .nav-top-link { display: flex; align-items: center; gap: 5px; padding: 10px 14px; border-radius: 8px; color: var(--text); font-size: 0.9rem; font-weight: 600; cursor: pointer; background: none; border: none; font-family: inherit; transition: background .15s; white-space: nowrap; }
+        .nav-item > .nav-top-link { display: flex; align-items: center; gap: 5px; padding: 10px 14px; border-radius: 8px; color: var(--text); font-size: 0.9rem; font-weight: 600; cursor: pointer; background: none; border: none; font-family: inherit; transition: background .15s; white-space: nowrap; width: 100%; text-align: left; }
         .nav-item > .nav-top-link:hover, .nav-item.open > .nav-top-link { background: var(--bg3); color: var(--text); }
-        .nav-caret { font-size: 0.6rem; color: var(--muted); transition: transform .15s; }
+        .nav-caret { font-size: 0.6rem; color: var(--muted); transition: transform .15s; margin-left: auto; }
         .nav-item.open .nav-caret { transform: rotate(180deg); }
+        
         .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; min-width: 240px; background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 8px; box-shadow: 0 16px 40px rgba(0,0,0,.5); z-index: 200; }
-        .nav-item.open .dropdown-menu { display: block; }
+        .nav-item.open .dropdown-menu { display: block !important; }
         .dropdown-menu a { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 8px; color: var(--text); font-size: 0.875rem; font-weight: 500; }
         .dropdown-menu a:hover { background: rgba(99,102,241,.12); color: var(--cyan); }
         .dropdown-menu .dd-label { padding: 8px 14px 4px; font-size: 0.68rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 700; }
@@ -62,7 +63,7 @@
 
         /* Mega panel */
         .mega-panel { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); width: min(760px, 92vw); background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 24px; box-shadow: 0 20px 60px rgba(0,0,0,.6); z-index: 200; }
-        .nav-item.open .mega-panel { display: block; }
+        .nav-item.open .mega-panel { display: block !important; }
         .mega-title { font-size: 0.72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; background: linear-gradient(135deg, var(--indigo), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 16px; }
         .mega-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
         .mega-card { border: 1px solid var(--border); border-radius: 12px; padding: 20px 16px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; transition: border-color .15s, transform .15s; background: var(--bg); }
@@ -76,7 +77,7 @@
         .nav-actions .nav-plain-link:hover { color: var(--text); }
         .mobile-menu-actions { display: none; }
 
-        /* Mobile Overlay Background (z-index 99990 ተደርጎ ሁሉንም የገፅ ኤለመንቶች እንዲሸፍን ተደርጓል) */
+        /* Mobile Backdrop Overlay */
         .mobile-menu-overlay {
             display: none;
             position: fixed;
@@ -116,7 +117,7 @@
         .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: 16px; flex-shrink: 0; padding: 4px; }
         .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); }
 
-        /* Mobile Drawer (z-index 99999 ተደርጓል ከ Overlay በላይ እንዲሆን) */
+        /* Mobile Drawer */
         @media (max-width: 900px) {
             .nav-inner { position: relative; flex-wrap: wrap; row-gap: 10px; padding-top: 10px; padding-bottom: 10px; }
             .nav-logo { margin-right: 0; font-size: 1.15rem; }
@@ -140,7 +141,7 @@
                 padding: 24px 18px; 
                 gap: 12px; 
                 box-shadow: 10px 0 30px rgba(0,0,0,0.8); 
-                z-index: 99999; /* ከ Overlay-ው በላይ እንዲሆን */
+                z-index: 99999;
                 transform: translateX(-100%);
                 transition: transform 0.3s ease-in-out;
                 overflow-y: auto;
@@ -382,6 +383,9 @@ document.addEventListener('DOMContentLoaded', function() {
     function closeMobileMenu() {
         navMenu.classList.remove('open');
         menuOverlay.classList.remove('open');
+        document.querySelectorAll('.nav-item.open').forEach(function(item) {
+            item.classList.remove('open');
+        });
     }
 
     // 1. Hamburger button toggle
@@ -396,35 +400,38 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 2. ከቦክሷ ውጭ በስተቀኝ ያለውን ቦታ (Overlay) ሲነኩ ሜኑውን መዝጋት
+    // 2. ከቦክሷ ውጭ ባዶ ቦታ (Overlay) ሲነካ ብቻ እንዲዘጋ ማድረግ
     if (menuOverlay) {
-        menuOverlay.addEventListener('click', function(e) {
+        menuOverlay.addEventListener('click', function() {
             closeMobileMenu();
         });
     }
 
-    // 3. በDrawer-ው (navMenu) ውስጥ ሲነካ Event propagation መግታት (ሊንኮቹ በነጻነት እንዲሰሩ)
-    if (navMenu) {
-        navMenu.addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
-    }
-
-    // 4. Dropdown toggles (ትምህርቶች፣ መርጃዎች፣ ልምምድ)
+    // 3. Dropdown toggles (ትምህርቶች፣ መርጃዎች፣ ልምምድ)
     document.querySelectorAll('[data-dd]').forEach(function (btn) {
         btn.addEventListener('click', function (e) {
+            e.preventDefault();
             e.stopPropagation();
             var item = btn.closest('.nav-item');
-            var wasOpen = item.classList.contains('open');
-            document.querySelectorAll('.nav-item.open').forEach(function (o) { o.classList.remove('open'); });
-            if (!wasOpen) item.classList.add('open');
+            var isOpen = item.classList.contains('open');
+
+            // Close other dropdowns
+            document.querySelectorAll('.nav-item.open').forEach(function (o) {
+                if (o !== item) o.classList.remove('open');
+            });
+
+            // Toggle current dropdown
+            if (isOpen) {
+                item.classList.remove('open');
+            } else {
+                item.classList.add('open');
+            }
         });
     });
 
-    // 5. ESC ሲነካ መዝጋት
+    // 4. ESC ሲነካ መዝጋት
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') {
-            document.querySelectorAll('.nav-item.open').forEach(function (o) { o.classList.remove('open'); });
             closeMobileMenu();
         }
     });
