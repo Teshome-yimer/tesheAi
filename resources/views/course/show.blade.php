@@ -112,7 +112,7 @@
             </div>
 
             <div class="instructor-section" style="margin-bottom:32px;">
-                <img src="{{ asset('images/teshome_photo_1.jpg') }}" alt="Teshome" class="instructor-avatar" style="object-fit:cover; object-position:top; border:2px solid var(--indigo);">
+            <img src="{{ asset('images/teshome.jpg') }}" alt="Teshome" class="instructor-avatar" style="object-fit:cover; object-position:top; border:2px solid var(--indigo);">
                 <div>
                     <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:4px;">ተሾመ / Teshome</h3>
                     <p style="color:var(--cyan);font-size:0.85rem;margin-bottom:12px;font-weight:600;">Senior Full Stack Developer & Instructor</p>
@@ -124,10 +124,11 @@
             <div style="margin-bottom:32px;">
                 <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:20px;">ተማሪዎች ምን ይላሉ / Student Reviews</h2>
                 <div style="display:grid;gap:16px;">
-                    @foreach([
-                        ['name'=>'Kebede Alemu','text'=>'ከሁሉ ጥሩ ኮርስ ነው! ምዝገባዬ ሕይወቴን ቀይሯል።','img'=>asset('images/teshome_photo_3.jpg')],
-                        ['name'=>'Helen Mekonen','text'=>'The videos are very clear. I landed a job after 2 months!','img'=>asset('images/teshome_photo_4.jpg')],
-                    ] as $r)
+                @foreach([
+    ['name'=>'Kidan Alemu','text'=>'ከሁሉ ጥሩ ኮርስ ነው! ምዝገባዬ ሕይወቴን ቀይሯል።','img'=>asset('images/kidan.webp')],
+    ['name'=>'Mengesha Tadesse','text'=>'The videos are very clear. I landed a job after 2 months!','img'=>asset('images/mengesha.webp')],
+    ['name'=>'Waja Tesfaye','text'=>'በጣም ግልጽ የሆነ ማብራሪያ ነው። ለጀማሪዎች ይመከራል።','img'=>asset('images/waja.webp')],
+] as $r)
                     <div class="card" style="padding:20px;">
                         <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
                             <img src="{{ $r['img'] }}" alt="{{ $r['name'] }}" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:1px solid var(--border);">
