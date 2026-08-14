@@ -149,14 +149,57 @@
         
         /* Mobile responsive adjustments */
         @media (max-width: 900px) {
-            .nav-inner { flex-wrap: wrap; row-gap: 10px; padding-top: 10px; padding-bottom: 10px; }
+            .nav-inner { 
+                position: relative; 
+                flex-wrap: wrap; 
+                row-gap: 10px; 
+                padding-top: 10px; 
+                padding-bottom: 10px; 
+            }
             .nav-logo { margin-right: 0; font-size: 1.15rem; }
             .nav-utilities { order: 2; margin-left: auto; gap: 10px; }
             .hamburger { display: flex; }
-            .nav-menu { display: none; order: 3; flex: 0 0 100%; width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; flex-direction: column; align-items: stretch; padding: 12px; gap: 4px; box-shadow: 0 20px 40px rgba(0,0,0,.35); }
+
+            /* Mobile Dropdown Menu - clean full-width drop */
+            .nav-menu { 
+                display: none; 
+                position: absolute; 
+                top: 100%; 
+                left: 0; 
+                right: 0; 
+                width: 100%; 
+                background: var(--bg2); 
+                border-bottom: 1px solid var(--border); 
+                border-radius: 0 0 16px 16px; 
+                flex-direction: column; 
+                align-items: stretch; 
+                padding: 16px 20px; 
+                gap: 8px; 
+                box-shadow: 0 20px 40px rgba(0,0,0,.8); 
+                z-index: 999; 
+            }
             .nav-menu.open { display: flex; }
-            .nav-item > .nav-top-link { width: 100%; justify-content: space-between; }
-            .dropdown-menu, .mega-panel { position: static; transform: none; width: 100%; min-width: 0; box-shadow: none; margin-top: 4px; }
+
+            /* Inner sub-menus */
+            .dropdown-menu, .mega-panel { 
+                position: static; 
+                transform: none; 
+                width: 100%; 
+                min-width: 0; 
+                box-shadow: none; 
+                background: var(--bg3); 
+                border: 1px solid var(--border); 
+                border-radius: 10px; 
+                margin-top: 6px; 
+                padding: 10px; 
+            }
+            .nav-item > .nav-top-link { 
+                width: 100%; 
+                justify-content: space-between; 
+                padding: 12px 14px; 
+                background: var(--bg3); 
+                border-radius: 8px; 
+            }
             .nav-search { margin-left: 0; }
             .nav-search input { width: 96px; }
             .nav-search input:focus { width: 120px; }
@@ -261,7 +304,7 @@
                     @endif
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="btn btn-secondary btn-sm">ውጣ / Logout</button>
+                        <button type="submit" class="btn btn-secondary btn-sm"> Logout</button>
                     </form>
                 @endauth
             </div>
@@ -271,7 +314,7 @@
             <div class="nav-actions">
                 @guest
                     <a href="{{ route('login') }}" class="nav-plain-link" style="color: var(--text); font-weight: 600; font-size: 0.85rem; padding: 6px 10px; white-space: nowrap;">🔑 Login</a>
-                    <a href="{{ route('register') }}" class="btn btn-cyan btn-sm" style="border-radius: 20px; padding: 5px 14px; font-weight: 700; font-size: 0.82rem; white-space: nowrap;">✨ Register</a>
+                    <a href="{{ route('register') }}" class="btn btn-cyan btn-sm" style="border-radius: 20px; padding: 5px 14px; font-weight: 700; font-size: 0.82rem; white-space: nowrap;">✨Sign up</a>
                 @endguest
                 @auth
                     @if(auth()->user()->isAdmin())
@@ -281,7 +324,7 @@
                     @endif
                     <form method="POST" action="{{ route('logout') }}" style="display:inline">
                         @csrf
-                        <button type="submit" class="btn btn-secondary btn-sm" style="white-space: nowrap;">ውጣ / Logout</button>
+                        <button type="submit" class="btn btn-secondary btn-sm" style="white-space: nowrap;"> Logout</button>
                     </form>
                 @endauth
             </div>
