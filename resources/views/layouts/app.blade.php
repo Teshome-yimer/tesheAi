@@ -219,13 +219,14 @@
             .nav-actions form { display: none !important; }
             
             .mobile-menu-actions { 
-                display: flex; 
-                flex-direction: column; 
-                gap: 10px; 
-                margin-top: auto; 
-                padding-top: 16px; 
-                border-top: 1px solid var(--border); 
-            }
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+    margin-top: auto; 
+    padding-top: 16px; 
+    padding-bottom: 20px; /* ከታች ትንሽ space እንዲኖረው */
+    border-top: 1px solid var(--border); 
+}
             .mobile-menu-actions .btn { width: 100%; justify-content: center; }
 
             /* Topic bar responsive */
