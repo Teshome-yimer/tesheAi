@@ -86,6 +86,22 @@
         .nav-actions .nav-plain-link:hover { color: var(--text); }
         .mobile-menu-actions { display: none; }
 
+        /* Mobile Overlay Background (Backdrop) */
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(3px);
+            z-index: 9998;
+        }
+        .mobile-menu-overlay.open {
+            display: block;
+        }
+
         /* Topic bar (second tier) */
         .subnav { background: var(--bg2); border-bottom: 1px solid var(--border); }
         .subnav-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 4px; overflow-x: auto; scrollbar-width: none; }
@@ -147,8 +163,8 @@
         .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: 16px; flex-shrink: 0; padding: 4px; }
         .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); }
         
-       /* Mobile responsive adjustments - Admin Style Off-Canvas Drawer */
-       @media (max-width: 900px) {
+        /* Mobile responsive adjustments - Admin Style Off-Canvas Drawer */
+        @media (max-width: 900px) {
             .nav-inner { 
                 position: relative; 
                 flex-wrap: wrap; 
@@ -219,13 +235,13 @@
             .nav-actions form { display: none !important; }
             
             .mobile-menu-actions { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 10px; 
-    margin-top: 10px; /* margin-top: auto የነበረውን ወደ 10px ቀይረነዋል */
-    padding-top: 12px; 
-    border-top: 1px solid var(--border); 
-}
+                display: flex; 
+                flex-direction: column; 
+                gap: 10px; 
+                margin-top: 10px; 
+                padding-top: 12px; 
+                border-top: 1px solid var(--border); 
+            }
             .mobile-menu-actions .btn { width: 100%; justify-content: center; }
 
             /* Topic bar responsive */
@@ -242,6 +258,10 @@
 </head>
 <body>
 @php $navCourses = \App\Models\Course::where('is_published', true)->orderBy('title')->take(10)->get(); @endphp
+
+<!-- Mobile Backdrop Overlay -->
+<div class="mobile-menu-overlay" id="menuOverlay"></div>
+
 <nav class="navbar">
     <div class="nav-inner">
         <a href="/" class="nav-logo">🎓 EduPlatform</a>
@@ -348,7 +368,7 @@
                 @endauth
             </div>
 
-            <button class="hamburger" onclick="document.getElementById('navMenu').classList.toggle('open')" aria-label="Menu">
+            <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
                 <span></span><span></span><span></span>
             </button>
         </div>
@@ -398,6 +418,30 @@
 </footer>
 @stack('scripts')
 <script>
+// Mobile Menu Drawer & Backdrop Toggle
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const navMenu = document.getElementById('navMenu');
+const menuOverlay = document.getElementById('menuOverlay');
+
+function toggleMobileMenu() {
+    navMenu.classList.toggle('open');
+    menuOverlay.classList.toggle('open');
+}
+
+function closeMobileMenu() {
+    navMenu.classList.remove('open');
+    menuOverlay.classList.remove('open');
+}
+
+if (hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', toggleMobileMenu);
+}
+
+// በጎን ባዶ ቦታ ሲነካ እንዲዘጋ
+if (menuOverlay) {
+    menuOverlay.addEventListener('click', closeMobileMenu);
+}
+
 // Dropdown toggles: click to open, click outside or Esc to close
 document.querySelectorAll('[data-dd]').forEach(function (btn) {
     btn.addEventListener('click', function (e) {
@@ -408,12 +452,18 @@ document.querySelectorAll('[data-dd]').forEach(function (btn) {
         if (!wasOpen) item.classList.add('open');
     });
 });
+
 document.addEventListener('click', function () {
     document.querySelectorAll('.nav-item.open').forEach(function (o) { o.classList.remove('open'); });
 });
+
 document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') document.querySelectorAll('.nav-item.open').forEach(function (o) { o.classList.remove('open'); });
+    if (e.key === 'Escape') {
+        document.querySelectorAll('.nav-item.open').forEach(function (o) { o.classList.remove('open'); });
+        closeMobileMenu();
+    }
 });
+
 document.querySelectorAll('.dropdown-menu, .mega-panel').forEach(function (p) {
     p.addEventListener('click', function (e) { e.stopPropagation(); });
 });
@@ -427,7 +477,6 @@ function scrollToCourses(e, form) {
         var section = document.getElementById('courses');
         if (section) {
             section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            // Filter courses if search term provided
             if (q) {
                 var cards = document.querySelectorAll('.course-card');
                 cards.forEach(function(card) {
@@ -437,7 +486,6 @@ function scrollToCourses(e, form) {
             }
         }
     }
-    // else let form submit normally with ?q=...
 }
 </script>
 </body>
