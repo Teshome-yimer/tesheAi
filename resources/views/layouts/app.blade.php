@@ -416,14 +416,14 @@
 </footer>
 @stack('scripts')
 <script>
-// Mobile Menu Drawer & Backdrop Toggle
+// Mobile Menu Drawer & Backdrop Elements
 const hamburgerBtn = document.getElementById('hamburgerBtn');
 const navMenu = document.getElementById('navMenu');
 const menuOverlay = document.getElementById('menuOverlay');
 
-function toggleMobileMenu() {
-    navMenu.classList.toggle('open');
-    menuOverlay.classList.toggle('open');
+function openMobileMenu() {
+    navMenu.classList.add('open');
+    menuOverlay.classList.add('open');
 }
 
 function closeMobileMenu() {
@@ -431,28 +431,26 @@ function closeMobileMenu() {
     menuOverlay.classList.remove('open');
 }
 
+// 1. Hamburger button ሲነካ መክፈት/መዝጋት
 if (hamburgerBtn) {
     hamburgerBtn.addEventListener('click', function(e) {
         e.stopPropagation();
-        toggleMobileMenu();
+        if (navMenu.classList.contains('open')) {
+            closeMobileMenu();
+        } else {
+            openMobileMenu();
+        }
     });
 }
 
-// ከ Drawer ውጪ ያለውን ባዶ ቦታ (Dark Backdrop) ሲነኩ ብቻ እንዲዘጋ
+// 2. ከቦክሷ ውጭ (በስተቀኝ ያለው Dark Overlay) ሲነካ ብቻ እንዲዘጋ ማድረግ
 if (menuOverlay) {
     menuOverlay.addEventListener('click', function() {
         closeMobileMenu();
     });
 }
 
-// Drawer-ው (ሜኑው) ውስጥ ሲነካ Event-ው ወደ ላይ አልፎ ሜኑውን እንዳይዘጋው መከላከል
-if (navMenu) {
-    navMenu.addEventListener('click', function(e) {
-        e.stopPropagation();
-    });
-}
-
-// Dropdown toggles (በውስጥ ላሉት ንዑስ ሜኑዎች)
+// 3. Dropdown toggles (በውስጥ ላሉት ንዑስ ሜኑዎች)
 document.querySelectorAll('[data-dd]').forEach(function (btn) {
     btn.addEventListener('click', function (e) {
         e.stopPropagation();
@@ -463,11 +461,6 @@ document.querySelectorAll('[data-dd]').forEach(function (btn) {
     });
 });
 
-// ከ Dropdown ውጪ ሲነካ ንዑስ ሜኑዎችን መዝጋት
-document.addEventListener('click', function () {
-    document.querySelectorAll('.nav-item.open').forEach(function (o) { o.classList.remove('open'); });
-});
-
 // ESC ሲነካ መዝጋት
 document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
@@ -475,26 +468,6 @@ document.addEventListener('keydown', function (e) {
         closeMobileMenu();
     }
 });
-
-// Search: if on homepage scroll to courses, otherwise navigate
-function scrollToCourses(e, form) {
-    var q = document.getElementById('nav-search-input').value.trim();
-    var onHome = window.location.pathname === '/';
-    if (onHome) {
-        e.preventDefault();
-        var section = document.getElementById('courses');
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            if (q) {
-                var cards = document.querySelectorAll('.course-card');
-                cards.forEach(function(card) {
-                    var title = card.querySelector('.course-title')?.textContent.toLowerCase() || '';
-                    card.style.display = title.includes(q.toLowerCase()) ? '' : 'none';
-                });
-            }
-        }
-    }
-}
 </script>
 </body>
 </html>
