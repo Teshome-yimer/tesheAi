@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NL0B9Y2V3T"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NL0B9Y2V3T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-      gtag('config', 'G-NL0B9Y2V3T');
-    </script>
+  gtag('config', 'G-NL0B9Y2V3T');
+</script>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5100957100493180" crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5100957100493180"
+     crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -40,7 +41,7 @@
         .navbar {
             background: rgba(10,10,15,0.98);
             border-bottom: 1px solid var(--border);
-            position: sticky; top: 0; z-index: 1000;
+            position: sticky; top: 0; z-index: 100;
         }
         .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 6px; min-height: 60px; }
         .nav-logo { font-size: 1.35rem; font-weight: 800; background: linear-gradient(135deg, var(--indigo), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-right: 10px; flex-shrink: 0; }
@@ -48,40 +49,21 @@
         /* Nav items + dropdowns */
         .nav-menu { display: flex; align-items: center; gap: 2px; flex: 1; }
         .nav-utilities { display: flex; align-items: center; gap: 12px; margin-left: auto; flex-shrink: 0; }
-        .nav-item { position: relative; width: 100%; }
-        .nav-item > .nav-top-link { 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between;
-            gap: 5px; 
-            padding: 12px 14px; 
-            border-radius: 8px; 
-            color: var(--text); 
-            font-size: 0.9rem; 
-            font-weight: 600; 
-            cursor: pointer; 
-            background: none; 
-            border: none; 
-            font-family: inherit; 
-            transition: background .15s; 
-            white-space: nowrap; 
-            width: 100%; 
-            text-align: left; 
-        }
+        .nav-item { position: relative; }
+        .nav-item > .nav-top-link { display: flex; align-items: center; gap: 5px; padding: 10px 14px; border-radius: 8px; color: var(--text); font-size: 0.9rem; font-weight: 600; cursor: pointer; background: none; border: none; font-family: inherit; transition: background .15s; white-space: nowrap; }
         .nav-item > .nav-top-link:hover, .nav-item.open > .nav-top-link { background: var(--bg3); color: var(--text); }
         .nav-caret { font-size: 0.6rem; color: var(--muted); transition: transform .15s; }
         .nav-item.open .nav-caret { transform: rotate(180deg); }
-        
         .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; min-width: 240px; background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 8px; box-shadow: 0 16px 40px rgba(0,0,0,.5); z-index: 200; }
-        .nav-item.open .dropdown-menu { display: block !important; }
+        .nav-item.open .dropdown-menu { display: block; }
         .dropdown-menu a { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 8px; color: var(--text); font-size: 0.875rem; font-weight: 500; }
         .dropdown-menu a:hover { background: rgba(99,102,241,.12); color: var(--cyan); }
         .dropdown-menu .dd-label { padding: 8px 14px 4px; font-size: 0.68rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 700; }
         .dropdown-menu .dd-divider { height: 1px; background: var(--border); margin: 6px 8px; }
 
-        /* Mega panel */
+        /* Mega panel (Exercises style) */
         .mega-panel { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); width: min(760px, 92vw); background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 24px; box-shadow: 0 20px 60px rgba(0,0,0,.6); z-index: 200; }
-        .nav-item.open .mega-panel { display: block !important; }
+        .nav-item.open .mega-panel { display: block; }
         .mega-title { font-size: 0.72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; background: linear-gradient(135deg, var(--indigo), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 16px; }
         .mega-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
         .mega-card { border: 1px solid var(--border); border-radius: 12px; padding: 20px 16px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; transition: border-color .15s, transform .15s; background: var(--bg); }
@@ -90,12 +72,20 @@
         .mega-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
         .mega-card p { font-size: 0.76rem; color: var(--muted); flex: 1; }
 
+        /* Search */
+        .nav-search { display: flex; align-items: center; margin-left: auto; flex-shrink: 0; }
+        .nav-search input { background: var(--bg3); border: 1px solid var(--border); border-radius: 24px 0 0 24px; border-right: none; color: var(--text); padding: 8px 16px; font-size: 0.85rem; outline: none; width: 220px; transition: border-color .2s; font-family: inherit; }
+        .nav-search input:focus { border-color: var(--indigo); }
+        .nav-search input::placeholder { color: var(--muted); font-style: italic; }
+        .nav-search button { background: var(--bg3); border: 1px solid var(--border); border-left: none; border-radius: 0 24px 24px 0; color: var(--muted); padding: 8px 14px 8px 8px; cursor: pointer; font-size: 0.85rem; flex-shrink: 0; }
+        .nav-search button:hover { color: var(--cyan); }
+
         .nav-actions { display: flex; align-items: center; gap: 16px; margin-left: 20px; flex-shrink: 0; }
         .nav-actions .nav-plain-link { color: var(--muted); font-size: 0.875rem; font-weight: 600; white-space: nowrap; }
         .nav-actions .nav-plain-link:hover { color: var(--text); }
         .mobile-menu-actions { display: none; }
 
-        /* Mobile Backdrop Overlay - z-index 9998 (ከ drawer-ው በታች) */
+        /* Mobile Overlay Background (Backdrop) */
         .mobile-menu-overlay {
             display: none;
             position: fixed;
@@ -104,71 +94,116 @@
             width: 100vw;
             height: 100vh;
             background: rgba(0, 0, 0, 0.65);
-            z-index: 9998 !important;
-            cursor: pointer;
+            z-index: 9998;
         }
         .mobile-menu-overlay.open {
-            display: block !important;
+            display: block;
         }
 
-        /* Buttons & Utility */
+        /* Topic bar (second tier) */
         .subnav { background: var(--bg2); border-bottom: 1px solid var(--border); }
         .subnav-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 4px; overflow-x: auto; scrollbar-width: none; }
         .subnav-inner::-webkit-scrollbar { display: none; }
         .subnav-inner a { color: var(--muted); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; padding: 11px 14px; white-space: nowrap; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; }
         .subnav-inner a:hover { color: var(--cyan); border-bottom-color: var(--cyan); }
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; border: none; transition: all .2s; text-decoration: none; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; border: none; transition: all .2s; text-decoration: none; }
         .btn-primary { background: linear-gradient(135deg, var(--indigo), #8b5cf6); color: #fff; }
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(99,102,241,.4); color: #fff; }
         .btn-secondary { background: transparent; border: 1px solid var(--border); color: var(--text); }
+        .btn-secondary:hover { border-color: var(--indigo); color: var(--indigo); }
         .btn-cyan { background: linear-gradient(135deg, var(--cyan), #0891b2); color: #000; font-weight: 700; }
+        .btn-cyan:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(34,211,238,.4); color: #000; }
+        .btn-gold { background: linear-gradient(135deg, #fffbeb, #fde68a); color: #1a1a24; font-weight: 700; border: 1px solid #fcd34d; }
+        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(253, 230, 138, 0.3); color: #000; }
         .btn-sm { padding: 6px 14px; font-size: 0.8rem; }
         .btn-danger { background: var(--danger); color: #fff; }
 
-        /* Flash & Container */
+        /* Flash messages */
         .flash { padding: 14px 20px; border-radius: 8px; margin: 16px 0; font-weight: 500; }
         .flash-success { background: rgba(16,185,129,.15); border: 1px solid var(--success); color: var(--success); }
         .flash-error { background: rgba(239,68,68,.15); border: 1px solid var(--danger); color: var(--danger); }
         .flash-info { background: rgba(99,102,241,.15); border: 1px solid var(--indigo); color: var(--indigo); }
+
+        /* Cards */
+        .card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+        .card:hover { border-color: var(--indigo); }
+
+        /* Container */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* Forms */
+        .form-group { margin-bottom: 20px; }
+        .form-label { display: block; margin-bottom: 6px; font-size: 0.85rem; font-weight: 500; color: var(--muted); }
+        .form-control { width: 100%; background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 12px 16px; border-radius: 8px; font-size: 0.95rem; outline: none; transition: border-color .2s; }
+        .form-control:focus { border-color: var(--indigo); }
+        .form-control::placeholder { color: var(--muted); }
+        .invalid-feedback { color: var(--danger); font-size: 0.8rem; margin-top: 4px; }
+
+        /* Badges */
+        .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+        .badge-indigo { background: rgba(99,102,241,.2); color: var(--indigo); }
+        .badge-cyan { background: rgba(34,211,238,.2); color: var(--cyan); }
+        .badge-success { background: rgba(16,185,129,.2); color: var(--success); }
+        .badge-danger { background: rgba(239,68,68,.2); color: var(--danger); }
+
+        /* Progress bar */
+        .progress-bar { background: var(--bg3); border-radius: 99px; height: 6px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--indigo), var(--cyan)); border-radius: 99px; transition: width .4s ease; }
+
+        /* Table */
+        .table { width: 100%; border-collapse: collapse; }
+        .table th { background: var(--bg3); color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: .05em; padding: 12px 16px; text-align: left; }
+        .table td { padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+        .table tr:last-child td { border-bottom: none; }
+        .table tbody tr:hover { background: var(--bg3); }
 
         /* Hamburger */
         .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: 16px; flex-shrink: 0; padding: 4px; }
         .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); }
-
-        /* Mobile Drawer - z-index 9999 (ከ overlay-ው በላይ) */
+        
+        /* Mobile responsive adjustments - Admin Style Off-Canvas Drawer */
         @media (max-width: 900px) {
-            .nav-inner { position: relative; flex-wrap: wrap; row-gap: 10px; padding-top: 10px; padding-bottom: 10px; }
+            .nav-inner { 
+                position: relative; 
+                flex-wrap: wrap; 
+                row-gap: 10px; 
+                padding-top: 10px; 
+                padding-bottom: 10px; 
+            }
             .nav-logo { margin-right: 0; font-size: 1.15rem; }
             .nav-utilities { order: 2; margin-left: auto; gap: 10px; }
             .hamburger { display: flex; }
 
+            /* Admin Style Side Drawer Navigation */
             .nav-menu { 
                 display: flex !important;
-                position: fixed !important; 
-                top: 0 !important; 
-                left: 0 !important; 
-                height: 100vh !important;
-                width: 80% !important; 
-                max-width: 300px !important;
-                background: #13131a !important; 
+                position: fixed; 
+                top: 0; 
+                left: 0; 
+                bottom: 0;
+                height: 100vh;
+                width: 80%; 
+                max-width: 320px;
+                background: var(--bg2); 
                 border-right: 1px solid var(--border); 
                 border-radius: 0 16px 16px 0; 
                 flex-direction: column; 
                 align-items: stretch; 
-                padding: 24px 18px 40px 18px;
+                padding: 24px 18px; 
                 gap: 12px; 
-                box-shadow: 10px 0 30px rgba(0,0,0,0.9); 
-                z-index: 9999 !important; /* ከ Overlay በላይ መሆኑ ተረጋገጠ */
-                pointer-events: auto !important;
+                box-shadow: 10px 0 30px rgba(0,0,0,0.6); 
+                z-index: 9999;
                 transform: translateX(-100%);
                 transition: transform 0.3s ease-in-out;
                 overflow-y: auto;
             }
             
+            /* Slide-in Effect */
             .nav-menu.open { 
-                transform: translateX(0) !important; 
+                transform: translateX(0); 
             }
 
+            /* Inner sub-menus */
             .dropdown-menu, .mega-panel { 
                 position: static; 
                 transform: none; 
@@ -184,40 +219,36 @@
             
             .nav-item > .nav-top-link { 
                 width: 100%; 
+                justify-content: space-between; 
+                padding: 12px 14px; 
                 background: var(--bg3); 
                 border-radius: 8px; 
             }
             
-            .nav-actions { display: none !important; }
+            .nav-search { margin-left: 0; width: 100%; }
+            .nav-search input { width: 100%; }
+            .nav-search input:focus { width: 100%; }
+            .nav-actions { margin-left: 0; gap: 10px; }
+            .nav-actions .nav-plain-link { display: none; }
+            .nav-actions form { display: none !important; }
             
             .mobile-menu-actions { 
-                display: flex !important; 
+                display: flex; 
                 flex-direction: column; 
                 gap: 10px; 
-                margin-top: 8px; 
-                padding-top: 16px; 
+                margin-top: 10px; 
+                padding-top: 12px; 
                 border-top: 1px solid var(--border); 
-                width: 100%;
             }
+            .mobile-menu-actions .btn { width: 100%; justify-content: center; }
 
-            .mobile-menu-actions a, 
-            .mobile-menu-actions button { 
-                width: 100% !important; 
-                display: flex !important;
-                justify-content: center; 
-                align-items: center;
-                text-align: center;
-                padding: 11px 16px !important;
-                font-size: 0.9rem !important;
-                border-radius: 8px;
-                box-sizing: border-box;
-            }
-
+            /* Topic bar responsive */
             .subnav { display: block; overflow-x: auto; }
             .subnav-inner { gap: 0; }
             .subnav-inner a { font-size: 0.75rem; padding: 10px 12px; }
         }
 
+        /* Footer */
         footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 40px 0; margin-top: 80px; text-align: center; color: var(--muted); }
     </style>
     
@@ -226,7 +257,7 @@
 <body>
 @php $navCourses = \App\Models\Course::where('is_published', true)->orderBy('title')->take(10)->get(); @endphp
 
-<!-- Mobile Backdrop Overlay (ከ nav-menu በፊት እንዲቀመጥ ተደርጓል) -->
+<!-- Mobile Backdrop Overlay -->
 <div class="mobile-menu-overlay" id="menuOverlay"></div>
 
 <nav class="navbar">
@@ -297,21 +328,20 @@
                 </div>
             </div>
 
-            {{-- Mobile Actions --}}
             <div class="mobile-menu-actions">
                 @guest
-                    <a href="{{ route('login') }}" class="btn btn-secondary">🔑 Sign In</a>
-                    <a href="{{ route('register') }}" class="btn btn-cyan">✨ Sign Up</a>
+                    <a href="{{ route('login') }}" class="btn btn-secondary btn-sm">🔑sign in</a>
+                    <a href="{{ route('register') }}" class="btn btn-cyan btn-sm">✨ sign up</a>
                 @endguest
                 @auth
                     @if(auth()->user()->isAdmin())
-                        <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary">Admin Dashboard</a>
+                        <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary btn-sm">Admin Dashboard</a>
                     @else
-                        <a href="{{ route('student.dashboard') }}" class="btn btn-secondary">Student Dashboard</a>
+                        <a href="{{ route('student.dashboard') }}" class="btn btn-secondary btn-sm">Student Dashboard</a>
                     @endif
-                    <form method="POST" action="{{ route('logout') }}" style="width: 100%;">
+                    <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="btn btn-danger">Logout</button>
+                        <button type="submit" class="btn btn-secondary btn-sm"> Logout</button>
                     </form>
                 @endauth
             </div>
@@ -377,96 +407,94 @@
         <p style="font-size:0.9rem;">© {{ date('Y') }} EduPlatform. All rights reserved. | Made with ❤️ for Ethiopian learners</p>
     </div>
     <div class="flex justify-center space-x-4 text-sm text-gray-400 mt-4 mb-2">
-        <a href="{{ route('privacy') }}" class="hover:underline">Privacy Policy</a>
-        <span>|</span>
-        <a href="{{ route('terms') }}" class="hover:underline">Terms of Service</a>
-        <span>|</span>
-        <a href="{{ route('contact') }}" class="hover:underline">Contact Us</a>
-    </div>
+    <a href="{{ route('privacy') }}" class="hover:underline">Privacy Policy</a>
+    <span>|</span>
+    <a href="{{ route('terms') }}" class="hover:underline">Terms of Service</a>
+    <span>|</span>
+    <a href="{{ route('contact') }}" class="hover:underline">Contact Us</a>
+</div>
 </footer>
-
 @stack('scripts')
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const navMenu = document.getElementById('navMenu');
-    const menuOverlay = document.getElementById('menuOverlay');
+// Mobile Menu Drawer & Backdrop Toggle
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const navMenu = document.getElementById('navMenu');
+const menuOverlay = document.getElementById('menuOverlay');
 
-    function openMobileMenu() {
-        if (navMenu) navMenu.classList.add('open');
-        if (menuOverlay) menuOverlay.classList.add('open');
-    }
+function toggleMobileMenu() {
+    navMenu.classList.toggle('open');
+    menuOverlay.classList.toggle('open');
+}
 
-    function closeMobileMenu() {
-        if (navMenu) navMenu.classList.remove('open');
-        if (menuOverlay) menuOverlay.classList.remove('open');
-        document.querySelectorAll('.nav-item.open').forEach(function(item) {
-            item.classList.remove('open');
-        });
-    }
+function closeMobileMenu() {
+    navMenu.classList.remove('open');
+    menuOverlay.classList.remove('open');
+}
 
-    // 1. Hamburger button click
-    if (hamburgerBtn) {
-        hamburgerBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            if (navMenu && navMenu.classList.contains('open')) {
-                closeMobileMenu();
-            } else {
-                openMobileMenu();
-            }
-        });
-    }
-
-    // 2. ሜኑው (navMenu) ውስጥ ያለ ማንኛውም ቦታ ሲነካ Event Bubbling እንዳይፈጠር ማድረግ
-    if (navMenu) {
-        navMenu.addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
-    }
-
-    // 3. ከሜኑው ውጭ ያለው Overlay ሲነካ ብቻ እንዲዘጋ ማድረግ
-    if (menuOverlay) {
-        menuOverlay.addEventListener('click', function(e) {
-            e.stopPropagation();
-            closeMobileMenu();
-        });
-    }
-
-    // 4. Dropdown Toggles (ትምህርቶች፣ መርጃዎች፣ ወዘተ...)
-    document.querySelectorAll('[data-dd]').forEach(function (btn) {
-        btn.addEventListener('click', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            var item = btn.closest('.nav-item');
-            var isOpen = item.classList.contains('open');
-
-            document.querySelectorAll('.nav-item.open').forEach(function (o) {
-                if (o !== item) o.classList.remove('open');
-            });
-
-            if (isOpen) {
-                item.classList.remove('open');
-            } else {
-                item.classList.add('open');
-            }
-        });
+if (hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleMobileMenu();
     });
+}
 
-    // 5. ከሜኑው ውጭ በገጹ ላይ የትም ቦታ ሲነካ እንዲዘጋ ማድረግ
-    document.addEventListener('click', function(e) {
-        if (navMenu && navMenu.classList.contains('open')) {
-            closeMobileMenu();
-        }
+// ከ Drawer ውጪ ያለውን ባዶ ቦታ (Dark Backdrop) ሲነኩ ብቻ እንዲዘጋ
+if (menuOverlay) {
+    menuOverlay.addEventListener('click', function() {
+        closeMobileMenu();
     });
+}
 
-    // 6. ESC ሲነካ መዝጋት
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-            closeMobileMenu();
-        }
+// Drawer-ው (ሜኑው) ውስጥ ሲነካ Event-ው ወደ ላይ አልፎ ሜኑውን እንዳይዘጋው መከላከል
+if (navMenu) {
+    navMenu.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+}
+
+// Dropdown toggles (በውስጥ ላሉት ንዑስ ሜኑዎች)
+document.querySelectorAll('[data-dd]').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var item = btn.closest('.nav-item');
+        var wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.nav-item.open').forEach(function (o) { o.classList.remove('open'); });
+        if (!wasOpen) item.classList.add('open');
     });
 });
+
+// ከ Dropdown ውጪ ሲነካ ንዑስ ሜኑዎችን መዝጋት
+document.addEventListener('click', function () {
+    document.querySelectorAll('.nav-item.open').forEach(function (o) { o.classList.remove('open'); });
+});
+
+// ESC ሲነካ መዝጋት
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+        document.querySelectorAll('.nav-item.open').forEach(function (o) { o.classList.remove('open'); });
+        closeMobileMenu();
+    }
+});
+
+// Search: if on homepage scroll to courses, otherwise navigate
+function scrollToCourses(e, form) {
+    var q = document.getElementById('nav-search-input').value.trim();
+    var onHome = window.location.pathname === '/';
+    if (onHome) {
+        e.preventDefault();
+        var section = document.getElementById('courses');
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (q) {
+                var cards = document.querySelectorAll('.course-card');
+                cards.forEach(function(card) {
+                    var title = card.querySelector('.course-title')?.textContent.toLowerCase() || '';
+                    card.style.display = title.includes(q.toLowerCase()) ? '' : 'none';
+                });
+            }
+        }
+    }
+}
 </script>
 </body>
 </html>
