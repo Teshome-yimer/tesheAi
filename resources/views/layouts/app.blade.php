@@ -222,9 +222,8 @@
     display: flex; 
     flex-direction: column; 
     gap: 10px; 
-    margin-top: auto; 
-    padding-top: 16px; 
-    padding-bottom: 20px; /* ከታች ትንሽ space እንዲኖረው */
+    margin-top: 10px; /* margin-top: auto የነበረውን ወደ 10px ቀይረነዋል */
+    padding-top: 12px; 
     border-top: 1px solid var(--border); 
 }
             .mobile-menu-actions .btn { width: 100%; justify-content: center; }
