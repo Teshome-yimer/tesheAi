@@ -224,11 +224,11 @@
             <h2>ምን ይላሉ? / <span class="grad-text">What Students Say</span></h2>
         </div>
         <div class="testimonials-grid">
-            @foreach([
-                ['name'=>'አብዱ ሀሰን','role'=>'Full Stack Developer','text'=>'ይህ ኮርስ ሕይወቴን ቀይሯል። ከምዝገባ 3 ወር ውስጥ የፈለኩትን ሥራ አገኘሁ። This course changed my life!','img'=>asset('images/teshome_photo_2.jpg')],
-                ['name'=>'Sara Tesfaye','role'=>'Web Developer','text'=>'The Amharic + English mix made it so easy to understand. Best investment I have made for my career!','img'=>asset('images/teshome_photo_3.jpg')],
-                ['name'=>'ዳዊት ገ/ሕይወት','role'=>'Freelancer','text'=>'አስተማሪው በጣም ጥሩ ነው። ቪዲዮዎቹ ግልጽ ናቸው። ሁሉም ሰው ይህን ኮርስ መውሰድ አለበት።','img'=>asset('images/teshome_photo_4.jpg')],
-            ] as $t)
+        @foreach([
+    ['name'=>'አብዱ ሀሰን','role'=>'Full Stack Developer','text'=>'ይህ ኮርስ ሕይወቴን ቀይሯል። ከምዝገባ 3 ወር ውስጥ የፈለኩትን ሥራ አገኘሁ። This course changed my life!','img'=>asset('images/kidan.webp')],
+    ['name'=>'Sara Tesfaye','role'=>'Web Developer','text'=>'The Amharic + English mix made it so easy to understand. Best investment I have made for my career!','img'=>asset('images/mengesha.webp')],
+    ['name'=>'ዳዊት ገ/ሕይወት','role'=>'Freelancer','text'=>'አስተማሪው በጣም ጥሩ ነው። ቪዲዮዎቹ ግልጽ ናቸው። ሁሉም ሰው ይህን ኮርስ መውሰድ አለበት።','img'=>asset('images/waja.webp')],
+] as $t)
             <div class="testi-card">
                 <div class="testi-stars">★★★★★</div>
                 <p class="testi-text">"{{ $t['text'] }}"</p>
