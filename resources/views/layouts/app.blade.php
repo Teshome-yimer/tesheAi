@@ -60,7 +60,7 @@
         .dropdown-menu .dd-label { padding: 8px 14px 4px; font-size: 0.68rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 700; }
         .dropdown-menu .dd-divider { height: 1px; background: var(--border); margin: 6px 8px; }
 
-        /* Mega panel (Exercises style) */
+        /* Mega panel */
         .mega-panel { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); width: min(760px, 92vw); background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 24px; box-shadow: 0 20px 60px rgba(0,0,0,.6); z-index: 200; }
         .nav-item.open .mega-panel { display: block; }
         .mega-title { font-size: 0.72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; background: linear-gradient(135deg, var(--indigo), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 16px; }
@@ -71,20 +71,12 @@
         .mega-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
         .mega-card p { font-size: 0.76rem; color: var(--muted); flex: 1; }
 
-        /* Search */
-        .nav-search { display: flex; align-items: center; margin-left: auto; flex-shrink: 0; }
-        .nav-search input { background: var(--bg3); border: 1px solid var(--border); border-radius: 24px 0 0 24px; border-right: none; color: var(--text); padding: 8px 16px; font-size: 0.85rem; outline: none; width: 220px; transition: border-color .2s; font-family: inherit; }
-        .nav-search input:focus { border-color: var(--indigo); }
-        .nav-search input::placeholder { color: var(--muted); font-style: italic; }
-        .nav-search button { background: var(--bg3); border: 1px solid var(--border); border-left: none; border-radius: 0 24px 24px 0; color: var(--muted); padding: 8px 14px 8px 8px; cursor: pointer; font-size: 0.85rem; flex-shrink: 0; }
-        .nav-search button:hover { color: var(--cyan); }
-
         .nav-actions { display: flex; align-items: center; gap: 16px; margin-left: 20px; flex-shrink: 0; }
         .nav-actions .nav-plain-link { color: var(--muted); font-size: 0.875rem; font-weight: 600; white-space: nowrap; }
         .nav-actions .nav-plain-link:hover { color: var(--text); }
         .mobile-menu-actions { display: none; }
 
-        /* Mobile Overlay Background (Backdrop) */
+        /* Mobile Overlay Background (z-index 99990 ተደርጎ ሁሉንም የገፅ ኤለመንቶች እንዲሸፍን ተደርጓል) */
         .mobile-menu-overlay {
             display: none;
             position: fixed;
@@ -92,14 +84,15 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.65);
-            z-index: 9998;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 99990;
+            cursor: pointer;
         }
         .mobile-menu-overlay.open {
             display: block;
         }
 
-        /* Topic bar (second tier) */
+        /* Buttons & Utility */
         .subnav { background: var(--bg2); border-bottom: 1px solid var(--border); }
         .subnav-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 4px; overflow-x: auto; scrollbar-width: none; }
         .subnav-inner::-webkit-scrollbar { display: none; }
@@ -107,73 +100,29 @@
         .subnav-inner a:hover { color: var(--cyan); border-bottom-color: var(--cyan); }
         .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; border: none; transition: all .2s; text-decoration: none; }
         .btn-primary { background: linear-gradient(135deg, var(--indigo), #8b5cf6); color: #fff; }
-        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(99,102,241,.4); color: #fff; }
         .btn-secondary { background: transparent; border: 1px solid var(--border); color: var(--text); }
-        .btn-secondary:hover { border-color: var(--indigo); color: var(--indigo); }
         .btn-cyan { background: linear-gradient(135deg, var(--cyan), #0891b2); color: #000; font-weight: 700; }
-        .btn-cyan:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(34,211,238,.4); color: #000; }
-        .btn-gold { background: linear-gradient(135deg, #fffbeb, #fde68a); color: #1a1a24; font-weight: 700; border: 1px solid #fcd34d; }
-        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(253, 230, 138, 0.3); color: #000; }
         .btn-sm { padding: 6px 14px; font-size: 0.8rem; }
         .btn-danger { background: var(--danger); color: #fff; }
 
-        /* Flash messages */
+        /* Flash & Container */
         .flash { padding: 14px 20px; border-radius: 8px; margin: 16px 0; font-weight: 500; }
         .flash-success { background: rgba(16,185,129,.15); border: 1px solid var(--success); color: var(--success); }
         .flash-error { background: rgba(239,68,68,.15); border: 1px solid var(--danger); color: var(--danger); }
         .flash-info { background: rgba(99,102,241,.15); border: 1px solid var(--indigo); color: var(--indigo); }
-
-        /* Cards */
-        .card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-        .card:hover { border-color: var(--indigo); }
-
-        /* Container */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-
-        /* Forms */
-        .form-group { margin-bottom: 20px; }
-        .form-label { display: block; margin-bottom: 6px; font-size: 0.85rem; font-weight: 500; color: var(--muted); }
-        .form-control { width: 100%; background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 12px 16px; border-radius: 8px; font-size: 0.95rem; outline: none; transition: border-color .2s; }
-        .form-control:focus { border-color: var(--indigo); }
-        .form-control::placeholder { color: var(--muted); }
-        .invalid-feedback { color: var(--danger); font-size: 0.8rem; margin-top: 4px; }
-
-        /* Badges */
-        .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
-        .badge-indigo { background: rgba(99,102,241,.2); color: var(--indigo); }
-        .badge-cyan { background: rgba(34,211,238,.2); color: var(--cyan); }
-        .badge-success { background: rgba(16,185,129,.2); color: var(--success); }
-        .badge-danger { background: rgba(239,68,68,.2); color: var(--danger); }
-
-        /* Progress bar */
-        .progress-bar { background: var(--bg3); border-radius: 99px; height: 6px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--indigo), var(--cyan)); border-radius: 99px; transition: width .4s ease; }
-
-        /* Table */
-        .table { width: 100%; border-collapse: collapse; }
-        .table th { background: var(--bg3); color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: .05em; padding: 12px 16px; text-align: left; }
-        .table td { padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
-        .table tr:last-child td { border-bottom: none; }
-        .table tbody tr:hover { background: var(--bg3); }
 
         /* Hamburger */
         .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: 16px; flex-shrink: 0; padding: 4px; }
         .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); }
 
-        /* Mobile responsive adjustments - Admin Style Off-Canvas Drawer */
+        /* Mobile Drawer (z-index 99999 ተደርጓል ከ Overlay በላይ እንዲሆን) */
         @media (max-width: 900px) {
-            .nav-inner { 
-                position: relative; 
-                flex-wrap: wrap; 
-                row-gap: 10px; 
-                padding-top: 10px; 
-                padding-bottom: 10px; 
-            }
+            .nav-inner { position: relative; flex-wrap: wrap; row-gap: 10px; padding-top: 10px; padding-bottom: 10px; }
             .nav-logo { margin-right: 0; font-size: 1.15rem; }
             .nav-utilities { order: 2; margin-left: auto; gap: 10px; }
             .hamburger { display: flex; }
 
-            /* Admin Style Side Drawer Navigation */
             .nav-menu { 
                 display: flex !important;
                 position: fixed; 
@@ -190,19 +139,17 @@
                 align-items: stretch; 
                 padding: 24px 18px; 
                 gap: 12px; 
-                box-shadow: 10px 0 30px rgba(0,0,0,0.6); 
-                z-index: 9999;
+                box-shadow: 10px 0 30px rgba(0,0,0,0.8); 
+                z-index: 99999; /* ከ Overlay-ው በላይ እንዲሆን */
                 transform: translateX(-100%);
                 transition: transform 0.3s ease-in-out;
                 overflow-y: auto;
             }
             
-            /* Slide-in Effect */
             .nav-menu.open { 
                 transform: translateX(0); 
             }
 
-            /* Inner sub-menus */
             .dropdown-menu, .mega-panel { 
                 position: static; 
                 transform: none; 
@@ -224,9 +171,6 @@
                 border-radius: 8px; 
             }
             
-            .nav-search { margin-left: 0; width: 100%; }
-            .nav-search input { width: 100%; }
-            .nav-search input:focus { width: 100%; }
             .nav-actions { display: none !important; }
             
             .mobile-menu-actions { 
@@ -252,13 +196,11 @@
                 box-sizing: border-box;
             }
 
-            /* Topic bar responsive */
             .subnav { display: block; overflow-x: auto; }
             .subnav-inner { gap: 0; }
             .subnav-inner a { font-size: 0.75rem; padding: 10px 12px; }
         }
 
-        /* Footer */
         footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 40px 0; margin-top: 80px; text-align: center; color: var(--muted); }
     </style>
     
@@ -454,14 +396,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 2. ከቦክሷ ውጭ ባዶ ቦታ (Overlay) ሲነካ ብቻ እንዲዘጋ ማድረግ
+    // 2. ከቦክሷ ውጭ በስተቀኝ ያለውን ቦታ (Overlay) ሲነኩ ሜኑውን መዝጋት
     if (menuOverlay) {
         menuOverlay.addEventListener('click', function(e) {
             closeMobileMenu();
         });
     }
 
-    // 3. በDrawer-ው (navMenu) ውስጥ ያለ ማንኛውም ክሊክ ወደ Overlay እንዳያልፍ ማድረግ (Stop Propagation)
+    // 3. በDrawer-ው (navMenu) ውስጥ ሲነካ Event propagation መግታት (ሊንኮቹ በነጻነት እንዲሰሩ)
     if (navMenu) {
         navMenu.addEventListener('click', function(e) {
             e.stopPropagation();
