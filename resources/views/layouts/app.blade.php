@@ -103,7 +103,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.65);
             z-index: 9998 !important;
             cursor: pointer;
         }
@@ -147,10 +147,9 @@
                 position: fixed !important; 
                 top: 0 !important; 
                 left: 0 !important; 
-                bottom: 0 !important;
                 height: 100vh !important;
                 width: 80% !important; 
-                max-width: 320px !important;
+                max-width: 300px !important;
                 background: #13131a !important; 
                 border-right: 1px solid var(--border); 
                 border-radius: 0 16px 16px 0; 
@@ -394,24 +393,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuOverlay = document.getElementById('menuOverlay');
 
     function openMobileMenu() {
-        navMenu.classList.add('open');
-        menuOverlay.classList.add('open');
+        if (navMenu) navMenu.classList.add('open');
+        if (menuOverlay) menuOverlay.classList.add('open');
     }
 
     function closeMobileMenu() {
-        navMenu.classList.remove('open');
-        menuOverlay.classList.remove('open');
+        if (navMenu) navMenu.classList.remove('open');
+        if (menuOverlay) menuOverlay.classList.remove('open');
         document.querySelectorAll('.nav-item.open').forEach(function(item) {
             item.classList.remove('open');
         });
     }
 
-    // 1. Hamburger button click handler
+    // 1. Hamburger button click
     if (hamburgerBtn) {
         hamburgerBtn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            if (navMenu.classList.contains('open')) {
+            if (navMenu && navMenu.classList.contains('open')) {
                 closeMobileMenu();
             } else {
                 openMobileMenu();
@@ -419,21 +418,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 2. ከሜኑው ውጭ ጥቁሩ ቦታ (Overlay) ብቻ ሲነካ እንዲዘጋ ማድረግ
-    if (menuOverlay) {
-        menuOverlay.addEventListener('click', function(e) {
-            closeMobileMenu();
-        });
-    }
-
-    // 3. Drawer Menuው ውስጥ የሚደረግ የትኛውም click ወደ Overlay እንዳይላክና ሜኑውን እንዳይዘጋ ማድረግ
+    // 2. ሜኑው (navMenu) ውስጥ ያለ ማንኛውም ቦታ ሲነካ Event Bubbling እንዳይፈጠር ማድረግ
     if (navMenu) {
         navMenu.addEventListener('click', function(e) {
             e.stopPropagation();
         });
     }
 
-    // 4. Dropdown toggles
+    // 3. ከሜኑው ውጭ ያለው Overlay ሲነካ ብቻ እንዲዘጋ ማድረግ
+    if (menuOverlay) {
+        menuOverlay.addEventListener('click', function(e) {
+            e.stopPropagation();
+            closeMobileMenu();
+        });
+    }
+
+    // 4. Dropdown Toggles (ትምህርቶች፣ መርጃዎች፣ ወዘተ...)
     document.querySelectorAll('[data-dd]').forEach(function (btn) {
         btn.addEventListener('click', function (e) {
             e.preventDefault();
@@ -441,12 +441,10 @@ document.addEventListener('DOMContentLoaded', function() {
             var item = btn.closest('.nav-item');
             var isOpen = item.classList.contains('open');
 
-            // Close other dropdowns
             document.querySelectorAll('.nav-item.open').forEach(function (o) {
                 if (o !== item) o.classList.remove('open');
             });
 
-            // Toggle current dropdown
             if (isOpen) {
                 item.classList.remove('open');
             } else {
@@ -455,7 +453,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 5. ESC ሲነካ መዝጋት
+    // 5. ከሜኑው ውጭ በገጹ ላይ የትም ቦታ ሲነካ እንዲዘጋ ማድረግ
+    document.addEventListener('click', function(e) {
+        if (navMenu && navMenu.classList.contains('open')) {
+            closeMobileMenu();
+        }
+    });
+
+    // 6. ESC ሲነካ መዝጋት
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') {
             closeMobileMenu();
