@@ -147,8 +147,8 @@
         .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: 16px; flex-shrink: 0; padding: 4px; }
         .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); }
         
-        /* Mobile responsive adjustments */
-        @media (max-width: 900px) {
+       /* Mobile responsive adjustments - Admin Style Off-Canvas Drawer */
+       @media (max-width: 900px) {
             .nav-inner { 
                 position: relative; 
                 flex-wrap: wrap; 
@@ -160,25 +160,34 @@
             .nav-utilities { order: 2; margin-left: auto; gap: 10px; }
             .hamburger { display: flex; }
 
-            /* Mobile Dropdown Menu - clean full-width drop */
+            /* Admin Style Side Drawer Navigation */
             .nav-menu { 
-                display: none; 
-                position: absolute; 
-                top: 100%; 
+                display: flex !important;
+                position: fixed; 
+                top: 0; 
                 left: 0; 
-                right: 0; 
-                width: 100%; 
+                bottom: 0;
+                height: 100vh;
+                width: 80%; 
+                max-width: 320px;
                 background: var(--bg2); 
-                border-bottom: 1px solid var(--border); 
-                border-radius: 0 0 16px 16px; 
+                border-right: 1px solid var(--border); 
+                border-radius: 0 16px 16px 0; 
                 flex-direction: column; 
                 align-items: stretch; 
-                padding: 16px 20px; 
-                gap: 8px; 
-                box-shadow: 0 20px 40px rgba(0,0,0,.8); 
-                z-index: 999; 
+                padding: 24px 18px; 
+                gap: 12px; 
+                box-shadow: 10px 0 30px rgba(0,0,0,0.6); 
+                z-index: 9999;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease-in-out;
+                overflow-y: auto;
             }
-            .nav-menu.open { display: flex; }
+            
+            /* Slide-in Effect */
+            .nav-menu.open { 
+                transform: translateX(0); 
+            }
 
             /* Inner sub-menus */
             .dropdown-menu, .mega-panel { 
@@ -193,6 +202,7 @@
                 margin-top: 6px; 
                 padding: 10px; 
             }
+            
             .nav-item > .nav-top-link { 
                 width: 100%; 
                 justify-content: space-between; 
@@ -200,13 +210,22 @@
                 background: var(--bg3); 
                 border-radius: 8px; 
             }
-            .nav-search { margin-left: 0; }
-            .nav-search input { width: 96px; }
-            .nav-search input:focus { width: 120px; }
+            
+            .nav-search { margin-left: 0; width: 100%; }
+            .nav-search input { width: 100%; }
+            .nav-search input:focus { width: 100%; }
             .nav-actions { margin-left: 0; gap: 10px; }
             .nav-actions .nav-plain-link { display: none; }
             .nav-actions form { display: none !important; }
-            .mobile-menu-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--border); }
+            
+            .mobile-menu-actions { 
+                display: flex; 
+                flex-direction: column; 
+                gap: 10px; 
+                margin-top: auto; 
+                padding-top: 16px; 
+                border-top: 1px solid var(--border); 
+            }
             .mobile-menu-actions .btn { width: 100%; justify-content: center; }
 
             /* Topic bar responsive */
