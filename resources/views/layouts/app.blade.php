@@ -297,9 +297,6 @@
 <div class="subnav">
     <div class="subnav-inner">
         <a href="/">Home</a>
-        @foreach($navCourses as $navCourse)
-            <a href="{{ route('course.show', $navCourse) }}">{{ $navCourse->title }}</a>
-        @endforeach
         <a href="{{ route('documents.index') }}">Free PDFs</a>
         <a href="{{ route('quizzes.index') }}">Quizzes</a>
         @auth
