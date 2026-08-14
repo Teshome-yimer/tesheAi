@@ -40,7 +40,7 @@
         .navbar {
             background: rgba(10,10,15,0.98);
             border-bottom: 1px solid var(--border);
-            position: sticky; top: 0; z-index: 100;
+            position: sticky; top: 0; z-index: 1000;
         }
         .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 6px; min-height: 60px; }
         .nav-logo { font-size: 1.35rem; font-weight: 800; background: linear-gradient(135deg, var(--indigo), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-right: 10px; flex-shrink: 0; }
@@ -95,7 +95,7 @@
         .nav-actions .nav-plain-link:hover { color: var(--text); }
         .mobile-menu-actions { display: none; }
 
-        /* Mobile Backdrop Overlay - z-index ተስተካክሏል (ከ drawer-ው በታች እንዲሆን) */
+        /* Mobile Backdrop Overlay - z-index 9998 (ከ drawer-ው በታች) */
         .mobile-menu-overlay {
             display: none;
             position: fixed;
@@ -103,12 +103,12 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 9980;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 9998 !important;
             cursor: pointer;
         }
         .mobile-menu-overlay.open {
-            display: block;
+            display: block !important;
         }
 
         /* Buttons & Utility */
@@ -135,7 +135,7 @@
         .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: 16px; flex-shrink: 0; padding: 4px; }
         .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); }
 
-        /* Mobile Drawer - z-index እና pointer-events ተስተካክለዋል */
+        /* Mobile Drawer - z-index 9999 (ከ overlay-ው በላይ) */
         @media (max-width: 900px) {
             .nav-inner { position: relative; flex-wrap: wrap; row-gap: 10px; padding-top: 10px; padding-bottom: 10px; }
             .nav-logo { margin-right: 0; font-size: 1.15rem; }
@@ -144,22 +144,22 @@
 
             .nav-menu { 
                 display: flex !important;
-                position: fixed; 
-                top: 0; 
-                left: 0; 
-                bottom: 0;
-                height: 100vh;
-                width: 80%; 
-                max-width: 320px;
-                background: var(--bg2); 
+                position: fixed !important; 
+                top: 0 !important; 
+                left: 0 !important; 
+                bottom: 0 !important;
+                height: 100vh !important;
+                width: 80% !important; 
+                max-width: 320px !important;
+                background: #13131a !important; 
                 border-right: 1px solid var(--border); 
                 border-radius: 0 16px 16px 0; 
                 flex-direction: column; 
                 align-items: stretch; 
                 padding: 24px 18px 40px 18px;
                 gap: 12px; 
-                box-shadow: 10px 0 30px rgba(0,0,0,0.8); 
-                z-index: 9999 !important; /* ከ Overlay በላይ እንዲሆን ተደርጓል */
+                box-shadow: 10px 0 30px rgba(0,0,0,0.9); 
+                z-index: 9999 !important; /* ከ Overlay በላይ መሆኑ ተረጋገጠ */
                 pointer-events: auto !important;
                 transform: translateX(-100%);
                 transition: transform 0.3s ease-in-out;
@@ -167,7 +167,7 @@
             }
             
             .nav-menu.open { 
-                transform: translateX(0); 
+                transform: translateX(0) !important; 
             }
 
             .dropdown-menu, .mega-panel { 
@@ -227,7 +227,7 @@
 <body>
 @php $navCourses = \App\Models\Course::where('is_published', true)->orderBy('title')->take(10)->get(); @endphp
 
-<!-- Mobile Backdrop Overlay -->
+<!-- Mobile Backdrop Overlay (ከ nav-menu በፊት እንዲቀመጥ ተደርጓል) -->
 <div class="mobile-menu-overlay" id="menuOverlay"></div>
 
 <nav class="navbar">
@@ -419,14 +419,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 2. ከቦክሷ ውጭ ባዶ ቦታ (Overlay) ሲነካ ብቻ እንዲዘጋ ማድረግ
+    // 2. ከሜኑው ውጭ ጥቁሩ ቦታ (Overlay) ብቻ ሲነካ እንዲዘጋ ማድረግ
     if (menuOverlay) {
         menuOverlay.addEventListener('click', function(e) {
             closeMobileMenu();
         });
     }
 
-    // 3. Dropdown toggles (ትምህርቶች፣ መርጃዎች፣ ልምምድ)
+    // 3. Drawer Menuው ውስጥ የሚደረግ የትኛውም click ወደ Overlay እንዳይላክና ሜኑውን እንዳይዘጋ ማድረግ
+    if (navMenu) {
+        navMenu.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
+
+    // 4. Dropdown toggles
     document.querySelectorAll('[data-dd]').forEach(function (btn) {
         btn.addEventListener('click', function (e) {
             e.preventDefault();
@@ -448,7 +455,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 4. ESC ሲነካ መዝጋት
+    // 5. ESC ሲነካ መዝጋት
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') {
             closeMobileMenu();
