@@ -164,7 +164,8 @@
             <div class="sidebar-card">
                 @if($course->preview_video)
                 <div style="position:relative;">
-                    <iframe src="{{ $course->preview_video }}" style="width:100%;height:200px;border:none;" allowfullscreen></iframe>
+                    <!-- አዲሱ የተስተካከለው ኮድ: -->
+<iframe src="{{ $course->preview_video }}" loading="lazy" style="width:100%;height:200px;border:none;" allowfullscreen></iframe>
                 </div>
                 @else
                 <div style="height:180px;background:linear-gradient(135deg,var(--bg3),var(--border));display:flex;align-items:center;justify-content:center;font-size:5rem;">🎓</div>
