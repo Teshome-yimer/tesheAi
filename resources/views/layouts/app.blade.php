@@ -39,8 +39,7 @@
 
         /* Navbar */
         .navbar {
-            background: rgba(10,10,15,0.97);
-            backdrop-filter: blur(20px);
+            background: rgba(10,10,15,0.98);
             border-bottom: 1px solid var(--border);
             position: sticky; top: 0; z-index: 100;
         }
@@ -94,8 +93,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(3px);
+            background: rgba(0, 0, 0, 0.65);
             z-index: 9998;
         }
         .mobile-menu-overlay.open {
