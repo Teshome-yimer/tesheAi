@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NL0B9Y2V3T"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NL0B9Y2V3T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'G-NL0B9Y2V3T');
-</script>
+      gtag('config', 'G-NL0B9Y2V3T');
+    </script>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5100957100493180"
-     crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5100957100493180" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -160,7 +159,7 @@
         /* Hamburger */
         .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: 16px; flex-shrink: 0; padding: 4px; }
         .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); }
-        
+
         /* Mobile responsive adjustments - Admin Style Off-Canvas Drawer */
         @media (max-width: 900px) {
             .nav-inner { 
@@ -228,19 +227,30 @@
             .nav-search { margin-left: 0; width: 100%; }
             .nav-search input { width: 100%; }
             .nav-search input:focus { width: 100%; }
-            .nav-actions { margin-left: 0; gap: 10px; }
-            .nav-actions .nav-plain-link { display: none; }
-            .nav-actions form { display: none !important; }
+            .nav-actions { display: none !important; }
             
             .mobile-menu-actions { 
-                display: flex; 
+                display: flex !important; 
                 flex-direction: column; 
-                gap: 10px; 
-                margin-top: 10px; 
-                padding-top: 12px; 
+                gap: 12px; 
+                margin-top: 20px; 
+                padding-top: 16px; 
                 border-top: 1px solid var(--border); 
+                width: 100%;
             }
-            .mobile-menu-actions .btn { width: 100%; justify-content: center; }
+
+            .mobile-menu-actions a, 
+            .mobile-menu-actions button { 
+                width: 100% !important; 
+                display: flex !important;
+                justify-content: center; 
+                align-items: center;
+                text-align: center;
+                padding: 12px 16px !important;
+                font-size: 0.95rem !important;
+                border-radius: 8px;
+                box-sizing: border-box;
+            }
 
             /* Topic bar responsive */
             .subnav { display: block; overflow-x: auto; }
@@ -330,18 +340,18 @@
 
             <div class="mobile-menu-actions">
                 @guest
-                    <a href="{{ route('login') }}" class="btn btn-secondary btn-sm">🔑sign in</a>
-                    <a href="{{ route('register') }}" class="btn btn-cyan btn-sm">✨ sign up</a>
+                    <a href="{{ route('login') }}" class="btn btn-secondary">🔑 Sign In</a>
+                    <a href="{{ route('register') }}" class="btn btn-cyan">✨ Sign Up</a>
                 @endguest
                 @auth
                     @if(auth()->user()->isAdmin())
-                        <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary btn-sm">Admin Dashboard</a>
+                        <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary">Admin Dashboard</a>
                     @else
-                        <a href="{{ route('student.dashboard') }}" class="btn btn-secondary btn-sm">Student Dashboard</a>
+                        <a href="{{ route('student.dashboard') }}" class="btn btn-secondary">Student Dashboard</a>
                     @endif
-                    <form method="POST" action="{{ route('logout') }}">
+                    <form method="POST" action="{{ route('logout') }}" style="width: 100%;">
                         @csrf
-                        <button type="submit" class="btn btn-secondary btn-sm"> Logout</button>
+                        <button type="submit" class="btn btn-danger">Logout</button>
                     </form>
                 @endauth
             </div>
@@ -407,66 +417,75 @@
         <p style="font-size:0.9rem;">© {{ date('Y') }} EduPlatform. All rights reserved. | Made with ❤️ for Ethiopian learners</p>
     </div>
     <div class="flex justify-center space-x-4 text-sm text-gray-400 mt-4 mb-2">
-    <a href="{{ route('privacy') }}" class="hover:underline">Privacy Policy</a>
-    <span>|</span>
-    <a href="{{ route('terms') }}" class="hover:underline">Terms of Service</a>
-    <span>|</span>
-    <a href="{{ route('contact') }}" class="hover:underline">Contact Us</a>
-</div>
+        <a href="{{ route('privacy') }}" class="hover:underline">Privacy Policy</a>
+        <span>|</span>
+        <a href="{{ route('terms') }}" class="hover:underline">Terms of Service</a>
+        <span>|</span>
+        <a href="{{ route('contact') }}" class="hover:underline">Contact Us</a>
+    </div>
 </footer>
+
 @stack('scripts')
 <script>
-// Mobile Menu Drawer & Backdrop Elements
-const hamburgerBtn = document.getElementById('hamburgerBtn');
-const navMenu = document.getElementById('navMenu');
-const menuOverlay = document.getElementById('menuOverlay');
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navMenu = document.getElementById('navMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
 
-function openMobileMenu() {
-    navMenu.classList.add('open');
-    menuOverlay.classList.add('open');
-}
+    function openMobileMenu() {
+        navMenu.classList.add('open');
+        menuOverlay.classList.add('open');
+    }
 
-function closeMobileMenu() {
-    navMenu.classList.remove('open');
-    menuOverlay.classList.remove('open');
-}
+    function closeMobileMenu() {
+        navMenu.classList.remove('open');
+        menuOverlay.classList.remove('open');
+    }
 
-// 1. Hamburger button ሲነካ መክፈት/መዝጋት
-if (hamburgerBtn) {
-    hamburgerBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        if (navMenu.classList.contains('open')) {
+    // 1. Hamburger button toggle
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (navMenu.classList.contains('open')) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        });
+    }
+
+    // 2. ከቦክሷ ውጭ ባዶ ቦታ (Overlay) ሲነካ ብቻ እንዲዘጋ ማድረግ
+    if (menuOverlay) {
+        menuOverlay.addEventListener('click', function(e) {
             closeMobileMenu();
-        } else {
-            openMobileMenu();
+        });
+    }
+
+    // 3. በDrawer-ው (navMenu) ውስጥ ያለ ማንኛውም ክሊክ ወደ Overlay እንዳያልፍ ማድረግ (Stop Propagation)
+    if (navMenu) {
+        navMenu.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
+
+    // 4. Dropdown toggles (ትምህርቶች፣ መርጃዎች፣ ልምምድ)
+    document.querySelectorAll('[data-dd]').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var item = btn.closest('.nav-item');
+            var wasOpen = item.classList.contains('open');
+            document.querySelectorAll('.nav-item.open').forEach(function (o) { o.classList.remove('open'); });
+            if (!wasOpen) item.classList.add('open');
+        });
+    });
+
+    // 5. ESC ሲነካ መዝጋት
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.nav-item.open').forEach(function (o) { o.classList.remove('open'); });
+            closeMobileMenu();
         }
     });
-}
-
-// 2. ከቦክሷ ውጭ (በስተቀኝ ያለው Dark Overlay) ሲነካ ብቻ እንዲዘጋ ማድረግ
-if (menuOverlay) {
-    menuOverlay.addEventListener('click', function() {
-        closeMobileMenu();
-    });
-}
-
-// 3. Dropdown toggles (በውስጥ ላሉት ንዑስ ሜኑዎች)
-document.querySelectorAll('[data-dd]').forEach(function (btn) {
-    btn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        var item = btn.closest('.nav-item');
-        var wasOpen = item.classList.contains('open');
-        document.querySelectorAll('.nav-item.open').forEach(function (o) { o.classList.remove('open'); });
-        if (!wasOpen) item.classList.add('open');
-    });
-});
-
-// ESC ሲነካ መዝጋት
-document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-        document.querySelectorAll('.nav-item.open').forEach(function (o) { o.classList.remove('open'); });
-        closeMobileMenu();
-    }
 });
 </script>
 </body>
