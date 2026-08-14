@@ -23,15 +23,16 @@ class SecurityHeaders
         $response->headers->set('Referrer-Policy', 'strict-origin-when-cross-origin');
         $response->headers->set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
 
-        // Content Security Policy (CSP) - Added PDF / Object / Frame support
+        // Content Security Policy (CSP) - Full Mobile & Desktop PDF Support
         $csp = "default-src 'self'; "
              . "script-src 'self' 'unsafe-inline' 'unsafe-eval' https: https://pagead2.googlesyndication.com https://www.googletagservices.com https://adservice.google.com https://www.google.com; "
              . "style-src 'self' 'unsafe-inline' https:; "
-             . "img-src 'self' data: https: https://pagead2.googlesyndication.com https://www.google.com; "
+             . "img-src 'self' data: blob: https: https://pagead2.googlesyndication.com https://www.google.com; "
              . "font-src 'self' https: data:; "
              . "connect-src 'self' https: https://pagead2.googlesyndication.com https://ep2.adtrafficquality.google; "
-             // PDF/Document viewers (Google Drive, Office Viewer, local blob/data) እንዲሰሩ ተፈቅዷል
-             . "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://drive.google.com https://docs.google.com https://player.vimeo.com https://*.bunnycdn.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://ep2.adtrafficquality.google https://www.google.com; "
+             // frame-src እና child-src በስልክ ላይ PDF viewer በ blob: እና data: እንዳይታገድ ይፈቅዳሉ
+             . "frame-src 'self' data: blob: https://www.youtube.com https://www.youtube-nocookie.com https://drive.google.com https://docs.google.com https://player.vimeo.com https://*.bunnycdn.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://ep2.adtrafficquality.google https://www.google.com; "
+             . "child-src 'self' data: blob: https://docs.google.com https://drive.google.com; "
              . "object-src 'self' data: blob: https://docs.google.com https://drive.google.com;";
 
         $response->headers->set('Content-Security-Policy', $csp);
