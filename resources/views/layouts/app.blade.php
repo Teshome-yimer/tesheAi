@@ -13,7 +13,7 @@
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5100957100493180" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', config('app.name'))</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,34 +32,20 @@
             --danger: #ef4444;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body { 
-            background: var(--bg); 
-            color: var(--text); 
-            font-family: 'Inter', sans-serif; 
-            min-height: 100vh;
-            width: 100%;
-        }
-        
-        /* body overflow guard for mobile */
-        body.menu-open {
-            overflow: hidden !important;
-        }
-
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; overflow-x: hidden; }
         a { color: var(--cyan); text-decoration: none; }
         a:hover { color: var(--indigo); }
 
-        /* Navbar Header */
+        /* Navbar */
         .navbar {
             background: rgba(10,10,15,0.98);
             border-bottom: 1px solid var(--border);
-            position: sticky; 
-            top: 0; 
-            z-index: 1000;
+            position: sticky; top: 0; z-index: 1000;
         }
         .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 6px; min-height: 60px; }
         .nav-logo { font-size: 1.35rem; font-weight: 800; background: linear-gradient(135deg, var(--indigo), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-right: 10px; flex-shrink: 0; }
 
-        /* Nav items + dropdowns Desktop */
+        /* Nav items + dropdowns */
         .nav-menu { display: flex; align-items: center; gap: 2px; flex: 1; }
         .nav-utilities { display: flex; align-items: center; gap: 12px; margin-left: auto; flex-shrink: 0; }
         .nav-item { position: relative; width: 100%; }
@@ -109,23 +95,20 @@
         .nav-actions .nav-plain-link:hover { color: var(--text); }
         .mobile-menu-actions { display: none; }
 
-        /* Mobile Backdrop Overlay */
+        /* Mobile Backdrop Overlay - z-index 9998 (ከ drawer-ው በታች) */
         .mobile-menu-overlay {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 9990 !important;
-            pointer-events: none;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: 9998 !important;
+            cursor: pointer;
         }
         .mobile-menu-overlay.open {
             display: block !important;
-            pointer-events: auto !important;
         }
 
         /* Buttons & Utility */
@@ -149,17 +132,15 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
         /* Hamburger */
-        .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: auto; flex-shrink: 0; padding: 8px; z-index: 10001; }
+        .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: 16px; flex-shrink: 0; padding: 4px; }
         .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); }
 
-        /* =========================================================
-           MOBILE DRAWER (ከፍተኛ ግልጽነት እና ንክኪ ጥበቃ የተደረገለት)
-           ========================================================= */
+        /* Mobile Drawer - z-index 9999 (ከ overlay-ው በላይ) */
         @media (max-width: 900px) {
-            .nav-inner { position: relative; display: flex; align-items: center; justify-content: space-between; padding-top: 10px; padding-bottom: 10px; }
+            .nav-inner { position: relative; flex-wrap: wrap; row-gap: 10px; padding-top: 10px; padding-bottom: 10px; }
             .nav-logo { margin-right: 0; font-size: 1.15rem; }
-            .nav-utilities { display: none; }
-            .hamburger { display: flex !important; }
+            .nav-utilities { order: 2; margin-left: auto; gap: 10px; }
+            .hamburger { display: flex; }
 
             .nav-menu { 
                 display: flex !important;
@@ -167,38 +148,25 @@
                 top: 0 !important; 
                 left: 0 !important; 
                 height: 100vh !important;
-                height: 100dvh !important; /* Mobile Screen standard */
                 width: 80% !important; 
                 max-width: 300px !important;
                 background: #13131a !important; 
                 border-right: 1px solid var(--border); 
+                border-radius: 0 16px 16px 0; 
                 flex-direction: column; 
                 align-items: stretch; 
-                padding: 30px 18px 40px 18px;
-                gap: 14px; 
-                box-shadow: 10px 0 40px rgba(0,0,0,0.95); 
-                z-index: 99999 !important; /* ማንኛውንም ኤለመንት ይበልጣል */
-                pointer-events: none;
+                padding: 24px 18px 40px 18px;
+                gap: 12px; 
+                box-shadow: 10px 0 30px rgba(0,0,0,0.9); 
+                z-index: 9999 !important; /* ከ Overlay በላይ መሆኑ ተረጋገጠ */
+                pointer-events: auto !important;
                 transform: translateX(-100%);
-                transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+                transition: transform 0.3s ease-in-out;
                 overflow-y: auto;
-                -webkit-overflow-scrolling: touch;
             }
             
             .nav-menu.open { 
                 transform: translateX(0) !important; 
-                pointer-events: auto !important;
-            }
-
-            /* ቁልፎቹ ከፊት እንዲሆኑ እና ንክኪን 100% እንዲቀበሉ ማድረግ */
-            .nav-item, 
-            .mobile-menu-actions, 
-            .mobile-menu-actions a, 
-            .mobile-menu-actions button,
-            .dropdown-menu a {
-                position: relative !important;
-                z-index: 100000 !important;
-                pointer-events: auto !important;
             }
 
             .dropdown-menu, .mega-panel { 
@@ -225,9 +193,9 @@
             .mobile-menu-actions { 
                 display: flex !important; 
                 flex-direction: column; 
-                gap: 12px; 
-                margin-top: auto; 
-                padding-top: 20px; 
+                gap: 10px; 
+                margin-top: 8px; 
+                padding-top: 16px; 
                 border-top: 1px solid var(--border); 
                 width: 100%;
             }
@@ -239,11 +207,10 @@
                 justify-content: center; 
                 align-items: center;
                 text-align: center;
-                padding: 12px 16px !important;
-                font-size: 0.95rem !important;
+                padding: 11px 16px !important;
+                font-size: 0.9rem !important;
                 border-radius: 8px;
                 box-sizing: border-box;
-                font-weight: 700;
             }
 
             .subnav { display: block; overflow-x: auto; }
@@ -259,16 +226,12 @@
 <body>
 @php $navCourses = \App\Models\Course::where('is_published', true)->orderBy('title')->take(10)->get(); @endphp
 
-<!-- Mobile Backdrop Overlay -->
+<!-- Mobile Backdrop Overlay (ከ nav-menu በፊት እንዲቀመጥ ተደርጓል) -->
 <div class="mobile-menu-overlay" id="menuOverlay"></div>
 
 <nav class="navbar">
     <div class="nav-inner">
         <a href="/" class="nav-logo">🎓 EduPlatform</a>
-
-        <button class="hamburger" id="hamburgerBtn" aria-label="Menu" type="button">
-            <span></span><span></span><span></span>
-        </button>
 
         <div class="nav-menu" id="navMenu">
             {{-- Courses dropdown --}}
@@ -357,26 +320,30 @@
         <div class="nav-utilities">
             <div class="nav-actions">
                 @guest
-                    <a href="{{ route('login') }}" class="nav-plain-link">🔑 Login</a>
-                    <a href="{{ route('register') }}" class="btn btn-cyan btn-sm" style="border-radius: 20px;">✨Sign up</a>
+                    <a href="{{ route('login') }}" class="nav-plain-link" style="color: var(--text); font-weight: 600; font-size: 0.85rem; padding: 6px 10px; white-space: nowrap;">🔑 Login</a>
+                    <a href="{{ route('register') }}" class="btn btn-cyan btn-sm" style="border-radius: 20px; padding: 5px 14px; font-weight: 700; font-size: 0.82rem; white-space: nowrap;">✨Sign up</a>
                 @endguest
                 @auth
                     @if(auth()->user()->isAdmin())
-                        <a href="{{ route('admin.dashboard') }}" class="nav-plain-link" style="color:var(--indigo);">⚙️ Admin</a>
+                        <a href="{{ route('admin.dashboard') }}" class="nav-plain-link" style="color:var(--indigo); white-space: nowrap;">⚙️ Admin</a>
                     @else
-                        <a href="{{ route('student.dashboard') }}" class="nav-plain-link">Dashboard</a>
+                        <a href="{{ route('student.dashboard') }}" class="nav-plain-link" style="white-space: nowrap;">Dashboard</a>
                     @endif
                     <form method="POST" action="{{ route('logout') }}" style="display:inline">
                         @csrf
-                        <button type="submit" class="btn btn-secondary btn-sm"> Logout</button>
+                        <button type="submit" class="btn btn-secondary btn-sm" style="white-space: nowrap;"> Logout</button>
                     </form>
                 @endauth
             </div>
+
+            <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </div>
 </nav>
 
-{{-- Subnav --}}
+{{-- Topic bar --}}
 <div class="subnav">
     <div class="subnav-inner">
         <a href="/">Home</a>
@@ -428,21 +395,19 @@ document.addEventListener('DOMContentLoaded', function() {
     function openMobileMenu() {
         if (navMenu) navMenu.classList.add('open');
         if (menuOverlay) menuOverlay.classList.add('open');
-        document.body.classList.add('menu-open');
     }
 
     function closeMobileMenu() {
         if (navMenu) navMenu.classList.remove('open');
         if (menuOverlay) menuOverlay.classList.remove('open');
-        document.body.classList.remove('menu-open');
         document.querySelectorAll('.nav-item.open').forEach(function(item) {
             item.classList.remove('open');
         });
     }
 
-    // 1. Hamburger Toggle (ለ Touch እና Click አሊያንስ)
+    // 1. Hamburger button click
     if (hamburgerBtn) {
-        const toggleMenu = function(e) {
+        hamburgerBtn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             if (navMenu && navMenu.classList.contains('open')) {
@@ -450,30 +415,25 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 openMobileMenu();
             }
-        };
-        hamburgerBtn.addEventListener('click', toggleMenu);
+        });
     }
 
-    // 2. ከሜኑው ውጭ ጥቁሩ ቦታ ሲነካ ብቻ እንዲዘጋ ማድረግ
+    // 2. ሜኑው (navMenu) ውስጥ ያለ ማንኛውም ቦታ ሲነካ Event Bubbling እንዳይፈጠር ማድረግ
+    if (navMenu) {
+        navMenu.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
+
+    // 3. ከሜኑው ውጭ ያለው Overlay ሲነካ ብቻ እንዲዘጋ ማድረግ
     if (menuOverlay) {
         menuOverlay.addEventListener('click', function(e) {
-            e.preventDefault();
             e.stopPropagation();
             closeMobileMenu();
         });
     }
 
-    // 3. Drawer Menuው ውስጥ የሚደረግ ማንኛውም ንክኪ ገጹን እንዳይዘጋ ፍጹም መከላከል
-    if (navMenu) {
-        navMenu.addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
-        navMenu.addEventListener('touchstart', function(e) {
-            e.stopPropagation();
-        }, {passive: true});
-    }
-
-    // 4. Dropdown Toggles (ትምህርቶች/Courses, Resource ወዘተ...)
+    // 4. Dropdown Toggles (ትምህርቶች፣ መርጃዎች፣ ወዘተ...)
     document.querySelectorAll('[data-dd]').forEach(function (btn) {
         btn.addEventListener('click', function (e) {
             e.preventDefault();
@@ -493,7 +453,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 5. ESC Key
+    // 5. ከሜኑው ውጭ በገጹ ላይ የትም ቦታ ሲነካ እንዲዘጋ ማድረግ
+    document.addEventListener('click', function(e) {
+        if (navMenu && navMenu.classList.contains('open')) {
+            closeMobileMenu();
+        }
+    });
+
+    // 6. ESC ሲነካ መዝጋት
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') {
             closeMobileMenu();
