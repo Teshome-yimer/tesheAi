@@ -95,7 +95,7 @@
         .nav-actions .nav-plain-link:hover { color: var(--text); }
         .mobile-menu-actions { display: none; }
 
-        /* Mobile Backdrop Overlay */
+        /* Mobile Backdrop Overlay - z-index ተስተካክሏል (ከ drawer-ው በታች እንዲሆን) */
         .mobile-menu-overlay {
             display: none;
             position: fixed;
@@ -104,7 +104,7 @@
             width: 100vw;
             height: 100vh;
             background: rgba(0, 0, 0, 0.7);
-            z-index: 9990;
+            z-index: 9980;
             cursor: pointer;
         }
         .mobile-menu-overlay.open {
@@ -135,7 +135,7 @@
         .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: 16px; flex-shrink: 0; padding: 4px; }
         .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); }
 
-        /* Mobile Drawer - ተስተካክሏል */
+        /* Mobile Drawer - z-index እና pointer-events ተስተካክለዋል */
         @media (max-width: 900px) {
             .nav-inner { position: relative; flex-wrap: wrap; row-gap: 10px; padding-top: 10px; padding-bottom: 10px; }
             .nav-logo { margin-right: 0; font-size: 1.15rem; }
@@ -156,10 +156,10 @@
                 border-radius: 0 16px 16px 0; 
                 flex-direction: column; 
                 align-items: stretch; 
-                padding: 24px 18px 40px 18px; /* ከታች ተጨማሪ ቦታ ተሰጥቷል */
+                padding: 24px 18px 40px 18px;
                 gap: 12px; 
                 box-shadow: 10px 0 30px rgba(0,0,0,0.8); 
-                z-index: 99999 !important;
+                z-index: 9999 !important; /* ከ Overlay በላይ እንዲሆን ተደርጓል */
                 pointer-events: auto !important;
                 transform: translateX(-100%);
                 transition: transform 0.3s ease-in-out;
@@ -191,7 +191,6 @@
             
             .nav-actions { display: none !important; }
             
-            /* ቁልፎቹ ከልምምድ / Practice ወዲያውኑ ቀጥለው እንዲመጡ margin-top ተስተካክሏል */
             .mobile-menu-actions { 
                 display: flex !important; 
                 flex-direction: column; 
@@ -299,7 +298,7 @@
                 </div>
             </div>
 
-            {{-- ልምምድ / Practice ቀጥሎ ወዲያውኑ የሚታዩ አክሽኖች --}}
+            {{-- Mobile Actions --}}
             <div class="mobile-menu-actions">
                 @guest
                     <a href="{{ route('login') }}" class="btn btn-secondary">🔑 Sign In</a>
@@ -407,10 +406,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 1. Hamburger button toggle
+    // 1. Hamburger button click handler
     if (hamburgerBtn) {
         hamburgerBtn.addEventListener('click', function(e) {
             e.preventDefault();
+            e.stopPropagation();
             if (navMenu.classList.contains('open')) {
                 closeMobileMenu();
             } else {
@@ -421,7 +421,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 2. ከቦክሷ ውጭ ባዶ ቦታ (Overlay) ሲነካ ብቻ እንዲዘጋ ማድረግ
     if (menuOverlay) {
-        menuOverlay.addEventListener('click', function() {
+        menuOverlay.addEventListener('click', function(e) {
             closeMobileMenu();
         });
     }
@@ -430,6 +430,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('[data-dd]').forEach(function (btn) {
         btn.addEventListener('click', function (e) {
             e.preventDefault();
+            e.stopPropagation();
             var item = btn.closest('.nav-item');
             var isOpen = item.classList.contains('open');
 
