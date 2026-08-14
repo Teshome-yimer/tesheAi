@@ -95,7 +95,7 @@
         .nav-actions .nav-plain-link:hover { color: var(--text); }
         .mobile-menu-actions { display: none; }
 
-        /* Mobile Backdrop Overlay - ተስተካክሏል */
+        /* Mobile Backdrop Overlay */
         .mobile-menu-overlay {
             display: none;
             position: fixed;
@@ -135,7 +135,7 @@
         .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: 16px; flex-shrink: 0; padding: 4px; }
         .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); }
 
-        /* Mobile Drawer - Z-Index እና Clickable ሁኔታ ተስተካክሏል */
+        /* Mobile Drawer - ተስተካክሏል */
         @media (max-width: 900px) {
             .nav-inner { position: relative; flex-wrap: wrap; row-gap: 10px; padding-top: 10px; padding-bottom: 10px; }
             .nav-logo { margin-right: 0; font-size: 1.15rem; }
@@ -156,10 +156,10 @@
                 border-radius: 0 16px 16px 0; 
                 flex-direction: column; 
                 align-items: stretch; 
-                padding: 24px 18px; 
+                padding: 24px 18px 40px 18px; /* ከታች ተጨማሪ ቦታ ተሰጥቷል */
                 gap: 12px; 
                 box-shadow: 10px 0 30px rgba(0,0,0,0.8); 
-                z-index: 99999 !important; /* ከ Overlay ሙሉ በሙሉ በላይ እንዲሆን */
+                z-index: 99999 !important;
                 pointer-events: auto !important;
                 transform: translateX(-100%);
                 transition: transform 0.3s ease-in-out;
@@ -191,11 +191,12 @@
             
             .nav-actions { display: none !important; }
             
+            /* ቁልፎቹ ከልምምድ / Practice ወዲያውኑ ቀጥለው እንዲመጡ margin-top ተስተካክሏል */
             .mobile-menu-actions { 
                 display: flex !important; 
                 flex-direction: column; 
-                gap: 12px; 
-                margin-top: 20px; 
+                gap: 10px; 
+                margin-top: 8px; 
                 padding-top: 16px; 
                 border-top: 1px solid var(--border); 
                 width: 100%;
@@ -208,8 +209,8 @@
                 justify-content: center; 
                 align-items: center;
                 text-align: center;
-                padding: 12px 16px !important;
-                font-size: 0.95rem !important;
+                padding: 11px 16px !important;
+                font-size: 0.9rem !important;
                 border-radius: 8px;
                 box-sizing: border-box;
             }
@@ -298,6 +299,7 @@
                 </div>
             </div>
 
+            {{-- ልምምድ / Practice ቀጥሎ ወዲያውኑ የሚታዩ አክሽኖች --}}
             <div class="mobile-menu-actions">
                 @guest
                     <a href="{{ route('login') }}" class="btn btn-secondary">🔑 Sign In</a>
