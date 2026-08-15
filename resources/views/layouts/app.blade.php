@@ -244,7 +244,7 @@
 
 <nav class="navbar">
     <div class="nav-inner">
-        <a href="/" class="nav-logo">🎓 EduPlatform</a>
+        <a href="/" class="nav-logo">🎓 Tesheai Academy</a>
 
         <div class="nav-menu" id="navMenu">
             {{-- Courses dropdown --}}
