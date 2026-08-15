@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', ' የነገው የቴክኖሎጂ መድረክ | Learn Tech Skills')
+@section('title', ' 💡የነገው የቴክኖሎጂ መድረክ | Learn Tech Skills')
 @push('styles')
 <style>
 .hero { padding: 100px 0 80px; text-align: center; position: relative; overflow: hidden; }
