@@ -48,6 +48,23 @@
 .cta-section h2 { font-size:2.5rem; font-weight:900; margin-bottom:16px; }
 .cta-section p { color:var(--muted); font-size:1.1rem; margin-bottom:36px; }
 .section-gap { padding: 80px 0; }
+    .tech-feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 24px auto 0;
+    max-width: 700px;
+    text-align: left; /* ከግራ እኩል እንዲጀምሩ የሚያደርገው CSS */
+}
+
+.tech-feature-list li {
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin-bottom: 12px;
+    line-height: 1.6;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
 </style>
 @endpush
 
@@ -103,19 +120,18 @@
 {{-- What You Learn --}}
 <section class="section-gap">
     <div class="container">
-        <div class="section-title">
-            <h2>ምን ያተርፋሉ? / <span class="grad-text">Why Learn With Us?</span></h2>
-            <p>ከንድፈ-ሐሳብ ባለፈ በኢንዱስትሪው ውስጥ የሚፈለጉ ተግባራዊ የቴክኖሎጂ ክህሎቶችን ይጨብጣሉ:: <br>
-            🤖 አርቲፊሻል ኢንቴሊጀንስ (AI & Automation) — የዘመኑን የኤአይ መሣሪያዎች ለዕለት ተዕለት ሥራና ለምርታማነት መጠቀም። <br>
+       <div class="section-title">
+    <h2>ምን ያተርፋሉ? / <span class="grad-text">Why Learn With Us?</span></h2>
+    <p>ከንድፈ-ሐሳብ ባለፈ በኢንዱስትሪው ውስጥ የሚፈለጉ ተግባራዊ የቴክኖሎጂ ክህሎቶችን ይጨብጣሉ::</p>
 
-           🛡️ የሳይበር ደህንነት (Cybersecurity Fundamentals) — ዲጂታል መረጃዎችን እና ሲስተሞችን ከአደጋ የመጠበቅ ክህሎት። <br>
-
-           📊 የውሂብ ትንተና (Data Science & Analytics) — መረጃዎችን በመተንተን ውሳኔ የመስጠት ጥበብ። <br>
-
-          📱 ሞባይል እና አፕሊኬሽን (Mobile & Software Tech) — ዘመናዊ የሶፍትዌር እና የሞባይል ቴክኖሎጂዎች አሰራር። <br>
-
-          💼 የዲጂታል ሥራ ዕድሎች (Tech Career & Freelancing) — በቴክኖሎጂው ዘርፍ ዓለም አቀፍ የሥራ እድሎችን የማግኘት ስልት።</p>  <br>
-        </div>
+    <ul class="tech-feature-list">
+        <li>🤖 <span><strong>አርቲፊሻል ኢንቴሊጀንስ (AI & Automation)</strong> — የዘመኑን የኤአይ መሣሪያዎች ለዕለት ተዕለት ሥራና ለምርታማነት መጠቀም።</span></li>
+        <li>🛡️ <span><strong>የሳይበር ደህንነት (Cybersecurity Fundamentals)</strong> — ዲጂታል መረጃዎችን እና ሲስተሞችን ከአደጋ የመጠበቅ ክህሎት።</span></li>
+        <li>📊 <span><strong>የውሂብ ትንተና (Data Science & Analytics)</strong> — መረጃዎችን በመተንተን ውሳኔ የመስጠት ጥበብ።</span></li>
+        <li>📱 <span><strong>ሞባይል እና አፕሊኬሽን (Mobile & Software Tech)</strong> — ዘመናዊ የሶፍትዌር እና የሞባይል ቴክኖሎጂዎች አሰራር።</span></li>
+        <li>💼 <span><strong>የዲጂታል ሥራ ዕድሎች (Tech Career & Freelancing)</strong> — በቴክኖሎጂው ዘርፍ ዓለም አቀፍ የሥራ እድሎችን የማግኘት ስልት።</span></li>
+    </ul>
+</div>
         <div class="features-grid">
             @if(isset($featuredCourse) && $featuredCourse)
                 @php $items = $featuredCourse->what_you_learn ?? []; @endphp
