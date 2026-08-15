@@ -74,7 +74,7 @@
 <section class="hero">
     <div class="container">
         <div class="hero-badge"> ✨ በዲጂታሉ ዓለም ስኬታማ ለመሆን ዝግጁ ነዎት? | Master the Digital Era💡</div>
-        <h1>በዘመናችን የቴክኖሎጂ ክህሎት <span class="grad-text">ማወቅ</span><br>አማራጭ ሳይሆን ግዴታ ነው!</h1>
+        <h1>በዘመናችን የቴክኖሎጂ  <span class="grad-text">ክህሎት  ማወቅ</span><br>አማራጭ ሳይሆን ግዴታ ነው!</h1>
         <p>ዓለም በከፍተኛ ፍጥነት ወደ ዲጂታል እየተቀየረች ባለችበት በዚህ ዘመን፣ የቴክኖሎጂ እውቀት ለስኬትዎ ዋነኛው ቁልፍ ነው። ከቤትዎ ሳይወጡ ዘመናዊና ተግባራዊ ክህሎቶችን ይማሩ፤ በዓለም አቀፍ ደረጃ ተወዳዳሪ ይሁኑ።</p>
         <div class="hero-btns">
             <a href="#courses" class="btn btn-cyan" style="font-size:1rem;padding:14px 32px;">🚀 አሁኑኑ መማር ይጀምሩ / Start Learning Today</a>
@@ -122,14 +122,16 @@
     <div class="container">
        <div class="section-title">
     <h2>ምን ያተርፋሉ? / <span class="grad-text">Why Learn With Us?</span></h2>
-    <p>ከንድፈ-ሐሳብ ባለፈ በኢንዱስትሪው ውስጥ የሚፈለጉ ተግባራዊ የቴክኖሎጂ ክህሎቶችን ይጨብጣሉ::</p>
+    
 
     <ul class="tech-feature-list">
+       
         <li>🤖 <span><strong>አርቲፊሻል ኢንቴሊጀንስ (AI & Automation)</strong> — የዘመኑን የኤአይ መሣሪያዎች ለዕለት ተዕለት ሥራና ለምርታማነት መጠቀም።</span></li>
         <li>🛡️ <span><strong>የሳይበር ደህንነት (Cybersecurity Fundamentals)</strong> — ዲጂታል መረጃዎችን እና ሲስተሞችን ከአደጋ የመጠበቅ ክህሎት።</span></li>
         <li>📊 <span><strong>የውሂብ ትንተና (Data Science & Analytics)</strong> — መረጃዎችን በመተንተን ውሳኔ የመስጠት ጥበብ።</span></li>
         <li>📱 <span><strong>ሞባይል እና አፕሊኬሽን (Mobile & Software Tech)</strong> — ዘመናዊ የሶፍትዌር እና የሞባይል ቴክኖሎጂዎች አሰራር።</span></li>
         <li>💼 <span><strong>የዲጂታል ሥራ ዕድሎች (Tech Career & Freelancing)</strong> — በቴክኖሎጂው ዘርፍ ዓለም አቀፍ የሥራ እድሎችን የማግኘት ስልት።</span></li>
+        <li>🤖 <span><strong>ከንድፈ-ሐሳብ ባለፈ በኢንዱስትሪው ውስጥ የሚፈለጉ ተግባራዊ የቴክኖሎጂ</strong> ክህሎቶችን ይጨብጣሉ::</span></li>
     </ul>
 </div>
         <div class="features-grid">
