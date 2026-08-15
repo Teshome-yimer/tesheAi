@@ -73,7 +73,7 @@
 {{-- Hero --}}
 <section class="hero">
     <div class="container">
-        <div class="hero-badge">🇪🇹 🌐 በዲጂታሉ ዓለም ስኬታማ ለመሆን ዝግጁ ነዎት? | Master the Digital Era</div>
+        <div class="hero-badge"> ✨ በዲጂታሉ ዓለም ስኬታማ ለመሆን ዝግጁ ነዎት? | Master the Digital Era💡</div>
         <h1>በዘመናችን የቴክኖሎጂ ክህሎት <span class="grad-text">ማወቅ</span><br>አማራጭ ሳይሆን ግዴታ ነው!</h1>
         <p>ዓለም በከፍተኛ ፍጥነት ወደ ዲጂታል እየተቀየረች ባለችበት በዚህ ዘመን፣ የቴክኖሎጂ እውቀት ለስኬትዎ ዋነኛው ቁልፍ ነው። ከቤትዎ ሳይወጡ ዘመናዊና ተግባራዊ ክህሎቶችን ይማሩ፤ በዓለም አቀፍ ደረጃ ተወዳዳሪ ይሁኑ።</p>
         <div class="hero-btns">
@@ -137,7 +137,7 @@
                 @php $items = $featuredCourse->what_you_learn ?? []; @endphp
                 @foreach(array_slice($items, 0, 6) as $item)
                 <div class="feature-card">
-                    <div class="feature-icon">✅</div>
+                    <div class="feature-icon">💰 💡</div>
                     <h3>{{ $item }}</h3>
                 </div>
                 @endforeach
