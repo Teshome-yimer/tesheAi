@@ -75,7 +75,7 @@
     <div class="container">
         <div class="hero-badge"> ✨ በዲጂታሉ ዓለም ስኬታማ ለመሆን ዝግጁ ነዎት? | Master the Digital Era💡</div>
         <h1>በዘመናችን የቴክኖሎጂ  <span class="grad-text">ክህሎት  ማወቅ</span><br>አማራጭ ሳይሆን ግዴታ ነው!</h1>
-        <p>n an era where the world is rapidly transforming digitally, technology knowledge is your ultimate key to success. Learn modern, practical skills without leaving your home and become globally competitive</p>
+        <p>In an era where the world is rapidly transforming digitally, technology knowledge is your ultimate key to success. Learn modern, practical skills without leaving your home and become globally competitive</p>
         <div class="hero-btns">
             <a href="#courses" class="btn btn-cyan" style="font-size:1rem;padding:14px 32px;">🚀 አሁኑኑ መማር ይጀምሩ / Start Learning Today</a>
         </div>
