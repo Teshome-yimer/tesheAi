@@ -37,11 +37,11 @@
 <div class="auth-wrap">
     <div class="auth-card">
         <div class="auth-logo">
-            <div class="logo">🎓 EduPlatform</div>
+            <div class="logo">🎓 Tesheai Academy </div>
         </div>
 
         <div class="auth-header">
-            <h1>እንኳን ደህና መጡ</h1>
+           <h1>እንኳን ደህና መጡ <span style="font-size: 0.7em; background: linear-gradient(135deg, var(--indigo), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">tesheai</span></h1>
             <p>Welcome Back • Sign in to continue</p>
         </div>
 
