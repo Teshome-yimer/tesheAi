@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'EduPlatform - ምርጥ ኦንላይን ትምህርቶች')
+@section('title', ' የነገው የቴክኖሎጂ መድረክ | Learn Tech Skills')
 @push('styles')
 <style>
 .hero { padding: 100px 0 80px; text-align: center; position: relative; overflow: hidden; }
@@ -56,11 +56,11 @@
 {{-- Hero --}}
 <section class="hero">
     <div class="container">
-        <div class="hero-badge">🇪🇹 አዲስ ኮርሶች ተጨምረዋል / New Courses Available</div>
-        <h1>ከዜሮ ወደ <span class="grad-text">ፕሮፌሽናል</span><br>ዲቬሎፐር ሁን</h1>
-        <p>ላራቬል፣ ሪኤክት እና MySQL ተጠቅምህ ሙሉ ስታክ ዌብ ዲቬሎፐር ሁን። Learn modern web development in Amharic + English.</p>
+        <div class="hero-badge">🇪🇹 🌐 በዲጂታሉ ዓለም ስኬታማ ለመሆን ዝግጁ ነዎት? | Master the Digital Era</div>
+        <h1>በዘመናችን የቴክኖሎጂ ክህሎት <span class="grad-text">ማወቅ</span><br>አማራጭ ሳይሆን ግዴታ ነው!</h1>
+        <p>ዓለም በከፍተኛ ፍጥነት ወደ ዲጂታል እየተቀየረች ባለችበት በዚህ ዘመን፣ የቴክኖሎጂ እውቀት ለስኬትዎ ዋነኛው ቁልፍ ነው። ከቤትዎ ሳይወጡ ዘመናዊና ተግባራዊ ክህሎቶችን ይማሩ፤ በዓለም አቀፍ ደረጃ ተወዳዳሪ ይሁኑ።</p>
         <div class="hero-btns">
-            <a href="#courses" class="btn btn-cyan" style="font-size:1rem;padding:14px 32px;">🚀 ኮርሶችን ይመልከቱ / View Courses</a>
+            <a href="#courses" class="btn btn-cyan" style="font-size:1rem;padding:14px 32px;">🚀 አሁኑኑ መማር ይጀምሩ / Start Learning Today</a>
         </div>
 
         {{-- Search bar --}}
@@ -70,7 +70,7 @@
                     style="flex:1;background:transparent;border:none;color:var(--text);padding:14px 22px;font-size:1rem;outline:none;font-family:inherit;">
                 <button type="submit"
                     style="background:linear-gradient(135deg,var(--indigo),var(--cyan));color:#fff;border:none;padding:14px 24px;cursor:pointer;font-size:1rem;font-weight:700;white-space:nowrap;">
-                    🔍 ፈልግ
+                    🔍 search
                 </button>
             </form>
             <div id="search-results" style="display:none;background:var(--bg2);border:1px solid var(--border);border-radius:12px;margin-top:8px;overflow:hidden;text-align:left;"></div>
@@ -83,19 +83,19 @@
     <div class="stats-row">
         <div class="stat-card">
             <div class="stat-num">5,000+</div>
-            <div class="stat-label">ተማሪዎች / Students</div>
+            <div class="stat-label">ተማሪዎች / Active Learners</div>
         </div>
         <div class="stat-card">
             <div class="stat-num">50+</div>
-            <div class="stat-label">ትምህርቶች / Lessons</div>
+            <div class="stat-label">ትምህርቶች / Video Lessons</div>
         </div>
         <div class="stat-card">
             <div class="stat-num">4.9★</div>
-            <div class="stat-label">ደረጃ / Rating</div>
+            <div class="stat-label">የተማሪዎች እርካታ / Top Rating</div>
         </div>
         <div class="stat-card">
             <div class="stat-num">30h</div>
-            <div class="stat-label">ይዘት / Content</div>
+            <div class="stat-label">ተግባራዊ / Hands-on Projects</div>
         </div>
     </div>
 </div>
@@ -104,8 +104,17 @@
 <section class="section-gap">
     <div class="container">
         <div class="section-title">
-            <h2>ምን ይማራሉ? / <span class="grad-text">What You'll Learn</span></h2>
-            <p>ይህ ኮርስ ሲጨርሱ ሙሉ ስታክ ዌብ ዲቬሎፐር ይሆናሉ</p>
+            <h2>ምን ያተርፋሉ? / <span class="grad-text">Why Learn With Us?</span></h2>
+            <p>ከንድፈ-ሐሳብ ባለፈ በኢንዱስትሪው ውስጥ የሚፈለጉ ተግባራዊ የቴክኖሎጂ ክህሎቶችን ይጨብጣሉ:: <br>
+            🤖 አርቲፊሻል ኢንቴሊጀንስ (AI & Automation) — የዘመኑን የኤአይ መሣሪያዎች ለዕለት ተዕለት ሥራና ለምርታማነት መጠቀም። <br>
+
+           🛡️ የሳይበር ደህንነት (Cybersecurity Fundamentals) — ዲጂታል መረጃዎችን እና ሲስተሞችን ከአደጋ የመጠበቅ ክህሎት። <br>
+
+           📊 የውሂብ ትንተና (Data Science & Analytics) — መረጃዎችን በመተንተን ውሳኔ የመስጠት ጥበብ። <br>
+
+          📱 ሞባይል እና አፕሊኬሽን (Mobile & Software Tech) — ዘመናዊ የሶፍትዌር እና የሞባይል ቴክኖሎጂዎች አሰራር። <br>
+
+          💼 የዲጂታል ሥራ ዕድሎች (Tech Career & Freelancing) — በቴክኖሎጂው ዘርፍ ዓለም አቀፍ የሥራ እድሎችን የማግኘት ስልት።</p>  <br>
         </div>
         <div class="features-grid">
             @if(isset($featuredCourse) && $featuredCourse)
@@ -120,12 +129,12 @@
 
             @if(!isset($featuredCourse) || empty($items))
                 @foreach([
-                    ['icon'=>'⚡','title'=>'Laravel 11 Backend','desc'=>'Modern PHP framework for building robust APIs'],
-                    ['icon'=>'⚛️','title'=>'React.js Frontend','desc'=>'Build dynamic user interfaces with React'],
-                    ['icon'=>'🗄️','title'=>'MySQL Database','desc'=>'Design and optimize relational databases'],
-                    ['icon'=>'🔐','title'=>'Authentication & Security','desc'=>'JWT, OAuth, and secure coding practices'],
-                    ['icon'=>'🚀','title'=>'REST API Design','desc'=>'Build scalable and clean RESTful APIs'],
-                    ['icon'=>'☁️','title'=>'Deployment','desc'=>'Deploy your app to production servers'],
+                    ['icon'=>'⚡','title'=>'ዘመናዊ የቴክኖሎጂ ክህሎቶች','desc'=>'በዓለም አቀፍ ደረጃ በስፋት የሚፈለጉ ዘመናዊ የልማት ቴክኖሎጂዎች'],
+                    ['icon'=>'⚛️','title'=>'ተግባራዊ ፕሮጀክቶች (Real-World Projects)','desc'=>'በቀጥታ ለሥራ የሚያዘጋጁዎትን እውነተኛ ፕሮጀክቶች የመስራት ልምድ'],
+                    ['icon'=>'🗄️','title'=>'የውሂብ ጎታ እና ሲስተም ዲዛይን','desc'=>'ጠንካራና አስተማማኝ ሶፍትዌሮችን የመገንባት ጥበብ'],
+                    ['icon'=>'🔐','title'=>'ደህንነት እና ፕሮፌሽናል አሰራር','desc'=>'የሶፍትዌር ደህንነት እና በኢንዱስትሪ ደረጃ የሚጠበቁ ምርጥ ልምዶች'],
+                    ['icon'=>'🚀','title'=>'የፍሪላንሲንግ እና የሥራ ዕድል','desc'=>'በኦንላይን እና በሀገር ውስጥ የሥራ ዕድሎችን የማግኘት አቅም'],
+                    ['icon'=>'☁️','title'=>'በራስ ፍጥነት የመማር እድል','desc'=>'በፈለጉት ጊዜና ቦታ ቪዲዮዎችን ደጋግመው የመመልከት ነፃነት'],
                 ] as $f)
                 <div class="feature-card">
                     <div class="feature-icon">{{ $f['icon'] }}</div>
@@ -142,11 +151,11 @@
 <section class="section-gap" id="courses">
     <div class="container">
         <div class="section-title">
-            <h2>ኮርሶቻችን / <span class="grad-text">Our Courses</span></h2>
+            <h2>የሥልጠና ፕሮግራሞቻችን / <span class="grad-text">Our Courses</span></h2>
             @if(!empty($search))
                 <p>🔍 "{{ $search }}" ውጤት: {{ $courses->count() }} ኮርስ(ኮርሶች) ተገኝተዋል — <a href="{{ url('/') }}#courses" style="color:var(--cyan);">ሁሉንም አሳይ / Clear</a></p>
             @else
-                <p>ተገቢ ኮርሱን ምረጡ እና ዛሬ ጀምሩ</p>
+                <p>ለእርስዎ ተስማሚ የሆነውን ትምህርት ይምረጡና የዕውቀት ጉዞዎን ዛሬውኑ ይጀምሩ</p>
             @endif
         </div>
         <div class="courses-grid">
@@ -179,7 +188,7 @@
                 </div>
             </div>
             @empty
-            <p style="color:var(--muted);text-align:center;grid-column:1/-1;">ኮርስ አልተጠቃ / No courses yet.</p>
+            <p style="color:var(--muted);text-align:center;grid-column:1/-1;">በአሁኑ ሰዓት የተመዘገበ ኮርስ የለም / No courses yet.</p>
             @endforelse
         </div>
     </div>
@@ -190,7 +199,7 @@
     <div class="container">
         <div class="section-title">
             <h2>አሰልጣኝዎን ያግኙ / <span class="grad-text">Meet Your Instructor</span></h2>
-            <p>ከባለሙያ ይማሩ / Learn from the industry expert</p>
+            <p>ቀጥታ ከኢንዱስትሪው ባለሙያዎች ጋር በተግባር ይማሩ / Learn from industry experts</p>
         </div>
         <div style="display:flex; gap:48px; align-items:center; flex-wrap:wrap; justify-content:center;">
             <div style="flex:1; min-width:280px; text-align:center;">
@@ -198,9 +207,10 @@
             </div>
             <div style="flex:2; min-width:320px;">
                 <h3 style="font-size:2rem; font-weight:800; margin-bottom:8px;">ተሾመ / Teshome</h3>
-                <p style="color:var(--cyan); font-weight:600; margin-bottom:18px; font-size:1.1rem;">ከፍተኛ ዌብ ዲቬሎፐር እና አሰልጣኝ / Senior Web Developer & Instructor</p>
+                <p style="color:var(--cyan); font-weight:600; margin-bottom:18px; font-size:1.1rem;">የሶፍትዌር ኢንጂነር፣ የቴክኖሎጂ አማካሪ እና የዲጂታል ክህሎቶች አሰልጣኝ
+(Software Engineer, Tech Consultant & Digital Skills Instructor)</p>
                 <p style="color:var(--muted); line-height:1.8; font-size:1.05rem; margin-bottom:24px;">
-                    ተሾመ ከ 5 ዓመት በላይ በሶፍትዌር ልማት ኢንዱስትሪ ውስጥ ያሳለፈ፣ በርካታ ሙሉ ስታክ (Full-Stack) ፕሮጀክቶችን የሰራ እና በላራቬል (Laravel)፣ ሪኤክት (React) እና MySQL ቴክኖሎጂዎች ላይ ሰፊ ልምድ ያለው ባለሙያ ነው። ዛሬውኑ ይቀላቀሉ እና የዌብ ዲቬሎፕመንት ጉዞዎን ይጀምሩ!
+                   ተሾመ በሶፍትዌር ልማት እና በቴክኖሎጂው ዘርፍ ከ5 ዓመታት በላይ በርካታ ዘመናዊ መፍትሔዎችን በመገንባትና በመምራት ሰፊ ልምድ ያለው ባለሙያ ነው። ከኮዲንግ ባሻገር በአርቲፊሻል ኢንቴሊጀንስ (AI)፣ በሳይበር ሴኪዩሪቲ፣ በዳታ ሳይንስ እና በሌሎች ዘመናዊ ዲጂታል ክህሎቶች ላይ ትኩረት በማድረግ፣ ለወደፊቱ የቴክኖሎጂ ዓለም ብቁ የሚያደርጉ ተግባራዊ ዕውቀቶችን ያካፍላል።
                 </p>
                 <div style="display:flex; gap:16px;">
                     <div style="background:var(--bg2); padding:14px 24px; border-radius:10px; border:1px solid var(--border); text-align:center; min-width:120px;">
@@ -221,13 +231,29 @@
 <section class="section-gap">
     <div class="container">
         <div class="section-title">
-            <h2>ምን ይላሉ? / <span class="grad-text">What Students Say</span></h2>
+            <h2>የተማሪዎቻችን አስተያየት / <span class="grad-text">Student Stories</span></h2>
+            <p>ከእኛ ጋር የተማሩ ተማሪዎች ስኬታቸውን ያካፍላሉ</p>
         </div>
         <div class="testimonials-grid">
         @foreach([
-    ['name'=>'አብዱ ሀሰን','role'=>'Full Stack Developer','text'=>'ይህ ኮርስ ሕይወቴን ቀይሯል። ከምዝገባ 3 ወር ውስጥ የፈለኩትን ሥራ አገኘሁ። This course changed my life!','img'=>asset('images/kidan.webp')],
-    ['name'=>'Sara Tesfaye','role'=>'Web Developer','text'=>'The Amharic + English mix made it so easy to understand. Best investment I have made for my career!','img'=>asset('images/mengesha.webp')],
-    ['name'=>'ዳዊት ገ/ሕይወት','role'=>'Freelancer','text'=>'አስተማሪው በጣም ጥሩ ነው። ቪዲዮዎቹ ግልጽ ናቸው። ሁሉም ሰው ይህን ኮርስ መውሰድ አለበት።','img'=>asset('images/waja.webp')],
+    [
+        'name' => 'አብዱ ሀሰን',
+        'role' => 'AI & Software Developer',
+        'text' => 'ትምህርቱ በጣም ተግባራዊና ግልጽ ነው። ከኮዲንግ ባለፈ የዘመኑን የኤአይ (AI) መሣሪያዎች ለምርታማነት በመጠቀሜ ሙሉ የዌብና የሞባይል መተግበሪያዎችን በራሴ መገንባት ችያለሁ። ለአካዴሚያዊና ፕሮፌሽናል ጉዞዬ ድንቅ ጅምር ነው!',
+        'img'  => asset('images/kidan.webp')
+    ],
+    [
+        'name' => 'Sara Tesfaye',
+        'role' => 'Cybersecurity & Cloud Analyst',
+        'text' => 'The blend of Amharic and English made complex tech domains like Cybersecurity, Data Analytics, and Cloud systems effortless to grasp. Truly a life-changing experience for my career in tech!',
+        'img'  => asset('images/mengesha.webp')
+    ],
+    [
+        'name' => 'ዳዊት ገ/ሕይወት',
+        'role' => 'Tech Freelancer & Consultant',
+        'text' => 'ስልጠናው ከንድፈ-ሀሳብ ይልቅ ሙሉ በሙሉ ተግባር ላይ ያተኮረ በመሆኑ፣ በፍሪላንሲንግ ዘርፍ በዓለም አቀፍ ደረጃ የቴክኖሎጂ ስራዎችን ወዲያውኑ እንድጀምርና ውጤታማ እንድሆን ረድቶኛል። በጣም እመክራለሁ!',
+        'img'  => asset('images/waja.webp')
+    ],
 ] as $t)
             <div class="testi-card">
                 <div class="testi-stars">★★★★★</div>
@@ -248,12 +274,12 @@
 {{-- CTA --}}
 <div class="container">
     <div class="cta-section">
-        <h2>ዛሬ ጀምሩ! / <span class="grad-text">Start Today!</span></h2>
-        <p>5,000+ ተማሪዎች ተቀላቅለዋል። ቀጣዩ ተማሪ እርስዎ ነዎት። Join 5,000+ students already learning.</p>
+        <h2>የነገውን የቴክኖሎጂ ስኬትዎን ዛሬ ይጀምሩ!/ <span class="grad-text">Start Today!</span></h2>
+        <p>በሺዎች የሚቆጠሩ ተማሪዎች ክህሎታቸውን እያደሱ ይገኛሉ። እርስዎስ ምን ይጠብቃሉ? Join thousands of successful learners today.</p>
         @guest
-            <a href="{{ route('register') }}" class="btn btn-cyan" style="font-size:1.1rem;padding:16px 40px;">ነፃ ተመዝገቡ / Sign Up Free →</a>
+            <a href="{{ route('register') }}" class="btn btn-cyan" style="font-size:1.1rem;padding:16px 40px;">በነፃ ተመዝገቡ / Sign Up Free →</a>
         @else
-            <a href="#courses" class="btn btn-cyan" style="font-size:1.1rem;padding:16px 40px;">ኮርሶችን ይመልከቱ →</a>
+            <a href="#courses" class="btn btn-cyan" style="font-size:1.1rem;padding:16px 40px;">ኮርሶችን ይመልከቱ / View Courses →</a>
         @endguest
     </div>
 </div>
