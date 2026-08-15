@@ -75,7 +75,7 @@
     <div class="container">
         <div class="hero-badge"> ✨ በዲጂታሉ ዓለም ስኬታማ ለመሆን ዝግጁ ነዎት? | Master the Digital Era💡</div>
         <h1>በዘመናችን የቴክኖሎጂ  <span class="grad-text">ክህሎት  ማወቅ</span><br>አማራጭ ሳይሆን ግዴታ ነው!</h1>
-        <p>ዓለም በከፍተኛ ፍጥነት ወደ ዲጂታል እየተቀየረች ባለችበት በዚህ ዘመን፣ የቴክኖሎጂ እውቀት ለስኬትዎ ዋነኛው ቁልፍ ነው። ከቤትዎ ሳይወጡ ዘመናዊና ተግባራዊ ክህሎቶችን ይማሩ፤ በዓለም አቀፍ ደረጃ ተወዳዳሪ ይሁኑ።</p>
+        <p>n an era where the world is rapidly transforming digitally, technology knowledge is your ultimate key to success. Learn modern, practical skills without leaving your home and become globally competitive</p>
         <div class="hero-btns">
             <a href="#courses" class="btn btn-cyan" style="font-size:1rem;padding:14px 32px;">🚀 አሁኑኑ መማር ይጀምሩ / Start Learning Today</a>
         </div>
@@ -126,12 +126,12 @@
 
     <ul class="tech-feature-list">
        
-        <li>🤖 <span><strong>አርቲፊሻል ኢንቴሊጀንስ (AI & Automation)</strong> — የዘመኑን የኤአይ መሣሪያዎች ለዕለት ተዕለት ሥራና ለምርታማነት መጠቀም።</span></li>
-        <li>🛡️ <span><strong>የሳይበር ደህንነት (Cybersecurity Fundamentals)</strong> — ዲጂታል መረጃዎችን እና ሲስተሞችን ከአደጋ የመጠበቅ ክህሎት።</span></li>
-        <li>📊 <span><strong>የውሂብ ትንተና (Data Science & Analytics)</strong> — መረጃዎችን በመተንተን ውሳኔ የመስጠት ጥበብ።</span></li>
-        <li>📱 <span><strong>ሞባይል እና አፕሊኬሽን (Mobile & Software Tech)</strong> — ዘመናዊ የሶፍትዌር እና የሞባይል ቴክኖሎጂዎች አሰራር።</span></li>
+        <li>🤖 <span><strong> (AI & Automation)</strong> —AI & Cybersecurity</span></li>
+        <li>🛡️ <span><strong>Software & Web Development — Build full-stack web applications from scratch using</strong> dynamic frameworks, clean architecture, and modern coding practices.</span></li>
+        <li>📊 <span><strong>Video Editing — Master video creation, post-production, and </strong>storytelling to craft engaging content for social media and online platforms.</span></li>
+        <li>📱 <span><strong>Digital Marketing — Learn online brand promotion, audience targeting, SEO,</strong> and strategic campaigns to drive digital business growth.</span></li>
         <li>💼 <span><strong>የዲጂታል ሥራ ዕድሎች (Tech Career & Freelancing)</strong> — በቴክኖሎጂው ዘርፍ ዓለም አቀፍ የሥራ እድሎችን የማግኘት ስልት።</span></li>
-        <li>🤖 <span><strong>ከንድፈ-ሐሳብ ባለፈ በኢንዱስትሪው ውስጥ የሚፈለጉ ተግባራዊ የቴክኖሎጂ</strong> ክህሎቶችን ይጨብጣሉ::</span></li>
+        <li>🤖 <span><strong>Mobile Application Development — </strong> Database & RESTful APIs</span></li>
     </ul>
 </div>
         <div class="features-grid">
@@ -228,7 +228,7 @@
                 <p style="color:var(--cyan); font-weight:600; margin-bottom:18px; font-size:1.1rem;">የሶፍትዌር ኢንጂነር፣ የቴክኖሎጂ አማካሪ እና የዲጂታል ክህሎቶች አሰልጣኝ
 (Software Engineer, Tech Consultant & Digital Skills Instructor)</p>
                 <p style="color:var(--muted); line-height:1.8; font-size:1.05rem; margin-bottom:24px;">
-                   ተሾመ በሶፍትዌር ልማት እና በቴክኖሎጂው ዘርፍ ከ5 ዓመታት በላይ በርካታ ዘመናዊ መፍትሔዎችን በመገንባትና በመምራት ሰፊ ልምድ ያለው ባለሙያ ነው። ከኮዲንግ ባሻገር በአርቲፊሻል ኢንቴሊጀንስ (AI)፣ በሳይበር ሴኪዩሪቲ፣ በዳታ ሳይንስ እና በሌሎች ዘመናዊ ዲጂታል ክህሎቶች ላይ ትኩረት በማድረግ፣ ለወደፊቱ የቴክኖሎጂ ዓለም ብቁ የሚያደርጉ ተግባራዊ ዕውቀቶችን ያካፍላል።
+                   Teshome is a Software Engineer, Tech Consultant, and Lead Instructor with 5+ years of experience building modern digital solutions. He empowers learners with real-world tech skills across 6 core domains: Video Editing, Digital Marketing, Software & Web Development, Mobile App Development, Database & REST APIs, and AI & Cybersecurity. Through practical, project-based teaching, Teshome bridges the gap between theory and industry needs to prepare students for global tech careers.
                 </p>
                 <div style="display:flex; gap:16px;">
                     <div style="background:var(--bg2); padding:14px 24px; border-radius:10px; border:1px solid var(--border); text-align:center; min-width:120px;">
@@ -261,7 +261,7 @@
         'img'  => asset('images/kidan.webp')
     ],
     [
-        'name' => 'Sara Tesfaye',
+        'name' => 'robel Tesfaye',
         'role' => 'Cybersecurity & Cloud Analyst',
         'text' => 'The blend of Amharic and English made complex tech domains like Cybersecurity, Data Analytics, and Cloud systems effortless to grasp. Truly a life-changing experience for my career in tech!',
         'img'  => asset('images/mengesha.webp')
