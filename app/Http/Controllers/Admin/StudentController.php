@@ -49,52 +49,49 @@ class StudentController extends Controller
     }
 
     public function update(Request $request, User $user)
-    {
-        $data = $request->validate([
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|email|max:255|unique:users,email,' . $user->id,
-            'phone'    => 'nullable|string|max:30',
-            'role'     => 'required|in:student,admin',
-            'password' => 'nullable|string|min:6',
-        ]);
+{
+    $data = $request->validate([
+        'name'     => 'required|string|max:255',
+        'email'    => 'required|email|max:255|unique:users,email,' . $user->id,
+        'phone'    => 'nullable|string|max:30',
+        'role'     => 'required|in:student,admin',
+        'password' => 'nullable|string|min:6',
+    ]);
 
-        // 🛡️ ጥበቃ 1፡ ዋናውን Admin (ID = 1) ወደ Student መቀየር አይቻልም
-        if ($user->id === 1 && $data['role'] !== 'admin') {
-            return back()->withErrors(['role' => 'የዋናውን Admin Role መቀየር አይቻልም!']);
-        }
-
-        // Safety: በመጨረሻ የቀረውን ብቸኛ Admin ወደ Student መቀየር አይቻልም
-        if ($user->isAdmin() && $data['role'] !== 'admin'
-            && User::where('role', 'admin')->where('id', '!=', $user->id)->count() === 0) {
-            return back()->withErrors(['role' => 'በሲስተሙ ውስጥ የቀረውን የመጨረሻ Admin መቀየር አይቻልም!']);
-        }
-
-        if (empty($data['password'])) {
-            unset($data['password']); // የነበረውን Password አትቀይረው
-        }
-
-        $user->update($data);
-
-        return back()->with('success', 'የተጠቃሚው መረጃ በተሳካ ሁኔታ ተስተካክሏል!');
+    // 🛡️ ጥበቃ 1፡ የዋናው Admin Email ከሆነ ሁልጊዜ Admin እንደሆነ እንዲቀጥል ያስገድደዋል
+    if ($user->email === 'tesheyimer12@gmail.com') { 
+        $data['role'] = 'admin'; 
     }
 
-    public function destroy(User $user)
-    {
-        // 🛡️ ጥበቃ 2፡ ዋናውን Admin (ID = 1) መደለት በፍፁም አይቻልም
-        if ($user->id === 1) {
-            return back()->withErrors(['delete' => 'ዋናውን Admin አካውንት መደለት አይቻልም!']);
-        }
-
-        // Safety: የመጨረሻውን አድሚን እንዳይጠፋ ይከለክላል
-        if ($user->isAdmin() && User::where('role', 'admin')->count() <= 1) {
-            return back()->withErrors(['delete' => 'በሲስተሙ ውስጥ የቀረውን የመጨረሻ Admin መደለት አይቻልም!']);
-        }
-
-        $user->delete();
-
-        return back()->with('success', 'ተጠቃሚው ተሰርዟል!');
+    if ($user->isAdmin() && $data['role'] !== 'admin'
+        && User::where('role', 'admin')->where('id', '!=', $user->id)->count() === 0) {
+        return back()->withErrors(['role' => 'በሲስተሙ ውስጥ የቀረውን የመጨረሻ Admin መቀየር አይቻልም!']);
     }
 
+    if (empty($data['password'])) {
+        unset($data['password']);
+    }
+
+    $user->update($data);
+
+    return back()->with('success', 'የተጠቃሚው መረጃ በተሳካ ሁኔታ ተስተካክሏል!');
+}
+
+public function destroy(User $user)
+{
+    // 🛡️ ጥበቃ 2፡ ዋናውን Admin በኢሜይሉ ለይቶ መደለት እንዳይቻል ይከለክላል
+    if ($user->email === 'tesheyimer12@gmail.com') {
+        return back()->withErrors(['delete' => 'ዋናውን Admin አካውንት መደለት አይቻልም!']);
+    }
+
+    if ($user->isAdmin() && User::where('role', 'admin')->count() <= 1) {
+        return back()->withErrors(['delete' => 'በሲስተሙ ውስጥ የቀረውን የመጨረሻ Admin መደለት አይቻልም!']);
+    }
+
+    $user->delete();
+
+    return back()->with('success', 'ተጠቃሚው ተሰርዟል!');
+}
     public function enroll(Request $request)
     {
         $request->validate([
