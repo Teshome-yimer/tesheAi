@@ -41,16 +41,11 @@ class StudentController extends Controller
             'password' => 'required|string|min:6',
         ]);
 
-        $user = User::create($data);
-
-        // Single-admin policy: creating a new admin demotes every other admin.
-        if ($data['role'] === 'admin') {
-            User::where('id', '!=', $user->id)->where('role', 'admin')->update(['role' => 'student']);
-        }
+        User::create($data);
 
         return back()->with('success', $data['role'] === 'admin'
-            ? 'New admin created. This is now the only admin login.'
-            : 'New user created!');
+            ? 'አዲስ Admin በተሳካ ሁኔታ ተፈጥሯል!'
+            : 'አዲስ ተጠቃሚ በተሳካ ሁኔታ ተፈጥሯል!');
     }
 
     public function update(Request $request, User $user)
@@ -63,36 +58,41 @@ class StudentController extends Controller
             'password' => 'nullable|string|min:6',
         ]);
 
-        // Safety: never demote the last remaining admin
+        // 🛡️ ጥበቃ 1፡ ዋናውን Admin (ID = 1) ወደ Student መቀየር አይቻልም
+        if ($user->id === 1 && $data['role'] !== 'admin') {
+            return back()->withErrors(['role' => 'የዋናውን Admin Role መቀየር አይቻልም!']);
+        }
+
+        // Safety: በመጨረሻ የቀረውን ብቸኛ Admin ወደ Student መቀየር አይቻልም
         if ($user->isAdmin() && $data['role'] !== 'admin'
             && User::where('role', 'admin')->where('id', '!=', $user->id)->count() === 0) {
-            return back()->withErrors(['role' => 'Cannot remove the last admin account.']);
+            return back()->withErrors(['role' => 'በሲስተሙ ውስጥ የቀረውን የመጨረሻ Admin መቀየር አይቻልም!']);
         }
 
         if (empty($data['password'])) {
-            unset($data['password']); // keep current password
+            unset($data['password']); // የነበረውን Password አትቀይረው
         }
 
         $user->update($data);
 
-        // 🔐 Single-admin policy: saving a user as admin demotes every other admin
-        if ($data['role'] === 'admin') {
-            User::where('id', '!=', $user->id)->where('role', 'admin')->update(['role' => 'student']);
-        }
-
-        return back()->with('success', 'User updated! ' . ($user->isAdmin() ? 'This is now the ONLY admin — login uses this email/password.' : ''));
+        return back()->with('success', 'የተጠቃሚው መረጃ በተሳካ ሁኔታ ተስተካክሏል!');
     }
 
     public function destroy(User $user)
     {
-        // Admin account can never be deleted (protects the only admin)
-        if ($user->isAdmin()) {
-            return back()->withErrors(['delete' => 'The admin account cannot be deleted.']);
+        // 🛡️ ጥበቃ 2፡ ዋናውን Admin (ID = 1) መደለት በፍፁም አይቻልም
+        if ($user->id === 1) {
+            return back()->withErrors(['delete' => 'ዋናውን Admin አካውንት መደለት አይቻልም!']);
+        }
+
+        // Safety: የመጨረሻውን አድሚን እንዳይጠፋ ይከለክላል
+        if ($user->isAdmin() && User::where('role', 'admin')->count() <= 1) {
+            return back()->withErrors(['delete' => 'በሲስተሙ ውስጥ የቀረውን የመጨረሻ Admin መደለት አይቻልም!']);
         }
 
         $user->delete();
 
-        return back()->with('success', 'User deleted!');
+        return back()->with('success', 'ተጠቃሚው ተሰርዟል!');
     }
 
     public function enroll(Request $request)
@@ -107,7 +107,7 @@ class StudentController extends Controller
             ['enrolled_at' => now()]
         );
 
-        return back()->with('success', 'Student enrolled manually!');
+        return back()->with('success', 'ተማሪው ኮርሱ ላይ ተመዝግቧል!');
     }
 
     public function enrollForm()
