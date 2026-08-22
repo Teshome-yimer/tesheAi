@@ -73,8 +73,8 @@
 {{-- Hero --}}
 <section class="hero">
     <div class="container">
-        <div class="hero-badge"> ✨ በዲጂታሉ ዓለም ስኬታማ ለመሆን ዝግጁ ነዎት? | Master the Digital Era</div>
-        <h1>In an era where the world is rapidly transforming digitally,  <span class="grad-text"> technology knowledge is your ultimate key to success. </span><br>Learn modern, practical skills without leaving your home and become globally competitive</h1>
+        <div class="hero-badge"> በዲጂታሉ ዓለም ስኬታማ ለመሆን ዝግጁ ነዎት? | Master the Digital Era</div>
+        <h1>TesheAi Acadamey  <span class="grad-text">  World is rapidly transforming digitally. </span><br>Learn modern, practical skills </h1>
             <div class="hero-btns">
             <a href="#courses" class="btn btn-cyan" style="font-size:1rem;padding:14px 32px;">አሁኑኑ መማር ይጀምሩ / Start Learning Today</a>
         </div>
