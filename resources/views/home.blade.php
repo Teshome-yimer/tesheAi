@@ -9,9 +9,9 @@
 .grad-text { background:linear-gradient(135deg, var(--indigo), var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 .hero p { font-size:1.2rem; color:var(--muted); max-width:600px; margin:0 auto 40px; line-height:1.7; }
 .hero-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
-.stats-row { display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:24px; padding:60px 0; }
-.stat-card { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:28px; text-align:center; transition:.2s; }
-.stat-card:hover { border-color:var(--indigo); transform:translateY(-4px); }
+.stats-row { display:grid; grid-template-columns:repeat(auto-fit, minmax(60px,1fr)); gap:10px; padding:30px 0; }
+.stat-card { background:var(--bg2); border:1px solid var(--border); border-radius:50%; padding:20px; text-align:center; transition:.5s; }
+.stat-card:hover { border-color:var(--indigo); transform:translateY(-6px); }
 .stat-num { font-size:2.5rem; font-weight:900; background:linear-gradient(135deg,var(--indigo),var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 .stat-label { color:var(--muted); font-size:0.85rem; margin-top:4px; }
 .section-title { text-align:center; margin-bottom:56px; }
@@ -86,7 +86,7 @@
                     style="flex:1;background:transparent;border:none;color:var(--text);padding:14px 22px;font-size:1rem;outline:none;font-family:inherit;">
                 <button type="submit"
                     style="background:linear-gradient(135deg,var(--indigo),var(--cyan));color:#fff;border:none;padding:14px 24px;cursor:pointer;font-size:1rem;font-weight:700;white-space:nowrap;">
-                    🔍 search
+                     search
                 </button>
             </form>
             <div id="search-results" style="display:none;background:var(--bg2);border:1px solid var(--border);border-radius:12px;margin-top:8px;overflow:hidden;text-align:left;"></div>
@@ -196,7 +196,7 @@
                 </div>
             </div>
             @empty
-            <p style="color:var(--muted);text-align:center;grid-column:1/-1;">በአሁኑ ሰዓት የተመዘገበ ኮርስ የለም / No courses yet.</p>
+            <p style="color:var(--muted);text-align:center;grid-column:1/-1;">አዳዲስ ኮርስ ልንለቅ ነው በትግስት ጠብቁን.</p>
             @endforelse
         </div>
     </div>
@@ -218,7 +218,7 @@
                 <p style="color:var(--cyan); font-weight:600; margin-bottom:18px; font-size:1.1rem;">የሶፍትዌር ኢንጂነር፣ የቴክኖሎጂ አማካሪ እና የዲጂታል ክህሎቶች አሰልጣኝ
 (Software Engineer, Tech Consultant & Digital Skills Instructor)</p>
                 <p style="color:var(--muted); line-height:1.8; font-size:1.05rem; margin-bottom:24px;">
-                   Teshome is a Software Engineer, Tech Consultant, and Lead Instructor with 5+ years of experience building modern digital solutions. He empowers learners with real-world tech skills across 6 core domains: Video Editing, Digital Marketing, Software & Web Development, Mobile App Development, Database & REST APIs, and AI & Cybersecurity. Through practical, project-based teaching, Teshome bridges the gap between theory and industry needs to prepare students for global tech careers.
+                   Teshome is a Software Engineer, Tech Consultant, and Lead Instructor with 7+ years of experience building modern digital solutions. He empowers learners with real-world tech skills across 6 core domains: Video Editing, Digital Marketing, Software & Web Development, Mobile App Development, Database & REST APIs, and AI & Cybersecurity. Through practical, project-based teaching, Teshome bridges the gap between theory and industry needs to prepare students for global tech careers.
                 </p>
                 <div style="display:flex; gap:16px;">
                     <div style="background:var(--bg2); padding:14px 24px; border-radius:10px; border:1px solid var(--border); text-align:center; min-width:120px;">
