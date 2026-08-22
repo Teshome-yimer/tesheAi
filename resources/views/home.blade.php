@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', ' 💡የነገው የቴክኖሎጂ መድረክ | Learn Tech Skills')
+@section('title', ' Tesheai Acadamey የነገው የቴክኖሎጂ መድረክ | Learn Tech Skills')
 @push('styles')
 <style>
 .hero { padding: 100px 0 80px; text-align: center; position: relative; overflow: hidden; }
@@ -73,11 +73,10 @@
 {{-- Hero --}}
 <section class="hero">
     <div class="container">
-        <div class="hero-badge"> ✨ በዲጂታሉ ዓለም ስኬታማ ለመሆን ዝግጁ ነዎት? | Master the Digital Era💡</div>
-        <h1>በዘመናችን የቴክኖሎጂ  <span class="grad-text">ክህሎት  ማወቅ</span><br>አማራጭ ሳይሆን ግዴታ ነው!</h1>
-        <p>In an era where the world is rapidly transforming digitally, technology knowledge is your ultimate key to success. Learn modern, practical skills without leaving your home and become globally competitive</p>
-        <div class="hero-btns">
-            <a href="#courses" class="btn btn-cyan" style="font-size:1rem;padding:14px 32px;">🚀 አሁኑኑ መማር ይጀምሩ / Start Learning Today</a>
+        <div class="hero-badge"> ✨ በዲጂታሉ ዓለም ስኬታማ ለመሆን ዝግጁ ነዎት? | Master the Digital Era</div>
+        <h1>In an era where the world is rapidly transforming digitally,  <span class="grad-text"> technology knowledge is your ultimate key to success. </span><br>Learn modern, practical skills without leaving your home and become globally competitive</h1>
+            <div class="hero-btns">
+            <a href="#courses" class="btn btn-cyan" style="font-size:1rem;padding:14px 32px;">አሁኑኑ መማር ይጀምሩ / Start Learning Today</a>
         </div>
 
         {{-- Search bar --}}
@@ -123,23 +122,14 @@
        <div class="section-title">
     <h2>ምን ያተርፋሉ? / <span class="grad-text">Why Learn With Us?</span></h2>
     
-
-    <ul class="tech-feature-list">
-       
-        <li>🤖 <span><strong> (AI & Automation)</strong> —AI & Cybersecurity</span></li>
-        <li>🛡️ <span><strong>Software & Web Development — Build full-stack web applications from scratch using</strong> dynamic frameworks, clean architecture, and modern coding practices.</span></li>
-        <li>📊 <span><strong>Video Editing — Master video creation, post-production, and </strong>storytelling to craft engaging content for social media and online platforms.</span></li>
-        <li>📱 <span><strong>Digital Marketing — Learn online brand promotion, audience targeting, SEO,</strong> and strategic campaigns to drive digital business growth.</span></li>
-        <li>💼 <span><strong>የዲጂታል ሥራ ዕድሎች (Tech Career & Freelancing)</strong> — በቴክኖሎጂው ዘርፍ ዓለም አቀፍ የሥራ እድሎችን የማግኘት ስልት።</span></li>
-        <li>🤖 <span><strong>Mobile Application Development — </strong> Database & RESTful APIs</span></li>
-    </ul>
+   
 </div>
         <div class="features-grid">
             @if(isset($featuredCourse) && $featuredCourse)
                 @php $items = $featuredCourse->what_you_learn ?? []; @endphp
                 @foreach(array_slice($items, 0, 6) as $item)
                 <div class="feature-card">
-                    <div class="feature-icon">💰 💡</div>
+                    <div class="feature-icon"></div>
                     <h3>{{ $item }}</h3>
                 </div>
                 @endforeach
@@ -147,11 +137,11 @@
 
             @if(!isset($featuredCourse) || empty($items))
                 @foreach([
-                    ['icon'=>'⚡','title'=>'ዘመናዊ የቴክኖሎጂ ክህሎቶች','desc'=>'በዓለም አቀፍ ደረጃ በስፋት የሚፈለጉ ዘመናዊ የልማት ቴክኖሎጂዎች'],
-                    ['icon'=>'⚛️','title'=>'ተግባራዊ ፕሮጀክቶች (Real-World Projects)','desc'=>'በቀጥታ ለሥራ የሚያዘጋጁዎትን እውነተኛ ፕሮጀክቶች የመስራት ልምድ'],
-                    ['icon'=>'🗄️','title'=>'የውሂብ ጎታ እና ሲስተም ዲዛይን','desc'=>'ጠንካራና አስተማማኝ ሶፍትዌሮችን የመገንባት ጥበብ'],
-                    ['icon'=>'🔐','title'=>'ደህንነት እና ፕሮፌሽናል አሰራር','desc'=>'የሶፍትዌር ደህንነት እና በኢንዱስትሪ ደረጃ የሚጠበቁ ምርጥ ልምዶች'],
-                    ['icon'=>'🚀','title'=>'የፍሪላንሲንግ እና የሥራ ዕድል','desc'=>'በኦንላይን እና በሀገር ውስጥ የሥራ ዕድሎችን የማግኘት አቅም'],
+                    ['icon'=>'','title'=>'ዘመናዊ የቴክኖሎጂ ክህሎቶች','desc'=>'በዓለም አቀፍ ደረጃ በስፋት የሚፈለጉ ዘመናዊ የልማት ቴክኖሎጂዎች'],
+                    ['icon'=>'','title'=>'ተግባራዊ ፕሮጀክቶች (Real-World Projects)','desc'=>'በቀጥታ ለሥራ የሚያዘጋጁዎትን እውነተኛ ፕሮጀክቶች የመስራት ልምድ'],
+                    ['icon'=>'','title'=>'የውሂብ ጎታ እና ሲስተም ዲዛይን','desc'=>'ጠንካራና አስተማማኝ ሶፍትዌሮችን የመገንባት ጥበብ'],
+                    ['icon'=>'','title'=>'ደህንነት እና ፕሮፌሽናል አሰራር','desc'=>'የሶፍትዌር ደህንነት እና በኢንዱስትሪ ደረጃ የሚጠበቁ ምርጥ ልምዶች'],
+                    ['icon'=>'','title'=>'የፍሪላንሲንግ እና የሥራ ዕድል','desc'=>'በኦንላይን እና በሀገር ውስጥ የሥራ ዕድሎችን የማግኘት አቅም'],
                     ['icon'=>'☁️','title'=>'በራስ ፍጥነት የመማር እድል','desc'=>'በፈለጉት ጊዜና ቦታ ቪዲዮዎችን ደጋግመው የመመልከት ነፃነት'],
                 ] as $f)
                 <div class="feature-card">
