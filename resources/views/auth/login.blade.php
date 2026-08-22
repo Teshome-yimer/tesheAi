@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'ግባ | Login')
+@section('title', 'Login')
 
 @push('styles')
 <style>
@@ -94,7 +94,7 @@
             </div>
 
             <button type="submit" class="btn btn-cyan" style="width:100%; justify-content:center; padding:12px; font-size:0.95rem; font-weight:700;">
-                🔑 ግባ / Sign In
+                 ግባ/Sign In
             </button>
         </form>
 
