@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', ' Register')
+@section('title', ' SignUp')
 
 @push('styles')
 <style>
@@ -102,7 +102,7 @@
             </div>
 
             <button type="submit" class="btn btn-cyan" style="width:100%; justify-content:center; padding:12px; font-size:0.95rem; font-weight:700; margin-top:8px;">
-                🚀 ተመዝገቡ / Create Account
+                ተመዝገቡ / Create Account
             </button>
         </form>
 
