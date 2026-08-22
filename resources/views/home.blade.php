@@ -9,7 +9,7 @@
 .grad-text { background:linear-gradient(135deg, var(--indigo), var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 .hero p { font-size:1.2rem; color:var(--muted); max-width:600px; margin:0 auto 40px; line-height:1.7; }
 .hero-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
-.stats-row { display:grid; grid-template-columns:repeat(auto-fit, minmax(60px,1fr)); gap:10px; padding:30px 0; }
+.stats-row { display:grid; grid-template-columns:repeat(auto-fit, minmax(60px,1fr)); gap:10px; padding:50px 0; }
 .stat-card { background:var(--bg2); border:1px solid var(--border); border-radius:50%; padding:20px; text-align:center; transition:.5s; }
 .stat-card:hover { border-color:var(--indigo); transform:translateY(-6px); }
 .stat-num { font-size:2.5rem; font-weight:900; background:linear-gradient(135deg,var(--indigo),var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
@@ -98,7 +98,7 @@
 <div class="container">
     <div class="stats-row">
         <div class="stat-card">
-            <div class="stat-num">5,000+</div>
+            <div class="stat-num">5k</div>
             <div class="stat-label">ተማሪዎች / Active Learners</div>
         </div>
         <div class="stat-card">
