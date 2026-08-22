@@ -10,7 +10,7 @@
 .hero p { font-size:1.2rem; color:var(--muted); max-width:600px; margin:0 auto 40px; line-height:1.7; }
 .hero-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
 .stats-row { display:grid; grid-template-columns:repeat(auto-fit, minmax(60px,1fr)); gap:30px; padding:50px 0; }
-.stat-card { background:var(--bg2); border:1px solid var(--border); border-radius:100%; padding:30px; text-align:center; transition:.5s; }
+.stat-card { background:var(--bg2); border:1px solid var(--border); border-radius:10%; padding:30px; text-align:center; transition:.5s; }
 .stat-card:hover { border-color:var(--indigo); transform:translateY(-6px); }
 .stat-num { font-size:2.5rem; font-weight:900; background:linear-gradient(135deg,var(--indigo),var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 .stat-label { color:var(--muted); font-size:0.85rem; margin-top:4px; }
