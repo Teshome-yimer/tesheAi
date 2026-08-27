@@ -170,10 +170,14 @@
             @forelse($courses as $course)
             <div class="course-card">
                 @if($course->thumbnail)
-                    <img src="{{ Storage::url($course->thumbnail) }}" alt="{{ $course->title }}" class="course-thumb" style="height:200px;object-fit:cover;width:100%;">
-                @else
-                    <div class="course-thumb">🎓</div>
-                @endif
+    <img src="{{ Str::startsWith($course->thumbnail, ['http://', 'https://']) ? $course->thumbnail : asset('storage/' . ltrim($course->thumbnail, '/')) }}" 
+         alt="{{ $course->title }}" 
+         class="course-thumb" 
+         style="height:200px;object-fit:cover;width:100%;"
+         onerror="this.onerror=null; this.src='https://via.placeholder.com/400x200?text=No+Image';">
+@else
+    <div class="course-thumb">🎓</div>
+@endif
                 <div class="course-body">
                     <div class="course-meta">
                         <span class="badge badge-indigo">{{ ucfirst($course->level) }}</span>
