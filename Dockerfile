@@ -13,8 +13,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /app
 COPY . .
 
-# Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader
+# Install PHP dependencies (updated to resolve lock file mismatch)
+RUN composer update --no-dev --optimize-autoloader --ignore-platform-reqs
 
 EXPOSE 10000
 
