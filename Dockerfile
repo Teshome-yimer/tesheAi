@@ -17,9 +17,13 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /app
 COPY . .
 
+# Set Directory Permissions
+RUN chmod -R 777 storage bootstrap/cache
+
 # Install PHP dependencies
 RUN composer update --no-dev --optimize-autoloader --ignore-platform-reqs
 
 EXPOSE 10000
 
-CMD php artisan config:clear && php artisan migrate --force && php artisan serve --host 0.0.0.0 --port $PORT
+# Added storage:link --force to automatically link images on start
+CMD php artisan config:clear && php artisan storage:link --force && php artisan migrate --force && php artisan serve --host 0.0.0.0 --port $PORT
