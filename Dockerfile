@@ -13,7 +13,7 @@ RUN echo "upload_max_filesize = 50M" > /usr/local/etc/php/conf.d/uploads.ini \
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
+php artisan storage:link
 WORKDIR /app
 COPY . .
 RUN chmod -R 775 storage bootstrap/cache
