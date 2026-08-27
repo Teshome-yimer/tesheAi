@@ -25,5 +25,4 @@ RUN composer update --no-dev --optimize-autoloader --ignore-platform-reqs
 
 EXPOSE 10000
 
-# Added storage:link --force to automatically link images on start
-CMD php artisan config:clear && php artisan storage:link --force && php artisan migrate --force && php artisan serve --host 0.0.0.0 --port $PORT
+CMD php artisan config:clear && php artisan migrate --force && php artisan serve --host 0.0.0.0 --port $PORT
