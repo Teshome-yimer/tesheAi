@@ -22,15 +22,21 @@ class DocumentController extends Controller
         return view('documents.read', compact('document'));
     }
 
-    // Streams the PDF inline for the in-platform reader (registered users only)
+    // Streams the PDF inline for the in-platform reader
     public function view(Document $document)
     {
         abort_unless($document->is_published, 404);
-        if (!Storage::disk('local')->exists($document->file_path)) {
+
+        $disk = Storage::disk(config('filesystems.default'));
+
+        if (!$disk->exists($document->file_path)) {
             abort(404, 'File not found');
         }
 
-        return response()->file(Storage::disk('local')->path($document->file_path), [
+        // R2 / S3 ሲሆን በ Stream መልክ በቀጥታ ያነበዋል
+        return response()->stream(function () use ($disk, $document) {
+            echo $disk->get($document->file_path);
+        }, 200, [
             'Content-Type'        => 'application/pdf',
             'Content-Disposition' => 'inline; filename="' . str_replace('"', '', $document->title) . '.pdf"',
         ]);
@@ -39,14 +45,18 @@ class DocumentController extends Controller
     public function download(Document $document)
     {
         abort_unless($document->is_published, 404);
-        if (!Storage::disk('local')->exists($document->file_path)) {
+
+        $disk = Storage::disk(config('filesystems.default'));
+
+        if (!$disk->exists($document->file_path)) {
             abort(404, 'File not found');
         }
 
         $document->increment('download_count');
 
-        return response()->download(
-            Storage::disk('local')->path($document->file_path),
+        // ከ R2 / S3 በቀጥታ Download ያደርጋል
+        return $disk->download(
+            $document->file_path,
             str_replace('"', '', $document->title) . '.pdf'
         );
     }
