@@ -24,8 +24,9 @@ class DocumentController extends Controller
         ]);
 
         $file = $request->file('file');
-        // Stored on the private (local) disk — served only through auth-checked routes
-        $path = $file->store('documents', 'local');
+        
+        // በ .env ላይ በተገለጸው default disk (s3/R2) ላይ ያስቀምጣል
+        $path = $file->store('documents', config('filesystems.default'));
 
         Document::create([
             'title'        => $request->title,
@@ -58,7 +59,9 @@ class DocumentController extends Controller
 
     public function destroy(Document $document)
     {
-        Storage::disk('local')->delete($document->file_path);
+        // ከ Cloudflare R2 (S3) ላይ ፋይሉን ይሰርዛል
+        Storage::disk(config('filesystems.default'))->delete($document->file_path);
+        
         $document->delete();
         return back()->with('success', 'Document deleted!');
     }
