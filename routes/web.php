@@ -196,7 +196,7 @@ Route::middleware([\App\Http\Middleware\AdminMiddleware::class])->prefix('admin'
 });
     
      ///new thumbnail route
-use Illuminate\Support\Facades\Response;
+
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Log;
 
