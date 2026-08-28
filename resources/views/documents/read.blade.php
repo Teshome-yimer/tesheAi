@@ -6,10 +6,10 @@
 <div class="container" style="padding:24px;">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px;">
         <div>
-            <a href="{{ route('documents.index') }}" style="font-size:0.85rem;color:var(--muted);">← ሁሉም ሰነዶች / All Documents</a>
+            <a href="{{ route('documents.index') }}" style="font-size:0.85rem;color:var(--muted);">← ሁሉም መፅሀፍት All Books</a>
             <h1 style="font-size:1.3rem;font-weight:800;margin-top:6px;">📄 {{ $document->title }}</h1>
         </div>
-        <a href="{{ route('documents.download', $document) }}" class="btn btn-cyan">⬇️ አውርድ / Download PDF</a>
+        <a href="{{ route('documents.download', $document) }}" class="btn btn-cyan">⬇️ አውርድ / Download books</a>
     </div>
 
     <div class="card" style="padding:0;overflow:hidden;">
