@@ -136,7 +136,7 @@
         </div>
         <div style="display:flex;align-items:center;gap:16px;">
             <span style="color:var(--muted);font-size:0.85rem;">{{ now()->format('M d, Y') }}</span>
-            <a href="/" style="color:var(--muted);font-size:0.85rem;">← Post ሽ/ህን ተመልከት</a>
+            <a href="/" style="color:var(--muted);font-size:0.85rem;">← Post የተደረጉትን ተመልከት/ች</a>
         </div>
     </div>
     <div class="admin-content">
