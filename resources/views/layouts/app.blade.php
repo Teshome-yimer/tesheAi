@@ -221,9 +221,9 @@
     display: flex; 
     flex-direction: column; 
     gap: 10px; 
-    margin-top: auto; /* ይህ ትዕዛዝ ከላይ ያሉትን ይዘቶች ወደላይ ገፍቶ የ Logout ቁልፉን ከታች እንዲሆን ያደርገዋል */
+    margin-top: 20px; /* ይህ ትዕዛዝ ከላይ ያሉትን ይዘቶች ወደላይ ገፍቶ የ Logout ቁልፉን ከታች እንዲሆን ያደርገዋል */
     padding-top: 16px; 
-    padding-bottom: 20px; /* ከስር ስክሪኑ ዳር ጋር ክፍተት እንዲኖረው */
+    padding-bottom: 40px; /* ከስር ስክሪኑ ዳር ጋር ክፍተት እንዲኖረው */
     border-top: 1px solid var(--border); 
 }
             .mobile-menu-actions .btn { width: 100%; justify-content: center; }
