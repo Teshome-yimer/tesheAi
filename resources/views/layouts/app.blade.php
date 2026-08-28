@@ -337,9 +337,9 @@
                 @endguest
                 @auth
                     @if(auth()->user()->isAdmin())
-                        <a href="{{ route('admin.dashboard') }}" class="nav-plain-link" style="color:var(--indigo); white-space: nowrap;">congratulaion</a>
+                        <a href="{{ route('admin.dashboard') }}" class="nav-plain-link" style="color:var(--indigo); white-space: nowrap;">congra</a>
                     @else
-                        <a href="{{ route('student.dashboard') }}" class="nav-plain-link" style="white-space: nowrap;">now you can post</a>
+                        <a href="{{ route('student.dashboard') }}" class="nav-plain-link" style="white-space: nowrap;"> post now</a>
                     @endif
                     <form method="POST" action="{{ route('logout') }}" style="display:inline">
                         @csrf
