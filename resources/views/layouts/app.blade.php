@@ -314,17 +314,17 @@
             <div class="mobile-menu-actions">
                 @guest
                     <a href="{{ route('login') }}" class="btn btn-secondary btn-sm">sign in</a>
-                    <a href="{{ route('register') }}" class="btn btn-cyan btn-sm"> sign up</a>
+                    <a href="{{ route('register') }}" class="btn btn-cyan btn-sm">sign up</a>
                 @endguest
                 @auth
                     @if(auth()->user()->isAdmin())
-                        <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary btn-sm"post then get money</a>
+                        <a href="{{ route('admin.dashboard') }}" class="btn btn-primary btn-sm" style="width:100%; justify-content:center;">⚡ Admin Dashboard</a>
                     @else
-                        <a href="{{ route('student.dashboard') }}" class="btn btn-secondary btn-sm">Student</a>
+                        <a href="{{ route('student.dashboard') }}" class="btn btn-secondary btn-sm" style="width:100%; justify-content:center;">📚 My Learning</a>
                     @endif
-                    <form method="POST" action="{{ route('logout') }}">
+                    <form method="POST" action="{{ route('logout') }}" style="width: 100%;">
                         @csrf
-                        <button type="submit" class="btn btn-secondary btn-sm"> Logout</button>
+                        <button type="submit" class="btn btn-danger btn-sm" style="width: 100%; justify-content:center;">Logout</button>
                     </form>
                 @endauth
             </div>
