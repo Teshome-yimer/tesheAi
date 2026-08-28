@@ -161,28 +161,28 @@
 
             /* Admin Style Side Drawer Navigation */
             .nav-menu { 
-                display: flex !important;
-                position: fixed; 
-                top: 0; 
-                left: 0; 
-                bottom: 0;
-                height: 100vh;
-                width: 80%; 
-                max-width: 320px;
-                background: var(--bg2); 
-                border-right: 1px solid var(--border); 
-                border-radius: 0 16px 16px 0; 
-                flex-direction: column; 
-                align-items: stretch; 
-                padding: 24px 18px; 
-                gap: 12px; 
-                box-shadow: 10px 0 30px rgba(0,0,0,0.6); 
-                z-index: 9999;
-                transform: translateX(-100%);
-                transition: transform 0.3s ease-in-out;
-                overflow-y: auto;
-            }
-            
+    display: flex !important;
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    bottom: 0;
+    height: 100vh;
+    width: 80%; 
+    max-width: 320px;
+    background: var(--bg2); 
+    border-right: 1px solid var(--border); 
+    border-radius: 0 16px 16px 0; 
+    flex-direction: column; 
+    justify-content: space-between; /* ይቺን መጨመር አናት እና ታች እንዲከፋፍል ያደርጋል */
+    align-items: stretch; 
+    padding: 24px 18px; 
+    gap: 12px; 
+    box-shadow: 10px 0 30px rgba(0,0,0,0.6); 
+    z-index: 9999;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
+}
             /* Slide-in Effect */
             .nav-menu.open { 
                 transform: translateX(0); 
@@ -216,15 +216,15 @@
             .nav-actions { margin-left: 0; gap: 10px; }
             .nav-actions .nav-plain-link { display: none; }
             .nav-actions form { display: none !important; }
-            
-            .mobile-menu-actions { 
-                display: flex; 
-                flex-direction: column; 
-                gap: 10px; 
-                margin-top: 10px; 
-                padding-top: 12px; 
-                border-top: 1px solid var(--border); 
-            }
+.mobile-menu-actions { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+    margin-top: auto; /* ከታች በኩል በንጽህና እንዲቀመጥ ያደርገዋል */
+    padding-top: 16px; 
+    padding-bottom: 20px;
+    border-top: 1px solid var(--border); 
+}
             .mobile-menu-actions .btn { width: 100%; justify-content: center; }
 
             /* Topic bar responsive */
