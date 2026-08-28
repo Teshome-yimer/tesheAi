@@ -318,7 +318,7 @@
                 @endguest
                 @auth
                     @if(auth()->user()->isAdmin())
-                        <a href="{{ route('admin.dashboard') }}" class="btn btn-primary btn-sm" style="width:100%; justify-content:center;">⚡ Admin Dashboard</a>
+                        <a href="{{ route('admin.dashboard') }}" class="btn btn-primary btn-sm" style="width:100%; justify-content:center;">post your skils</a>
                     @else
                         <a href="{{ route('student.dashboard') }}" class="btn btn-secondary btn-sm" style="width:100%; justify-content:center;">📚 My Learning</a>
                     @endif
