@@ -94,17 +94,17 @@
 <body>
 <aside class="admin-sidebar">
     <div class="sidebar-logo">
-        <a href="/admin/dashboard">🎓 EduPlatform</a>
-        <p>Admin Panel</p>
+        <a href="/admin/dashboard">🎓 TesheAi Acadamey</a>
+        <p>Post Now<p>
     </div>
     <nav class="admin-nav">
         <div class="nav-section">Overview</div>
-        <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">📊 Dashboard</a>
+        <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">📊 Post ማድረጊያ Dashboard's </a>
 
         <div class="nav-section">Content</div>
-        <a href="{{ route('admin.courses.index') }}" class="{{ request()->routeIs('admin.courses*') ? 'active' : '' }}">📚 Courses</a>
-        <a href="{{ route('admin.documents.index') }}" class="{{ request()->routeIs('admin.documents*') ? 'active' : '' }}">📄 PDF Documents</a>
-        <a href="{{ route('admin.quizzes.index') }}" class="{{ request()->routeIs('admin.quizzes*') ? 'active' : '' }}">📝 Quizzes</a>
+        <a href="{{ route('admin.courses.index') }}" class="{{ request()->routeIs('admin.courses*') ? 'active' : '' }}">📚 Post-Courses</a>
+        <a href="{{ route('admin.documents.index') }}" class="{{ request()->routeIs('admin.documents*') ? 'active' : '' }}">📄 Post-Books</a>
+        <a href="{{ route('admin.quizzes.index') }}" class="{{ request()->routeIs('admin.quizzes*') ? 'active' : '' }}">📝 Post-Quizzes</a>
 
         <div class="nav-section">Business</div>
         <a href="{{ route('admin.orders.index') }}" class="{{ request()->routeIs('admin.orders*') ? 'active' : '' }}">💰 Orders</a>
@@ -136,7 +136,7 @@
         </div>
         <div style="display:flex;align-items:center;gap:16px;">
             <span style="color:var(--muted);font-size:0.85rem;">{{ now()->format('M d, Y') }}</span>
-            <a href="/" style="color:var(--muted);font-size:0.85rem;">← View Site</a>
+            <a href="/" style="color:var(--muted);font-size:0.85rem;">← Post ሽ/ህን ተመልከት</a>
         </div>
     </div>
     <div class="admin-content">
