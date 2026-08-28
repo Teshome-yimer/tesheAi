@@ -267,17 +267,17 @@
                 <button type="button" class="nav-top-link" data-dd>መርጃዎች / Resources <span class="nav-caret">▼</span></button>
                 <div class="dropdown-menu">
                     <div class="dd-label">Free for members</div>
-                    <a href="{{ route('documents.index') }}">📄 ነጻ ሰነዶች / Free PDFs</a>
-                    <a href="{{ route('quizzes.index') }}">📝 ፈተናዎች / Quizzes</a>
+                    <a href="{{ route('documents.index') }}"> free books</a>
+                    <a href="{{ route('quizzes.index') }}">ፈተናዎች / Quizzes</a>
                     <div class="dd-divider"></div>
                     @auth
                         @if(auth()->user()->isAdmin())
-                            <a href="{{ route('admin.dashboard') }}">🛠️ Admin Panel</a>
+                            <a href="{{ route('admin.dashboard') }}"> post your skills</a>
                         @else
-                            <a href="{{ route('student.dashboard') }}">🎯 የእኔ ትምህርቶች / My Learning</a>
+                            <a href="{{ route('student.dashboard') }}"> የእኔ ትምህርቶች / My Learning</a>
                         @endif
                     @else
-                        <a href="{{ route('register') }}">✨ ተመዝገብና በነጻ ተጠቀም</a>
+                        <a href="{{ route('register') }}"> ተመዝገብና በነጻ ተጠቀም</a>
                     @endauth
                 </div>
             </div>
@@ -312,14 +312,14 @@
 
             <div class="mobile-menu-actions">
                 @guest
-                    <a href="{{ route('login') }}" class="btn btn-secondary btn-sm">🔑sign in</a>
-                    <a href="{{ route('register') }}" class="btn btn-cyan btn-sm">✨ sign up</a>
+                    <a href="{{ route('login') }}" class="btn btn-secondary btn-sm">sign in</a>
+                    <a href="{{ route('register') }}" class="btn btn-cyan btn-sm"> sign up</a>
                 @endguest
                 @auth
                     @if(auth()->user()->isAdmin())
-                        <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary btn-sm">Admin Dashboard</a>
+                        <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary btn-sm"post then get money</a>
                     @else
-                        <a href="{{ route('student.dashboard') }}" class="btn btn-secondary btn-sm">Student Dashboard</a>
+                        <a href="{{ route('student.dashboard') }}" class="btn btn-secondary btn-sm">Student</a>
                     @endif
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
@@ -332,14 +332,14 @@
         <div class="nav-utilities">
             <div class="nav-actions">
                 @guest
-                    <a href="{{ route('login') }}" class="nav-plain-link" style="color: var(--text); font-weight: 600; font-size: 0.85rem; padding: 6px 10px; white-space: nowrap;">🔑 Login</a>
-                    <a href="{{ route('register') }}" class="btn btn-cyan btn-sm" style="border-radius: 20px; padding: 5px 14px; font-weight: 700; font-size: 0.82rem; white-space: nowrap;">✨Sign up</a>
+                    <a href="{{ route('login') }}" class="nav-plain-link" style="color: var(--text); font-weight: 600; font-size: 0.85rem; padding: 6px 10px; white-space: nowrap;"> Login</a>
+                    <a href="{{ route('register') }}" class="btn btn-cyan btn-sm" style="border-radius: 20px; padding: 5px 14px; font-weight: 700; font-size: 0.82rem; white-space: nowrap;">Sign up</a>
                 @endguest
                 @auth
                     @if(auth()->user()->isAdmin())
-                        <a href="{{ route('admin.dashboard') }}" class="nav-plain-link" style="color:var(--indigo); white-space: nowrap;">⚙️ Admin</a>
+                        <a href="{{ route('admin.dashboard') }}" class="nav-plain-link" style="color:var(--indigo); white-space: nowrap;">congratulaion</a>
                     @else
-                        <a href="{{ route('student.dashboard') }}" class="nav-plain-link" style="white-space: nowrap;">Dashboard</a>
+                        <a href="{{ route('student.dashboard') }}" class="nav-plain-link" style="white-space: nowrap;">now you can post</a>
                     @endif
                     <form method="POST" action="{{ route('logout') }}" style="display:inline">
                         @csrf
@@ -359,7 +359,7 @@
 <div class="subnav">
     <div class="subnav-inner">
         <a href="/">Home</a>
-        <a href="{{ route('documents.index') }}">Free PDFs</a>
+        <a href="{{ route('documents.index') }}" >books </a>
         <a href="{{ route('quizzes.index') }}">Quizzes</a>
         @auth
             @if(!auth()->user()->isAdmin())
