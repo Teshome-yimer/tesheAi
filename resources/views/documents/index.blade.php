@@ -8,7 +8,7 @@
         <span class="badge badge-cyan" style="margin-bottom:12px;">📄 FREE - BOOKS</span>
         <h1 style="font-size:2rem;font-weight:800;margin:10px 0 8px;"ያላስተማሪ የሚያስተምሩ BOOKS</h1>
         <p style="color:var(--muted);max-width:560px;margin:0 auto;">
-            ለተመዘገቡ ተጠቃሚዎች በነጻ — በቀጥታ በመድረኩ ላይ ያንብቡ ወይም ያውርዱ።<br>
+            በ መመዝገብ ብቻ በነፃ።<br>
             Read online or download — free for all registered users.
         </p>
     </div>
