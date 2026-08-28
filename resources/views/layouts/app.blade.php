@@ -160,7 +160,7 @@
             .hamburger { display: flex; }
 
             /* Admin Style Side Drawer Navigation */
-            .nav-menu { 
+  .nav-menu { 
     display: flex !important;
     position: fixed; 
     top: 0; 
@@ -173,15 +173,16 @@
     border-right: 1px solid var(--border); 
     border-radius: 0 16px 16px 0; 
     flex-direction: column; 
-    justify-content: space-between; /* ይቺን መጨመር አናት እና ታች እንዲከፋፍል ያደርጋል */
+    justify-content: flex-start; /* ከላይ ጀምሮ በቅደም ተከተል እንዲያወርደው */
     align-items: stretch; 
     padding: 24px 18px; 
-    gap: 12px; 
+    gap: 8px; /* ክፍተቱን ትንሽ መቀነስ */
     box-shadow: 10px 0 30px rgba(0,0,0,0.6); 
     z-index: 9999;
     transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
     overflow-y: auto;
+}
 }
             /* Slide-in Effect */
             .nav-menu.open { 
@@ -220,9 +221,9 @@
     display: flex; 
     flex-direction: column; 
     gap: 10px; 
-    margin-top: auto; /* ከታች በኩል በንጽህና እንዲቀመጥ ያደርገዋል */
+    margin-top: auto; /* ይህ ትዕዛዝ ከላይ ያሉትን ይዘቶች ወደላይ ገፍቶ የ Logout ቁልፉን ከታች እንዲሆን ያደርገዋል */
     padding-top: 16px; 
-    padding-bottom: 20px;
+    padding-bottom: 20px; /* ከስር ስክሪኑ ዳር ጋር ክፍተት እንዲኖረው */
     border-top: 1px solid var(--border); 
 }
             .mobile-menu-actions .btn { width: 100%; justify-content: center; }
