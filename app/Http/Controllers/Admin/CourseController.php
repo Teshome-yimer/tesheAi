@@ -27,9 +27,8 @@ class CourseController extends Controller
         $data['what_you_learn'] = array_filter(explode("\n", $request->what_you_learn ?? ''));
 
         if ($request->hasFile('thumbnail')) {
-            $data['thumbnail'] = $request->file('thumbnail')->store('thumbnails', 'public');
-        }
-
+    $data['thumbnail'] = $request->file('thumbnail')->store('thumbnails', 's3');
+}
         Course::create($data);
         return redirect()->route('admin.courses.index')->with('success', 'ኮርስ ተፈጥሯል / Course created!');
     }
@@ -45,8 +44,8 @@ class CourseController extends Controller
         $data['what_you_learn'] = array_filter(explode("\n", $request->what_you_learn ?? ''));
 
         if ($request->hasFile('thumbnail')) {
-            $data['thumbnail'] = $request->file('thumbnail')->store('thumbnails', 'public');
-        }
+    $data['thumbnail'] = $request->file('thumbnail')->store('thumbnails', 's3');
+}
 
         $course->update($data);
         return redirect()->route('admin.courses.index')->with('success', 'ኮርስ ተስተካክሏል / Course updated!');
