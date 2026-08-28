@@ -272,7 +272,7 @@
                     <div class="dd-divider"></div>
                     @auth
                         @if(auth()->user()->isAdmin())
-                            <a href="{{ route('admin.dashboard') }}"> post your skills</a>
+                            <a href="{{ route('admin.dashboard') }}"> post skills</a>
                         @else
                             <a href="{{ route('student.dashboard') }}"> የእኔ ትምህርቶች / My Learning</a>
                         @endif
