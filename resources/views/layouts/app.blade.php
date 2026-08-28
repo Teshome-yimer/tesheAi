@@ -286,7 +286,7 @@
             <div class="nav-item">
                 <button type="button" class="nav-top-link" data-dd>ልምምድ / Practice <span class="nav-caret">▼</span></button>
                 <div class="mega-panel">
-                    <div class="mega-title">EduPlatform Practice</div>
+                    <div class="mega-title">TesheAi Acadamey practices </div>
                     <div class="mega-grid">
                         <div class="mega-card">
                             <div class="mc-icon">📝</div>
@@ -296,8 +296,8 @@
                         </div>
                         <div class="mega-card">
                             <div class="mc-icon">📄</div>
-                            <h4>Free PDFs</h4>
-                            <p>ነጻ የትምህርት ሰነዶችን ያንብቡ እና ያውርዱ</p>
+                            <h4> Books</h4>
+                            <p>ነፃ አስተማሪ books በነፃ ተጠቀሙ</p>
                             <a href="{{ route('documents.index') }}" class="btn btn-primary btn-sm">Browse PDFs</a>
                         </div>
                         <div class="mega-card">
@@ -386,7 +386,7 @@
 
 <footer>
     <div class="container">
-        <p style="font-size:0.9rem;">© {{ date('Y') }} EduPlatform. All rights reserved. | Made with ❤️ for Ethiopian learners</p>
+        <p style="font-size:0.9rem;">© {{ date('Y') }} TesheAI Acadamey. All rights reserved. | Made with ❤️ for Ethiopian learners</p>
     </div>
     <div class="flex justify-center space-x-4 text-sm text-gray-400 mt-4 mb-2">
     <a href="{{ route('privacy') }}" class="hover:underline">Privacy Policy</a>
