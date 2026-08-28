@@ -251,7 +251,7 @@
             <div class="nav-item">
                 <button type="button" class="nav-top-link" data-dd>ትምህርቶች / Courses <span class="nav-caret">▼</span></button>
                 <div class="dropdown-menu">
-                    <div class="dd-label">Premium Courses</div>
+                    <div class="dd-label">Premium Courses(VIP)</div>
                     @forelse($navCourses as $navCourse)
                         <a href="{{ route('course.show', $navCourse) }}">📚 {{ $navCourse->title }}</a>
                     @empty
@@ -303,7 +303,7 @@
                         <div class="mega-card">
                             <div class="mc-icon">📚</div>
                             <h4>Courses</h4>
-                            <p>ሙሉ የቪዲዮ ኮርሶች በፕሪሚየም ጥራት</p>
+                            <p>ሙሉ የ Video ኮርሶች Premiume ጥራት (VIP ROOM)</p>
                             <a href="/#courses" class="btn btn-primary btn-sm">Browse Courses</a>
                         </div>
                     </div>
