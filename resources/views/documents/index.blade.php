@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'ነጻ ሰነዶች / Free Documents')
+@section('title', 'ነጻ መፅሀፍት / Free Books')
 
 @section('content')
 <div class="container" style="padding:40px 24px 60px;">
     <div style="text-align:center;margin-bottom:40px;">
-        <span class="badge badge-cyan" style="margin-bottom:12px;">📄 FREE / ነጻ</span>
-        <h1 style="font-size:2rem;font-weight:800;margin:10px 0 8px;">ነጻ PDF ሰነዶች / Free PDF Documents</h1>
+        <span class="badge badge-cyan" style="margin-bottom:12px;">📄 FREE - BOOKS</span>
+        <h1 style="font-size:2rem;font-weight:800;margin:10px 0 8px;"ያላስተማሪ የሚያስተምሩ BOOKS</h1>
         <p style="color:var(--muted);max-width:560px;margin:0 auto;">
             ለተመዘገቡ ተጠቃሚዎች በነጻ — በቀጥታ በመድረኩ ላይ ያንብቡ ወይም ያውርዱ።<br>
             Read online or download — free for all registered users.
@@ -15,7 +15,7 @@
 
     @if($documents->isEmpty())
         <div class="card" style="padding:48px;text-align:center;color:var(--muted);">
-            📭 ምንም ሰነድ የለም። በቅርቡ ይመለሱ! / No documents yet. Check back soon!
+            📭 ምንም ሰነድ የለም። በቅርቡ ይመለሱ! / No Books yet. Check back soon!
         </div>
     @else
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;">
