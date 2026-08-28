@@ -169,7 +169,7 @@
         <div class="courses-grid">
             @forelse($courses as $course)
             <div class="course-card">
-              @if($course->thumbnail)
+         @if($course->thumbnail)
     <img src="{{ Str::startsWith($course->thumbnail, ['http://', 'https://']) ? $course->thumbnail : Storage::disk('s3')->url($course->thumbnail) }}" 
          alt="{{ $course->title }}" 
          class="course-thumb" 
