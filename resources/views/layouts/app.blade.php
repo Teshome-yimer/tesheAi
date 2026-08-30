@@ -311,14 +311,13 @@
                 </div>
             </div>
 
-            <div class="mobile-menu-actions">
+           <div class="mobile-menu-actions">
                 @guest
-                    <a href="{{ route('login') }}" class="btn btn-secondary btn-sm">sign in</a>
-                    <a href="{{ route('register') }}" class="btn btn-cyan btn-sm"></a>
+                    <a href="{{ route('login') }}" class="btn btn-cyan btn-sm" style="width: 100%; justify-content: center;">Sign in</a>
                 @endguest
                 @auth
                     @if(auth()->user()->isAdmin())
-                        <a href="{{ route('admin.dashboard') }}" class="btn btn-primary btn-sm" style="width:100%; justify-content:center;">post your skils</a>
+                        <a href="{{ route('admin.dashboard') }}" class="btn btn-primary btn-sm" style="width:100%; justify-content:center;">Post your skills</a>
                     @else
                         <a href="{{ route('student.dashboard') }}" class="btn btn-secondary btn-sm" style="width:100%; justify-content:center;">📚 My Learning</a>
                     @endif
@@ -329,22 +328,20 @@
                 @endauth
             </div>
         </div>
-
-        <div class="nav-utilities">
+<div class="nav-utilities">
             <div class="nav-actions">
                 @guest
-                    <a href="{{ route('login') }}" class="nav-plain-link" style="color: var(--text); font-weight: 600; font-size: 0.85rem; padding: 6px 10px; white-space: nowrap;"> Login</a>
-                    <a href="{{ route('register') }}" class="btn btn-cyan btn-sm" style="border-radius: 20px; padding: 5px 14px; font-weight: 700; font-size: 0.82rem; white-space: nowrap;">Sign up</a>
+                    <a href="{{ route('login') }}" class="btn btn-cyan btn-sm" style="border-radius: 20px; padding: 6px 16px; font-weight: 700; font-size: 0.85rem; white-space: nowrap;">Sign in</a>
                 @endguest
                 @auth
                     @if(auth()->user()->isAdmin())
-                        <a href="{{ route('admin.dashboard') }}" class="nav-plain-link" style="color:var(--indigo); white-space: nowrap;">congra</a>
+                        <a href="{{ route('admin.dashboard') }}" class="nav-plain-link" style="color:var(--indigo); white-space: nowrap;">Dashboard</a>
                     @else
-                        <a href="{{ route('student.dashboard') }}" class="nav-plain-link" style="white-space: nowrap;"> post now</a>
+                        <a href="{{ route('student.dashboard') }}" class="nav-plain-link" style="white-space: nowrap;">My Learning</a>
                     @endif
                     <form method="POST" action="{{ route('logout') }}" style="display:inline">
                         @csrf
-                        <button type="submit" class="btn btn-secondary btn-sm" style="white-space: nowrap;"> Logout</button>
+                        <button type="submit" class="btn btn-secondary btn-sm" style="white-space: nowrap;">Logout</button>
                     </form>
                 @endauth
             </div>
