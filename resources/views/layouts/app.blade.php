@@ -147,18 +147,24 @@
         .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); }
         
         /* Mobile responsive adjustments - Side Drawer Style */
-        @media (max-width: 900px) {
-            .nav-inner { 
-                position: relative; 
-                flex-wrap: wrap; 
-                row-gap: 10px; 
-                padding-top: 10px; 
-                padding-bottom: 10px; 
-            }
-            .nav-logo { margin-right: 0; font-size: 1.15rem; }
-            .nav-utilities { order: 2; margin-left: auto; gap: 10px; }
-            .hamburger { display: flex; }
+       @media (max-width: 900px) {
+    /* ይህንን አዲስ ጨምር 👇 */
+    .nav-utilities .nav-actions {
+        display: none; 
+    }
 
+    .nav-inner { 
+        position: relative; 
+        flex-wrap: wrap; 
+        row-gap: 10px; 
+        padding-top: 10px; 
+        padding-bottom: 10px; 
+    }
+    .nav-logo { margin-right: 0; font-size: 1.15rem; }
+    .nav-utilities { order: 2; margin-left: auto; gap: 10px; }
+    .hamburger { display: flex; }
+
+    /* የከፈትከው የ nav-menu ሌላው ክፍል ይቀጥላል... */
             /* Admin Style Side Drawer Navigation */
   .nav-menu { 
     display: flex !important;
@@ -218,15 +224,21 @@
             .nav-actions .nav-plain-link { display: none; }
             .nav-actions form { display: none !important; }
 .mobile-menu-actions { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 10px; 
-    margin-top: 20px; /* ይህ ትዕዛዝ ከላይ ያሉትን ይዘቶች ወደላይ ገፍቶ የ Logout ቁልፉን ከታች እንዲሆን ያደርገዋል */
-    padding-top: 16px; 
-    padding-bottom: 40px; /* ከስር ስክሪኑ ዳር ጋር ክፍተት እንዲኖረው */
-    border-top: 1px solid var(--border); 
+    display: none; /* በነባሪ በዴስክቶፕ ላይ ይደበቅ */
 }
-            .mobile-menu-actions .btn { width: 100%; justify-content: center; }
+
+@media (max-width: 900px) {
+    .mobile-menu-actions { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 10px; 
+        margin-top: 20px; 
+        padding-top: 16px; 
+        padding-bottom: 40px; 
+        border-top: 1px solid var(--border); 
+    }
+    .mobile-menu-actions .btn { width: 100%; justify-content: center; }
+}
 
             /* Topic bar responsive */
             .subnav { display: block; overflow-x: auto; }
