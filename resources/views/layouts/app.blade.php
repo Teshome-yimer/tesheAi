@@ -148,10 +148,7 @@
         
         /* Mobile responsive adjustments - Side Drawer Style */
        @media (max-width: 900px) {
-    /* ይህንን አዲስ ጨምር 👇 */
-    .nav-utilities .nav-actions {
-        display: none; 
-    }
+   
 
     .nav-inner { 
         position: relative; 
@@ -223,8 +220,8 @@
             .nav-actions { margin-left: 0; gap: 10px; }
             .nav-actions .nav-plain-link { display: none; }
             .nav-actions form { display: none !important; }
-.mobile-menu-actions { 
-    display: none; /* በነባሪ በዴስክቶፕ ላይ ይደበቅ */
+.mobile-menu-actions {
+    display: none !important;
 }
 
 @media (max-width: 900px) {
