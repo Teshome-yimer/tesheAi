@@ -23,6 +23,5 @@ RUN chmod -R 777 storage bootstrap/cache
 
 # Install PHP dependencies
 # Install PHP dependencies
-# Install PHP dependencies
-RUN COMPOSER_MEMORY_LIMIT=-1 composer install --no-dev --optimize-autoloader --ignore-platform-reqs
+RUN COMPOSER_MEMORY_LIMIT=-1 composer update --no-dev --optimize-autoloader --ignore-platform-reqs
 CMD php artisan config:clear && php artisan migrate --force && php artisan serve --host 0.0.0.0 --port $PORT
