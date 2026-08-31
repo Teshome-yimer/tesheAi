@@ -221,7 +221,7 @@
             .nav-actions .nav-plain-link { display: none; }
             .nav-actions form { display: none !important; }
 .mobile-menu-actions {
-    display: none !important;
+    display: none ;
 }
 
 @media (max-width: 900px) {
