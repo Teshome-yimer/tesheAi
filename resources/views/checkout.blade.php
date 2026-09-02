@@ -232,12 +232,29 @@ document.getElementById('chapa-form').addEventListener('submit', function(e) {
 });
 
 // Stripe
+// Stripe
 const stripe = Stripe('{{ config("services.stripe.key") }}');
 const elements = stripe.elements();
 const cardEl = elements.create('card', {
     style: { base: { color: '#e2e8f0', fontSize: '16px', '::placeholder': { color: '#64748b' }, iconColor: '#6366f1' }, invalid: { color: '#ef4444' } }
 });
-cardEl.mount('#stripe-card');
+
+let stripeCardMounted = false;
+
+// የ ታብ መቀያየሪያውን (switchTab) function በዚህ መልክ አሻሽለው
+function switchTab(tab, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + tab).classList.add('active');
+
+    // የ Stripe ታብ ሲከፈት እና ገና ካልተሰቀለ ብቻ mount አድርገው
+    if (tab === 'stripe' && !stripeCardMounted) {
+        cardEl.mount('#stripe-card');
+        stripeCardMounted = true;
+    }
+}
+
 cardEl.on('change', e => { document.getElementById('card-errors').textContent = e.error ? e.error.message : ''; });
 
 document.getElementById('stripe-pay-btn').addEventListener('click', async function() {
