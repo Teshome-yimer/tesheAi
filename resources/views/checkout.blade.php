@@ -22,7 +22,14 @@
 .coupon-success { color:var(--success); }
 .coupon-error { color:var(--danger); }
 .countdown-bar { background:rgba(99,102,241,.1); border:1px solid rgba(99,102,241,.3); border-radius:8px; padding:12px; text-align:center; margin-bottom:24px; }
-#stripe-card { background:var(--bg3); border:1px solid var(--border); border-radius:8px; padding:14px; }
+#stripe-card { 
+    background: var(--bg3); 
+    border: 1px solid var(--border); 
+    border-radius: 8px; 
+    padding: 14px; 
+    min-height: 45px; /* ቁመት እንዲኖረው ማድረግ */
+    width: 100%;       /* ሙሉ ስፋት እንዲይዝ */
+}
 @media(max-width:900px) { .checkout-layout { grid-template-columns:1fr; } .order-summary { position:static; } }
 </style>
 @endpush
@@ -232,30 +239,39 @@ document.getElementById('chapa-form').addEventListener('submit', function(e) {
 });
 
 // Stripe
-// Stripe
+// Stripe መጀመሪያ አታስነሳው (Mount አታድርገው)
 const stripe = Stripe('{{ config("services.stripe.key") }}');
 const elements = stripe.elements();
 const cardEl = elements.create('card', {
-    style: { base: { color: '#e2e8f0', fontSize: '16px', '::placeholder': { color: '#64748b' }, iconColor: '#6366f1' }, invalid: { color: '#ef4444' } }
+    style: { 
+        base: { color: '#e2e8f0', fontSize: '16px', '::placeholder': { color: '#64748b' }, iconColor: '#6366f1' }, 
+        invalid: { color: '#ef4444' } 
+    }
 });
 
-let stripeCardMounted = false;
+let isStripeMounted = false;
 
-// የ ታብ መቀያየሪያውን (switchTab) function በዚህ መልክ አሻሽለው
+// የ ታብ መቀያየሪያ (switchTab) ፊንክሽንህን በዚህ መልክ አሻሽለው
 function switchTab(tab, btn) {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    
     btn.classList.add('active');
     document.getElementById('tab-' + tab).classList.add('active');
 
-    // የ Stripe ታብ ሲከፈት እና ገና ካልተሰቀለ ብቻ mount አድርገው
-    if (tab === 'stripe' && !stripeCardMounted) {
-        cardEl.mount('#stripe-card');
-        stripeCardMounted = true;
+    // ተጠቃሚው Stripe ታብ ሲመርጥ እና አንዴ ብቻ mount እንዲያደርግ
+    if (tab === 'stripe' && !isStripeMounted) {
+        // ትንሽ ሰዓት ሰጥተን ዲቪው እንዲታይ እና ስፋቱን እንዲያገኝ እናደርጋለን
+        setTimeout(() => {
+            cardEl.mount('#stripe-card');
+            isStripeMounted = true;
+        }, 100);
     }
 }
 
-cardEl.on('change', e => { document.getElementById('card-errors').textContent = e.error ? e.error.message : ''; });
+cardEl.on('change', e => { 
+    document.getElementById('card-errors').textContent = e.error ? e.error.message : ''; 
+});
 
 document.getElementById('stripe-pay-btn').addEventListener('click', async function() {
     const btn = this;
