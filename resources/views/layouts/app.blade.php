@@ -282,7 +282,7 @@
                     <div class="dd-divider"></div>
                     @auth
                         @if(auth()->user()->isAdmin())
-                            <a href="{{ route('admin.dashboard') }}"> post skills</a>
+                            <a href="{{ route('admin.dashboard') }}"> Post Skills</a>
                         @else
                             <a href="{{ route('student.dashboard') }}"> የእኔ ትምህርቶች / My Learning</a>
                         @endif
@@ -308,7 +308,7 @@
                             <div class="mc-icon">📄</div>
                             <h4> Books</h4>
                             <p>ነፃ አስተማሪ books በነፃ ተጠቀሙ</p>
-                            <a href="{{ route('documents.index') }}" class="btn btn-primary btn-sm">Browse PDFs</a>
+                            <a href="{{ route('documents.index') }}" class="btn btn-primary btn-sm">Browse Books</a>
                         </div>
                         <div class="mega-card">
                             <div class="mc-icon">📚</div>
