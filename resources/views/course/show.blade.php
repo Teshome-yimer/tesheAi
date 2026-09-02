@@ -115,8 +115,10 @@
             <img src="{{ asset('images/teshome.jpg') }}" alt="Teshome" class="instructor-avatar" style="object-fit:cover; object-position:top; border:2px solid var(--indigo);">
                 <div>
                     <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:4px;">ተሾመ / Teshome</h3>
-                    <p style="color:var(--cyan);font-size:0.85rem;margin-bottom:12px;font-weight:600;">Senior Full Stack Developer & Instructor</p>
-                    <p style="color:var(--muted);font-size:0.9rem;line-height:1.6;">ተሾመ ከ 5 ዓመት በላይ በሶፍትዌር ልማት ልምድ ያለው ዌብ ዲቬሎፐር ነው። Laravel እና React ባለሙያ። Web developer with 5+ years of experience specializing in Laravel, React, and MySQL.</p>
+                    <p style="color:var(--cyan);font-size:0.85rem;margin-bottom:12px;font-weight:600;">   የሶፍትዌር ኢንጂነር፣ የቴክኖሎጂ አማካሪ እና የዲጂታል ክህሎቶች አሰልጣኝ
+(Software Engineer, Tech Consultant & Digital Skills Instructor)  </p>
+                    <p style="color:var(--muted);font-size:0.9rem;line-height:1.6;">  Teshome is a Software Engineer, Tech Consultant, and Lead Instructor with 7+ years of experience building modern digital solutions. He empowers learners with real-world tech skills across 6 core domains: Video Editing, Digital Marketing, Software & Web Development, Mobile App Development, Database & REST APIs, and AI & Cybersecurity. Through practical, project-based teaching, Teshome bridges the gap between theory and industry needs to prepare students for global tech careers.
+              </p>
                 </div>
             </div>
 
