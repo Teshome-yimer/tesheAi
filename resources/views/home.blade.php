@@ -289,7 +289,7 @@
         <h2>የነገውን የቴክኖሎጂ ስኬትዎን ዛሬ ይጀምሩ!/ <span class="grad-text">Start Today!</span></h2>
         <p>በሺዎች የሚቆጠሩ ተማሪዎች ክህሎታቸውን እያደሱ ይገኛሉ። እርስዎስ ምን ይጠብቃሉ? Join thousands of successful learners today.</p>
         @guest
-            <a href="{{ route('register') }}" class="btn btn-cyan" style="font-size:1.1rem;padding:16px 40px;">በነፃ ተመዝገቡ / Sign Up Free →</a>
+            <a href="{{ route('register') }}" class="btn btn-cyan" style="font-size:1.1rem;padding:16px 40px;">Sign Up Free →</a>
         @else
             <a href="#courses" class="btn btn-cyan" style="font-size:1.1rem;padding:16px 40px;">ኮርሶችን ይመልከቱ / View Courses →</a>
         @endguest
