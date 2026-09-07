@@ -283,7 +283,7 @@
                 <button type="button" class="nav-top-link" data-dd>መርጃዎች / Resources <span class="nav-caret">▼</span></button>
                 <div class="dropdown-menu">
                     <div class="dd-label">Free for members</div>
-                    <a href="{{ route('documents.index') }}"> free books</a>
+                    <a href="{{ route('documents.index') }}"> Free/ books</a>
                     <a href="{{ route('quizzes.index') }}">ፈተናዎች / Quizzes</a>
                     <div class="dd-divider"></div>
                     @auth
@@ -302,7 +302,7 @@
             <div class="nav-item">
                 <button type="button" class="nav-top-link" data-dd>ልምምድ / Practice <span class="nav-caret">▼</span></button>
                 <div class="mega-panel">
-                    <div class="mega-title">TesheAi Acadamey practices </div>
+                    <div class="mega-title">TesheAi Academy practices </div>
                     <div class="mega-grid">
                         <div class="mega-card">
                             <div class="mc-icon">📝</div>
