@@ -393,7 +393,7 @@
 
 <footer>
     <div class="container">
-        <p style="font-size:0.9rem;">© {{ date('Y') }} TesheAI Acadamey. All rights reserved. | Made with ❤️ for Ethiopian learners</p>
+        <p style="font-size:0.9rem;">© {{ date('Y') }} Tesheai Academy. All rights reserved. | Made with ❤️ for Ethiopian learners</p>
     </div>
     <div class="flex justify-center space-x-4 text-sm text-gray-400 mt-4 mb-2">
     <a href="{{ route('privacy') }}" class="hover:underline">Privacy Policy</a>
@@ -459,6 +459,6 @@ function scrollToCourses(e, form) {
     <script>
       (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="aznyu3A4PkxVWn2ZvLWkp";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
     </script>
-</body>
+
 </body>
 </html>
