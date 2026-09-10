@@ -41,6 +41,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- Favicon tags for Google and Browsers -->
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://tesheai.com{{ request()->getRequestUri() }}">
 <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon-32x32.png') }}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon-16x16.png') }}">
