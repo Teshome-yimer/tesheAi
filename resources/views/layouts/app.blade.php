@@ -16,7 +16,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', config('app.name'))</title>
+
+    <!-- ===== የ SEO META TAGS (በዚህ ቦታ ይተካ/ይግባ) ===== -->
+    <meta name="description" content="Tesheai Academy - የቴክኖሎጂ፣ የፕሮግራሚንግ እና የኮምፒዩተር ሳይንስ ኮርሶችን እና መጻሕፍትን በነጻ እና በቅናሽ የሚያገኙበት የኢትዮጵያውያን የትምህርት መድረክ።">
+    <meta name="keywords" content="Tesheai, Tesheai Academy, Teshe AI, Programming Courses Ethiopia, Computer Science Amharic, Web Development Amharic, የሶፍትዌር ትምህርት, የፕሮግራሚንግ ኮርስ">
+    <meta name="author" content="Tesheai Academy">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph Meta Tags (ለ Facebook፣ Telegram እና WhatsApp Link Share ሲደረግ እንዲያምር) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Tesheai Academy - Educational Platform & Courses">
+    <meta property="og:description" content="የቴክኖሎጂ፣ የፕሮግራሚንግ እና የኮምፒዩተር ሳይንስ ኮርሶችን በነጻ እና በቅናሽ የሚያገኙበት መድረክ።">
+    <meta property="og:url" content="https://tesheai.com">
+    <meta property="og:site_name" content="Tesheai Academy">
+    <meta property="og:image" content="{{ asset('images/favicon-32x32.png') }}">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tesheai Academy - Educational Platform & Courses">
+    <meta name="twitter:description" content="የቴክኖሎጂ፣ የፕሮግራሚንግ እና የኮምፒዩተር ሳይንስ ኮርሶችን በነጻ እና በቅናሽ የሚያገኙበት መድረክ።">
+    <!-- ======================================================= -->
+
+    <title>@yield('title', config('app.name', 'Tesheai Academy'))</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- Favicon tags for Google and Browsers -->
