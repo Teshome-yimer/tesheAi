@@ -15,6 +15,11 @@ class SecurityHeaders
      */
     public function handle(Request $request, Closure $next): Response
     {
+        // Alet Cloud ዶሜን ሆኖ ሲመጣ ወደ tesheai.com በራስ ሰር ማዞሪያ
+        if ($request->getHost() === 'tesheai-4313.app.aletcloud.com') {
+            return redirect()->to('https://tesheai.com' . $request->getRequestUri(), 301);
+           
+ } // <--- ይህ የ } ምልክት ጠፍቶ ነበር!
         $response = $next($request);
 
         // Standard Security Headers
