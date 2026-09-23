@@ -24,15 +24,15 @@
     @if($enrollments->isEmpty())
     <div style="text-align:center;padding:80px 0;">
         <div style="font-size:4rem;margin-bottom:16px;">📚</div>
-        <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:12px;">Start your Tech Career journey today! <br>
+        <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:12px;">የTech Career ጉዞዎን ዛሬ ይጀምሩ! ✨ <br>
 
-You haven't enrolled in any courses yet. 📌 Master these high-demand skills for free:<br>
+እስካሁን የተቀላቀሉት ኮርስ የለም። የሚከተሉትን ከፍተኛ ተፈላጊ ክህሎቶች በነጻ ይማሩ፦<br>
 
-1(2), Full-Stack & Mobile App Dev 📲 (From foundational concepts to advanced web and mobile application development)<br>
+💻 Full-Stack & Mobile App Dev<br>
 
-2(2), Graphics Design & Video Editing 🎬 (The art of creating stunning visuals and high-quality video content)<br>
+🎨 Graphics Design & Video Editing<br>
 
-3(2), Digital Marketing & Freelancing 💸 (In-demand digital skills to monetize your work globally)<br>
+📈 Digital Marketing & Freelancing zemenawi emoji tetekem<br>
 
  Get started today and accelerate your tech future! </h2>
         <p style="color:var(--muted);margin-bottom:24px;">ዛሬ ጀምሩ / start now</p>
