@@ -24,9 +24,19 @@
     @if($enrollments->isEmpty())
     <div style="text-align:center;padding:80px 0;">
         <div style="font-size:4rem;margin-bottom:16px;">📚</div>
-        <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:12px;">ኮርስ አልተቀላቀሉም / No courses yet</h2>
-        <p style="color:var(--muted);margin-bottom:24px;">ዛሬ ጀምሩ እና ዲቬሎፐር ሁኑ</p>
-        <a href="/" class="btn btn-cyan">ኮርሶችን ይመልከቱ / Browse Courses</a>
+        <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:12px;">Start your Tech Career journey today! 
+
+You haven't enrolled in any courses yet. 📌 Master these high-demand skills for free:
+
+1(2), Full-Stack & Mobile App Dev 📲 (From foundational concepts to advanced web and mobile application development)
+
+2(2), Graphics Design & Video Editing 🎬 (The art of creating stunning visuals and high-quality video content)
+
+3(2), Digital Marketing & Freelancing 💸 (In-demand digital skills to monetize your work globally)
+
+ Get started today and accelerate your tech future! </h2>
+        <p style="color:var(--muted);margin-bottom:24px;">ዛሬ ጀምሩ / start now</p>
+        <a href="/" class="btn btn-cyan">ኮርሶችን ይመልከቱ / Search Courses</a>
     </div>
     @else
     <div class="dash-grid">
