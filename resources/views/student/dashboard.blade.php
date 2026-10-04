@@ -25,16 +25,11 @@
     <div style="text-align:center;padding:80px 0;">
         <div style="font-size:4rem;margin-bottom:16px;">📚</div>
         <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:12px;">የTech Career ጉዞዎን ዛሬ ይጀምሩ! ✨ <br>
+            ከላይ  Home, Book እና Quize የሚሉትን click አድርጉ<br>
+ ካደረጋቹህ ሁሉንም በነፃ /free ታገኛላቹህ<br>
 
-እስካሁን የተቀላቀሉት ኮርስ የለም። የሚከተሉትን ከፍተኛ ተፈላጊ ክህሎቶች በነጻ ይማሩ፦<br>
 
-💻 Full-Stack & Mobile App Dev<br>
-
-🎨 Graphics Design & Video Editing<br>
-
-📈 Digital Marketing & Freelancing zemenawi emoji tetekem<br>
-
- Get started today and accelerate your tech future! </h2>
+  </h2>
         <p style="color:var(--muted);margin-bottom:24px;">ዛሬ ጀምሩ / start now</p>
         <a href="/" class="btn btn-cyan">ኮርሶችን ይመልከቱ / Search Courses</a>
     </div>
