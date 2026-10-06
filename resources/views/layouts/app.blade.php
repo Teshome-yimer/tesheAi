@@ -288,7 +288,7 @@
         <div class="nav-menu" id="navMenu">
             {{-- Courses dropdown --}}
             <div class="nav-item">
-                <button type="button" class="nav-top-link" data-dd>ትምህርቶች / Courses <span class="nav-caret">▼</span></button>
+                <button type="button" class="nav-top-link" data-dd>Courses <span class="nav-caret">▼</span></button>
                 <div class="dropdown-menu">
                     <div class="dd-label">Premium Courses(VIP)</div>
                     @forelse($navCourses as $navCourse)
@@ -297,23 +297,23 @@
                         <a href="/#courses">📚 ኮርሶች በቅርቡ ይመጣሉ</a>
                     @endforelse
                     <div class="dd-divider"></div>
-                    <a href="/#courses">🗂️ ሁሉንም ኮርሶች ይመልከቱ / Browse All</a>
+                    <a href="/#courses"> Browse All</a>
                 </div>
             </div>
 
             {{-- Resources dropdown --}}
             <div class="nav-item">
-                <button type="button" class="nav-top-link" data-dd>መርጃዎች / Resources <span class="nav-caret">▼</span></button>
+                <button type="button" class="nav-top-link" data-dd> Resources <span class="nav-caret">▼</span></button>
                 <div class="dropdown-menu">
                     <div class="dd-label">Free for members</div>
-                    <a href="{{ route('documents.index') }}"> Free/ books</a>
-                    <a href="{{ route('quizzes.index') }}">ፈተናዎች / Quizzes</a>
+                    <a href="{{ route('documents.index') }}">  books</a>
+                    <a href="{{ route('quizzes.index') }}"> Quizzes</a>
                     <div class="dd-divider"></div>
                     @auth
                         @if(auth()->user()->isAdmin())
                             <a href="{{ route('admin.dashboard') }}"> Post Skills</a>
                         @else
-                            <a href="{{ route('student.dashboard') }}"> የእኔ ትምህርቶች / My Learning</a>
+                            <a href="{{ route('student.dashboard') }}">  My Learning</a>
                         @endif
                     @else
                         <a href="{{ route('register') }}"> ተመዝገብና በነጻ ተጠቀም</a>
@@ -323,7 +323,7 @@
 
             {{-- Practice mega panel --}}
             <div class="nav-item">
-                <button type="button" class="nav-top-link" data-dd>ልምምድ / Practice <span class="nav-caret">▼</span></button>
+                <button type="button" class="nav-top-link" data-dd> Practice <span class="nav-caret">▼</span></button>
                 <div class="mega-panel">
                     <div class="mega-title">TesheAi Academy practices </div>
                     <div class="mega-grid">
