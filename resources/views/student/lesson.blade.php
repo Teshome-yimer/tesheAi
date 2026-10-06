@@ -101,7 +101,7 @@
         @else
         <div style="padding:60px 0;background:linear-gradient(135deg,#13131a,#1a1a24);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:var(--muted);">
             <div style="font-size:3rem;">🎥</div>
-            <div>Video ቶሎ ይጨምራል / Video coming soon</div>
+            <div>Video coming soon</div>
         </div>
         @endif
 
@@ -136,7 +136,7 @@
             @php $files = $lesson->files; @endphp
             @if($files->count() > 0)
             <div style="margin-top:8px;">
-                <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:12px;color:var(--cyan);">📎 ፋይሎች / Downloads</h3>
+                <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:12px;color:var(--cyan);">📎 Downloads</h3>
                 <div style="display:flex;flex-direction:column;gap:8px;">
                     @foreach($files as $file)
                     @php
