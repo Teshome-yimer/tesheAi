@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'ፈተናዎች / Quizzes')
+@section('title', ' Quizzes')
 
 @section('content')
 <div class="container" style="padding:40px 24px 60px;">
     <div style="text-align:center;margin-bottom:40px;">
-        <span class="badge badge-indigo" style="margin-bottom:12px;">📝 QUIZ / ፈተና</span>
-        <h1 style="font-size:2rem;font-weight:800;margin:10px 0 8px;">Online ፈተናዎች / Quizzes</h1>
+        <span class="badge badge-indigo" style="margin-bottom:12px;">📝 QUIZZES / ፈተና</span>
+        <h1 style="font-size:2rem;font-weight:800;margin:10px 0 8px;">Online  Quizzes</h1>
         <p style="color:var(--muted);max-width:560px;margin:0 auto;">
             እውቀትዎን ይፈትሹ — ጥያቄዎች ከ A እስከ D ምርጫ አላቸው። ውጤትዎን ወዲያውኑ ያያሉ።<br>
             Test your knowledge — multiple choice (A–D), instant results.
@@ -15,7 +15,7 @@
 
     @if($quizzes->isEmpty())
         <div class="card" style="padding:48px;text-align:center;color:var(--muted);">
-            📭 ምንም ፈተና የለም። በቅርቡ ይመለሱ! / No quizzes yet. Check back soon!
+             No quizzes yet. Check back soon!
         </div>
     @else
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;">
@@ -39,7 +39,7 @@
                         </div>
                     @endif
                     <a href="{{ route('quizzes.take', $quiz) }}" class="btn btn-primary btn-sm" style="justify-content:center;margin-top:auto;">
-                        {{ $last ? '🔄 እንደገና ተፈተን / Retake' : '▶️ ጀምር / Start Quiz' }}
+                        {{ $last ? '🔄  Retake' : '▶️ Start Quiz' }}
                     </a>
                 </div>
             @endforeach
