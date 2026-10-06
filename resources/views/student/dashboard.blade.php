@@ -18,7 +18,7 @@
     <div class="dash-header">
         <p style="color:var(--cyan);font-size:0.9rem;margin-bottom:6px;">👋 እንኳን ደህና መጡ / Welcome back</p>
         <h1 style="font-size:2rem;font-weight:900;">{{ auth()->user()->name }}</h1>
-        <p style="color:var(--muted);margin-top:8px;">{{ $enrollments->count() }} ኮርሶች ተምረዋል / courses enrolled</p>
+        <p style="color:var(--muted);margin-top:8px;">{{ $enrollments->count() }}  courses enrolled</p>
     </div>
 
     @if($enrollments->isEmpty())
@@ -30,8 +30,8 @@
 
 
   </h2>
-        <p style="color:var(--muted);margin-bottom:24px;">ዛሬ ጀምሩ / start now</p>
-        <a href="/" class="btn btn-cyan">ኮርሶችን ይመልከቱ / Search Courses</a>
+        <p style="color:var(--muted);margin-bottom:24px;"> start now</p>
+        <a href="/" class="btn btn-cyan"> Search Courses</a>
     </div>
     @else
     <div class="dash-grid">
@@ -59,7 +59,7 @@
                     @endif
                 </div>
                 <a href="{{ route('student.course', $enrollment->course->slug) }}" class="btn btn-primary" style="width:100%;justify-content:center;">
-                    {{ $progress['percentage'] > 0 ? '▶ ቀጥሉ / Continue' : '🚀 ጀምሩ / Start' }}
+                    {{ $progress['percentage'] > 0 ? '▶ ቀጥሉ / Continue' : ' Start' }}
                 </a>
             </div>
         </div>
