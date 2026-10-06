@@ -24,7 +24,7 @@
     @if($enrollments->isEmpty())
     <div style="text-align:center;padding:80px 0;">
         <div style="font-size:4rem;margin-bottom:16px;">📚</div>
-        <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:12px;">የTech Career ጉዞዎን ዛሬ ይጀምሩ! ✨ <br>
+        <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:12px;">የTechnology ጉዞዎን ዛሬ ይጀምሩ! ✨ <br>
             ከላይ  Home, Book እና Quize የሚሉትን click አድርጉ<br>
  ካደረጋቹህ ሁሉንም በነፃ /free ታገኛላቹህ<br>
 
