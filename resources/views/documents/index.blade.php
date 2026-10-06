@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'ነጻ መፅሀፍት / Free Books')
+@section('title', ' Free Books')
 
 @section('content')
 <div class="container" style="padding:40px 24px 60px;">
@@ -15,7 +15,7 @@
 
     @if($documents->isEmpty())
         <div class="card" style="padding:48px;text-align:center;color:var(--muted);">
-            📭 ምንም ሰነድ የለም። በቅርቡ ይመለሱ! / No Books yet. Check back soon!
+             No Books yet. Check back soon!
         </div>
     @else
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;">
