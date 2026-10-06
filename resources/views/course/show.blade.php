@@ -72,7 +72,7 @@
             {{-- What You Learn --}}
             @if($course->what_you_learn)
             <div class="card" style="padding:28px;margin-bottom:32px;">
-                <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:20px;">ምን ይማራሉ / What You'll Learn</h2>
+                <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:20px;"> What You'll Learn</h2>
                 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;">
                     @foreach($course->what_you_learn as $item)
                     <div style="display:flex;align-items:start;gap:10px;font-size:0.9rem;">
@@ -86,7 +86,7 @@
 
             {{-- Curriculum --}}
             <div style="margin-bottom:32px;">
-                <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:20px;">ሥርዓተ-ትምህርት / Curriculum</h2>
+                <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:20px;"> Curriculum</h2>
                 @forelse($course->sections as $section)
                 <div class="curriculum-item">
                     <div class="curriculum-header" onclick="toggleSection(this)">
@@ -107,14 +107,14 @@
                     </div>
                 </div>
                 @empty
-                <p style="color:var(--muted);">ይዘት ሲጨምር / Content coming soon</p>
+                <p style="color:var(--muted);"> Content coming soon</p>
                 @endforelse
             </div>
 
             <div class="instructor-section" style="margin-bottom:32px;">
-            <img src="{{ asset('images/teshome.jpg') }}" alt="Teshome" class="instructor-avatar" style="object-fit:cover; object-position:top; border:2px solid var(--indigo);">
+            <img src="{{ asset('images/manajer.webp') }}" alt="Teshome" class="instructor-avatar" style="object-fit:cover; object-position:top; border:2px solid var(--indigo);">
                 <div>
-                    <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:4px;">ተሾመ / Teshome</h3>
+                    <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:4px;"> Teshome</h3>
                     <p style="color:var(--cyan);font-size:0.85rem;margin-bottom:12px;font-weight:600;">   የሶፍትዌር ኢንጂነር፣ የቴክኖሎጂ አማካሪ እና የዲጂታል ክህሎቶች አሰልጣኝ
 (Software Engineer, Tech Consultant & Digital Skills Instructor)  </p>
                     <p style="color:var(--muted);font-size:0.9rem;line-height:1.6;">  Teshome is a Software Engineer, Tech Consultant, and Lead Instructor with 7+ years of experience building modern digital solutions. He empowers learners with real-world tech skills across 6 core domains: Video Editing, Digital Marketing, Software & Web Development, Mobile App Development, Database & REST APIs, and AI & Cybersecurity. Through practical, project-based teaching, Teshome bridges the gap between theory and industry needs to prepare students for global tech careers.
@@ -124,7 +124,7 @@
 
             {{-- Testimonials --}}
             <div style="margin-bottom:32px;">
-                <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:20px;">ተማሪዎች ምን ይላሉ / Student Reviews</h2>
+                <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:20px;"> Student Reviews</h2>
                 <div style="display:grid;gap:16px;">
                 @foreach([
     ['name'=>'Kidan Alemu','text'=>'ከሁሉ ጥሩ ኮርስ ነው! ምዝገባዬ ሕይወቴን ቀይሯል።','img'=>asset('images/kidan.webp')],
@@ -147,7 +147,7 @@
 
             {{-- FAQ --}}
             <div>
-                <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:20px;">ተደጋጋሚ ጥያቄዎች / FAQ</h2>
+                <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:20px;">ተደጋጋሚ ጥያቄዎች </h2>
                 @foreach([
                     ['q'=>'ኮርሱን ለምን ያህል ጊዜ ይቀጥላሉ? / How long do I have access?','a'=>'ለዘለዓለም! / Lifetime access once you enroll.'],
                     ['q'=>'ሰርተፍኬት ይሰጣሉ? / Do you provide a certificate?','a'=>'አዎ፣ ኮርሱ ሲጠናቀቅ ሰርቲፊኬት ያገኛሉ። Yes, you get a completion certificate.'],
