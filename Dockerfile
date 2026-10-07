@@ -17,14 +17,11 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /app
 COPY . .
 
-# ስትራይፕ ፓኬጅን በቀጥታ እዚህ ጋር ማስገባት ይቻላል (አማራጭ 1 - አሁን በቀጥታ ለመጨመር)
-#RUN COMPOSER_MEMORY_LIMIT=-1 composer require stripe/stripe-php
-
-RUN chmod -R 775 storage bootstrap/cache
-
 # Set Directory Permissions
 RUN chmod -R 777 storage bootstrap/cache
 
-# Install PHP dependencies
+# Clear Composer Cache to avoid conflicts and Install dependencies smoothly
+RUN COMPOSER_MEMORY_LIMIT=-1 composer clear-cache
 RUN COMPOSER_MEMORY_LIMIT=-1 composer update --no-dev --optimize-autoloader --ignore-platform-reqs
+
 CMD php artisan config:clear && php artisan migrate --force && php artisan serve --host 0.0.0.0 --port $PORT
