@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', ' Tesheai Academy የነገው የቴክኖሎጂ መድረክ | Learn Tech Skills')
+@section('title', ' Tesheai Academy Learn Tech Skills')
 @push('styles')
 <style>
 .hero { padding: 100px 0 80px; text-align: center; position: relative; overflow: hidden; }
@@ -73,10 +73,10 @@
 {{-- Hero --}}
 <section class="hero">
     <div class="container">
-        <div class="hero-badge"> በዲጂታሉ ዓለም ስኬታማ ለመሆን ዝግጁ ነዎት? | Master the Digital Era</div>
+        <div class="hero-badge">  Master the Digital Era</div>
         <h1>TesheAi Acadamey  <span class="grad-text">  World is rapidly transforming digitally. </span><br>Learn modern, practical skills </h1>
             <div class="hero-btns">
-            <a href="#courses" class="btn btn-cyan" style="font-size:1rem;padding:14px 32px;">አሁኑኑ መማር ይጀምሩ / Start Learning Today</a>
+            <a href="#courses" class="btn btn-cyan" style="font-size:1rem;padding:14px 32px;"> Start Learning Today</a>
         </div>
 
         {{-- Search bar --}}
@@ -99,19 +99,19 @@
     <div class="stats-row">
         <div class="stat-card">
             <div class="stat-num">5k</div>
-            <div class="stat-label">ተማሪዎች / Active Learners</div>
+            <div class="stat-label"> Active Learners</div>
         </div>
         <div class="stat-card">
             <div class="stat-num">50+</div>
-            <div class="stat-label">ትምህርቶች / Video Lessons</div>
+            <div class="stat-label"> Video Lessons</div>
         </div>
         <div class="stat-card">
             <div class="stat-num">4.9★</div>
-            <div class="stat-label">የተማሪዎች እርካታ / Top Rating</div>
+            <div class="stat-label"> Top Rating</div>
         </div>
         <div class="stat-card">
             <div class="stat-num">30h</div>
-            <div class="stat-label">ተግባራዊ / Hands-on Projects</div>
+            <div class="stat-label"> Hands-on Projects</div>
         </div>
     </div>
 </div>
@@ -211,27 +211,27 @@
     <div class="container">
         <div class="section-title">
             <h2>አሰልጣኝዎን ያግኙ / <span class="grad-text">Meet Your Instructor</span></h2>
-            <p>ቀጥታ ከኢንዱስትሪው ባለሙያዎች ጋር በተግባር ይማሩ / Learn from industry experts</p>
+            <p> Learn from industry experts</p>
         </div>
         <div style="display:flex; gap:48px; align-items:center; flex-wrap:wrap; justify-content:center;">
             <div style="flex:1; min-width:280px; text-align:center;">
                 <img src="{{ asset('images/manajer.webp') }}" alt="Teshome" style="width:280px; height:280px; border-radius:50%; object-fit:cover; object-position:top; border:4px solid var(--indigo); box-shadow:0 12px 40px rgba(99,102,241,0.25);">
             </div>
             <div style="flex:2; min-width:320px;">
-                <h3 style="font-size:2rem; font-weight:800; margin-bottom:8px;">ተሾመ / Teshome</h3>
+                <h3 style="font-size:2rem; font-weight:800; margin-bottom:8px;">Teshome</h3>
                 <p style="color:var(--cyan); font-weight:600; margin-bottom:18px; font-size:1.1rem;">የሶፍትዌር ኢንጂነር፣ የቴክኖሎጂ አማካሪ እና የዲጂታል ክህሎቶች አሰልጣኝ
 (Software Engineer, Tech Consultant & Digital Skills Instructor)</p>
                 <p style="color:var(--muted); line-height:1.8; font-size:1.05rem; margin-bottom:24px;">
-                   Teshome is a Software Engineer, Tech Consultant, and Lead Instructor with 7+ years of experience building modern digital solutions. He empowers learners with real-world tech skills across 6 core domains: Video Editing, Digital Marketing, Software & Web Development, Mobile App Development, Database & REST APIs, and AI & Cybersecurity. Through practical, project-based teaching, Teshome bridges the gap between theory and industry needs to prepare students for global tech careers.
+                   Teshome is a Software Engineer, Tech Consultant, and Lead Instructor with 3+ years of experience building modern digital solutions. He empowers learners with real-world tech skills across 6 core domains: Video Editing, Digital Marketing, Software & Web Development, Mobile App Development, Database & REST APIs, and AI & Cybersecurity. Through practical, project-based teaching, Teshome bridges the gap between theory and industry needs to prepare students for global tech careers.
                 </p>
                 <div style="display:flex; gap:16px;">
                     <div style="background:var(--bg2); padding:14px 24px; border-radius:10px; border:1px solid var(--border); text-align:center; min-width:120px;">
-                        <div style="font-weight:800; color:var(--indigo); font-size:1.2rem;">5+ ዓመት</div>
-                        <div style="font-size:0.8rem; color:var(--muted); margin-top:2px;">ልምድ / Experience</div>
+                        <div style="font-weight:800; color:var(--indigo); font-size:1.2rem;">4+ ዓመት</div>
+                        <div style="font-size:0.8rem; color:var(--muted); margin-top:2px;">Experience</div>
                     </div>
                     <div style="background:var(--bg2); padding:14px 24px; border-radius:10px; border:1px solid var(--border); text-align:center; min-width:120px;">
                         <div style="font-weight:800; color:var(--indigo); font-size:1.2rem;">5,000+</div>
-                        <div style="font-size:0.8rem; color:var(--muted); margin-top:2px;">ተማሪዎች / Students</div>
+                        <div style="font-size:0.8rem; color:var(--muted); margin-top:2px;"> Students</div>
                     </div>
                 </div>
             </div>
@@ -291,7 +291,7 @@
         @guest
             <a href="{{ route('register') }}" class="btn btn-cyan" style="font-size:1.1rem;padding:16px 40px;">Sign Up Free →</a>
         @else
-            <a href="#courses" class="btn btn-cyan" style="font-size:1.1rem;padding:16px 40px;">ኮርሶችን ይመልከቱ / View Courses →</a>
+            <a href="#courses" class="btn btn-cyan" style="font-size:1.1rem;padding:16px 40px;"> View Courses →</a>
         @endguest
     </div>
 </div>
