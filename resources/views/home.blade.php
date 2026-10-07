@@ -215,14 +215,7 @@
         </div>
         <div style="display:flex; gap:48px; align-items:center; flex-wrap:wrap; justify-content:center;">
             <div style="flex:1; min-width:280px; text-align:center;">
-               @php
-    $instructorPhoto = 'thumbnails/manajer.webp'; // የፎቶው ስም Cloudflare ላይ ያለበት አድራሻ
-@endphp
-
-<img src="{{ Str::startsWith($instructorPhoto, ['http://', 'https://']) ? $instructorPhoto : Storage::disk('s3')->url($instructorPhoto) }}" 
-     alt="Teshome" 
-     style="width:280px; height:280px; border-radius:50%; object-fit:cover; object-position:top; border:4px solid var(--indigo); box-shadow:0 12px 40px rgba(99,102,241,0.25);"
-     onerror="this.onerror=null; this.src='https://via.placeholder.com/280?text=Teshome';">
+              <img src="{{ asset('images/manajer.webp') }}" alt="Teshome" style="width:280px; height:280px; border-radius:50%; object-fit:cover; object-position:top; border:4px solid var(--indigo); box-shadow:0 12px 40px rgba(99,102,241,0.25);">
             </div>
             <div style="flex:2; min-width:320px;">
                 <h3 style="font-size:2rem; font-weight:800; margin-bottom:8px;">Teshome</h3>
