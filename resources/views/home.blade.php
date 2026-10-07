@@ -215,7 +215,7 @@
         </div>
         <div style="display:flex; gap:48px; align-items:center; flex-wrap:wrap; justify-content:center;">
             <div style="flex:1; min-width:280px; text-align:center;">
-              <img src="{{ asset('images/tesheai_campaign_centered.webp') }}" alt="Teshome" style="width:280px; height:280px; border-radius:50%; object-fit:cover; object-position:top; border:4px solid var(--indigo); box-shadow:0 12px 40px rgba(99,102,241,0.25);">
+              <img src="{{ asset('images/photo_11_2026-10-07_15-53-15.webp') }}" alt="Teshome" style="width:280px; height:280px; border-radius:50%; object-fit:cover; object-position:top; border:4px solid var(--indigo); box-shadow:0 12px 40px rgba(99,102,241,0.25);">
             </div>
             <div style="flex:2; min-width:320px;">
                 <h3 style="font-size:2rem; font-weight:800; margin-bottom:8px;">Teshome</h3>
@@ -249,22 +249,22 @@
         <div class="testimonials-grid">
         @foreach([
     [
-        'name' => 'አብዱ ሀሰን',
+        'name' => 'አብዱ From addis ababa',
         'role' => 'AI & Software Developer',
         'text' => 'ትምህርቱ በጣም ተግባራዊና ግልጽ ነው። ከኮዲንግ ባለፈ የዘመኑን የኤአይ (AI) መሣሪያዎች ለምርታማነት በመጠቀሜ ሙሉ የዌብና የሞባይል መተግበሪያዎችን በራሴ መገንባት ችያለሁ። ለአካዴሚያዊና ፕሮፌሽናል ጉዞዬ ድንቅ ጅምር ነው!',
-        'img'  => asset('images/kidan.webp')
+        'img'  => asset('images/photo_9_2026-10-07_15-55-15.webp')
     ],
     [
-        'name' => 'robel Tesfaye',
+        'name' => 'Kal from DESSIE',
         'role' => 'Cybersecurity & Cloud Analyst',
         'text' => 'The blend of Amharic and English made complex tech domains like Cybersecurity, Data Analytics, and Cloud systems effortless to grasp. Truly a life-changing experience for my career in tech!',
-        'img'  => asset('images/mengesha.webp')
+        'img'  => asset('images/photo_2_2026-10-07_15-55-15.webp')
     ],
     [
-        'name' => 'ዳዊት ገ/ሕይወት',
+        'name' => 'Edil From MEKELLE',
         'role' => 'Tech Freelancer & Consultant',
         'text' => 'ስልጠናው ከንድፈ-ሀሳብ ይልቅ ሙሉ በሙሉ ተግባር ላይ ያተኮረ በመሆኑ፣ በፍሪላንሲንግ ዘርፍ በዓለም አቀፍ ደረጃ የቴክኖሎጂ ስራዎችን ወዲያውኑ እንድጀምርና ውጤታማ እንድሆን ረድቶኛል። በጣም እመክራለሁ!',
-        'img'  => asset('images/waja.webp')
+        'img'  => asset('images/photo_3_2026-10-07_15-55-15.webp')
     ],
 ] as $t)
             <div class="testi-card">
