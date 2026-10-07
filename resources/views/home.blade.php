@@ -74,7 +74,7 @@
 <section class="hero">
     <div class="container">
         <div class="hero-badge">  Master the Digital Era</div>
-        <h1>TesheAi Acadamey  <span class="grad-text">  World is rapidly transforming digitally. </span><br>Learn modern, practical skills </h1>
+        <h1>TesheAi Acadamey  <span class="grad-text">  World is rapidly transforming digitally. </span><br> </h1>
             <div class="hero-btns">
             <a href="#courses" class="btn btn-cyan" style="font-size:1rem;padding:14px 32px;"> Start Learning Today</a>
         </div>
@@ -82,7 +82,7 @@
         {{-- Search bar --}}
         <div style="margin-top:36px;max-width:520px;margin-left:auto;margin-right:auto;">
             <form onsubmit="searchCourses(event, this)" style="display:flex;gap:0;border-radius:99px;overflow:hidden;border:2px solid var(--indigo);background:var(--bg2);">
-                <input type="text" id="hero-search" placeholder="ኮርስ ፈልግ / Search courses..." autocomplete="off"
+                <input type="text" id="hero-search" placeholder=" Search courses..." autocomplete="off"
                     style="flex:1;background:transparent;border:none;color:var(--text);padding:14px 22px;font-size:1rem;outline:none;font-family:inherit;">
                 <button type="submit"
                     style="background:linear-gradient(135deg,var(--indigo),var(--cyan));color:#fff;border:none;padding:14px 24px;cursor:pointer;font-size:1rem;font-weight:700;white-space:nowrap;">
@@ -120,7 +120,7 @@
 <section class="section-gap">
     <div class="container">
        <div class="section-title">
-    <h2>ምን ያተርፋሉ? / <span class="grad-text">Why Learn With Us?</span></h2>
+    <h2> <span class="grad-text">Why Learn With Us?</span></h2>
     
    
 </div>
@@ -159,9 +159,9 @@
 <section class="section-gap" id="courses">
     <div class="container">
         <div class="section-title">
-            <h2>የሥልጠና ፕሮግራሞቻችን / <span class="grad-text">Our Courses</span></h2>
+            <h2> <span class="grad-text">Our Courses</span></h2>
             @if(!empty($search))
-                <p>🔍 "{{ $search }}" ውጤት: {{ $courses->count() }} ኮርስ(ኮርሶች) ተገኝተዋል — <a href="{{ url('/') }}#courses" style="color:var(--cyan);">ሁሉንም አሳይ / Clear</a></p>
+                <p>🔍 "{{ $search }}" ውጤት: {{ $courses->count() }} ኮርስ(ኮርሶች) ተገኝተዋል — <a href="{{ url('/') }}#courses" style="color:var(--cyan);"> Clear</a></p>
             @else
                 <p>ለእርስዎ ተስማሚ የሆነውን ትምህርት ይምረጡና የዕውቀት ጉዞዎን ዛሬውኑ ይጀምሩ</p>
             @endif
@@ -210,7 +210,7 @@
 <section class="section-gap" style="background:var(--bg3); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
     <div class="container">
         <div class="section-title">
-            <h2>አሰልጣኝዎን ያግኙ / <span class="grad-text">Meet Your Instructor</span></h2>
+            <h2> <span class="grad-text">Meet Your Instructor</span></h2>
             <p> Learn from industry experts</p>
         </div>
         <div style="display:flex; gap:48px; align-items:center; flex-wrap:wrap; justify-content:center;">
@@ -222,7 +222,7 @@
                 <p style="color:var(--cyan); font-weight:600; margin-bottom:18px; font-size:1.1rem;">የሶፍትዌር ኢንጂነር፣ የቴክኖሎጂ አማካሪ እና የዲጂታል ክህሎቶች አሰልጣኝ
 (Software Engineer, Tech Consultant & Digital Skills Instructor)</p>
                 <p style="color:var(--muted); line-height:1.8; font-size:1.05rem; margin-bottom:24px;">
-                   Teshome is a Software Engineer, Tech Consultant, and Lead Instructor with 3+ years of experience building modern digital solutions. He empowers learners with real-world tech skills across 6 core domains: Video Editing, Digital Marketing, Software & Web Development, Mobile App Development, Database & REST APIs, and AI & Cybersecurity. Through practical, project-based teaching, Teshome bridges the gap between theory and industry needs to prepare students for global tech careers.
+                   Teshome is a Software Engineer, Tech Consultant, and Lead Instructor with 3+ years of experience building modern digital solutions. 
                 </p>
                 <div style="display:flex; gap:16px;">
                     <div style="background:var(--bg2); padding:14px 24px; border-radius:10px; border:1px solid var(--border); text-align:center; min-width:120px;">
@@ -243,7 +243,7 @@
 <section class="section-gap">
     <div class="container">
         <div class="section-title">
-            <h2>የተማሪዎቻችን አስተያየት / <span class="grad-text">Student Stories</span></h2>
+            <h2><span class="grad-text">Student Stories</span></h2>
             <p>ከእኛ ጋር የተማሩ ተማሪዎች ስኬታቸውን ያካፍላሉ</p>
         </div>
         <div class="testimonials-grid">
@@ -286,8 +286,8 @@
 {{-- CTA --}}
 <div class="container">
     <div class="cta-section">
-        <h2>የነገውን የቴክኖሎጂ ስኬትዎን ዛሬ ይጀምሩ!/ <span class="grad-text">Start Today!</span></h2>
-        <p>በሺዎች የሚቆጠሩ ተማሪዎች ክህሎታቸውን እያደሱ ይገኛሉ። እርስዎስ ምን ይጠብቃሉ? Join thousands of successful learners today.</p>
+        <h2> <span class="grad-text">Start Today!</span></h2>
+        <p> Join thousands of successful learners today.</p>
         @guest
             <a href="{{ route('register') }}" class="btn btn-cyan" style="font-size:1.1rem;padding:16px 40px;">Sign Up Free →</a>
         @else
