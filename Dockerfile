@@ -18,7 +18,7 @@ WORKDIR /app
 COPY . .
 
 # ስትራይፕ ፓኬጅን በቀጥታ እዚህ ጋር ማስገባት ይቻላል (አማራጭ 1 - አሁን በቀጥታ ለመጨመር)
-RUN COMPOSER_MEMORY_LIMIT=-1 composer require stripe/stripe-php
+#RUN COMPOSER_MEMORY_LIMIT=-1 composer require stripe/stripe-php
 
 RUN chmod -R 775 storage bootstrap/cache
 
