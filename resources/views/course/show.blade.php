@@ -117,7 +117,7 @@
                     <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:4px;"> Teshome</h3>
                     <p style="color:var(--cyan);font-size:0.85rem;margin-bottom:12px;font-weight:600;">   የሶፍትዌር ኢንጂነር፣ የቴክኖሎጂ አማካሪ እና የዲጂታል ክህሎቶች አሰልጣኝ
 (Software Engineer, Tech Consultant & Digital Skills Instructor)  </p>
-                    <p style="color:var(--muted);font-size:0.9rem;line-height:1.6;">  Teshome is a Software Engineer, Tech Consultant, and Lead Instructor with 7+ years of experience building modern digital solutions. He empowers learners with real-world tech skills across 6 core domains: Video Editing, Digital Marketing, Software & Web Development, Mobile App Development, Database & REST APIs, and AI & Cybersecurity. Through practical, project-based teaching, Teshome bridges the gap between theory and industry needs to prepare students for global tech careers.
+                    <p style="color:var(--muted);font-size:0.9rem;line-height:1.6;">  Teshome is a Software Engineer, Tech Consultant, and Lead Instructor with 4+ years of experience building modern digital solutions.  
               </p>
                 </div>
             </div>
