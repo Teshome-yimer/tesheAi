@@ -20,8 +20,7 @@ COPY . .
 # Set Directory Permissions
 RUN chmod -R 777 storage bootstrap/cache
 
-# Clear Composer Cache to avoid conflicts and Install dependencies smoothly
-RUN COMPOSER_MEMORY_LIMIT=-1 composer clear-cache
+# Install PHP dependencies directly
 RUN COMPOSER_MEMORY_LIMIT=-1 composer update --no-dev --optimize-autoloader --ignore-platform-reqs
 
 CMD php artisan config:clear && php artisan migrate --force && php artisan serve --host 0.0.0.0 --port $PORT
