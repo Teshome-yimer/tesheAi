@@ -112,7 +112,7 @@
             </div>
 
             <div class="instructor-section" style="margin-bottom:32px;">
-            <img src="{{ asset('tesheai_style_5_sunset_startup.webp') }}" alt="Teshome" class="instructor-avatar" style="object-fit:cover; object-position:top; border:2px solid var(--indigo);">
+            <img src="{{ asset('photo_11_2026-10-07_15-53-15.webp') }}" alt="Teshome" class="instructor-avatar" style="object-fit:cover; object-position:top; border:2px solid var(--indigo);">
                 <div>
                     <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:4px;"> Teshome</h3>
                     <p style="color:var(--cyan);font-size:0.85rem;margin-bottom:12px;font-weight:600;">   የሶፍትዌር ኢንጂነር፣ የቴክኖሎጂ አማካሪ እና የዲጂታል ክህሎቶች አሰልጣኝ
@@ -127,7 +127,7 @@
                 <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:20px;"> Student Reviews</h2>
                 <div style="display:grid;gap:16px;">
                 @foreach([
-    ['name'=>'Eyob from Kobo','text'=>'ከሁሉ ጥሩ ኮርስ ነው! ምዝገባዬ ሕይወቴን ቀይሯል።','img'=>asset('images/kidan.webp')],
+    ['name'=>'Eyob from Kobo','text'=>'ከሁሉ ጥሩ ኮርስ ነው! ምዝገባዬ ሕይወቴን ቀይሯል።','img'=>asset('images/photo_6_2026-10-07_15-55-15.webp')],
     ['name'=>'Mengesha from Bahir dar','text'=>'The videos are very clear. I landed a job after 2 months!','img'=>asset('images/photo_7_2026-10-07_15-55-15.webp')],
     ['name'=>' Kasahun from Dessie','text'=>'በጣም ግልጽ የሆነ ማብራሪያ ነው። ለጀማሪዎች ይመከራል።','img'=>asset('images/photo_5_2026-10-07_15-55-15.webp')],
 ] as $r)
