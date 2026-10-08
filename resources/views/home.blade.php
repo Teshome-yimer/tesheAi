@@ -74,7 +74,7 @@
 <section class="hero">
     <div class="container">
         <div class="hero-badge">  Master the Digital Era</div>
-        <h1>TesheAi Acadamey  <span class="grad-text">  World is rapidly transforming digitally. </span><br> </h1>
+        <h1>TesheAi Academy  <span class="grad-text">  World is rapidly transforming digitally. </span><br> </h1>
             <div class="hero-btns">
             <a href="#courses" class="btn btn-cyan" style="font-size:1rem;padding:14px 32px;"> Start Learning Today</a>
         </div>
