@@ -73,8 +73,8 @@
 {{-- Hero --}}
 <section class="hero">
     <div class="container">
-        <div class="hero-badge">  Master the Digital Era</div>
-        <h1>TesheAi Academy  <span class="grad-text">  World is rapidly transforming digitally. </span><br> </h1>
+        <div class="hero-badge"> 100% Safe, Focused & Practical</div>
+        <h1>ከሶሻል ሚዲያ ውዥንብር የጸዳ፣ <span class="grad-text">  ለተማሪዎችና ለቤተሰብ አስተማማኝ የቴክኖሎጂ መማሪያ!</span><br> </h1>
             <div class="hero-btns">
             <a href="#courses" class="btn btn-cyan" style="font-size:1rem;padding:14px 32px;"> Start Learning Today</a>
         </div>
@@ -211,7 +211,7 @@
     <div class="container">
         <div class="section-title">
             <h2> <span class="grad-text">Meet Your Instructor</span></h2>
-            <p> Learn from industry experts</p>
+            <p> Learn from industry experts/በ 10 ብር ብቻ መማር ይጀምሩ</p>
         </div>
         <div style="display:flex; gap:48px; align-items:center; flex-wrap:wrap; justify-content:center;">
             <div style="flex:1; min-width:280px; text-align:center;">
