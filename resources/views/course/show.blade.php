@@ -112,7 +112,7 @@
             </div>
 
             <div class="instructor-section" style="margin-bottom:32px;">
-            <img src="{{ asset('images/photo_11_2026-10-07_15-53-15.webp') }}" alt="Teshome" class="instructor-avatar" style="object-fit:cover; object-position:top; border:2px solid var(--indigo);">
+            <img src="{{ asset('images/tesheai_partial_2_half_shadow.webp') }}" alt="Teshome" class="instructor-avatar" style="object-fit:cover; object-position:top; border:2px solid var(--indigo);">
                 <div>
                     <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:4px;"> Teshome</h3>
                     <p style="color:var(--cyan);font-size:0.85rem;margin-bottom:12px;font-weight:600;">   የሶፍትዌር ኢንጂነር፣ የቴክኖሎጂ አማካሪ እና የዲጂታል ክህሎቶች አሰልጣኝ
