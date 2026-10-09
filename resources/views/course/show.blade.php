@@ -164,15 +164,23 @@
 
         {{-- Sticky Sidebar --}}
         <div class="sticky-sidebar">
-            <div class="sidebar-card">
-                @if($course->preview_video)
-                <div style="position:relative;">
-                    <!-- አዲሱ የተስተካከለው ኮድ: -->
-<iframe src="{{ $course->preview_video }}" loading="lazy" style="width:100%;height:200px;border:none;" allowfullscreen></iframe>
-                </div>
-                @else
-                <div style="height:180px;background:linear-gradient(135deg,var(--bg3),var(--border));display:flex;align-items:center;justify-content:center;font-size:5rem;">🎓</div>
-                @endif
+    <div class="sidebar-card">
+        @if($course->preview_video)
+        <div style="position:relative; width:100%; height:200px; overflow:hidden;" class="rounded-t-xl">
+            <!-- 1. የ YouTube/Video Iframe (በግልፅ የሚታየው) -->
+            <iframe src="{{ $course->preview_video }}" loading="lazy" style="width:100%; height:100%; border:none; pointer-events:none;"></iframe>
+
+            {{-- 2. ያልከፈለ ተማሪ ከሆነ በስውር (Invisible) ሙሉ በሙሉ መሸፈኛ link --}}
+            @if(!$isEnrolled)
+            <a href="{{ route('checkout', $course->slug) }}" 
+               title="ለመክፈል እዚህ ይጫኑ / Click to Enroll"
+               style="position:absolute; inset:0; z-index:10; background:transparent; cursor:pointer;">
+            </a>
+            @endif
+        </div>
+        @else
+        <div style="height:180px;background:linear-gradient(135deg,var(--bg3),var(--border));display:flex;align-items:center;justify-content:center;font-size:5rem;">🎓</div>
+        @endif
 
                 <div class="sidebar-body">
                     <div class="countdown">
