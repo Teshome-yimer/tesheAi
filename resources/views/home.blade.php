@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Tesheai Academy Learn Tech Skills')
-@push('styles')
 
+@push('styles')
 <style>
 .hero { padding: 100px 0 80px; text-align: center; position: relative; overflow: hidden; }
 .hero::before { content:''; position:absolute; top:-200px; left:50%; transform:translateX(-50%); width:800px; height:800px; background: radial-gradient(circle, rgba(99,102,241,.15) 0%, transparent 70%); pointer-events:none; }
@@ -107,18 +107,18 @@
             <p>እኛን መምረጥዎ ለስኬትዎ ዋስትና የሚሆነው ለምንድነው?</p>
         </div>
         <div class="features-grid">
-            @if(isset($featuredCourse) &&$featuredCourse)
-                @php $items =$featuredCourse->what_you_learn ?? []; @endphp
-                @foreach(array_slice($items, 0, 6) as$item)
+            @php $hasFeatured = isset($featuredCourse) && $featuredCourse && !empty($featuredCourse->what_you_learn); @endphp
+
+            @if($hasFeatured)
+                @php $items = is_array($featuredCourse->what_you_learn) ? $featuredCourse->what_you_learn : json_decode($featuredCourse->what_you_learn, true) ?? []; @endphp
+                @foreach(array_slice($items, 0, 6) as $item)
                     <div class="feature-card">
                         <div class="feature-icon">🚀</div>
                         <h3>ተግባራዊ ክህሎት</h3>
                         <p>{{ $item }}</p>
                     </div>
                 @endforeach
-            @endif
-
-            @if(!isset($featuredCourse) \vert{}\vert{} empty($items))
+            @else
                 @foreach([
                     ['icon'=>'⚡','title'=>'ዘመናዊ የቴክኖሎጂ ክህሎቶች','desc'=>'በዓለም አቀፍ ደረጃ በስፋት የሚፈለጉ ዘመናዊ የልማት ቴክኖሎጂዎች'],
                     ['icon'=>'💻','title'=>'ተግባራዊ ፕሮጀክቶች (Real-World Projects)','desc'=>'በቀጥታ ለሥራ የሚያዘጋጁዎትን እውነተኛ ፕሮጀክቶች የመስራት ልምድ'],
@@ -149,7 +149,7 @@
         </div>
 
         <div class="courses-grid">
-            @forelse($courses as$course)
+            @forelse($courses as $course)
                 <div class="course-card">
                     @if($course->thumbnail)
                         <img src="{{ Str::startsWith($course->thumbnail, ['http://', 'https://']) ? $course->thumbnail : Storage::disk('s3')->url($course->thumbnail) }}" 
@@ -277,7 +277,7 @@
 <script>
 // Live search: filter course cards on the page
 const allCourseData = [
-    @foreach($courses as$c)
+    @foreach($courses as $c)
     { 
         title: @json($c->title), 
         url: @json(route('course.show', $c->slug)), 
