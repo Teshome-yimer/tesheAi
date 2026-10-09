@@ -33,6 +33,13 @@
 .lesson-desc { color:var(--muted); line-height:1.7; font-size:0.9rem; margin-bottom:20px; }
 .nav-btns { display:flex; justify-content:space-between; gap:12px; padding:16px 20px; border-top:1px solid var(--border); background:var(--bg2); flex-shrink:0; }
 
+/* Locked/Disabled button styling */
+.btn:disabled, .btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+    pointer-events: auto !important;
+}
+
 @media(max-width:768px) {
     .viewer-wrap { grid-template-columns:1fr; }
     .sidebar { max-height:260px; border-right:none; border-bottom:1px solid var(--border); }
@@ -76,8 +83,8 @@
             </div>
             <button id="complete-btn" onclick="markComplete()"
                 class="btn {{ $isCompleted ? 'btn-secondary' : 'btn-primary' }} btn-sm"
-                {{ $isCompleted ? 'disabled' : '' }}>
-                {{ $isCompleted ? '✅ Completed' : '✓ Mark Complete' }}
+                {{ $isCompleted ? 'disabled' : 'disabled' }}>
+                {{ $isCompleted ? '✅ Completed' : '🔒 Finish Video First' }}
             </button>
         </div>
 
@@ -92,8 +99,18 @@
             </video>
         </div>
         @elseif($lesson->video_url)
+        @php
+            // Extract Youtube Video ID and enable JS API
+            $videoUrl = $lesson->video_url;
+            if (str_contains($videoUrl, 'youtube.com') || str_contains($videoUrl, 'youtu.be')) {
+                $separator = str_contains($videoUrl, '?') ? '&' : '?';
+                if (!str_contains($videoUrl, 'enablejsapi=1')) {
+                    $videoUrl .= $separator . 'enablejsapi=1';
+                }
+            }
+        @endphp
         <div class="video-wrap">
-            <iframe id="lesson-iframe" src="{{ $lesson->video_url }}"
+            <iframe id="lesson-iframe" src="{{ $videoUrl }}"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
             </iframe>
@@ -170,7 +187,8 @@
 
             @if($nextLesson)
             <a href="{{ route('student.lesson', [$course->slug, $nextLesson->slug ?? $nextLesson->id]) }}"
-               id="next-btn" class="btn btn-primary" onclick="markAndNext(event, this.href)">
+               id="next-btn" class="btn btn-primary {{ $isCompleted ? '' : 'disabled' }}" 
+               onclick="markAndNext(event, this.href)">
                ቀጣይ → Next
             </a>
             @else
@@ -182,13 +200,31 @@
 
 @endsection
 @push('scripts')
+<script src="https://www.youtube.com/iframe_api"></script>
 <script>
 const LESSON_ID = {{ $lesson->id }};
 const COURSE_ID = {{ $course->id }};
+const IS_COMPLETED = {{ $isCompleted ? 'true' : 'false' }};
 const CSRF     = document.querySelector('meta[name=csrf-token]').content;
+
+function unlockCompletionButtons() {
+    const btn = document.getElementById('complete-btn');
+    const nextBtn = document.getElementById('next-btn');
+
+    if (btn && btn.textContent.includes('Finish Video')) {
+        btn.disabled = false;
+        btn.textContent = '✓ Mark Complete';
+        btn.classList.replace('btn-secondary', 'btn-primary');
+    }
+    if (nextBtn) {
+        nextBtn.classList.remove('disabled');
+    }
+}
 
 async function markComplete() {
     const btn = document.getElementById('complete-btn');
+    if (btn.disabled) return;
+
     btn.disabled = true; btn.textContent = '...';
     const res  = await fetch('{{ route("student.progress.complete") }}', {
         method: 'POST',
@@ -202,14 +238,47 @@ async function markComplete() {
         document.querySelectorAll('.l-item.active .check').forEach(c => { c.textContent = '✓'; c.closest('.l-item').classList.add('done'); });
         document.getElementById('prog-fill').style.width = data.progress.percentage + '%';
         document.getElementById('prog-pct').textContent  = data.progress.percentage + '%';
+        
+        const nextBtn = document.getElementById('next-btn');
+        if (nextBtn) nextBtn.classList.remove('disabled');
     }
 }
 
 async function markAndNext(e, nextUrl) {
+    const nextBtn = document.getElementById('next-btn');
+    if (nextBtn && nextBtn.classList.contains('disabled')) {
+        e.preventDefault();
+        alert('እባክዎን ቀጣይ ከመሄድዎ በፊት ቪዲዮውን እስከ መጨረሻው ይመልከቱ!');
+        return;
+    }
+
     if (document.getElementById('complete-btn').textContent.includes('Mark')) {
         e.preventDefault();
         await markComplete();
         setTimeout(() => window.location = nextUrl, 400);
+    }
+}
+
+// ── YouTube Iframe Player API Setup ────────────────────────
+let ytPlayer;
+function onYouTubeIframeAPIReady() {
+    const iframe = document.getElementById('lesson-iframe');
+    if (iframe && !IS_COMPLETED) {
+        ytPlayer = new YT.Player('lesson-iframe', {
+            events: {
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    } else if (IS_COMPLETED) {
+        unlockCompletionButtons();
+    }
+}
+
+function onPlayerStateChange(event) {
+    // YT.PlayerState.ENDED = 0 (ቪዲዮው ሙሉ በሙሉ ሲያበቃ)
+    if (event.data === YT.PlayerState.ENDED) {
+        unlockCompletionButtons();
+        markComplete(); // አውቶማቲክ Mark Complete ያደርገዋል
     }
 }
 
@@ -224,6 +293,10 @@ function fmtTime(s) {
 const video = document.getElementById('lesson-video');
 if (video) {
     let lastSave = 0;
+
+    if (IS_COMPLETED) {
+        unlockCompletionButtons();
+    }
 
     video.addEventListener('timeupdate', () => {
         const pct  = video.duration ? (video.currentTime / video.duration) * 100 : 0;
@@ -246,8 +319,9 @@ if (video) {
     // Auto-mark complete when 90% watched
     video.addEventListener('timeupdate', () => {
         if (video.duration && (video.currentTime / video.duration) >= 0.9) {
+            unlockCompletionButtons();
             const btn = document.getElementById('complete-btn');
-            if (btn && !btn.disabled && btn.textContent.includes('Mark')) {
+            if (btn && btn.textContent.includes('Mark')) {
                 markComplete();
             }
         }
