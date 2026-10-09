@@ -81,24 +81,7 @@
     </section>
 
     {{-- Stats --}}
-    <section class="stats-row">
-        <div class="stat-card">
-            <div class="stat-num">5k+</div>
-            <div class="stat-label">Active Learners</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-num">50+</div>
-            <div class="stat-label">Video Lessons</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-num">4.9★</div>
-            <div class="stat-label">Top Rating</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-num">30h+</div>
-            <div class="stat-label">Hands-on Projects</div>
-        </div>
-    </section>
+
 
     {{-- What You Learn --}}
   
