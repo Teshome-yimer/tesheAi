@@ -1,6 +1,6 @@
  @extends('layouts.app')
-@section('title', ' Tesheai Academy Learn Tech Skills')
-@push('styles')
+ @section('title', ' Tesheai Academy Learn Tech Skills')
+ @push('styles')
 <style>
 .hero { padding: 100px 0 80px; text-align: center; position: relative; overflow: hidden; }
 .hero::before { content:''; position:absolute; top:-200px; left:50%; transform:translateX(-50%); width:800px; height:800px; background: radial-gradient(circle, rgba(99,102,241,.15) 0%, transparent 70%); pointer-events:none; }
