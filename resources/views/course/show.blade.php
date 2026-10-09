@@ -171,13 +171,15 @@
             <iframe src="{{ $course->preview_video }}" loading="lazy" style="width:100%; height:100%; border:none; pointer-events:none;"></iframe>
 
             <!-- 2. የላይኛውን ጥግ (Bro Code / Channel Name) የሚሸፍን የ TesheAi Logo Banner -->
-            <div style="position:absolute; top:0; left:0; right:0; height:52px; background:linear-gradient(to bottom, rgba(15,23,42,0.98), rgba(15,23,42,0.85), transparent); z-index:5; display:flex; align-items:center; padding:0 12px; pointer-events:none; gap:10px;">
-                <img src="{{ asset('images/tesheai_partial_2_half_shadow.webp') }}" alt="TesheAi" style="height:28px; width:28px; border-radius:50%; object-fit:cover; border:1px solid var(--cyan);">
-                <div style="display:flex; flex-direction:column;">
-                    <span style="color:#ffffff; font-size:0.82rem; font-weight:800; line-height:1.1; letter-spacing:0.5px;">TesheAi Academy</span>
-                    <span style="color:var(--cyan); font-size:0.68rem; font-weight:600;">Official Preview</span>
-                </div>
-            </div>
+            <!-- 2. የላይኛውን ጥግ (Bro Code / Channel Name) የሚሸፍን የ TesheAi Logo Banner -->
+<div style="position:absolute; top:0; left:0; right:0; height:60px; background:linear-gradient(to bottom, rgba(15,23,42,1) 70%, rgba(15,23,42,0.9) 85%, transparent); z-index:5; display:flex; align-items:center; padding:0 14px; pointer-events:none; gap:12px;">
+    <img src="{{ asset('images/tesheai_partial_2_half_shadow.webp') }}" alt="TesheAi" style="height:40px; width:40px; border-radius:50%; object-fit:cover; border:2px solid var(--cyan); flex-shrink:0;">
+    <div style="display:flex; flex-direction:column;">
+        <span style="color:#ffffff; font-size:0.92rem; font-weight:800; line-height:1.2; letter-spacing:0.5px;">TesheAi Academy</span>
+        <span style="color:var(--cyan); font-size:0.72rem; font-weight:600;">Official Preview</span>
+    </div>
+</div>
+            
 
             {{-- 3. ያልከፈለ ተማሪ ከሆነ በስውር (Invisible) ሙሉ በሙሉ መሸፈኛ link --}}
             @if(!$isEnrolled)
