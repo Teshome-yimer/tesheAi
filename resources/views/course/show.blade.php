@@ -167,10 +167,19 @@
     <div class="sidebar-card">
         @if($course->preview_video)
         <div style="position:relative; width:100%; height:200px; overflow:hidden;" class="rounded-t-xl">
-            <!-- 1. የ YouTube/Video Iframe (በግልፅ የሚታየው) -->
+            <!-- 1. የ YouTube Video Iframe -->
             <iframe src="{{ $course->preview_video }}" loading="lazy" style="width:100%; height:100%; border:none; pointer-events:none;"></iframe>
 
-            {{-- 2. ያልከፈለ ተማሪ ከሆነ በስውር (Invisible) ሙሉ በሙሉ መሸፈኛ link --}}
+            <!-- 2. የላይኛውን ጥግ (Bro Code / Channel Name) የሚሸፍን የ TesheAi Logo Banner -->
+            <div style="position:absolute; top:0; left:0; right:0; height:52px; background:linear-gradient(to bottom, rgba(15,23,42,0.98), rgba(15,23,42,0.85), transparent); z-index:5; display:flex; align-items:center; padding:0 12px; pointer-events:none; gap:10px;">
+                <img src="{{ asset('images/tesheai_partial_2_half_shadow.webp') }}" alt="TesheAi" style="height:28px; width:28px; border-radius:50%; object-fit:cover; border:1px solid var(--cyan);">
+                <div style="display:flex; flex-direction:column;">
+                    <span style="color:#ffffff; font-size:0.82rem; font-weight:800; line-height:1.1; letter-spacing:0.5px;">TesheAi Academy</span>
+                    <span style="color:var(--cyan); font-size:0.68rem; font-weight:600;">Official Preview</span>
+                </div>
+            </div>
+
+            {{-- 3. ያልከፈለ ተማሪ ከሆነ በስውር (Invisible) ሙሉ በሙሉ መሸፈኛ link --}}
             @if(!$isEnrolled)
             <a href="{{ route('checkout', $course->slug) }}" 
                title="ለመክፈል እዚህ ይጫኑ / Click to Enroll"
@@ -181,7 +190,6 @@
         @else
         <div style="height:180px;background:linear-gradient(135deg,var(--bg3),var(--border));display:flex;align-items:center;justify-content:center;font-size:5rem;">🎓</div>
         @endif
-
                 <div class="sidebar-body">
                     <div class="countdown">
                         <div class="countdown-label">⏰ ዋጋው ይቀንሳል / Offer ends in</div>
