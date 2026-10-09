@@ -49,7 +49,7 @@
             <div class="countdown-bar">
                 <span style="color:var(--muted);font-size:0.8rem;">⏰ ዋጋው ለ </span>
                 <strong style="color:var(--indigo);" id="co-timer">30:00</strong>
-                <span style="color:var(--muted);font-size:0.8rem;"> ይቀራሉ / Price reserved for</span>
+                <span style="color:var(--muted);font-size:0.8rem;"> ይቆያል ይፍጠኑ / price reserved for</span>
             </div>
 
             <div class="checkout-card">
