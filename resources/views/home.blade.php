@@ -93,7 +93,7 @@
         </div>
     </div>
 </section>
-
+/*
 {{-- Stats --}}
 <div class="container">
     <div class="stats-row">
@@ -154,7 +154,7 @@
         </div>
     </div>
 </section>
-
+*/
 {{-- Courses --}}
 <section class="section-gap" id="courses">
     <div class="container">
