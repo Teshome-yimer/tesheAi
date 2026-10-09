@@ -168,7 +168,11 @@
         @if($course->preview_video)
         <div style="position:relative; width:100%; height:200px; overflow:hidden;" class="rounded-t-xl">
             <!-- 1. የ YouTube Video Iframe -->
-            <iframe src="{{ $course->preview_video }}" loading="lazy" style="width:100%; height:100%; border:none; pointer-events:none;"></iframe>
+            <!-- የ iframe style ላይ pointer-events ን በ Condition ቀይረው -->
+<iframe src="{{ $course->preview_video }}" 
+        loading="lazy" 
+        style="width:100%; height:100%; border:none; {{ !$isEnrolled ? 'pointer-events:none;' : 'pointer-events:auto;' }}">
+</iframe>
 
             <!-- 2. የላይኛውን ጥግ (Bro Code / Channel Name) የሚሸፍን የ TesheAi Logo Banner -->
             <!-- 2. የላይኛውን ጥግ (Bro Code / Channel Name) የሚሸፍን የ TesheAi Logo Banner -->
