@@ -59,7 +59,7 @@
     {{-- Hero --}}
     <section class="hero">
         <span class="hero-badge">100% Safe, Focused & Practical</span>
-        <h1>ከሶሻል ሚዲያ ውዥንብር የጸዳ፣ <span class="grad-text">ለተማሪዎችና ለቤተሰብ</span> አስተማማኝ የቴክኖሎጂ መማሪያ!</h1>
+        <h1> <span class="grad-text">ከሶሻል ሚዲያ ውዥንብር የጸዳ</span> </h1>
         <p>Learn coding, software design, and modern digital skills in Amharic with structured pathways.</p>
         
         <div class="hero-btns">
