@@ -57,6 +57,8 @@ class PaymentController extends Controller
             'phone'       => $request->phone,
             'tx_ref'      => $txRef,
             'return_url'  => route('payment.chapa.return', ['order' => $order->id]),
+                                                 
+ 'callback_url' => route('payment.chapa.callback'),
             'description' => 'Enrollment: ' . $course->title,
         ]);
 
