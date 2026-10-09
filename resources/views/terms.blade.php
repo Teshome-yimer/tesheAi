@@ -24,16 +24,21 @@
         <!-- List Sections -->
         <div style="display: flex; flex-direction: column; gap: 18px;">
             
+            <!-- 01. Content & Video Disclaimer -->
             <div style="background: rgba(2, 44, 34, 0.8); border: 1px solid #10b981; padding: 20px; border-radius: 16px;">
                 <h2 style="color: #facc15; font-size: 18px; font-weight: 700; margin: 0 0 8px 0; display: flex; align-items: center; gap: 10px;">
                     <span style="background: #10b981; color: #022c22; font-size: 12px; font-weight: 900; padding: 3px 8px; border-radius: 6px;">01</span>
-                    Use of Platform
+                    Content & Video Disclaimer
                 </h2>
-                <p style="color: #d1fae5; font-size: 14px; line-height: 1.6; margin: 0; padding-left: 32px;">
-                    All learning materials, code samples, and tutorials are provided for personal educational use only. Unauthorized distribution is strictly prohibited.
+                <p style="color: #d1fae5; font-size: 14px; line-height: 1.6; margin: 0 0 10px 0; padding-left: 32px;">
+                    TesheAI Academy functions as an organized educational portal and progress-tracking directory. Third-party video tutorials embedded on this platform are hosted externally (such as on YouTube) and rendered in compliance with standard embedding permissions set by content creators.
+                </p>
+                <p style="color: #6ee7b7; font-size: 13px; line-height: 1.5; margin: 0; padding-left: 32px; background: rgba(6, 78, 59, 0.4); padding-top: 8px; padding-bottom: 8px; border-radius: 8px;">
+                    <strong style="color: #facc15;">Service Fees:</strong> Any enrollment or access fees charged on TesheAI Academy cover our platform services—including curriculum organization, user progress tracking, and certificate issuance. We do not claim ownership of or sell embedded third-party video content. All original intellectual property rights belong to their respective copyright holders.
                 </p>
             </div>
 
+            <!-- 02. User Accounts -->
             <div style="background: rgba(2, 44, 34, 0.8); border: 1px solid #10b981; padding: 20px; border-radius: 16px;">
                 <h2 style="color: #facc15; font-size: 18px; font-weight: 700; margin: 0 0 8px 0; display: flex; align-items: center; gap: 10px;">
                     <span style="background: #10b981; color: #022c22; font-size: 12px; font-weight: 900; padding: 3px 8px; border-radius: 6px;">02</span>
@@ -44,6 +49,7 @@
                 </p>
             </div>
 
+            <!-- 03. Service Updates -->
             <div style="background: rgba(2, 44, 34, 0.8); border: 1px solid #10b981; padding: 20px; border-radius: 16px;">
                 <h2 style="color: #facc15; font-size: 18px; font-weight: 700; margin: 0 0 8px 0; display: flex; align-items: center; gap: 10px;">
                     <span style="background: #10b981; color: #022c22; font-size: 12px; font-weight: 900; padding: 3px 8px; border-radius: 6px;">03</span>
@@ -54,13 +60,25 @@
                 </p>
             </div>
 
+            <!-- 04. DMCA & Content Removal -->
             <div style="background: rgba(2, 44, 34, 0.8); border: 1px solid #10b981; padding: 20px; border-radius: 16px;">
                 <h2 style="color: #facc15; font-size: 18px; font-weight: 700; margin: 0 0 8px 0; display: flex; align-items: center; gap: 10px;">
                     <span style="background: #10b981; color: #022c22; font-size: 12px; font-weight: 900; padding: 3px 8px; border-radius: 6px;">04</span>
+                    Content Removal Requests
+                </h2>
+                <p style="color: #d1fae5; font-size: 14px; line-height: 1.6; margin: 0; padding-left: 32px;">
+                    If you are a copyright owner or content creator and wish to have your embedded video content removed from our course catalog, please notify us. Valid requests will be processed promptly.
+                </p>
+            </div>
+
+            <!-- 05. Contact Information -->
+            <div style="background: rgba(2, 44, 34, 0.8); border: 1px solid #10b981; padding: 20px; border-radius: 16px;">
+                <h2 style="color: #facc15; font-size: 18px; font-weight: 700; margin: 0 0 8px 0; display: flex; align-items: center; gap: 10px;">
+                    <span style="background: #10b981; color: #022c22; font-size: 12px; font-weight: 900; padding: 3px 8px; border-radius: 6px;">05</span>
                     Contact Information
                 </h2>
                 <p style="color: #d1fae5; font-size: 14px; line-height: 1.6; margin: 0; padding-left: 32px;">
-                    Questions about these Terms should be sent to: 
+                    Questions regarding these Terms or removal requests should be directed to: 
                     <a href="mailto:tesheyimer86@gmail.com" style="color: #6ee7b7; font-weight: 700; text-decoration: underline;">tesheyimer86@gmail.com</a>
                 </p>
             </div>
