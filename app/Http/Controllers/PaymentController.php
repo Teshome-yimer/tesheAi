@@ -97,23 +97,29 @@ class PaymentController extends Controller
     }
 
     public function chapaCallback(Request $request)
-    {
-        // Webhook endpoint for Chapa server-side confirmation
-        $txRef = $request->input('trx_ref') ?? $request->input('tx_ref');
-        if (!$txRef) return response('OK');
+{
+    // Chapa ከ JSON body ወይም ከ Query params በሚልክበት መንገድ መፈለግ
+    $txRef = $request->input('trx_ref') 
+          ?? $request->input('tx_ref') 
+          ?? $request->input('data.tx_ref');
 
-        $order = Order::where('chapa_tx_ref', $txRef)->first();
-        if (!$order || $order->status === 'paid') return response('OK');
-
-        $verify = $this->chapa->verifyPayment($txRef);
-        if ($verify['success']) {
-            $order->update(['transaction_id' => $verify['data']['id'] ?? null]);
-            $this->enrollment->completePurchase($order);
-        }
-
+    if (!$txRef) {
+        \Log::warning('Chapa Webhook: tx_ref missing in payload', $request->all());
         return response('OK');
     }
 
+    $order = Order::where('chapa_tx_ref', $txRef)->first();
+    if (!$order || $order->status === 'paid') return response('OK');
+
+    $verify = $this->chapa->verifyPayment($txRef);
+    if ($verify['success']) {
+        $order->update(['transaction_id' => $verify['data']['id'] ?? null]);
+        $this->enrollment->completePurchase($order);
+        \Log::info("Chapa Webhook: Order {$order->id} successfully updated to paid.");
+    }
+
+    return response('OK');
+}
     // ── STRIPE ─────────────────────────────────────────────────────────
 
     public function stripeIntent(Request $request)
