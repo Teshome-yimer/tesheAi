@@ -79,7 +79,7 @@
 
                 {{-- Chapa Tab --}}
                 <div id="tab-chapa" class="tab-content active">
-                    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:20px;">🏦 Chapa ተጠቅምህ ከኢትዮጵያ ባንክ ወይም ቴሌቢር ክፈል / Pay via Ethiopian bank or Telebirr</p>
+                    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:20px;">🏦  በቀላሉ በ Tele Birr,  CBE Birr እና  በ CBE (ንግድ ባንክ)  መክፈል ይችላሉ  አገልግሎታችነን ስለወደዱት እናመሰግናለን </p>
                     <form id="chapa-form" action="{{ route('payment.chapa.initiate') }}" method="POST">
                         @csrf
                         <input type="hidden" name="course_id" value="{{ $course->id }}">
