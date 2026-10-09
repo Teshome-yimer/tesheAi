@@ -101,41 +101,7 @@
     </section>
 
     {{-- What You Learn --}}
-    <section class="section-gap">
-        <div class="section-title">
-            <h2>Why Learn With Us?</h2>
-            <p>እኛን መምረጥዎ ለስኬትዎ ዋስትና የሚሆነው ለምንድነው?</p>
-        </div>
-        <div class="features-grid">
-            @php $hasFeatured = isset($featuredCourse) && $featuredCourse && !empty($featuredCourse->what_you_learn); @endphp
-
-            @if($hasFeatured)
-                @php $items = is_array($featuredCourse->what_you_learn) ? $featuredCourse->what_you_learn : json_decode($featuredCourse->what_you_learn, true) ?? []; @endphp
-                @foreach(array_slice($items, 0, 6) as $item)
-                    <div class="feature-card">
-                        <div class="feature-icon">🚀</div>
-                        <h3>ተግባራዊ ክህሎት</h3>
-                        <p>{{ $item }}</p>
-                    </div>
-                @endforeach
-            @else
-                @foreach([
-                    ['icon'=>'⚡','title'=>'ዘመናዊ የቴክኖሎጂ ክህሎቶች','desc'=>'በዓለም አቀፍ ደረጃ በስፋት የሚፈለጉ ዘመናዊ የልማት ቴክኖሎጂዎች'],
-                    ['icon'=>'💻','title'=>'ተግባራዊ ፕሮጀክቶች (Real-World Projects)','desc'=>'በቀጥታ ለሥራ የሚያዘጋጁዎትን እውነተኛ ፕሮጀክቶች የመስራት ልምድ'],
-                    ['icon'=>'🗄️','title'=>'የውሂብ ጎታ እና ሲስተም ዲዛይን','desc'=>'ጠንካራና አስተማማኝ ሶፍትዌሮችን የመገንባት ጥበብ'],
-                    ['icon'=>'🛡️','title'=>'ደህንነት እና ፕሮፌሽናል አሰራር','desc'=>'የሶፍትዌር ደህንነት እና በኢንዱስትሪ ደረጃ የሚጠበቁ ምርጥ ልምዶች'],
-                    ['icon'=>'🌐','title'=>'የፍሪላንሲንግ እና የሥራ ዕድል','desc'=>'በኦንላይን እና በሀገር ውስጥ የሥራ ዕድሎችን የማግኘት አቅም'],
-                    ['icon'=>'☁️','title'=>'በራስ ፍጥነት የመማር እድል','desc'=>'በፈለጉት ጊዜና ቦታ ቪዲዮዎችን ደጋግመው የመመልከት ነፃነት'],
-                ] as $f)
-                    <div class="feature-card">
-                        <div class="feature-icon">{{ $f['icon'] }}</div>
-                        <h3>{{ $f['title'] }}</h3>
-                        <p>{{ $f['desc'] }}</p>
-                    </div>
-                @endforeach
-            @endif
-        </div>
-    </section>
+  
 
     {{-- Courses --}}
     <section id="courses" class="section-gap">
