@@ -48,7 +48,7 @@
 .cta-section { background:linear-gradient(135deg, rgba(99,102,241,.1), rgba(34,211,238,.05)); border:1px solid var(--border); border-radius:20px; padding:80px 40px; text-align:center; margin:80px 0; }
 .cta-section h2 { font-size:2.5rem; font-weight:900; margin-bottom:16px; }
 .cta-section p { color:var(--muted); font-size:1.1rem; margin-bottom:36px; }
-.section-gap { padding: 80px 0; }
+.section-gap { padding: 30px 0; }
 .tech-feature-list { list-style: none; padding: 0; margin: 24px auto 0; max-width: 700px; text-align: left; }
 .tech-feature-list li { font-size: 0.95rem; color: var(--muted); margin-bottom: 12px; line-height: 1.6; display: flex; align-items: flex-start; gap: 10px; }
 </style>
@@ -69,7 +69,7 @@
         {{-- Search bar --}}
         <div style="max-width:600px; margin:40px auto 0; position:relative;">
             <form onsubmit="searchCourses(event, this)" style="display:flex; background:var(--bg2); border:1px solid var(--border); border-radius:50px; overflow:hidden;">
-                <input type="text" id="hero-search" placeholder="Search courses..." autocomplete="off"
+                <input type="text" id="hero-search" placeholder="eg,..Html..." autocomplete="off"
                     style="flex:1;background:transparent;border:none;color:var(--text);padding:14px 22px;font-size:1rem;outline:none;font-family:inherit;">
                 <button type="submit"
                     style="background:linear-gradient(135deg,var(--indigo),var(--cyan));color:#fff;border:none;padding:14px 24px;cursor:pointer;font-size:1rem;font-weight:700;white-space:nowrap;">
@@ -86,7 +86,7 @@
     {{-- Courses --}}
     <section id="courses" class="section-gap">
         <div class="section-title">
-            <h2>All Vide</h2>
+            <h2>All Videos</h2>
             @if(!empty($search))
                 <p>🔍 "{{ $search }}" ውጤት: {{ $courses->count() }} ኮርስ(ኮርሶች) ተገኝተዋል — <a href="{{ route('home') }}">Clear</a></p>
             @else
