@@ -59,11 +59,11 @@
     {{-- Hero --}}
     <section class="hero">
         <span class="hero-badge">100% Safe, Focused & Practical</span>
-        <h1>፣ <span class="grad-text">ከሶሻል ሚዲያ ውዥንብር የጸዳ</span> </h1>
+        <h1>🔞 <span class="grad-text">ከሶሻል ሚዲያ ውዥንብር የፀዳ</span> </h1>
         <p>Learn coding, software design, and modern digital skills in English with structured pathways.</p>
         
         <div class="hero-btns">
-            <a href="#courses" class="btn btn-primary" style="padding: 12px 28px; font-weight: 700;">Start Learning Today</a>
+            <a href="#courses" class="btn btn-primary" style="padding: 12px 28px; font-weight: 700;">Start Learning free</a>
         </div>
 
         {{-- Search bar --}}
@@ -90,7 +90,7 @@
             @if(!empty($search))
                 <p>🔍 "{{ $search }}" ውጤት: {{ $courses->count() }} ኮርስ(ኮርሶች) ተገኝተዋል — <a href="{{ route('home') }}">Clear</a></p>
             @else
-                <p>ለእርስዎ ተስማሚ የሆነውን Video ይምረጡ</p>
+                <p>Video ይምረጡ</p>
             @endif
         </div>
 
@@ -176,17 +176,17 @@
         <div class="testimonials-grid">
             @foreach([
                 [
-                    'name' => 'አብዱ From addis ababa',
+                    'name' => 'Jeri from Addis ababa',
                     'role' => 'AI & Software Developer',
                     'text' => 'The YouTube video series was super clear and practical! By watching all the lessons from start to finish, I gained strong coding skills and received my completion Certificate. It is truly a game-changer!',
                 ],
                 [
-                    'name' => 'Kal from DESSIE',
+                    'name' => 'Kal from Dessie',
                     'role' => 'Cybersecurity & Cloud Analyst',
                     'text' => 'The blend of Amharic and English made complex tech domains like Cybersecurity, Data Analytics, and Cloud systems effortless to grasp. Truly a life-changing experience for my career in tech!',
                 ],
                 [
-                    'name' => 'Edil From MEKELLE',
+                    'name' => 'Edil from Mekelle',
                     'role' => 'Tech Freelancer & Consultant',
                     'text' => 'Learning in a focused environment free from social media noise and distractions was a game-changer. I acquired solid technical knowledge and gained the hands-on confidence to actively earn and work as a freelancer today!',
                 ],
