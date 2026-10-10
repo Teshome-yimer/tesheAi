@@ -3,12 +3,12 @@
 
 @push('styles')
 <style>
-.hero { padding: 100px 0 80px; text-align: center; position: relative; overflow: hidden; }
+.hero { padding: 20px 0 10px; text-align: center; position: relative; overflow: hidden; }
 .hero::before { content:''; position:absolute; top:-200px; left:50%; transform:translateX(-50%); width:800px; height:800px; background: radial-gradient(circle, rgba(99,102,241,.15) 0%, transparent 70%); pointer-events:none; }
 .hero-badge { display:inline-block; background:rgba(99,102,241,.15); border:1px solid rgba(99,102,241,.3); color:var(--indigo); padding:6px 16px; border-radius:99px; font-size:0.8rem; font-weight:600; margin-bottom:24px; }
-.hero h1 { font-size:clamp(2.5rem,6vw,4.5rem); font-weight:900; line-height:1.1; margin-bottom:24px; }
+.hero h1 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; margin-bottom: 8px; }
 .grad-text { background:linear-gradient(135deg, var(--indigo), var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-.hero p { font-size:1.2rem; color:var(--muted); max-width:600px; margin:0 auto 40px; line-height:1.7; }
+.hero p { font-size: 0.9rem; color: var(--muted); max-width: 550px; margin: 0 auto 15px; }
 .hero-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
 .stats-row { display:grid; grid-template-columns:repeat(auto-fit, minmax(130px,1fr)); gap:2px; padding:60px 0; }
 .stat-card { background:var(--bg2); border:1px solid var(--border); border-radius:30%; padding:30px; text-align:center; transition:.5s; }
@@ -53,39 +53,30 @@
 .tech-feature-list li { font-size: 0.95rem; color: var(--muted); margin-bottom: 12px; line-height: 1.6; display: flex; align-items: flex-start; gap: 10px; }
 </style>
 @endpush
-
-@section('content')
 <div class="container">
-    {{-- Hero --}}
+    {{-- Top Compact Hero & Search --}}
     <section class="hero">
         <span class="hero-badge">100% Safe, Focused & Practical</span>
-        <h1> <span class="grad-text">ከሶሻል ሚዲያ ውዥንብር የጸዳ፣</span></h1>
+        <h1><span class="grad-text">ከሶሻል ሚዲያ ውዥንብር የጸዳ</span></h1>
         <p>Learn coding, software design, and modern digital skills in English with structured pathways.</p>
-        
-        <div class="hero-btns">
-            <a href="#courses" class="btn btn-primary" style="padding: 12px 28px; font-weight: 700;">Start Learning Today</a>
-        </div>
 
-        {{-- Search bar --}}
-        <div style="max-width:600px; margin:40px auto 0; position:relative;">
-            <form onsubmit="searchCourses(event, this)" style="display:flex; background:var(--bg2); border:1px solid var(--border); border-radius:50px; overflow:hidden;">
-                <input type="text" id="hero-search" placeholder="Search courses..." autocomplete="off"
-                    style="flex:1;background:transparent;border:none;color:var(--text);padding:14px 22px;font-size:1rem;outline:none;font-family:inherit;">
+        {{-- Search bar positioned cleanly right at the top --}}
+        <div style="max-width:580px; width:100%; margin:10px auto 0; position:relative; padding:0 10px;">
+            <form onsubmit="searchCourses(event, this)" style="display:flex; background:var(--bg2); border:1px solid var(--border); border-radius:50px; overflow:hidden; box-shadow:0 4px 20px rgba(0,0,0,0.15);">
+                <input type="text" id="hero-search" placeholder="Search videos..." autocomplete="off"
+                    style="flex:1; min-width:0; background:transparent; border:none; color:var(--text); padding:12px 18px; font-size:0.95rem; outline:none; font-family:inherit;">
                 <button type="submit"
-                    style="background:linear-gradient(135deg,var(--indigo),var(--cyan));color:#fff;border:none;padding:14px 24px;cursor:pointer;font-size:1rem;font-weight:700;white-space:nowrap;">
+                    style="background:linear-gradient(135deg,var(--indigo),var(--cyan)); color:#fff; border:none; padding:12px 22px; cursor:pointer; font-size:0.95rem; font-weight:700; white-space:nowrap; flex-shrink:0;">
                     Search
                 </button>
             </form>
-            <div id="search-results" style="display:none; position:absolute; top:110%; left:0; right:0; background:var(--bg2); border:1px solid var(--border); border-radius:16px; padding:16px; z-index:100; text-align:left; box-shadow:0 10px 30px rgba(0,0,0,0.3);"></div>
+            <div id="search-results" style="display:none; position:absolute; top:115%; left:10px; right:10px; background:var(--bg2); border:1px solid var(--border); border-radius:16px; padding:16px; z-index:100; text-align:left; box-shadow:0 10px 30px rgba(0,0,0,0.3);"></div>
         </div>
     </section>
 
-    {{-- Stats --}}
-    
-
-    {{-- Courses --}}
-    <section id="courses" class="section-gap">
-        <div class="section-title">
+    {{-- Videos / Courses Section immediately below --}}
+    <section id="courses" style="padding: 20px 0 40px;">
+        <div class="section-title" style="margin-bottom: 24px;">
             <h2>All Videos</h2>
             @if(!empty($search))
                 <p>🔍 "{{ $search }}" ውጤት: {{ $courses->count() }} ኮርስ(ኮርሶች) ተገኝተዋል — <a href="{{ route('home') }}">Clear</a></p>
@@ -93,6 +84,7 @@
                 <p>ለእርስዎ ተስማሚ የሆነውን Video ይምረጡ</p>
             @endif
         </div>
+       
 
         <div class="courses-grid">
             @forelse($courses as $course)
