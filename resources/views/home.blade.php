@@ -60,16 +60,16 @@
     <section class="hero">
         <span class="hero-badge">100% Safe, Focused & Practical</span>
         <h1> <span class="grad-text">ከሶሻል ሚዲያ ውዥንብር የጸዳ</span> </h1>
-        <p>Learn coding, software design, and modern digital skills in Amharic with structured pathways.</p>
+        <p>Learn coding, software design, and modern digital skills in English  with structured pathways.</p>
         
         <div class="hero-btns">
             <a href="#courses" class="btn btn-primary" style="padding: 12px 28px; font-weight: 700;">Start Learning Today</a>
         </div>
 
         {{-- Search bar --}}
-        <div style="max-width:600px; margin:40px auto 0; position:relative;">
+        <div style="max-width:300px; margin:35px auto 0; position:relative;">
             <form onsubmit="searchCourses(event, this)" style="display:flex; background:var(--bg2); border:1px solid var(--border); border-radius:50px; overflow:hidden;">
-                <input type="text" id="hero-search" placeholder="Search courses..." autocomplete="off"
+                <input type="text" id="hero-search" placeholder="eg, JavaScript ..." autocomplete="off"
                     style="flex:1;background:transparent;border:none;color:var(--text);padding:14px 22px;font-size:1rem;outline:none;font-family:inherit;">
                 <button type="submit"
                     style="background:linear-gradient(135deg,var(--indigo),var(--cyan));color:#fff;border:none;padding:14px 24px;cursor:pointer;font-size:1rem;font-weight:700;white-space:nowrap;">
@@ -89,11 +89,11 @@
     {{-- Courses --}}
     <section id="courses" class="section-gap">
         <div class="section-title">
-            <h2>Our Courses</h2>
+            <h2>All Videos</h2>
             @if(!empty($search))
                 <p>🔍 "{{ $search }}" ውጤት: {{ $courses->count() }} ኮርስ(ኮርሶች) ተገኝተዋል — <a href="{{ route('home') }}">Clear</a></p>
             @else
-                <p>ለእርስዎ ተስማሚ የሆነውን ትምህርት ይምረጡና የዕውቀት ጉዞዎን ዛሬውኑ ይጀምሩ</p>
+                <p>ለእርስዎ ተስማሚ የሆነውን ትምህርት Video ይመልከቱ</p>
             @endif
         </div>
 
