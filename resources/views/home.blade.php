@@ -3,7 +3,6 @@
 
 @push('styles')
 <style>
-/* Hero & Compact Top Header */
 .hero { padding: 30px 0 20px; text-align: center; position: relative; overflow: hidden; }
 .hero::before { content:''; position:absolute; top:-200px; left:50%; transform:translateX(-50%); width:800px; height:800px; background: radial-gradient(circle, rgba(99,102,241,.15) 0%, transparent 70%); pointer-events:none; }
 .hero-badge { display:inline-block; background:rgba(99,102,241,.15); border:1px solid rgba(99,102,241,.3); color:var(--indigo); padding:4px 14px; border-radius:99px; font-size:0.75rem; font-weight:600; margin-bottom:12px; }
@@ -11,13 +10,11 @@
 .grad-text { background:linear-gradient(135deg, var(--indigo), var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 .hero p { font-size:0.95rem; color:var(--muted); max-width:600px; margin:0 auto 16px; line-height:1.5; }
 
-/* Responsive Full-Width Search Bar */
 .search-container { max-width: 580px; width: 100%; margin: 15px auto 0; position: relative; padding: 0 10px; }
 .search-form { display: flex; background: var(--bg2); border: 1px solid var(--border); border-radius: 50px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
 .search-input { flex: 1; min-width: 0; background: transparent; border: none; color: var(--text); padding: 12px 18px; font-size: 0.95rem; outline: none; font-family: inherit; }
 .search-btn { background: linear-gradient(135deg, var(--indigo), var(--cyan)); color: #fff; border: none; padding: 12px 22px; cursor: pointer; font-size: 0.95rem; font-weight: 700; white-space: nowrap; flex-shrink: 0; }
 
-/* Grids & Cards */
 .section-title { text-align:center; margin-bottom:32px; }
 .section-title h2 { font-size:2rem; font-weight:800; margin-bottom:8px; }
 .section-title p { color:var(--muted); font-size:0.95rem; }
@@ -34,7 +31,6 @@
 .price-original { font-size:0.9rem; color:var(--muted); text-decoration:line-through; }
 .price-badge { background:rgba(16,185,129,.2); color:#10b981; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700; }
 
-/* Testimonials */
 .testimonials-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; }
 .testi-card { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:24px; position:relative; }
 .testi-card::before { content:'"'; position:absolute; top:16px; right:20px; font-size:4rem; color:var(--indigo); opacity:.2; line-height:1; font-family:serif; }
@@ -59,7 +55,6 @@
         <h1><span class="grad-text">ከሶሻል ሚዲያ ውዥንብር የጸዳ</span></h1>
         <p>Learn coding, software design, and modern digital skills in English with structured pathways.</p>
 
-        {{-- Search bar --}}
         <div class="search-container">
             <form onsubmit="searchCourses(event, this)" class="search-form">
                 <input type="text" id="hero-search" placeholder="eg, JavaScript ..." autocomplete="off" class="search-input">
@@ -69,7 +64,7 @@
         </div>
     </section>
 
-    {{-- Courses / All Videos Section Immediately Below Search --}}
+    {{-- Courses / All Videos Section --}}
     <section id="courses" class="section-gap">
         <div class="section-title">
             <h2>All Videos</h2>
@@ -207,7 +202,6 @@
 
 @push('scripts')
 <script>
-// Live search: filter course cards on the page
 const allCourseData = [
     @foreach($courses as$c)
     { 
@@ -248,7 +242,6 @@ function searchCourses(e, form) {
     box.style.display = 'block';
 }
 
-// Close search results on outside click
 document.addEventListener('click', function(e) {
     if (!e.target.closest('#hero-search') && !e.target.closest('#search-results') && !e.target.closest('form')) {
         const box = document.getElementById('search-results');
@@ -256,7 +249,6 @@ document.addEventListener('click', function(e) {
     }
 });
 
-// Live filter as user types
 document.getElementById('hero-search')?.addEventListener('input', function() {
     if (this.value.trim() === '') {
         const box = document.getElementById('search-results');
