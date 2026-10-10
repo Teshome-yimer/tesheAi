@@ -59,7 +59,7 @@
     {{-- Hero --}}
     <section class="hero">
         <span class="hero-badge">100% Safe, Focused & Practical</span>
-        <h1>🔞 <span class="grad-text">ከሶሻል ሚዲያ ውዥንብር የፀዳ</span> </h1>
+        <h1>🚫 <span class="grad-text">No TikTok</span> </h1>
         <p>Learn coding, software design, and modern digital skills in English with structured pathways.</p>
         
         <div class="hero-btns">
