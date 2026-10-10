@@ -144,7 +144,7 @@
     <section class="section-gap">
         <div class="section-title">
             <h2>Meet Your Instructor</h2>
-            <p>Learn from industry experts / በ 10 ብር ብቻ መማር ይጀምሩ</p>
+            <p>Learn from industry experts / Get Certified – Only 10 Birr ▶️</p>
         </div>
         <div class="feature-card" style="max-width:800px; margin:0 auto; text-align:center;">
             <h3>Teshome</h3>
@@ -176,7 +176,7 @@
         <div class="testimonials-grid">
             @foreach([
                 [
-                    'name' => 'Jeri from Addis ababa',
+                    'name' => 'Jeri from Addis Ababa',
                     'role' => 'AI & Software Developer',
                     'text' => 'The YouTube video series was super clear and practical! By watching all the lessons from start to finish, I gained strong coding skills and received my completion Certificate. It is truly a game-changer!',
                 ],
