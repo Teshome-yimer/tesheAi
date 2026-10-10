@@ -3,12 +3,12 @@
 
 @push('styles')
 <style>
-.hero { padding: 20px 0 10px; text-align: center; position: relative; overflow: hidden; }
+.hero { padding: 100px 0 80px; text-align: center; position: relative; overflow: hidden; }
 .hero::before { content:''; position:absolute; top:-200px; left:50%; transform:translateX(-50%); width:800px; height:800px; background: radial-gradient(circle, rgba(99,102,241,.15) 0%, transparent 70%); pointer-events:none; }
 .hero-badge { display:inline-block; background:rgba(99,102,241,.15); border:1px solid rgba(99,102,241,.3); color:var(--indigo); padding:6px 16px; border-radius:99px; font-size:0.8rem; font-weight:600; margin-bottom:24px; }
-.hero h1 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; margin-bottom: 8px; }
+.hero h1 { font-size:clamp(2.5rem,6vw,4.5rem); font-weight:900; line-height:1.1; margin-bottom:24px; }
 .grad-text { background:linear-gradient(135deg, var(--indigo), var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-.hero p { font-size: 0.9rem; color: var(--muted); max-width: 550px; margin: 0 auto 15px; }
+.hero p { font-size:1.2rem; color:var(--muted); max-width:600px; margin:0 auto 40px; line-height:1.7; }
 .hero-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
 .stats-row { display:grid; grid-template-columns:repeat(auto-fit, minmax(130px,1fr)); gap:2px; padding:60px 0; }
 .stat-card { background:var(--bg2); border:1px solid var(--border); border-radius:30%; padding:30px; text-align:center; transition:.5s; }
@@ -53,38 +53,100 @@
 .tech-feature-list li { font-size: 0.95rem; color: var(--muted); margin-bottom: 12px; line-height: 1.6; display: flex; align-items: flex-start; gap: 10px; }
 </style>
 @endpush
+
+@section('content')
 <div class="container">
-    {{-- Top Compact Hero & Search --}}
+    {{-- Hero --}}
     <section class="hero">
         <span class="hero-badge">100% Safe, Focused & Practical</span>
-        <h1><span class="grad-text">ከሶሻል ሚዲያ ውዥንብር የጸዳ</span></h1>
-        <p>Learn coding, software design, and modern digital skills in English with structured pathways.</p>
+        <h1>ከሶሻል ሚዲያ ውዥንብር የጸዳ፣ <span class="grad-text">ለተማሪዎችና ለቤተሰብ</span> አስተማማኝ የቴክኖሎጂ መማሪያ!</h1>
+        <p>Learn coding, software design, and modern digital skills in Amharic with structured pathways.</p>
+        
+        <div class="hero-btns">
+            <a href="#courses" class="btn btn-primary" style="padding: 12px 28px; font-weight: 700;">Start Learning Today</a>
+        </div>
 
-        {{-- Search bar positioned cleanly right at the top --}}
-        <div style="max-width:580px; width:100%; margin:10px auto 0; position:relative; padding:0 10px;">
-            <form onsubmit="searchCourses(event, this)" style="display:flex; background:var(--bg2); border:1px solid var(--border); border-radius:50px; overflow:hidden; box-shadow:0 4px 20px rgba(0,0,0,0.15);">
-                <input type="text" id="hero-search" placeholder="Search videos..." autocomplete="off"
-                    style="flex:1; min-width:0; background:transparent; border:none; color:var(--text); padding:12px 18px; font-size:0.95rem; outline:none; font-family:inherit;">
+        {{-- Search bar --}}
+        <div style="max-width:600px; margin:40px auto 0; position:relative;">
+            <form onsubmit="searchCourses(event, this)" style="display:flex; background:var(--bg2); border:1px solid var(--border); border-radius:50px; overflow:hidden;">
+                <input type="text" id="hero-search" placeholder="Search courses..." autocomplete="off"
+                    style="flex:1;background:transparent;border:none;color:var(--text);padding:14px 22px;font-size:1rem;outline:none;font-family:inherit;">
                 <button type="submit"
-                    style="background:linear-gradient(135deg,var(--indigo),var(--cyan)); color:#fff; border:none; padding:12px 22px; cursor:pointer; font-size:0.95rem; font-weight:700; white-space:nowrap; flex-shrink:0;">
+                    style="background:linear-gradient(135deg,var(--indigo),var(--cyan));color:#fff;border:none;padding:14px 24px;cursor:pointer;font-size:1rem;font-weight:700;white-space:nowrap;">
                     Search
                 </button>
             </form>
-            <div id="search-results" style="display:none; position:absolute; top:115%; left:10px; right:10px; background:var(--bg2); border:1px solid var(--border); border-radius:16px; padding:16px; z-index:100; text-align:left; box-shadow:0 10px 30px rgba(0,0,0,0.3);"></div>
+            <div id="search-results" style="display:none; position:absolute; top:110%; left:0; right:0; background:var(--bg2); border:1px solid var(--border); border-radius:16px; padding:16px; z-index:100; text-align:left; box-shadow:0 10px 30px rgba(0,0,0,0.3);"></div>
         </div>
     </section>
 
-    {{-- Videos / Courses Section immediately below --}}
-    <section id="courses" style="padding: 20px 0 40px;">
-        <div class="section-title" style="margin-bottom: 24px;">
-            <h2>All Videos</h2>
+    {{-- Stats --}}
+    <section class="stats-row">
+        <div class="stat-card">
+            <div class="stat-num">5k+</div>
+            <div class="stat-label">Active Learners</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num">50+</div>
+            <div class="stat-label">Video Lessons</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num">4.9★</div>
+            <div class="stat-label">Top Rating</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num">30h+</div>
+            <div class="stat-label">Hands-on Projects</div>
+        </div>
+    </section>
+
+    {{-- What You Learn --}}
+    <section class="section-gap">
+        <div class="section-title">
+            <h2>Why Learn With Us?</h2>
+            <p>እኛን መምረጥዎ ለስኬትዎ ዋስትና የሚሆነው ለምንድነው?</p>
+        </div>
+        <div class="features-grid">
+            @php $hasFeatured = isset($featuredCourse) && $featuredCourse && !empty($featuredCourse->what_you_learn); @endphp
+
+            @if($hasFeatured)
+                @php $items = is_array($featuredCourse->what_you_learn) ? $featuredCourse->what_you_learn : json_decode($featuredCourse->what_you_learn, true) ?? []; @endphp
+                @foreach(array_slice($items, 0, 6) as $item)
+                    <div class="feature-card">
+                        <div class="feature-icon">🚀</div>
+                        <h3>ተግባራዊ ክህሎት</h3>
+                        <p>{{ $item }}</p>
+                    </div>
+                @endforeach
+            @else
+                @foreach([
+                    ['icon'=>'⚡','title'=>'ዘመናዊ የቴክኖሎጂ ክህሎቶች','desc'=>'በዓለም አቀፍ ደረጃ በስፋት የሚፈለጉ ዘመናዊ የልማት ቴክኖሎጂዎች'],
+                    ['icon'=>'💻','title'=>'ተግባራዊ ፕሮጀክቶች (Real-World Projects)','desc'=>'በቀጥታ ለሥራ የሚያዘጋጁዎትን እውነተኛ ፕሮጀክቶች የመስራት ልምድ'],
+                    ['icon'=>'🗄️','title'=>'የውሂብ ጎታ እና ሲስተም ዲዛይን','desc'=>'ጠንካራና አስተማማኝ ሶፍትዌሮችን የመገንባት ጥበብ'],
+                    ['icon'=>'🛡️','title'=>'ደህንነት እና ፕሮፌሽናል አሰራር','desc'=>'የሶፍትዌር ደህንነት እና በኢንዱስትሪ ደረጃ የሚጠበቁ ምርጥ ልምዶች'],
+                    ['icon'=>'🌐','title'=>'የፍሪላንሲንግ እና የሥራ ዕድል','desc'=>'በኦንላይን እና በሀገር ውስጥ የሥራ ዕድሎችን የማግኘት አቅም'],
+                    ['icon'=>'☁️','title'=>'በራስ ፍጥነት የመማር እድል','desc'=>'በፈለጉት ጊዜና ቦታ ቪዲዮዎችን ደጋግመው የመመልከት ነፃነት'],
+                ] as $f)
+                    <div class="feature-card">
+                        <div class="feature-icon">{{ $f['icon'] }}</div>
+                        <h3>{{ $f['title'] }}</h3>
+                        <p>{{ $f['desc'] }}</p>
+                    </div>
+                @endforeach
+            @endif
+        </div>
+    </section>
+
+    {{-- Courses --}}
+    <section id="courses" class="section-gap">
+        <div class="section-title">
+            <h2>Our Courses</h2>
             @if(!empty($search))
                 <p>🔍 "{{ $search }}" ውጤት: {{ $courses->count() }} ኮርስ(ኮርሶች) ተገኝተዋል — <a href="{{ route('home') }}">Clear</a></p>
             @else
-                <p>ለእርስዎ ተስማሚ የሆነውን Video ይምረጡ</p>
+                <p>ለእርስዎ ተስማሚ የሆነውን ትምህርት ይምረጡና የዕውቀት ጉዞዎን ዛሬውኑ ይጀምሩ</p>
             @endif
         </div>
-       
 
         <div class="courses-grid">
             @forelse($courses as $course)
@@ -120,7 +182,7 @@
                         </div>
 
                         <a href="{{ route('course.show', $course->slug) }}" class="btn btn-primary" style="display:block; text-align:center; width:100%;">
-                            Play ▶️ View Details →
+                            ዝርዝር ይመልከቱ / View Details →
                         </a>
                     </div>
                 </div>
@@ -144,7 +206,7 @@
                 የሶፍትዌር ኢንጂነር፣ የቴክኖሎጂ አማካሪ እና የዲጂታል ክህሎቶች አሰልጣኝ<br>
                 (Software Engineer, Tech Consultant & Digital Skills Instructor)
             </p>
-            <p>Teshome is a Software Engineer, Tech Consultant, and Lead Instructor with 4+ years of experience building modern digital solutions.</p>
+            <p>Teshome is a Software Engineer, Tech Consultant, and Lead Instructor with 3+ years of experience building modern digital solutions.</p>
             
             <div style="display:flex; justify-content:center; gap:40px; margin-top:24px;">
                 <div>
@@ -168,9 +230,9 @@
         <div class="testimonials-grid">
             @foreach([
                 [
-                    'name' => 'Abidu From addis ababa',
+                    'name' => 'አብዱ From addis ababa',
                     'role' => 'AI & Software Developer',
-                    'text' => 'The YouTube video series was super clear and practical! By watching all the lessons from start to finish, I gained strong coding skills and received my completion Certificate. It is truly a game-changer!',
+                    'text' => 'ትምህርቱ በጣም ተግባራዊና ግልጽ ነው። ከኮዲንግ ባለፈ የዘመኑን የኤአይ (AI) መሣሪያዎች ለምርታማነት በመጠቀሜ ሙሉ የዌብና የሞባይል መተግበሪያዎችን በራሴ መገንባት ችያለሁ። ለአካዴሚያዊና ፕሮፌሽናል ጉዞዬ ድንቅ ጅምር ነው!',
                 ],
                 [
                     'name' => 'Kal from DESSIE',
@@ -180,7 +242,7 @@
                 [
                     'name' => 'Edil From MEKELLE',
                     'role' => 'Tech Freelancer & Consultant',
-                    'text' => 'Learning in a focused environment free from social media noise and distractions was a game-changer. I acquired solid technical knowledge and gained the hands-on confidence to actively earn and work as a freelancer today!',
+                    'text' => 'ስልጠናው ከንድፈ-ሀሳብ ይልቅ ሙሉ በሙሉ ተግባር ላይ ያተኮረ በመሆኑ፣ በፍሪላንሲንግ ዘርፍ በዓለም አቀፍ ደረጃ የቴክኖሎጂ ስራዎችን ወዲያውኑ እንድጀምርና ውጤታማ እንድሆን ረድቶኛል። በጣም እመክራለሁ!',
                 ],
             ] as $t)
                 <div class="testi-card">
