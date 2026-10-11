@@ -98,23 +98,30 @@
                 <source src="{{ route('student.video.stream', $lesson) }}" type="video/mp4">
             </video>
         </div>
-        @elseif($lesson->video_url)
-        @php
-            // Extract Youtube Video ID and enable JS API
-            $videoUrl = $lesson->video_url;
-            if (str_contains($videoUrl, 'youtube.com') || str_contains($videoUrl, 'youtu.be')) {
+       @elseif($lesson->video_url)
+    @php
+        // Extract Youtube Video ID and enable JS API & rel=0 & modestbranding
+        $videoUrl = $lesson->video_url;
+        if (str_contains($videoUrl, 'youtube.com') || str_contains($videoUrl, 'youtu.be')) {
+            // enablejsapi=1, rel=0 እና modestbranding=1 በራስ ሰር እንዲጨመሩ ማድረግ
+            if (!str_contains($videoUrl, 'enablejsapi=1')) {
                 $separator = str_contains($videoUrl, '?') ? '&' : '?';
-                if (!str_contains($videoUrl, 'enablejsapi=1')) {
-                    $videoUrl .= $separator . 'enablejsapi=1';
-                }
+                $videoUrl .= $separator . 'enablejsapi=1';
             }
-        @endphp
-        <div class="video-wrap">
-            <iframe id="lesson-iframe" src="{{ $videoUrl }}"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-            </iframe>
-        </div>
+            if (!str_contains($videoUrl, 'rel=0')) {
+                $videoUrl .= '&rel=0';
+            }
+            if (!str_contains($videoUrl, 'modestbranding=1')) {
+                $videoUrl .= '&modestbranding=1';
+            }
+        }
+    @endphp
+    <div class="video-wrap">
+        <iframe id="lesson-iframe" src="{{ $videoUrl }}"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+    </div>
         @else
         <div style="padding:60px 0;background:linear-gradient(135deg,#13131a,#1a1a24);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:var(--muted);">
             <div style="font-size:3rem;">🎥</div>
