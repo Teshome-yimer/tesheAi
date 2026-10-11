@@ -98,29 +98,29 @@
                 <source src="{{ route('student.video.stream', $lesson) }}" type="video/mp4">
             </video>
         </div>
-       @elseif($lesson->video_url)
+@elseif($lesson->video_url)
     @php
-        // Extract Youtube Video ID and enable JS API & rel=0 & modestbranding
         $videoUrl = $lesson->video_url;
-        if (str_contains($videoUrl, 'youtube.com') || str_contains($videoUrl, 'youtu.be')) {
-            // enablejsapi=1, rel=0 እና modestbranding=1 በራስ ሰር እንዲጨመሩ ማድረግ
-            if (!str_contains($videoUrl, 'enablejsapi=1')) {
-                $separator = str_contains($videoUrl, '?') ? '&' : '?';
-                $videoUrl .= $separator . 'enablejsapi=1';
-            }
-            if (!str_contains($videoUrl, 'rel=0')) {
-                $videoUrl .= '&rel=0';
-            }
-            if (!str_contains($videoUrl, 'modestbranding=1')) {
-                $videoUrl .= '&modestbranding=1';
-            }
+        $embedUrl = '';
+
+        // 1. የዩቲዩብ ቪዲዮ ID ከየትኛውም ሊንክ (watch?v= ወይም youtu.be/) ማውጣት
+        preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $videoUrl, $match);
+        $videoId = $match[1] ?? null;
+
+        if ($videoId) {
+            // 2. ትክክለኛውን Embed ዩአርኤል ከ API parameters ጋር መገንባት
+            $embedUrl = "https://www.youtube.com/embed/{$videoId}?enablejsapi=1&rel=0&modestbranding=1";
+        } else {
+            // ቪዲዮው ዩቲዩብ ካልሆነ የገባውን ሊንክ ባለው መልኩ መጠቀም
+            $embedUrl = $videoUrl;
         }
     @endphp
     <div class="video-wrap">
-        <iframe id="lesson-iframe" src="{{ $videoUrl }}"
+        <iframe id="lesson-iframe" src="{{ $embedUrl }}"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
         </iframe>
+    </div>
     </div>
         @else
         <div style="padding:60px 0;background:linear-gradient(135deg,#13131a,#1a1a24);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:var(--muted);">
