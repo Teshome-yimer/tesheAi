@@ -24,14 +24,14 @@
     @if($enrollments->isEmpty())
     <div style="text-align:center;padding:80px 0;">
         <div style="font-size:4rem;margin-bottom:16px;">📚</div>
-        <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:12px;">የTechnology ጉዞዎን ዛሬ ይጀምሩ! ✨ <br>
-            ከላይ  Home, Book እና Quize የሚሉትን click አድርጉ<br>
- ካደረጋቹህ ሁሉንም በነፃ /free ታገኛላቹህ<br>
+        <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:12px;text-color:green;">በነፃ certificate ለማግቸት ከታች  <br>
+          All Video ሳያቋርጡ ሙሉ  ደቂቃ መጨረስ ይኖርብሃል/ሽ  <br>
+ ቹህ<br>
 
 
   </h2>
         <p style="color:var(--muted);margin-bottom:24px;"> start now</p>
-        <a href="/" class="btn btn-cyan"> Search Courses</a>
+        <a href="/" class="btn btn-cyan">  All Videos</a>
     </div>
     @else
     <div class="dash-grid">
