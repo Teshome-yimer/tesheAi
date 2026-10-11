@@ -30,8 +30,8 @@
 
 
   </h2>
-        <p style="color:var(--muted);margin-bottom:24px;"> start now</p>
-        <a href="/" class="btn btn-cyan">  All Videos</a>
+        <p style="color:var(--muted);margin-bottom:24px;"> start free</p>
+        <a href="/" class="btn btn-cyan">  All Videos </a>
     </div>
     @else
     <div class="dash-grid">
