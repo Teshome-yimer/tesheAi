@@ -146,7 +146,7 @@
             <div>
                 <div class="inst-name">Teshe Yimer</div>
                 <div class="inst-role">Senior Full Stack Developer</div>
-                <div class="inst-bio">Backend & APIs: PHP (Laravel, WordPress), Node.js, Express, RESTful APIs, Frontend: React, Blade, JavaScript (ES6+), HTML5/CSS3, Tailwind CSS ,Mobile Development: Flutter / Dart (Cross-platform Android & iOS),Databases: MySQL, MariaDB, MongoDB , DevOps & Tools: Git/GitHub(https://github.com/Teshome-yimer), Cloud Deployment, Domain & SSL Setup , ባለሙያ • 4+ ዓመት ልምድ • 5,000+ ተማሪዎች </div>
+                <div class="inst-bio">Full-Stack (Node.js, Express.js, PHP(laravel), React, Vue.js, Databases,API & DevOps) ባለሙያ • 4+ ዓመት ልምድ • 5,000+ ተማሪዎች </div>
             </div>
         </div>
 
