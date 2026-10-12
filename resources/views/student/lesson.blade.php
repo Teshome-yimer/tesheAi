@@ -146,7 +146,7 @@
             <div>
                 <div class="inst-name">Teshe Yimer</div>
                 <div class="inst-role">Senior Full Stack Developer</div>
-                <div class="inst-bio">Laravel, React, MySQL ባለሙያ • 10+ ዓመት ልምድ • 5,000+ ተማሪዎች</div>
+                <div class="inst-bio">Backend & APIs: PHP (Laravel, WordPress), Node.js, Express, RESTful APIs<br>Frontend: React, Blade, JavaScript (ES6+), HTML5/CSS3, Tailwind CSS <br>Mobile Development: Flutter / Dart (Cross-platform Android & iOS)<br>Databases: MySQL, MariaDB, MongoDB <br>DevOps & Tools: Git/GitHub(https://github.com/Teshome-yimer), Cloud Deployment, Domain & SSL Setup <br>ባለሙያ • 4+ ዓመት ልምድ • 5,000+ ተማሪዎች </div>
             </div>
         </div>
 
