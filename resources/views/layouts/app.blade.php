@@ -154,6 +154,22 @@
     border-color: #f59e0b;
     box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
 }
+        /* VIP Button Special Styling */
+.subnav-inner a.vip-btn {
+    background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+    color: #ffffff !important;
+    border: 1px solid #fbbf24 !important;
+    font-weight: 800;
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.5);
+    letter-spacing: 0.5px;
+}
+
+.subnav-inner a.vip-btn:hover {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b) !important;
+    color: #000000 !important;
+    box-shadow: 0 0 18px rgba(251, 191, 36, 0.8);
+    transform: translateY(-2px);
+}
         .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; border: none; transition: all .2s; text-decoration: none; }
         .btn-primary { background: linear-gradient(135deg, var(--indigo), #8b5cf6); color: #fff; }
         .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(99,102,241,.4); color: #fff; }
@@ -426,16 +442,22 @@
 </nav>
 
 {{-- Topic bar --}}
+{{-- Topic bar --}}
 <div class="subnav">
     <div class="subnav-inner">
-        <a href="/">Home</a>
-        <a href="{{ route('documents.index') }}" >books </a>
-        <a href="{{ route('quizzes.index') }}">Quizzes</a>
+        <a href="/" class="{{ request()->is('/') ? 'active' : '' }}">Home</a>
+        <a href="{{ route('documents.index') }}" class="{{ request()->routeIs('documents.*') ? 'active' : '' }}">books</a>
+        <a href="{{ route('quizzes.index') }}" class="{{ request()->routeIs('quizzes.*') ? 'active' : '' }}">Quizzes</a>
         @auth
             @if(!auth()->user()->isAdmin())
-                <a href="{{ route('student.dashboard') }}">My Learning</a>
+                <a href="{{ route('student.dashboard') }}" class="{{ request()->routeIs('student.dashboard') ? 'active' : '' }}">My Learning</a>
             @endif
         @endauth
+
+        {{-- አዲሱ VIP አዝራር (ወደ ቴሌግራም ቻናል የሚወስድ) --}}
+        <a href="https://t.me/+qDjJMxPexn03NmQ8" target="_blank" rel="noopener noreferrer" class="vip-btn">
+            👑 VIP
+        </a>
     </div>
 </div>
 
