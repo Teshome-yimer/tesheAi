@@ -53,7 +53,7 @@
                 @if($course->is_featured) <span class="badge" style="background:rgba(251,191,36,.2);color:#fbbf24;">⭐ Featured</span> @endif
             </div>
             <h1 style="font-size:clamp(1.8rem,4vw,3rem);font-weight:900;line-height:1.2;margin-bottom:16px;">{{ $course->title }}</h1>
-            <p style="color:var(--muted);font-size:1.05rem;line-height:1.7;margin-bottom:24px;">{{ Str::limit($course->description, 200) }}</p>
+           <p style="color:var(--muted);font-size:1.05rem;line-height:1.7;margin-bottom:24px;">{{ $course->description }}</p>
             <div style="display:flex;gap:24px;flex-wrap:wrap;color:var(--muted);font-size:0.9rem;">
                 <span>📚 {{ $course->total_lessons }} ትምህርቶች</span>
                 <span>⏱ {{ $course->total_hours }} ሰዓት</span>
