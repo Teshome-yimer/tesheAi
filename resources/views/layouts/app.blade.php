@@ -115,11 +115,43 @@
         .mobile-menu-actions { display: none; }
 
         /* Topic bar (second tier) */
-        .subnav { background: var(--bg2); border-bottom: 1px solid var(--border); }
-        .subnav-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 4px; overflow-x: auto; scrollbar-width: none; }
-        .subnav-inner::-webkit-scrollbar { display: none; }
-        .subnav-inner a { color: var(--muted); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; padding: 11px 14px; white-space: nowrap; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; }
-        .subnav-inner a:hover { color: var(--cyan); border-bottom-color: var(--cyan); }
+        /* Topic bar (second tier) - የተስተካከለ አዝራር ስታይል */
+.subnav { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 8px 0; }
+.subnav-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 8px; overflow-x: auto; scrollbar-width: none; }
+.subnav-inner::-webkit-scrollbar { display: none; }
+
+/* የ subnav ሊንኮች እንደ እውነተኛ አዝራር (Buttons) እንዲታዩ ማድረጊያ */
+.subnav-inner a {
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--text);
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    text-transform: none; 
+    letter-spacing: normal;
+    transition: all 0.3s ease;
+    margin-right: 8px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+/* Mouse ሲያርፍባቸው (Hover Effect) */
+.subnav-inner a:hover {
+    background: var(--cyan);
+    color: #0a102a;
+    border-color: var(--cyan);
+    box-shadow: 0 0 12px rgba(34, 211, 238, 0.4);
+    transform: translateY(-2px);
+}
+
+/* ተጠቃሚው ባለበት ገጽ ላይ ሲሆን (Active State) */
+.subnav-inner a.active {
+    background: var(--cyan);
+    color: #0a102a;
+    border-color: var(--cyan);
+}
         .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; border: none; transition: all .2s; text-decoration: none; }
         .btn-primary { background: linear-gradient(135deg, var(--indigo), #8b5cf6); color: #fff; }
         .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(99,102,241,.4); color: #fff; }
