@@ -116,19 +116,20 @@
 
         /* Topic bar (second tier) */
         /* Topic bar (second tier) - የተስተካከለ አዝራር ስታይል */
+/* Topic bar (subnav) - የወርቃማ አዝራር እና የነጭ ጽሑፍ ስታይል */
 .subnav { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 8px 0; }
 .subnav-inner { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 8px; overflow-x: auto; scrollbar-width: none; }
 .subnav-inner::-webkit-scrollbar { display: none; }
 
-/* የ subnav ሊንኮች እንደ እውነተኛ አዝራር (Buttons) እንዲታዩ ማድረጊያ */
+/* ነባር አዝራሮች - የወርቃማ አጥር (Border) + ነጭ ጽሑፍ */
 .subnav-inner a {
-    background: rgba(255, 255, 255, 0.07);
-    color: var(--text);
+    background: rgba(245, 158, 11, 0.12); /* ቀለል ያለ የወርቃማ tint background */
+    color: #ffffff !important;            /* የውስጡ ጽሑፍ ነጭ */
     padding: 8px 18px;
     border-radius: 8px;
     font-size: 0.85rem;
     font-weight: 700;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid #f59e0b;            /* ወርቃማ Border */
     text-transform: none; 
     letter-spacing: normal;
     transition: all 0.3s ease;
@@ -137,20 +138,21 @@
     white-space: nowrap;
 }
 
-/* Mouse ሲያርፍባቸው (Hover Effect) */
+/* Mouse ሲያርፍበት (Hover Effect) - ሙሉ በሙሉ ወርቃማ ሆኖ ነጭ ጽሑፍ */
 .subnav-inner a:hover {
-    background: var(--cyan);
-    color: #0a102a;
-    border-color: var(--cyan);
-    box-shadow: 0 0 12px rgba(34, 211, 238, 0.4);
+    background: #f59e0b;
+    color: #ffffff !important;            /* ጽሑፉ ነጭ ሆኖ ይቆያል */
+    border-color: #f59e0b;
+    box-shadow: 0 0 14px rgba(245, 158, 11, 0.6); /* ደመቅ ያለ ወርቃማ Glow */
     transform: translateY(-2px);
 }
 
-/* ተጠቃሚው ባለበት ገጽ ላይ ሲሆን (Active State) */
+/* ተጠቃሚው ያለበት ገጽ ሲሆን (Active State) - ሙሉ በሙሉ ወርቃማ + ነጭ ጽሑፍ */
 .subnav-inner a.active {
     background: #f59e0b;
-    color: #0a102a;
+    color: #ffffff !important;            /* ጽሑፉ ነጭ */
     border-color: #f59e0b;
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
 }
         .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; border: none; transition: all .2s; text-decoration: none; }
         .btn-primary { background: linear-gradient(135deg, var(--indigo), #8b5cf6); color: #fff; }
