@@ -23,9 +23,9 @@
                 <div class="card" style="padding:24px;display:flex;flex-direction:column;gap:12px;">
                     <div style="font-size:2rem;">📄</div>
                     <h3 style="font-size:1.05rem;font-weight:700;">{{ $doc->title }}</h3>
-                    @if($doc->description)
-                        <p style="color:var(--muted);font-size:0.85rem;flex:1;">{{ Str::limit($doc->description, 110) }}</p>
-                    @endif
+                   @if($doc->description)
+    <p style="color:var(--muted);font-size:0.85rem;flex:1; margin-bottom: 0;">{{ $doc->description }}</p>
+@endif
                     <div style="display:flex;gap:12px;color:var(--muted);font-size:0.78rem;">
                         <span>💾 {{ $doc->formatted_size }}</span>
                         <span>⬇️ {{ $doc->download_count }} downloads</span>
