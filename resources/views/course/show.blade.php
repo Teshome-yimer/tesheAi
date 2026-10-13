@@ -218,10 +218,22 @@
                     </div>
 
                     @if($isEnrolled)
-                        <a href="{{ route('student.course', $course->slug) }}" class="btn btn-cyan" style="width:100%;justify-content:center;margin-bottom:12px;">▶ ትምህርቱን ቀጥሉ / Continue Learning</a>
-                    @else
-                        <a href="{{ route('checkout', $course->slug) }}" class="btn btn-cyan" style="width:100%;justify-content:center;margin-bottom:12px;">🛒 አሁን ምዝገቡ / Enroll Now</a>
-                    @endif
+    @if($course->slug === 'vip-telegram-access-all-premium-courses')
+        {{-- ለ VIP ኮርስ ከሆነ በቀጥታ ወደ Telegram ይወስደዋል --}}
+        <a href="https://t.me/+qDjJMxPexn03NmQ8" target="_blank" class="btn btn-cyan" style="width:100%;justify-content:center;margin-bottom:12px;background:linear-gradient(135deg, #f59e0b, #d97706);border:none;font-weight:800;">
+            👑 ወደ VIP Telegram Channel ግቡ
+        </a>
+    @else
+        {{-- ለሌሎች መደበኛ ኮርሶች --}}
+        <a href="{{ route('student.course', $course->slug) }}" class="btn btn-cyan" style="width:100%;justify-content:center;margin-bottom:12px;">
+            ▶ ትምህርቱን ቀጥሉ / Continue Learning
+        </a>
+    @endif
+@else
+    <a href="{{ route('checkout', $course->slug) }}" class="btn btn-cyan" style="width:100%;justify-content:center;margin-bottom:12px;">
+        🛒 አሁን ምዝገቡ / Enroll Now
+    </a>
+@endif
 
                     <ul class="value-stack">
                         <li><span class="icon">🎥</span> {{ $course->total_lessons }} HD ቪዲዮዎች</li>
