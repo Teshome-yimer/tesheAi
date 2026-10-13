@@ -148,9 +148,9 @@
 
 /* ተጠቃሚው ባለበት ገጽ ላይ ሲሆን (Active State) */
 .subnav-inner a.active {
-    background: var(--cyan);
+    background: #f59e0b;
     color: #0a102a;
-    border-color: var(--cyan);
+    border-color: #f59e0b;
 }
         .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; border: none; transition: all .2s; text-decoration: none; }
         .btn-primary { background: linear-gradient(135deg, var(--indigo), #8b5cf6); color: #fff; }
