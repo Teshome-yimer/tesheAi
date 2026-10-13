@@ -1,4 +1,11 @@
 @extends('layouts.app')
+{{-- 🎯 ለ VIP ኮርስ ብቻ፡ ገጹ እንደተከፈተ በቀጥታ ወደ Telegram ያዞረዋል --}}
+@if(isset($course) && $course->slug === 'vip-telegram-access-all-premium-courses')
+    <script>
+        window.location.replace("https://t.me/+qDjJMxPexn03NmQ8");
+    </script>
+@endif
+
 @section('title', $lesson->title . ' - ' . $course->title)
 @push('styles')
 <style>
