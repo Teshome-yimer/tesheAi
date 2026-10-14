@@ -68,18 +68,19 @@ Become a Full-Stack Developer step by step: learn coding, algorithms and modern 
         </div>
 
         {{-- Search bar --}}
-    {{-- Search bar --}}
-<div style="max-width:600px; margin:40px auto 0; position:relative;">
-    <form onsubmit="searchCourses(event, this)" style="display:flex; background:var(--bg2); border:1px solid var(--border); border-radius:50px; overflow:hidden;">
-        <input type="text" id="hero-search" placeholder="eg,..Html..." autocomplete="off"
-            style="flex:1;background:transparent;border:none;color:var(--text);padding:14px 22px;font-size:1rem;outline:none;font-family:inherit;">
-        <button type="submit"
-            style="background:linear-gradient(135deg,var(--indigo),var(--cyan));color:#fff;border:none;padding:14px 24px;cursor:pointer;font-size:1rem;font-weight:700;white-space:nowrap;">
-            Search
-        </button>
-    </form>
-    <div id="search-results" style="display:none; position:absolute; top:110%; left:0; right:0; background:var(--bg2); border:1px solid var(--border); border-radius:16px; padding:16px; z-index:100; text-align:left; box-shadow:0 10px 30px rgba(0,0,0,0.3);"></div>
-</div>
+  {{-- Search bar --}}
+        <div style="margin-top:36px;max-width:520px;margin-left:auto;margin-right:auto;">
+            <form onsubmit="searchCourses(event, this)" style="display:flex;gap:0;border-radius:99px;overflow:hidden;border:2px solid var(--indigo);background:var(--bg2);">
+                <input type="text" id="hero-search" placeholder="ኮርስ ፈልግ / Search courses..." autocomplete="off"
+                    style="flex:1;background:transparent;border:none;color:var(--text);padding:14px 22px;font-size:1rem;outline:none;font-family:inherit;">
+                <button type="submit"
+                    style="background:linear-gradient(135deg,var(--indigo),var(--cyan));color:#fff;border:none;padding:14px 24px;cursor:pointer;font-size:1rem;font-weight:700;white-space:nowrap;">
+                     search
+                </button>
+            </form>
+            <div id="search-results" style="display:none;background:var(--bg2);border:1px solid var(--border);border-radius:12px;margin-top:8px;overflow:hidden;text-align:left;"></div>
+        </div>
+    </div>
     </section>
 
     {{-- Stats --}}
