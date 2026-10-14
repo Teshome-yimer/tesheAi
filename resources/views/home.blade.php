@@ -60,7 +60,7 @@
     <section class="hero">
         <span class="hero-badge">100% Safe, Focused & Practical</span>
         <h1>🚫 <span class="grad-text">No TikTok</span> </h1>
-        <p>Learn coding, software design, and modern digital skills in English with structured pathways.</p>
+        <p>Learn coding and algorithm based on phase 1 upto phase 5 books, software design, and modern digital skills in English and Amharic with structured pathways.</p>
         
         <div class="hero-btns">
             <a href="#courses" class="btn btn-primary" style="padding: 12px 28px; font-weight: 700;">Start Learning free</a>
