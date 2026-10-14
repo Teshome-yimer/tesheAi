@@ -71,12 +71,15 @@ Become a Full-Stack Developer step by step: learn coding, algorithms and modern 
   {{-- Search bar --}}
         <div style="margin-top:36px;max-width:520px;margin-left:auto;margin-right:auto;">
             <form onsubmit="searchCourses(event, this)" style="display:flex;gap:0;border-radius:99px;overflow:hidden;border:2px solid var(--indigo);background:var(--bg2);">
-                <input type="text" id="hero-search" placeholder="ኮርስ ፈልግ / Search courses..." autocomplete="off"
+                <input type="text" id="hero-search" placeholder=" Search video eg, html..." autocomplete="off"
                     style="flex:1;background:transparent;border:none;color:var(--text);padding:14px 22px;font-size:1rem;outline:none;font-family:inherit;">
                 <button type="submit"
-                    style="background:linear-gradient(135deg,var(--indigo),var(--cyan));color:#fff;border:none;padding:14px 24px;cursor:pointer;font-size:1rem;font-weight:700;white-space:nowrap;">
-                     search
-                </button>
+    style="background:linear-gradient(135deg,var(--indigo),var(--cyan));color:#fff;border:none;padding:14px 22px;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </svg>
+</button>
             </form>
             <div id="search-results" style="display:none;background:var(--bg2);border:1px solid var(--border);border-radius:12px;margin-top:8px;overflow:hidden;text-align:left;"></div>
         </div>
