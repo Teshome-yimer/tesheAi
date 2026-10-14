@@ -68,10 +68,10 @@ Become a Full-Stack Developer step by step: learn coding, algorithms and modern 
         </div>
 
         {{-- Search bar --}}
-       {{-- Search bar --}}
+      {{-- Search bar --}}
 <div style="max-width:600px; margin:40px auto 0; position:relative;">
-    <form action="{{ route('home') }}" method="GET" style="display:flex; background:var(--bg2); border:1px solid var(--border); border-radius:50px; overflow:hidden;">
-        <input type="text" id="hero-search" name="search" value="{{ request('search') }}" placeholder="eg,..Html..." autocomplete="off"
+    <form onsubmit="searchCourses(event, this)" style="display:flex; background:var(--bg2); border:1px solid var(--border); border-radius:50px; overflow:hidden;">
+        <input type="text" id="hero-search" placeholder="eg,..Html..." autocomplete="off"
             style="flex:1;background:transparent;border:none;color:var(--text);padding:14px 22px;font-size:1rem;outline:none;font-family:inherit;">
         <button type="submit"
             style="background:linear-gradient(135deg,var(--indigo),var(--cyan));color:#fff;border:none;padding:14px 24px;cursor:pointer;font-size:1rem;font-weight:700;white-space:nowrap;">
