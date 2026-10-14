@@ -69,10 +69,10 @@ Become a Full-Stack Developer step by step: learn coding, algorithms and modern 
 
         {{-- Search bar --}}
   {{-- Search bar --}}
-        <div style="margin-top:36px;max-width:520px;margin-left:auto;margin-right:auto;">
+        <div style="margin-top:36px;max-width:420px;margin-left:auto;margin-right:auto;">
             <form onsubmit="searchCourses(event, this)" style="display:flex;gap:0;border-radius:99px;overflow:hidden;border:2px solid var(--indigo);background:var(--bg2);">
                 <input type="text" id="hero-search" placeholder=" Search video eg, html..." autocomplete="off"
-                    style="flex:1;background:transparent;border:none;color:var(--text);padding:14px 22px;font-size:1rem;outline:none;font-family:inherit;">
+                    style="flex:1;background:transparent;border:none;color:var(--text);padding:10px 22px;font-size:0.9rem;outline:none;font-family:inherit;">
                 <button type="submit"
     style="background:linear-gradient(135deg,var(--indigo),var(--cyan));color:#fff;border:none;padding:14px 22px;cursor:pointer;display:flex;align-items:center;justify-content:center;">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
