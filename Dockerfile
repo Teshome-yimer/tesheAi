@@ -26,5 +26,5 @@ RUN composer config --global secure-http false || true
 # Run composer update with no-scripts to safely resolve lock file & packages without execution errors
 RUN COMPOSER_MEMORY_LIMIT=-1 composer update --no-dev --optimize-autoloader --ignore-platform-reqs --no-scripts
 
-# Final runtime command: clear all caches, run migrations, and start server
+  # Final runtime command: clear all caches, run migrations, and start server
 CMD php artisan config:clear && php artisan cache:clear && php artisan view:clear && php artisan migrate --force && php artisan serve --host 0.0.0.0 --port $PORT
