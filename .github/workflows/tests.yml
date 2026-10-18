@@ -18,13 +18,13 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: '8.2'
-        extensions: mbstring, dom, fileinfo, mysql
+        extensions: mbstring, dom, fileinfo, sqlite3, pdo_sqlite
         coverage: none
 
     - name: Copy .env.example
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
-   - name: Install Dependencies
+    - name: Install Dependencies
       run: composer update -q --no-ansi --no-interaction --no-progress --prefer-dist
 
     - name: Generate key
@@ -34,4 +34,7 @@ jobs:
       run: chmod -R 775 storage bootstrap/cache
 
     - name: Execute tests via PHPUnit / Pest
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: ':memory:'
       run: php artisan test
