@@ -23,9 +23,16 @@
 ## 🛠️ Tech Stack & Languages
 - **Backend & Logic:** PHP (41%), Laravel Framework
 - **Frontend & Templates:** Blade (58.2%), JavaScript, Tailwind CSS
-- **DevOps & Containerization:** Docker (Dockerfile configured)
+- **DevOps & Containerization:** Docker, Nixpacks (`nixpacks.toml`)
 - **Admin Panel:** Filament PHP v3
 - **Security & Performance:** Rate Limiting (Throttle), SSL Secured, Secure Webhooks (Stripe), Secret Protection
+
+## ⚙️ Installation & Setup
+To run this project locally, refer to the [SETUP.md](SETUP.md) file included in the repository, or follow standard Laravel steps:
+1. Clone the repository
+2. Install dependencies: `composer install` and `npm install`
+3. Configure your `.env` file (based on `.env.example`)
+4. Run migrations and seeders: `php artisan migrate --seed`
 
 ## 🌐 Live Website
 Check out the live application: [tesheai.com](https://tesheai.com)
