@@ -8,9 +8,9 @@
 
 <p align="center">
   <!-- Automated Tests CI/CD Badge -->
-  <a href="https://github.com/Teshome-yimer/tesheAi/actions/workflows/tests.yml">
-    <img src="https://github.com/Teshome-yimer/tesheAi/actions/workflows/tests.yml/badge.svg" alt="Run Tests Status" />
-  </a>
+<a href="https://github.com/Teshome-yimer/tesheAi/actions/workflows/tests.yml">
+  <img src="https://github.com/Teshome-yimer/tesheAi/actions/workflows/tests.yml/badge.svg?branch=main" alt="Run Tests Status" />
+</a>
   <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white" />
   <img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" />
   <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
