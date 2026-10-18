@@ -7,11 +7,10 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/PHP-8.2-777BB4?style=for-the-badge&logo=php&logoColor=white" />
-  <img src="https://img.shields.io/badge/Laravel-11-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" />
-  <img src="https://img.shields.io/badge/React-JS-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
-  <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
+  <img src="https://img.shields.io/badge/PHP-41%25-777BB4?style=for-the-badge&logo=php&logoColor=white" />
+  <img src="https://img.shields.io/badge/Blade-58.2%25-F05340?style=for-the-badge&logo=laravel&logoColor=white" />
+  <img src="https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
+  <img src="https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white" />
 </p>
 
 ---
@@ -19,11 +18,12 @@
 ## 🌟 About The Project
 **TesheAi** is designed to make learning software development and computer science accessible and engaging. It features secure user authentication, course management, video lessons, and interactive coding quizzes.
 
-## 🛠️ Tech Stack
-* **Backend:** PHP, Laravel 11, MySQL, Eloquent ORM
-* **Frontend:** React.js, Tailwind CSS, Blade Templates
+## 🛠️ Tech Stack & Languages
+* **Backend & Logic:** PHP (41%), Laravel Framework
+* **Frontend & Templates:** Blade (58.2%), JavaScript, CSS, Tailwind CSS
+* **DevOps & Containerization:** Docker (Dockerfile configured)
 * **Admin Panel:** Filament PHP v3
-* **Security & Performance:** Rate Limiting (Throttle), SSL Secured, Secure Webhooks (Stripe)
+* **Security & Performance:** Rate Limiting (Throttle), SSL Secured, Secure Webhooks (Stripe), Secret Protection
 
 ## 🌐 Live Website
 Check out the live application: [tesheai.com](https://tesheai.com)
