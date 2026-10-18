@@ -33,6 +33,12 @@ jobs:
     - name: Directory Permissions
       run: chmod -R 775 storage bootstrap/cache
 
+    - name: Run Migrations
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: ':memory:'
+      run: php artisan migrate --force
+
     - name: Execute tests via PHPUnit / Pest
       env:
         DB_CONNECTION: sqlite
