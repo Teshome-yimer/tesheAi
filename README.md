@@ -7,12 +7,13 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/PHP-41%25-777BB4?style=for-the-badge&logo=php&logoColor=white" />
-  <img src="https://img.shields.io/badge/Blade-58.2%25-F05340?style=for-the-badge&logo=laravel&logoColor=white" />
+  <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white" />
+  <img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" />
+  <img src="https://img.shields.io/badge/Blade-F05340?style=for-the-badge&logo=laravel&logoColor=white" />
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
   <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
-  <img src="https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
-  <img src="https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white" />
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" />
 </p>
 
 ---
@@ -21,8 +22,8 @@
 **TesheAi** is designed to make learning software development and computer science accessible and engaging. It features secure user authentication, course management, video lessons, and interactive coding quizzes.
 
 ## 🛠️ Tech Stack & Languages
-- **Backend & Logic:** PHP (41%), Laravel Framework
-- **Frontend & Templates:** Blade (58.2%), JavaScript, Tailwind CSS
+- **Backend & Logic:** PHP, Laravel Framework
+- **Frontend & Templates:** Blade Templates, JavaScript, Tailwind CSS
 - **DevOps & Containerization:** Docker, Nixpacks (`nixpacks.toml`)
 - **Admin Panel:** Filament PHP v3
 - **Security & Performance:** Rate Limiting (Throttle), SSL Secured, Secure Webhooks (Stripe), Secret Protection
