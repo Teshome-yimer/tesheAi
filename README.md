@@ -49,6 +49,5 @@
 To run this project locally, follow these standard steps:
 
 1. **Clone the repository:**
-   ```bash
- git clone https://github.com/Teshome-yimer/tesheAi.git
+   ```bash git clone https://github.com/Teshome-yimer/tesheAi.git
 cd tesheAi
