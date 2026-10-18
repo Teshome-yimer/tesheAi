@@ -3,40 +3,52 @@
 </p>
 
 <p align="center">
-  <b>TesheAi Academy</b> (`tesheai.com`) is a modern, full-stack e-learning and tech education platform built to provide programming courses, tutorials, and interactive quizzes.
+  <b>TesheAi Academy</b> (<a href="https://tesheai.com">tesheai.com</a>) is a modern, full-stack e-learning and tech education platform built to provide programming courses, video tutorials, and interactive quizzes.
 </p>
 
 <p align="center">
+  <!-- Automated Tests CI/CD Badge -->
+  <a href="https://github.com/Teshome-yimer/tesheAi/actions/workflows/tests.yml">
+    <img src="https://github.com/Teshome-yimer/tesheAi/actions/workflows/tests.yml/badge.svg" alt="Run Tests Status" />
+  </a>
   <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white" />
   <img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" />
-  <img src="https://img.shields.io/badge/Blade-F05340?style=for-the-badge&logo=laravel&logoColor=white" />
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
   <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
-  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
   <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" />
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
 </p>
 
 ---
 
 ## 🌟 About The Project
-**TesheAi** is designed to make learning software development and computer science accessible and engaging. It features secure user authentication, course management, video lessons, and interactive coding quizzes.
 
-## 🛠️ Tech Stack & Languages
-- **Backend & Logic:** PHP, Laravel Framework
-- **Frontend & Templates:** Blade Templates, JavaScript, Tailwind CSS
-- **DevOps & Containerization:** Docker, Nixpacks (`nixpacks.toml`)
-- **Admin Panel:** Filament PHP v3
-- **Security & Performance:** Rate Limiting (Throttle), SSL Secured, Secure Webhooks (Stripe), Secret Protection
+**TesheAi** is designed to make learning software development and computer science accessible and engaging. It features secure user authentication, course management, video lessons, and interactive coding quizzes built using modern software engineering practices.
 
-## ⚙️ Installation & Setup
-To run this project locally, refer to the [SETUP.md](SETUP.md) file included in the repository, or follow standard Laravel steps:
-1. Clone the repository
-2. Install dependencies: `composer install` and `npm install`
-3. Configure your `.env` file (based on `.env.example`)
-4. Run migrations and seeders: `php artisan migrate --seed`
-
-## 🌐 Live Website
-Check out the live application: [tesheai.com](https://tesheai.com)
+### 🔑 Key Features
+* 🎓 **Interactive E-Learning System:** Course management, section progress tracking, and downloadable materials.
+* 🧪 **Automated Testing & CI/CD:** Fully automated test pipeline using GitHub Actions with SQLite memory/file driver for zero-regression deployments.
+* 🛡️ **Enterprise Security:** Comprehensive security middleware, rate limiting (throttling), and CSRF protection.
+* ⚙️ **Admin Management:** Powered by Filament PHP v3 for seamless content management and student analytics.
 
 ---
-*Developed with ❤️ by [Teshome Yimer](https://github.com/Teshome-yimer)*
+
+## 🛠️ Tech Stack & Architecture
+
+* **Backend & Logic:** PHP 8.2+, Laravel 10/11 Framework
+* **Testing & CI/CD:** PHPUnit / Pest PHP, GitHub Actions Workflow
+* **Frontend & Styling:** Blade Templates, JavaScript, Tailwind CSS
+* **DevOps & Containerization:** Docker, Nixpacks (`nixpacks.toml`)
+* **Database & Caching:** MySQL (Production), SQLite (Testing), Redis/Cache
+* **Admin Panel:** Filament PHP v3
+* **Security & Payments:** Security Headers, Rate Limiting, Stripe Webhooks Integration
+
+---
+
+## ⚙️ Local Development & Setup
+
+To run this project locally, follow these standard steps:
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/Teshome-yimer/tesheAi.git](https://github.com/Teshome-yimer/tesheAi.git)
+   cd tesheAi
