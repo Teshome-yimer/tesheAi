@@ -36,21 +36,21 @@ class VideoController extends Controller
     }
 
     public function stream(Lesson $lesson)
-{
-    // Check enrollment
-    if (!auth()->user()->isAdmin() && !auth()->user()->isEnrolledIn($lesson->course_id)) {
-        abort(403);
+    {
+        // Check enrollment
+        if (!auth()->user()->isAdmin() && !auth()->user()->isEnrolledIn($lesson->course_id)) {
+            abort(403);
+        }
+
+        if (!$lesson->video_path || !Storage::disk('s3')->exists($lesson->video_path)) {
+            abort(404, 'Video not found');
+        }
+
+        // 3. ቪዲዮው ከ Cloudflare R2 በቀጥታ ወደ ተማሪው በ Stream እንዲሄድ ማድረግ
+        $url = Storage::disk('s3')->temporaryUrl($lesson->video_path, now()->addHours(2));
+
+        return redirect()->secure($url);
     }
-
-    if (!$lesson->video_path || !Storage::disk('s3')->exists($lesson->video_path)) {
-        abort(404, 'Video not found');
-    }
-
-    // ቪዲዮው ከ Cloudflare R2 በቀጥታ በሰሀራ ዩአርኤል እንዲታይ ማድረግ
-    $url = Storage::disk('s3')->url($lesson->video_path);
-
-    return redirect()->secure($url);
-}
 
     public function delete(Lesson $lesson)
     {
