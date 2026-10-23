@@ -58,10 +58,9 @@
 <div class="container">
     {{-- Hero --}}
     <section class="hero">
-        <span class="hero-badge">TesheAi Academy | Learn Full-Stack Web Development</span>
+        <span class="hero-badge">TesheAi Academy | ልዩ የትምህርት ዕድል – እስከ 99% ቅናሽ!</span>
         <h1>🚫 <span class="grad-text">No TikTok</span> </h1>
-        <p>Your Path to Full-Stack Developer
-Become a Full-Stack Developer step by step: learn coding, algorithms and modern web skills through a clear 5-phase path.</p>
+        <p>TesheAi Academy አሁን በጣም በውድ የሚሸጡ ስልጠና video ዎችን ከ private ቴሌግራማቸው hack እያድረገን በማውጣት ሙሉ ስልጠና video ከ 5000  ብር  በላይ የሚሸጡ   የተለያዩ ስለጠናዎችን  ሰብስቦ የሚያቀርብላቹ website ነው :: 100-150 ብር ብቻ ከፍለው መጠቀም የሚችሉበት Website ነው:: ገንዘባቹህን እየቆጠባቹህ Skill ደግሞ አዳብሩ ሌሎችም ስናገኝ እንለቃለን ያሉትን እየተማራቹ ተጠባበቁ😍😍</p>
         
         <div class="hero-btns">
             <a href="#courses" class="btn btn-primary" style="padding: 12px 28px; font-weight: 700;">Start Learning free</a>
