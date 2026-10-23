@@ -46,7 +46,7 @@ class VideoController extends Controller
             abort(404, 'Video not found');
         }
 
-        // ቪዲዮው ከ Cloudflare R2 በቀጥታ እንዲጫወት የ R2 Public URL መመለስ
+        // ቪዲዮው ከ R2 በቀጥታ በ Public URL እንዲጫወት ನೇጥሮ መመለስ
         $url = Storage::disk('s3')->url($lesson->video_path);
 
         return redirect()->secure($url);
