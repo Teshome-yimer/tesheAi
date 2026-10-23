@@ -46,8 +46,8 @@ class VideoController extends Controller
             abort(404, 'Video not found');
         }
 
-        // ቪዲዮው ከ R2 በቀጥታ በ Public URL እንዲጫወት ನೇጥሮ መመለስ
-        $url = Storage::disk('s3')->url($lesson->video_path);
+        // ለተማሪው የ 2 ሰዓት ጊዜያዊ ደህንነቱ የተጠበቀ ሊንክ ከ Cloudflare እናመነጫለን
+        $url = Storage::disk('s3')->temporaryUrl($lesson->video_path, now()->addHours(2));
 
         return redirect()->secure($url);
     }
