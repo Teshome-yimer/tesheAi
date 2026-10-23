@@ -19,7 +19,7 @@
 
     <!-- ===== የ SEO META TAGS (በዚህ ቦታ ይተካ/ይግባ) ===== -->
     <meta name="description" content="Tesheai Academy - የቴክኖሎጂ፣ የፕሮግራሚንግ እና የኮምፒዩተር ሳይንስ ኮርሶችን እና መጻሕፍትን በነጻ እና በቅናሽ የሚያገኙበት የኢትዮጵያውያን የትምህርት መድረክ።">
-    <meta name="keywords" content="Tesheai, Tesheai Academy, Teshe AI, Programming Courses Ethiopia, Computer Science Amharic, Web Development Amharic, የሶፍትዌር ትምህርት, የፕሮግራሚንግ ኮርስ">
+    <meta name="keywords" content="Khilx Academy,Tesheai, evangadi,honasmuhe,ethiocoder,5 million coder,Tesheai Academy, Teshe AI, Programming Courses Ethiopia, Computer Science Amharic, Web Development Amharic, የሶፍትዌር ትምህርት, የፕሮግራሚንግ ኮርስ">
     <meta name="author" content="Tesheai Academy">
     <meta name="robots" content="index, follow">
 
