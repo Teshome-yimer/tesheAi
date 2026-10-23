@@ -106,7 +106,7 @@
                 የእርስዎ ብራውዘር ቪዲዮ ማጫወቻውን መደገፍ አልቻለም።
             </video>
         </div>
-        @endif
+    
 @elseif($lesson->video_url)
     @php
         $videoUrl = $lesson->video_url;
