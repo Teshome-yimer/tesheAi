@@ -102,7 +102,7 @@
                    preload="metadata"
                    oncontextmenu="return false;">
                 {{-- ትክክለኛውን የ R2 Public URL እና የቪዲዮ ፓርዝ ማገናኘት --}}
-                <source src="https://pub-b8c690518b7943c082308948e4154850.r2.dev/{{ $lesson->video_path }}" type="video/mp4">
+                <source src="{{ route('student.video.stream', $lesson) }}" type="video/mp4">
                 የእርስዎ ብራውዘር ቪዲዮ ማጫወቻውን መደገፍ አልቻለም።
             </video>
         </div>
