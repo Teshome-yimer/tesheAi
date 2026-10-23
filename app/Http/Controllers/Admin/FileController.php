@@ -31,7 +31,9 @@ class FileController extends Controller
 
         $file     = $request->file('file');
         $ext      = strtolower($file->getClientOriginalExtension());
-        $path     = $file->store('lesson-files', 'public');
+        
+        // 1. በቀጥታ ወደ Cloudflare R2 (s3) 'lesson-files' ፎልደር ይጭነዋል
+        $path     = $file->store('lesson-files', 's3');
 
         LessonFile::create([
             'lesson_id' => $lesson->id,
@@ -52,7 +54,9 @@ class FileController extends Controller
 
     public function destroy(LessonFile $file)
     {
-        Storage::disk('public')->delete($file->file_path);
+        // 2. ፋይሉ ሲጠፋ ከ Cloudflare R2 (s3) እንዲሰረዝ ማድረግ
+        Storage::disk('s3')->delete($file->file_path);
+        
         $file->delete();
         return back()->with('success', 'File deleted!');
     }
