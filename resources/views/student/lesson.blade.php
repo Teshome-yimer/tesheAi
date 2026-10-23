@@ -99,13 +99,17 @@
         <div class="video-wrap">
             <video id="lesson-video" controls controlslist="nodownload"
                    style="position:absolute;inset:0;width:100%;height:100%;background:#000;"
-                   preload="metadata"
+                   preload="auto"
+                   playsinline
+                   webkit-playsinline
+                   x5-playsinline
                    oncontextmenu="return false;">
-                {{-- ትክክለኛውን የ R2 Public URL እና የቪዲዮ ፓርዝ ማገናኘት --}}
+                {{-- ላራቬል የሚያመነጨውን ጊዜያዊ ሊንክ route እዚህ እንጠቀማለን --}}
                 <source src="{{ route('student.video.stream', $lesson) }}" type="video/mp4">
                 የእርስዎ ብራውዘር ቪዲዮ ማጫወቻውን መደገፍ አልቻለም።
             </video>
         </div>
+        
     
 @elseif($lesson->video_url)
     @php
