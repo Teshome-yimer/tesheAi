@@ -60,7 +60,7 @@
     <section class="hero">
         <span class="hero-badge">TesheAi Academy | ልዩ የትምህርት ዕድል – እስከ 99% ቅናሽ!</span>
         <h1>🚫 <span class="grad-text">No TikTok</span> </h1>
-        <p>TesheAi Academy አሁን በጣም በውድ የሚሸጡ ስልጠና video ዎችን ከ private ቴሌግራማቸው hack እያድረገን በማውጣት ሙሉ ስልጠና video ከ 5000  ብር  በላይ የሚሸጡ   የተለያዩ ስለጠናዎችን  ሰብስቦ የሚያቀርብላቹ website ነው :: 100-150 ብር ብቻ ከፍለው መጠቀም የሚችሉበት Website ነው:: ገንዘባቹህን እየቆጠባቹህ Skill ደግሞ አዳብሩ ሌሎችም ስናገኝ እንለቃለን ያሉትን እየተማራቹ ተጠባበቁ😍😍</p>
+        <p>TesheAi Academy በብዙዎች ዘንድ የታወቁ እና ከፍተኛ እውቅና ያላቸው ባለሙያዎች በከፍተኛ ዋጋ (እስከ 5,000 ብር) የሚሸጧቸውን ሙሉ የቪዲዮ ስልጠናዎች በአንድ ቦታ አሰባስቦ የሚያቀርብ የትምህርት መድረክ ነው። ማንኛውም ሰው በገንዘብ ምክንያት ሳይወሰን መማር እንዲችል፣ እነዚህን አጠቃላይ ስልጠናዎች በ 100-150 ብር ብቻ እንዲያገኙ አዘጋጅተናል። ገንዘብዎን እየቆጠቡ በጥራት ይማሩ፤ Skillዎን ያዳብሩ! በተጨማሪም ሌሎች አዳዲስ እና ጠቃሚ ስልጠናዎችን እያዘጋጀን ስለምንልክ በጉጉት ጠብቁን! 🔥😃</p>
         
         <div class="hero-btns">
             <a href="#courses" class="btn btn-primary" style="padding: 12px 28px; font-weight: 700;">Start Learning free</a>
