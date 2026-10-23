@@ -15,12 +15,13 @@ class VideoController extends Controller
             'video' => 'required|file|mimetypes:video/mp4,video/webm,video/ogg,video/avi,video/mov,video/mkv|max:512000', // 500MB
         ]);
 
-        // Delete old video if exists
+        // 1. የቆየውን ቪዲዮ ከ Cloudflare R2 (s3) መሰረዝ
         if ($lesson->video_path) {
-            Storage::disk('public')->delete($lesson->video_path);
+            Storage::disk('s3')->delete($lesson->video_path);
         }
 
-        $path = $request->file('video')->store('videos', 'public');
+        // 2. አዲሱን ቪዲዮ በቀጥታ ወደ Cloudflare R2 (s3) 'videos' ፎልደር መጫን
+        $path = $request->file('video')->store('videos', 's3');
 
         $lesson->update([
             'video_path' => $path,
@@ -28,7 +29,7 @@ class VideoController extends Controller
         ]);
 
         if ($request->ajax() || $request->wantsJson()) {
-            return response()->json(['success' => true, 'message' => 'Video uploaded!']);
+            return response()->json(['success' => true, 'message' => 'Video uploaded to Cloudflare R2!']);
         }
 
         return back()->with('success', 'Video uploaded successfully!');
@@ -41,58 +42,21 @@ class VideoController extends Controller
             abort(403);
         }
 
-        if (!$lesson->video_path || !Storage::disk('public')->exists($lesson->video_path)) {
+        if (!$lesson->video_path || !Storage::disk('s3')->exists($lesson->video_path)) {
             abort(404, 'Video not found');
         }
 
-        $path     = Storage::disk('public')->path($lesson->video_path);
-        $size     = filesize($path);
-        $mimeType = mime_content_type($path);
+        // 3. ቪዲዮው ከ Cloudflare R2 በቀጥታ ወደ ተማሪው በ Stream እንዲሄድ ማድረግ
+        $url = Storage::disk('s3')->temporaryUrl($lesson->video_path, now()->addHours(2));
 
-        $start  = 0;
-        $end    = $size - 1;
-        $length = $size;
-
-        $headers = [
-            'Content-Type'   => $mimeType,
-            'Accept-Ranges'  => 'bytes',
-            'Content-Length' => $size,
-        ];
-
-        if (request()->hasHeader('Range')) {
-            $range = request()->header('Range');
-            preg_match('/bytes=(\d+)-(\d*)/', $range, $matches);
-            $start  = (int) $matches[1];
-            $end    = isset($matches[2]) && $matches[2] !== '' ? (int) $matches[2] : $size - 1;
-            $length = $end - $start + 1;
-
-            $headers['Content-Range']  = "bytes $start-$end/$size";
-            $headers['Content-Length'] = $length;
-
-            return response()->stream(function () use ($path, $start, $length) {
-                $fp = fopen($path, 'rb');
-                fseek($fp, $start);
-                $buffer = 1024 * 8;
-                $remaining = $length;
-                while (!feof($fp) && $remaining > 0) {
-                    $read = min($buffer, $remaining);
-                    echo fread($fp, $read);
-                    $remaining -= $read;
-                    flush();
-                }
-                fclose($fp);
-            }, 206, $headers);
-        }
-
-        return response()->stream(function () use ($path) {
-            readfile($path);
-        }, 200, $headers);
+        return redirect()->secure($url);
     }
 
     public function delete(Lesson $lesson)
     {
         if ($lesson->video_path) {
-            Storage::disk('public')->delete($lesson->video_path);
+            // 4. ቪዲዮው ሲሰረዝ ከ Cloudflare R2 እንዲጠፋ ማድረግ
+            Storage::disk('s3')->delete($lesson->video_path);
             $lesson->update(['video_path' => null, 'video_type' => 'youtube']);
         }
         return back()->with('success', 'Video deleted!');
