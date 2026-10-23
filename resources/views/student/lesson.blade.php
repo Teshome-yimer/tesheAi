@@ -94,15 +94,15 @@
                 {{ $isCompleted ? '✅ Completed' : '🔒 Finish Video First' }}
             </button>
         </div>
-
-        {{-- Video --}}
+{{-- Video --}}
         @if($lesson->video_type === 'local' && $lesson->video_path)
         <div class="video-wrap">
             <video id="lesson-video" controls controlslist="nodownload"
                    style="position:absolute;inset:0;width:100%;height:100%;background:#000;"
                    preload="metadata"
                    oncontextmenu="return false;">
-                <source src="{{ route('student.video.stream', $lesson) }}" type="video/mp4">
+                <source src="{{ Storage::disk('s3')->url($lesson->video_path) }}" type="video/mp4">
+                የእርስዎ ብራውዘር ቪዲዮ ማጫወቻውን መደገፍ አልቻለም።
             </video>
         </div>
 @elseif($lesson->video_url)
