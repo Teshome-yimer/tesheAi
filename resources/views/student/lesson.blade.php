@@ -101,10 +101,12 @@
                    style="position:absolute;inset:0;width:100%;height:100%;background:#000;"
                    preload="metadata"
                    oncontextmenu="return false;">
-                <source src="{{ Storage::disk('s3')->url($lesson->video_path) }}" type="video/mp4">
+                {{-- ትክክለኛውን የ R2 Public URL እና የቪዲዮ ፓርዝ ማገናኘት --}}
+                <source src="https://pub-b8c690518b7943c082308948e4154850.r2.dev/{{ $lesson->video_path }}" type="video/mp4">
                 የእርስዎ ብራውዘር ቪዲዮ ማጫወቻውን መደገፍ አልቻለም።
             </video>
         </div>
+        @endif
 @elseif($lesson->video_url)
     @php
         $videoUrl = $lesson->video_url;
