@@ -10,6 +10,7 @@ class ChatbotController extends Controller
 {
     public function handleChat(Request $request)
     {
+        // 1. የተጠቃሚውን መልእክት ማረጋገጥ (Validation)
         $request->validate([
             'message' => 'required|string|max:1000',
         ]);
@@ -17,31 +18,53 @@ class ChatbotController extends Controller
         $userMessage = $request->input('message');
         $apiKey = env('GEMINI_API_KEY') ?? config('services.gemini.key');
 
+        // የ API Key በ .env ላይ ካልተገኘ
         if (!$apiKey) {
             Log::error('Gemini API Key is missing in .env file.');
             return response()->json([
-                'reply' => 'ይቅርታ፣ የ ኤፒአይ ቁልፍ (API Key) አልተገኘም።'
+                'reply' => 'ይቅርታ፣ የ ኤፒአይ ቁልፍ (API Key) በሰርቨሩ ላይ አልተገኘም።'
             ]);
         }
 
         try {
-            // ከ cURL ጋር አንድ አይነት የሆነው ትክክለኛው የ API ጥሪ
-            $response = Http::timeout(15)
-                ->withHeaders([
-                    'Content-Type' => 'application/json',
-                    'X-goog-api-key' => $apiKey,
-                ])
-                ->post('https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent', [
-                    'contents' => [
-                        [
-                            'parts' => [
-                                ['text' => "እርስዎ የ TesheAi አካዳሚ የኢ-ሊርኒንግ መድረክ AI ረዳት ነዎት። ለተጠቃሚው ጥያቄ በአጭሩና በጥሩ ሁኔታ በአማርኛ ወይም በእንግሊዝኛ ምላሽ ይስጡ። የተጠቃሚው መልእክት፦ " . $userMessage]
+            // 2. የሚሞከሩትን የሞዴሎች ዝርዝር በአንድ አርሬ (Array) ውስጥ ማስቀመጥ
+            $models = [
+                'gemini-flash-latest',
+                'gemini-pro',
+                'gemini-1.5-flash'
+            ];
+
+            $response = null;
+            $success = false;
+
+            // 3. አንዱ ሞዴል ሲሳሳት ቀጣዩን በቅደም ተከተል መሞከር (Fallback Loop)
+            foreach ($models as $modelName) {
+                $endpoint = "https://generativelanguage.googleapis.com/v1beta/models/{$modelName}:generateContent";
+
+                $response = Http::timeout(15)
+                    ->withoutVerifying() // በሰርቨር ላይ የ SSL ሰርተፍኬት ችግር እንዳይኖር
+                    ->withHeaders([
+                        'Content-Type' => 'application/json',
+                        'X-goog-api-key' => $apiKey,
+                    ])
+                    ->post($endpoint, [
+                        'contents' => [
+                            [
+                                'parts' => [
+                                    ['text' => "እርስዎ የ TesheAi አካዳሚ የኢ-ሊርኒንግ መድረክ AI ረዳት ነዎት። ለተጠቃሚው ጥያቄ በአጭሩና በጥሩ ሁኔታ በአማርኛ ወይም በእንግሊዝኛ ምላሽ ይስጡ። የተጠቃሚው መልእክት፦ " . $userMessage]
+                                ]
                             ]
                         ]
-                    ]
-                ]);
+                    ]);
 
-            if ($response->successful()) {
+                if ($response->successful()) {
+                    $success = true;
+                    break; // ከነዚህ ሞዴሎች አንዱ በትክክል ስኬታማ ከሆነ ሉፑ ይቆማል
+                }
+            }
+
+            // 4. የተሳካ ምላሽ ከተገኘ ለተጠቃሚው መመለስ
+            if ($success && $response->successful()) {
                 $data = $response->json();
                 $botReply = $data['candidates'][0]['content']['parts'][0]['text'] ?? 'ምንም ምላሽ ማግኘት አልተቻለም።';
 
@@ -50,15 +73,16 @@ class ChatbotController extends Controller
                 ]);
             }
 
-            Log::error('Gemini API Error: ' . $response->body());
+            // ሁሉም ሞዴሎች ካልሠሩ ሎግ ላይ መዝገብ ማስቀመጥ
+            Log::error('All Gemini Models Failed. Last Error: ' . ($response ? $response->body() : 'No response'));
             return response()->json([
-                'reply' => 'ይቅርታ፣ በአሁኑ ሰዓት ምላሽ መስጠት አልቻልኩም።'
+                'reply' => 'ይቅርታ፣ በአሁኑ ሰዓት ከሁሉም የ AI ሞዴሎች ጋር መገናኘት አልተቻለም።'
             ]);
 
         } catch (\Exception $e) {
             Log::error('Chatbot Exception: ' . $e->getMessage());
             return response()->json([
-                'reply' => 'የኔትወርክ ወይም የሲስተም ችግር አጋጥሟል። እባክዎ ጥቂት ቆይተው ይሞክሩ።'
+                'reply' => 'የኔትወርክ ወይም የሲስተም ችግር አጋጥሟል፡ ' . $e->getMessage()
             ], 500);
         }
     }
