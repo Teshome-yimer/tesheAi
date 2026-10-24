@@ -10,33 +10,36 @@ class ChatbotController extends Controller
 {
     public function handleChat(Request $request)
     {
-        // 1. መረጃውን ማረጋገጥ (ከመጠን በላይ ረጅም መልእክት ወይም ባዶ እንዳይሆን)
         $request->validate([
             'message' => 'required|string|max:1000',
         ]);
 
         $userMessage = $request->input('message');
-        $apiKey = env('GEMINI_API_KEY');
+        $apiKey = env('GEMINI_API_KEY') ?? config('services.gemini.key');
 
-        // የ API Key በ .env ላይ ካልተገኘ ድረ-ገጹ እንዳይበላሽ መከላከል
         if (!$apiKey) {
             Log::error('Gemini API Key is missing in .env file.');
             return response()->json([
-                'reply' => 'ይቅርታ፣ በሰርቨራችን ላይ ትንሽ ችግር አጋጥሟል። እባክዎ ቆይተው ይሞክሩ።'
-            ], 500);
+                'reply' => 'ይቅርታ፣ የ ኤፒአይ ቁልፍ (API Key) አልተገኘም።'
+            ]);
         }
 
         try {
-            // 2. ከ Gemini API ጋር ማገናኘት (የ10 ሰከንድ Timeout በማስገባት)
-           $response = Http::timeout(10)->post("https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key={$apiKey}", [
-                'contents' => [
-                    [
-                        'parts' => [
-                            ['text' => "እርስዎ የ TesheAi አካዳሚ የኢ-ሊርኒንግ መድረክ AI ረዳት ነዎት። ለተጠቃሚው ጥያቄ በአጭሩና በጥሩ ሁኔታ በአማርኛ ወይም በእንግሊዝኛ ምላሽ ይስጡ። የተጠቃሚው መልእክት፦ " . $userMessage]
+            // ከ cURL ጋር አንድ አይነት የሆነው ትክክለኛው የ API ጥሪ
+            $response = Http::timeout(15)
+                ->withHeaders([
+                    'Content-Type' => 'application/json',
+                    'X-goog-api-key' => $apiKey,
+                ])
+                ->post('https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent', [
+                    'contents' => [
+                        [
+                            'parts' => [
+                                ['text' => "እርስዎ የ TesheAi አካዳሚ የኢ-ሊርኒንግ መድረክ AI ረዳት ነዎት። ለተጠቃሚው ጥያቄ በአጭሩና በጥሩ ሁኔታ በአማርኛ ወይም በእንግሊዝኛ ምላሽ ይስጡ። የተጠቃሚው መልእክት፦ " . $userMessage]
+                            ]
                         ]
                     ]
-                ]
-            ]);
+                ]);
 
             if ($response->successful()) {
                 $data = $response->json();
