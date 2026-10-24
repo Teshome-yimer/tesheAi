@@ -715,7 +715,7 @@ function sendMessage() {
         },
         error: function() {
             removeTyping();
-            appendMsg('ይቅርታ፣ ችግር አጋጥሟል። ቆይተው ይሞክሩ።', 'bot');
+            appendMsg('በአሁኑ ሰዓት ትንሽ የኔትወርክ መዘግየት አለ። የ TesheAi ረዳት ከጎንዎ አለ፤ ከላይ ያሉትን ኮርሶች በመመልከት መማር መቀጠል ወይም ጥያቄዎን ትንሽ ቆይተው እንደገና መሞከር ይችላሉ!', 'bot');
         }
     });
 }
