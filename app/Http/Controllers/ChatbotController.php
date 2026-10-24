@@ -55,7 +55,7 @@ class ChatbotController extends Controller
 
             Log::error('Gemini API Error: ' . $response->body());
             return response()->json([
-                'reply' => 'ይቅርታ፣ በአሁኑ ሰዓት ከ AI ጋር መገናኘት አልተቻለም።'
+                'reply' => 'በአሁኑ ሰዓት ትንሽ የኔትወርክ መዘግየት አለ። የ TesheAi ረዳት ከጎንዎ አለ፤ ከላይ ያሉትን ኮርሶች በመመልከት መማር መቀጠል ወይም ጥያቄዎን ትንሽ ቆይተው እንደገና መሞከር ይችላሉ!'
             ]);
 
         } catch (\Exception $e) {
