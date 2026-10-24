@@ -1,4 +1,3 @@
-
 <?php
 
 namespace App\Http\Controllers;
@@ -26,13 +25,14 @@ class ChatbotController extends Controller
         }
 
         try {
-            // ትክክለኛውን እና በአሁኑ ሰዓት የሚሰራውን v1beta endpoint መጠቀም
-            $endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={$apiKey}";
+            // ከ Google AI Studio cURL quickstart ጋር በትክክል የሚመሳሰል Endpoint
+            $endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent";
 
-            $response = Http::timeout(20)
+            $response = Http::timeout(25)
                 ->withoutVerifying()
                 ->withHeaders([
                     'Content-Type' => 'application/json',
+                    'X-goog-api-key' => $apiKey, // ከ cURL ጋር የተጣጣመ Header
                 ])
                 ->post($endpoint, [
                     'contents' => [
