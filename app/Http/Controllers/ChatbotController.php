@@ -41,7 +41,7 @@ class ChatbotController extends Controller
             foreach ($models as $modelName) {
               $endpoint = "https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key={$apiKey}";
 
-                $response = Http::timeout(15)
+                $response = Http::timeout(50)
                     ->withoutVerifying() // በሰርቨር ላይ የ SSL ሰርተፍኬት ችግር እንዳይኖር
                     ->withHeaders([
                         'Content-Type' => 'application/json',
