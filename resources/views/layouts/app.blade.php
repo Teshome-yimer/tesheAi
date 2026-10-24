@@ -620,7 +620,7 @@ function scrollToCourses(e, form) {
 <!-- Chatbot Toggle Button -->
 <button id="chatbot-btn" onclick="toggleChat()" title="ድጋፍ ያግኙ" style="padding:0 18px 0 6px;overflow:visible;">
     <span id="chat-icon-wrap" style="display:flex;align-items:center;gap:10px;">
-        <img src="{{ asset('images/auth-side.jpg') }}" id="chat-photo"
+       <img src="{{ asset('images/tesheai_partial_2_half_shadow.webp') }}" id="chat-photo"
              style="width:40px;height:40px;object-fit:cover;object-position:top;border-radius:50%;border:2px solid rgba(255,255,255,0.5);" alt="Teshome">
         <span id="chat-label" style="color:#fff;font-weight:700;font-size:0.88rem;white-space:nowrap;">Chat</span>
         <i class="fas fa-times" id="chat-icon" style="color:#fff;font-size:1rem;display:none;"></i>
