@@ -541,118 +541,6 @@ function scrollToCourses(e, form) {
         }
     }
 }
-</script>
-    <!-- Chatbase AI Widget -->
-<!-- ===== TESHEAI CHATBOT WIDGET ===== -->
-<style>
-#chatbot-btn {
-    position:fixed; bottom:24px; right:20px; z-index:9998;
-    height:52px; border-radius:50px; border:none; cursor:pointer;
-    background:linear-gradient(135deg,#6366f1,#8b5cf6);
-    box-shadow:0 8px 25px rgba(99,102,241,0.5);
-    display:flex; align-items:center; gap:10px; padding:0 18px 0 6px;
-    transition:all 0.3s; animation:pulse-btn 2.5s infinite;
-}
-#chatbot-btn:hover { transform:scale(1.1); box-shadow:0 12px 35px rgba(99,102,241,0.7); }
-@keyframes pulse-btn {
-    0%,100%{ box-shadow:0 8px 25px rgba(99,102,241,0.5); }
-    50%{ box-shadow:0 8px 35px rgba(99,102,241,0.8),0 0 0 8px rgba(99,102,241,0.15); }
-}
-#chatbot-window {
-    position:fixed; bottom:90px; right:20px; z-index:9997;
-    width:min(380px, calc(100vw - 24px));
-    height:min(560px, calc(100vh - 120px));
-    border-radius:24px;
-    background:#fff; box-shadow:0 20px 60px rgba(0,0,0,0.25);
-    display:none; flex-direction:column; overflow:hidden;
-    animation:slideUp 0.3s ease;
-}
-@keyframes slideUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-.chat-header {
-    background:linear-gradient(135deg,#1e1b4b,#4c1d95);
-    padding:18px 20px; display:flex; align-items:center; gap:12px;
-}
-.chat-header-info { flex:1; }
-.chat-header-name { color:#fff; font-weight:700; font-size:0.95rem; }
-.chat-header-status { color:rgba(255,255,255,0.7); font-size:0.72rem; display:flex; align-items:center; gap:4px; }
-.chat-header-status::before { content:''; width:7px; height:7px; background:#22c55e; border-radius:50%; display:inline-block; }
-.chat-close { background:none; border:none; color:rgba(255,255,255,0.7); cursor:pointer; font-size:1.1rem; padding:4px; }
-.chat-close:hover { color:#fff; }
-.chat-messages {
-    flex:1; overflow-y:auto; padding:16px; display:flex;
-    flex-direction:column; gap:12px; background:#f8f7ff;
-}
-.chat-messages::-webkit-scrollbar { width:4px; }
-.chat-messages::-webkit-scrollbar-thumb { background:#c4b5fd; border-radius:4px; }
-.msg { max-width:82%; display:flex; flex-direction:column; gap:3px; }
-.msg.bot { align-self:flex-start; }
-.msg.user { align-self:flex-end; }
-.msg-bubble {
-    padding:10px 14px; border-radius:16px; font-size:0.85rem; line-height:1.5;
-}
-.msg.bot .msg-bubble { background:#fff; color:#1e1b4b; border-bottom-left-radius:4px; box-shadow:0 2px 8px rgba(0,0,0,0.07); }
-.msg.user .msg-bubble { background:linear-gradient(135deg,#6366f1,#8b5cf6); color:#fff; border-bottom-right-radius:4px; }
-.msg-time { font-size:0.65rem; color:#9ca3af; padding:0 4px; }
-.msg.user .msg-time { text-align:right; }
-.typing-indicator { display:flex; gap:4px; padding:10px 14px; background:#fff; border-radius:16px; border-bottom-left-radius:4px; width:fit-content; box-shadow:0 2px 8px rgba(0,0,0,0.07); }
-.typing-dot { width:7px; height:7px; background:#a5b4fc; border-radius:50%; animation:typing 1.2s infinite; }
-.typing-dot:nth-child(2) { animation-delay:0.2s; }
-.typing-dot:nth-child(3) { animation-delay:0.4s; }
-@keyframes typing { 0%,60%,100%{transform:translateY(0);opacity:0.4} 30%{transform:translateY(-6px);opacity:1} }
-.chat-input-area {
-    padding:14px 16px; background:#fff; border-top:1px solid #f3f4f6;
-    display:flex; gap:10px; align-items:center;
-}
-#chat-input {
-    flex:1; padding:10px 14px; border:1.5px solid #e5e7eb; border-radius:50px;
-    font-size:0.88rem; outline:none; transition:all 0.2s; color:#1e1b4b;
-}
-#chat-input:focus { border-color:#6366f1; box-shadow:0 0 0 3px rgba(99,102,241,0.1); }
-#chat-send {
-    width:40px; height:40px; border-radius:50%; border:none;
-    background:linear-gradient(135deg,#6366f1,#8b5cf6);
-    color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center;
-    transition:all 0.2s; flex-shrink:0;
-}
-#chat-send:hover { transform:scale(1.1); }
-</style>
-
-<!-- Chatbot Toggle Button -->
-<button id="chatbot-btn" onclick="toggleChat()" title="ድጋፍ ያግኙ" style="padding:0 18px 0 6px;overflow:visible;">
-    <span id="chat-icon-wrap" style="display:flex;align-items:center;gap:10px;">
-       <img src="{{ asset('images/tesheai_partial_2_half_shadow.webp') }}" id="chat-photo"
-             style="width:40px;height:40px;object-fit:cover;object-position:top;border-radius:50%;border:2px solid rgba(255,255,255,0.5);" alt="Teshome">
-        <span id="chat-label" style="color:#fff;font-weight:700;font-size:0.88rem;white-space:nowrap;">Chat</span>
-        <i class="fas fa-times" id="chat-icon" style="color:#fff;font-size:1rem;display:none;"></i>
-    </span>
-</button>
-
-<!-- Chatbot Window -->
-<div id="chatbot-window">
-    <div class="chat-header">
-        <div style="width:42px;height:42px;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,0.4);flex-shrink:0;">
-            <img src="{{ asset('images/tesheai_partial_2_half_shadow.webp') }}" style="width:100%;height:100%;object-fit:cover;object-position:top;" alt="Teshome">
-        </div>
-        <div class="chat-header-info">
-            <div class="chat-header-name">TesheAi Assistant</div>
-            <div class="chat-header-status">ዝግጁ ነኝ</div>
-        </div>
-        <button class="chat-close" onclick="toggleChat()"><i class="fas fa-times"></i></button>
-    </div>
-    <div class="chat-messages" id="chat-messages">
-        <div class="msg bot">
-            <div class="msg-bubble">👋 ሰላም! እኔ TesheAi assistant ነኝ። ስለ ኮርሶች ወይም ቴክኖሎጂ ምን ልረዳዎ?</div>
-            <div class="msg-time">አሁን</div>
-        </div>
-    </div>
-    <div class="chat-input-area">
-        <input type="text" id="chat-input" placeholder="ጥያቄዎን እዚህ ይጻፉ..." onkeypress="if(event.key==='Enter') sendMessage()">
-        <button id="chat-send" onclick="sendMessage()">
-            <i class="fas fa-paper-plane" style="font-size:0.85rem;"></i>
-        </button>
-    </div>
-</div>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 function toggleChat() {
@@ -662,9 +550,9 @@ function toggleChat() {
     const label = document.getElementById('chat-label');
     const isOpen = win.style.display === 'flex';
     win.style.display = isOpen ? 'none' : 'flex';
-    photo.style.display = isOpen ? 'block' : 'none';
-    icon.style.display = isOpen ? 'none' : 'block';
-    label.style.display = isOpen ? 'block' : 'none';
+    if(photo) photo.style.display = isOpen ? 'block' : 'none';
+    if(icon) icon.style.display = isOpen ? 'none' : 'block';
+    if(label) label.style.display = isOpen ? 'block' : 'none';
     if (!isOpen) setTimeout(() => document.getElementById('chat-input').focus(), 300);
 }
 
@@ -674,6 +562,7 @@ function getTime() {
 
 function appendMsg(text, type) {
     const msgs = document.getElementById('chat-messages');
+    if (!msgs) return;
     const div = document.createElement('div');
     div.className = `msg ${type}`;
     div.innerHTML = `<div class="msg-bubble">${text}</div><div class="msg-time">${getTime()}</div>`;
@@ -683,6 +572,7 @@ function appendMsg(text, type) {
 
 function showTyping() {
     const msgs = document.getElementById('chat-messages');
+    if (!msgs) return;
     const div = document.createElement('div');
     div.id = 'typing';
     div.className = 'msg bot';
@@ -696,8 +586,15 @@ function removeTyping() {
     if (t) t.remove();
 }
 
+function handleKey(e) {
+    if (e.key === 'Enter') {
+        sendMessage();
+    }
+}
+
 function sendMessage() {
     const input = document.getElementById('chat-input');
+    if (!input) return;
     const msg = input.value.trim();
     if (!msg) return;
 
@@ -711,7 +608,8 @@ function sendMessage() {
         data: { message: msg, _token: '{{ csrf_token() }}' },
         success: function(res) {
             removeTyping();
-            appendMsg(res.reply.replace(/\n/g, '<br>'), 'bot');
+            const replyText = res && res.reply ? res.reply.replace(/\n/g, '<br>') : 'ምንም ምላሽ አልተገኘም።';
+            appendMsg(replyText, 'bot');
         },
         error: function() {
             removeTyping();
