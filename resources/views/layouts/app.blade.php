@@ -631,7 +631,7 @@ function scrollToCourses(e, form) {
 <div id="chatbot-window">
     <div class="chat-header">
         <div style="width:42px;height:42px;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,0.4);flex-shrink:0;">
-            <img src="{{ asset('images/auth-side.jpg') }}" style="width:100%;height:100%;object-fit:cover;object-position:top;" alt="Teshome">
+            <img src="{{ asset('images/tesheai_partial_2_half_shadow.webp') }}" style="width:100%;height:100%;object-fit:cover;object-position:top;" alt="Teshome">
         </div>
         <div class="chat-header-info">
             <div class="chat-header-name">TesheAi Assistant</div>
