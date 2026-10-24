@@ -39,7 +39,7 @@ class ChatbotController extends Controller
 
             // 3. አንዱ ሞዴል ሲሳሳት ቀጣዩን በቅደም ተከተል መሞከር (Fallback Loop)
             foreach ($models as $modelName) {
-                $endpoint = "https://generativelanguage.googleapis.com/v1beta/models/{$modelName}:generateContent";
+              $endpoint = "https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key={$apiKey}";
 
                 $response = Http::timeout(15)
                     ->withoutVerifying() // በሰርቨር ላይ የ SSL ሰርተፍኬት ችግር እንዳይኖር
