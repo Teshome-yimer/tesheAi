@@ -652,7 +652,6 @@ function scrollToCourses(e, form) {
         </button>
     </div>
 </div>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 function toggleChat() {
@@ -662,9 +661,9 @@ function toggleChat() {
     const label = document.getElementById('chat-label');
     const isOpen = win.style.display === 'flex';
     win.style.display = isOpen ? 'none' : 'flex';
-    photo.style.display = isOpen ? 'block' : 'none';
-    icon.style.display = isOpen ? 'none' : 'block';
-    label.style.display = isOpen ? 'block' : 'none';
+    if(photo) photo.style.display = isOpen ? 'block' : 'none';
+    if(icon) icon.style.display = isOpen ? 'none' : 'block';
+    if(label) label.style.display = isOpen ? 'block' : 'none';
     if (!isOpen) setTimeout(() => document.getElementById('chat-input').focus(), 300);
 }
 
@@ -674,6 +673,7 @@ function getTime() {
 
 function appendMsg(text, type) {
     const msgs = document.getElementById('chat-messages');
+    if (!msgs) return;
     const div = document.createElement('div');
     div.className = `msg ${type}`;
     div.innerHTML = `<div class="msg-bubble">${text}</div><div class="msg-time">${getTime()}</div>`;
@@ -683,6 +683,7 @@ function appendMsg(text, type) {
 
 function showTyping() {
     const msgs = document.getElementById('chat-messages');
+    if (!msgs) return;
     const div = document.createElement('div');
     div.id = 'typing';
     div.className = 'msg bot';
@@ -696,8 +697,15 @@ function removeTyping() {
     if (t) t.remove();
 }
 
+function handleKey(e) {
+    if (e.key === 'Enter') {
+        sendMessage();
+    }
+}
+
 function sendMessage() {
     const input = document.getElementById('chat-input');
+    if (!input) return;
     const msg = input.value.trim();
     if (!msg) return;
 
@@ -711,7 +719,8 @@ function sendMessage() {
         data: { message: msg, _token: '{{ csrf_token() }}' },
         success: function(res) {
             removeTyping();
-            appendMsg(res.reply.replace(/\n/g, '<br>'), 'bot');
+            const replyText = res && res.reply ? res.reply.replace(/\n/g, '<br>') : 'ምንም ምላሽ አልተገኘም።';
+            appendMsg(replyText, 'bot');
         },
         error: function() {
             removeTyping();
