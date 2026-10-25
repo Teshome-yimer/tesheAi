@@ -21,6 +21,18 @@
         <p style="color:var(--muted);margin-top:8px;">{{ $enrollments->count() }} courses enrolled</p>
     </div>
 
+    <!-- 🎥 የዌብሳይት አጠቃቀም ማስተዋወቂያ ቪዲዮ (ከሰርቨር በቀጥታ የሚጫወት) -->
+    <div style="background:var(--bg2); border:1px solid var(--border); border-radius:16px; padding:20px; margin-bottom:40px; overflow:hidden;">
+        <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:12px; color:var(--text);">💡 የድረገጹ አጠቃቀም መመሪያ (How to use)</h3>
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; background: #000;">
+            <video controls controlslist="nodownload" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" preload="metadata" playsinline webkit-playsinline x5-playsinline>
+                <!-- ቪዲዮው ከሰርቨርህ public ፎልደር በቀጥታ ይነበባል -->
+                <source src="{{ asset('tesheai.mp4') }}" type="video/mp4">
+                የእርስዎ ብራውዘር ቪዲዮውን መደገፍ አልቻለም።
+            </video>
+        </div>
+    </div>
+
     @if($enrollments->isEmpty())
     <div style="text-align:center;padding:60px 20px; background:var(--bg2); border:1px solid var(--border); border-radius:16px; max-width:600px; margin:0 auto;">
         <div style="font-size:4rem;margin-bottom:16px;">🎓</div>
@@ -37,8 +49,8 @@
         @foreach($enrollments as $enrollment)
         @php $progress = $enrollment->progress; @endphp
         <div class="enroll-card">
-            @if($enrollment->course->thumbnail)
-                <img src="{{ Storage::url($enrollment->course->thumbnail) }}" alt="{{ $enrollment->course->title }}" class="enroll-thumb">
+            @if($enrollment->course->thumbnail && file_exists(storage_path('app/' . $enrollment->course->thumbnail)))
+                <img src="{{ Storage::url($enrollment->course->thumbnail) }}" alt="{{ $enrollment->course->title }}" class="enroll-thumb" style="height:160px;object-fit:cover;width:100%;">
             @else
                 <div class="enroll-thumb">🎓</div>
             @endif
@@ -68,3 +80,10 @@
 </div>
 
 @endsection
+```[cite: 2]
+
+<ElicitationsGroup>
+<elicitation>
+ይህንን ሙሉ ኮድ ዳሽቦርድህ ላይ በመጠቀም ቪዲዮው በትክክል እየሰራ መሆኑን አረጋግጥልኝ።
+</elicitation>
+</ElicitationsGroup>
