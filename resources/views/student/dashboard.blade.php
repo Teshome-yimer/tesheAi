@@ -71,7 +71,7 @@
             <div class="video-blocker-top"></div>
             
             <!-- YouTube Iframe with New Video ID & Security Parameters -->
-            <iframe src="https://www.youtube-nocookie.com/embed/r_DO6nZFx14?rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=1" 
+            <iframe src="https://www.youtube.com/embed/rT_MgzOs-dE?rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=1" 
                     title="YouTube video player" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                     referrerpolicy="strict-origin-when-cross-origin" 
