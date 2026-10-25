@@ -10,6 +10,46 @@
 .enroll-body { padding:20px; }
 .enroll-title { font-weight:700; font-size:1rem; margin-bottom:10px; }
 .enroll-progress-label { display:flex; justify-content:space-between; font-size:0.8rem; color:var(--muted); margin-bottom:6px; }
+
+/* 🛡️ የዩቲዩብ ሎጎዎችን እና ሊንኮችን ለመሸፈን የሚረዳ የ CSS ማስተካከያ */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+}
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+/* የታችኛውን የዩቲዩብ ሎጎ እና ፖፕአፕ ማስጠንቀቂያ ለመሸፈን የሚረዳ ሽፋን */
+.video-blocker-bottom {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 130px;
+    height: 48px;
+    background: transparent;
+    z-index: 10;
+    pointer-events: auto; /* ተማሪው ወደ ዩቲዩብ እንዳይገባ ሊንኩን ይዘጋል */
+}
+/* የላይኛውን የሰርጥ ስም እና ሎጎ ለመሸፈን */
+.video-blocker-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 55px;
+    background: transparent;
+    z-index: 10;
+    pointer-events: auto;
+}
 </style>
 @endpush
 
@@ -21,18 +61,24 @@
         <p style="color:var(--muted);margin-top:8px;">{{ $enrollments->count() }} courses enrolled</p>
     </div>
 
-    <!-- 🎥 የዌብሳይት አጠቃቀም ማስተዋወቂያ ቪዲዮ (YouTube Embed) -->
+    <!-- 🎥 የዌብሳይት አጠቃቀም ማስተዋወቂያ ቪዲዮ (YouTube Embed with Overlays) -->
     <div style="background:var(--bg2); border:1px solid var(--border); border-radius:16px; padding:20px; margin-bottom:40px; overflow:hidden;">
-    <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:12px; color:var(--text);">💡 የድረገጹ አጠቃቀም መመሪያ (How to use)</h3>
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; background: #000;">
-        <iframe src="https://www.youtube-nocookie.com/embed/r6CWylg4KGo?rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=1" 
-                title="TesheAi Academy Introduction" 
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-        </iframe>
+        <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:12px; color:var(--text);">💡 የድረገጹ አጠቃቀም መመሪያ (How to use)</h3>
+        <div class="video-container">
+            <!-- የላይኛውን ዩቲዩብ ሎጎ የሚሸፍን -->
+            <div class="video-blocker-top"></div>
+            
+            <!-- YouTube Iframe -->
+            <iframe src="https://www.youtube-nocookie.com/embed/r6CWylg4KGo?rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=1" 
+                    title="TesheAi Academy Introduction" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+            </iframe>
+
+            <!-- የታችኛውን የ YouTube ሎጎ እና Watch on YouTube አዝራር የሚዘጋ / የሚሸፍን -->
+            <div class="video-blocker-bottom"></div>
+        </div>
     </div>
-</div>
 
     @if($enrollments->isEmpty())
     <div style="text-align:center;padding:60px 20px; background:var(--bg2); border:1px solid var(--border); border-radius:16px; max-width:600px; margin:0 auto;">
