@@ -28,26 +28,28 @@
     height: 100%;
     border: 0;
 }
-/* የታችኛውን ቀኝ ផ្នែក (Watch on YouTube / Logo) ሙሉ በሙሉ ለመሸፈን */
+
+/* 🛑 የታችኛውን ቀኝ ផ្នែក "Watch on YouTube" አዝራር ሙሉ በሙሉ የሚሸፍን እና ክሊክን የሚከለክል */
 .video-blocker-bottom {
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 160px;
-    height: 60px;
+    width: 180px;  /* ስፋቱ በደንብ እንዲሸፍን ተደረገ */
+    height: 70px;  /* ቁመቱ ከፍ ተደረገ */
     background: transparent;
-    z-index: 20;
+    z-index: 30;
     pointer-events: auto;
 }
-/* የላይኛውን ክፍል (YouTube Title እና Suggested Videos) ሙሉ በሙሉ ለመሸፈን */
+
+/* 🛑 የላይኛውን ክፍል (YouTube Title) ሙሉ በሙሉ የሚሸፍን */
 .video-blocker-top {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 75px;
+    height: 85px;  /* የላይኛውን ባር በሙሉ እንዲሸፍን ከፍ ተደረገ */
     background: transparent;
-    z-index: 20;
+    z-index: 30;
     pointer-events: auto;
 }
 </style>
