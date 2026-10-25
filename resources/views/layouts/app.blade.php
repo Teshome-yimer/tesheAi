@@ -458,7 +458,7 @@
 
         {{-- አዲሱ VIP አዝራር (ወደ ቴሌግራም ቻናል የሚወስድ) --}}
         <a href="https://t.me/+qDjJMxPexn03NmQ8" target="_blank" rel="noopener noreferrer" class="vip-btn">
-            👑 VIP 
+            😎 Telegram Chat 
         </a>
     </div>
 </div>
