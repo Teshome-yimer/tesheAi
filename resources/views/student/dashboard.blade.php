@@ -24,7 +24,7 @@
     @if($enrollments->isEmpty())
     <div style="text-align:center;padding:80px 0;">
         <div style="font-size:4rem;margin-bottom:16px;">📚</div>
-        <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:12px;background-color:green;">በነፃ certificate ለማግቸት ከታች  <br>
+        <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:12px;background-color:blue;">በነፃ certificate ለማግቸት ከታች  <br>
           All Video ሳያቋርጡ ሙሉ  ደቂቃ መጨረስ ይኖርብሃል/ሻል? <br>
  
 
