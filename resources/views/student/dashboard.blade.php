@@ -18,28 +18,27 @@
     <div class="dash-header">
         <p style="color:var(--cyan);font-size:0.9rem;margin-bottom:6px;">👋 እንኳን ደህና መጡ / Welcome back</p>
         <h1 style="font-size:2rem;font-weight:900;">{{ auth()->user()->name }}</h1>
-        <p style="color:var(--muted);margin-top:8px;">{{ $enrollments->count() }}  courses enrolled</p>
+        <p style="color:var(--muted);margin-top:8px;">{{ $enrollments->count() }} courses enrolled</p>
     </div>
 
     @if($enrollments->isEmpty())
-    <div style="text-align:center;padding:80px 0;">
-        <div style="font-size:4rem;margin-bottom:16px;">📚</div>
-        <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:12px;background-color:blue;">በነፃ certificate ለማግቸት ከታች  <br>
-          All Video ሳያቋርጡ ሙሉ  ደቂቃ መጨረስ ይኖርብሃል/ሻል? <br>
- 
-
-
-  </h2>
-        <p style="color:var(--muted);margin-bottom:24px;"> click 👇 All Videos button  & start free</p>
-        <a href="/" class="btn btn-cyan">  All Videos </a>
+    <div style="text-align:center;padding:60px 20px; background:var(--bg2); border:1px solid var(--border); border-radius:16px; max-width:600px; margin:0 auto;">
+        <div style="font-size:4rem;margin-bottom:16px;">🎓</div>
+        <h2 style="font-size:1.3rem;font-weight:700;margin-bottom:12px;line-height:1.6;">
+            በነፃ ሰርተፍኬት (Certificate) ለማግኘት ከታች ያለውን በመጫወት ኮርሶቹን ይጀምሩ!
+        </h2>
+        <p style="color:var(--muted);margin-bottom:24px;font-size:0.9rem;">
+            ማስታወሻ፡ ሰርተፍኬት ለማግኘት የቪዲዮ ትምህርቶቹን ሙሉ በሙሉ መከታተል ይኖርብዎታል።
+        </p>
+        <a href="/" class="btn btn-cyan" style="padding:12px 24px;font-weight:bold;"> All Courses / All Videos </a>
     </div>
     @else
     <div class="dash-grid">
         @foreach($enrollments as $enrollment)
         @php $progress = $enrollment->progress; @endphp
         <div class="enroll-card">
-            @if($enrollment->course->thumbnail && file_exists(storage_path('app/' . $enrollment->course->thumbnail)))
-                <img src="{{ Storage::url($enrollment->course->thumbnail) }}" alt="{{ $enrollment->course->title }}" class="enroll-thumb" style="height:160px;object-fit:cover;width:100%;">
+            @if($enrollment->course->thumbnail)
+                <img src="{{ Storage::url($enrollment->course->thumbnail) }}" alt="{{ $enrollment->course->title }}" class="enroll-thumb">
             @else
                 <div class="enroll-thumb">🎓</div>
             @endif
@@ -49,17 +48,17 @@
                     <span>ምዝገባ ሂደት / Progress</span>
                     <span>{{ $progress['percentage'] }}%</span>
                 </div>
-                <div class="progress-bar" style="margin-bottom:16px;">
-                    <div class="progress-fill" style="width:{{ $progress['percentage'] }}%"></div>
+                <div class="progress-bar" style="margin-bottom:16px; background:var(--bg3); height:8px; border-radius:4px; overflow:hidden;">
+                    <div class="progress-fill" style="width:{{ $progress['percentage'] }}%; background:var(--cyan); height:100%;"></div>
                 </div>
                 <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.8rem;color:var(--muted);margin-bottom:16px;">
                     <span>✅ {{ $progress['completed'] }}/{{ $progress['total'] }} ትምህርቶች</span>
                     @if($progress['percentage'] == 100)
-                        <span style="color:var(--success);">🏆 Completed!</span>
+                        <span style="color:var(--success);font-weight:bold;">🏆 Completed!</span>
                     @endif
                 </div>
                 <a href="{{ route('student.course', $enrollment->course->slug) }}" class="btn btn-primary" style="width:100%;justify-content:center;">
-                    {{ $progress['percentage'] > 0 ? '▶ ቀጥሉ / Continue' : ' Start' }}
+                    {{ $progress['percentage'] > 0 ? '▶ ቀጥሉ / Continue' : '▶ Start Course' }}
                 </a>
             </div>
         </div>
