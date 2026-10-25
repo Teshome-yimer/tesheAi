@@ -34,8 +34,8 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 230px;  /* ስፋቱ በደንብ እንዲሸፍን ተደረገ */
-    height: 750px;  /* ቁመቱ ከፍ ተደረገ */
+    width: 300px;  /* ስፋቱ በደንብ እንዲሸፍን ተደረገ */
+    height: 80px;  /* ቁመቱ ከፍ ተደረገ */
     background: transparent;
     z-index: 30;
     pointer-events: auto;
