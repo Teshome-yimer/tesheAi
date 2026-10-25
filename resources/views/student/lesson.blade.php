@@ -25,9 +25,31 @@
 /* Main area */
 .main-area { overflow-y:auto; display:flex; flex-direction:column; }
 .topbar { padding:12px 20px; border-bottom:1px solid var(--border); background:var(--bg2); display:flex; align-items:center; justify-content:space-between; gap:12px; flex-shrink:0; }
-.video-wrap { position:relative; padding-bottom:56.25%; background:#000; flex-shrink:0; }
+.video-wrap { position:relative; padding-bottom:56.25%; background:#000; flex-shrink:0; overflow:hidden; }
 .video-wrap iframe { position:absolute; inset:0; width:100%; height:100%; border:none; }
 .no-video { padding-bottom:30%; background:linear-gradient(135deg,#13131a,#1a1a24); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; color:var(--muted); }
+
+/* 🛡️ የዩቲዩብ አላስፈላጊ ሎጎዎችን እና ሊንኮች የሚከላከሉ ሽፋኖች (Overlays) */
+.video-blocker-bottom {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 180px;
+    height: 70px;
+    background: transparent;
+    z-index: 30;
+    pointer-events: auto;
+}
+.video-blocker-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 85px;
+    background: transparent;
+    z-index: 30;
+    pointer-events: auto;
+}
 
 /* Instructor card */
 .instructor-card { display:flex; align-items:center; gap:14px; background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:16px 20px; margin:20px 20px 0; }
@@ -71,7 +93,7 @@
             @foreach($section->lessons as $sl)
             @php $done = in_array($sl->id, $completedIds); $cur = $sl->id == $lesson->id; @endphp
             <a href="{{ route('student.lesson', [$course->slug, $sl->slug ?? $sl->id]) }}"
-               class="l-item {{ $cur ? 'active' : '' }} {{ $done ? 'done' : '' }}">
+                class="l-item {{ $cur ? 'active' : '' }} {{ $done ? 'done' : '' }}">
                 <div class="check">{{ $done ? '✓' : '' }}</div>
                 <span style="flex:1;line-height:1.3;">{{ $sl->title }}</span>
                 <span class="l-dur">{{ $sl->duration_minutes }}m</span>
@@ -94,7 +116,7 @@
                 {{ $isCompleted ? '✅ Completed' : '🔒 Finish Video First' }}
             </button>
         </div>
-{{-- Video --}}
+        {{-- Video --}}
         @if($lesson->video_type === 'local' && $lesson->video_path)
         <div class="video-wrap">
             <video id="lesson-video" controls controlslist="nodownload"
@@ -104,7 +126,6 @@
                    webkit-playsinline
                    x5-playsinline
                    oncontextmenu="return false;">
-                {{-- ላራቬል የሚያመነጨውን ጊዜያዊ ሊንክ route እዚህ እንጠቀማለን --}}
                 <source src="{{ route('student.video.stream', $lesson) }}" type="video/mp4">
                 የእርስዎ ብራውዘር ቪዲዮ ማጫወቻውን መደገፍ አልቻለም።
             </video>
@@ -122,18 +143,23 @@
 
         if ($videoId) {
             // 2. ትክክለኛውን Embed ዩአርኤል ከ API parameters ጋር መገንባት
-            $embedUrl = "https://www.youtube.com/embed/{$videoId}?enablejsapi=1&rel=0&modestbranding=1";
+            $embedUrl = "https://www.youtube-nocookie.com/embed/{$videoId}?enablejsapi=1&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=1";
         } else {
             // ቪዲዮው ዩቲዩብ ካልሆነ የገባውን ሊንክ ባለው መልኩ መጠቀም
             $embedUrl = $videoUrl;
         }
     @endphp
     <div class="video-wrap">
+        <!-- የላይኛውን ዩቲዩብ ሎጎ የሚሸፍን -->
+        <div class="video-blocker-top"></div>
+
         <iframe id="lesson-iframe" src="{{ $embedUrl }}"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
         </iframe>
-    </div>
+
+        <!-- የታችኛውን የ YouTube ሎጎ እና Watch on YouTube አዝራር የሚዘጋ / የሚሸፍን -->
+        <div class="video-blocker-bottom"></div>
     </div>
         @else
         <div style="padding:60px 0;background:linear-gradient(135deg,#13131a,#1a1a24);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:var(--muted);">
@@ -209,7 +235,7 @@
             <a href="{{ route('student.lesson', [$course->slug, $nextLesson->slug ?? $nextLesson->id]) }}"
                id="next-btn" class="btn btn-primary {{ $isCompleted ? '' : 'disabled' }}" 
                onclick="markAndNext(event, this.href)">
-               ቀጣይ → Next
+                ቀጣይ → Next
             </a>
             @else
             <a href="{{ route('student.dashboard') }}" class="btn btn-cyan">🏆 Course Complete!</a>
