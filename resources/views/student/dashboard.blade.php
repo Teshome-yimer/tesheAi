@@ -27,7 +27,7 @@
     <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; background: #000;">
         <video controls controlslist="nodownload" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" preload="metadata" playsinline webkit-playsinline x5-playsinline>
             <!-- የ Cloudflare R2 Public URL እዚህ ጋር ይገባል -->
-            <source src="https://pub-b8c690518b7943c082308948e4154850.r2.dev/videos/tesheai_academy_fullstack_phase1_curricul" type="video/mp4">
+            <source src="https://pub-b8c690518b7943c082308948e4154850.r2.dev/videos/logo%20(1).mp4" type="video/mp4">
             የእርስዎ ብራውዘር ቪዲዮውን መደገፍ አልቻለም።
         </video>
     </div>
