@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 {{-- 🎯 አድራሻው (URL) ላይ 'vip-telegram-access' ካለ በቀጥታ ወደ Telegram ያዞረዋል --}}
 @if(str_contains(request()->url(), 'vip-telegram-access'))
     <script>
@@ -54,8 +53,8 @@
 }
 </style>
 @endpush
-
 @section('content')
+
 <div class="viewer-wrap">
 
     {{-- Sidebar --}}
@@ -82,7 +81,7 @@
         @endforeach
     </div>
 
-    {{-- Main Area --}}
+    {{-- Main --}}
     <div class="main-area">
         <div class="topbar">
             <div>
@@ -95,36 +94,47 @@
                 {{ $isCompleted ? '✅ Completed' : '🔒 Finish Video First' }}
             </button>
         </div>
-
-        {{-- Video Section --}}
+{{-- Video --}}
         @if($lesson->video_type === 'local' && $lesson->video_path)
         <div class="video-wrap">
             <video id="lesson-video" controls controlslist="nodownload"
                    style="position:absolute;inset:0;width:100%;height:100%;background:#000;"
-                   preload="auto" playsinline webkit-playsinline x5-playsinline
+                   preload="auto"
+                   playsinline
+                   webkit-playsinline
+                   x5-playsinline
                    oncontextmenu="return false;">
+                {{-- ላራቬል የሚያመነጨውን ጊዜያዊ ሊንክ route እዚህ እንጠቀማለን --}}
                 <source src="{{ route('student.video.stream', $lesson) }}" type="video/mp4">
                 የእርስዎ ብራውዘር ቪዲዮ ማጫወቻውን መደገፍ አልቻለም።
             </video>
         </div>
-        @elseif($lesson->video_url)
-            @php
-                $videoUrl = $lesson->video_url;
-                $embedUrl = '';
-                preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $videoUrl, $match);
-                $videoId = $match[1] ?? null;
-                if ($videoId) {
-                    $embedUrl = "https://www.youtube.com/embed/{$videoId}?enablejsapi=1&rel=0&modestbranding=1";
-                } else {
-                    $embedUrl = $videoUrl;
-                }
-            @endphp
-            <div class="video-wrap">
-                <iframe id="lesson-iframe" src="{{ $embedUrl }}"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
-            </div>
+        
+    
+@elseif($lesson->video_url)
+    @php
+        $videoUrl = $lesson->video_url;
+        $embedUrl = '';
+
+        // 1. የዩቲዩብ ቪዲዮ ID ከየትኛውም ሊንክ (watch?v= ወይም youtu.be/) ማውጣት
+        preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $videoUrl, $match);
+        $videoId = $match[1] ?? null;
+
+        if ($videoId) {
+            // 2. ትክክለኛውን Embed ዩአርኤል ከ API parameters ጋር መገንባት
+            $embedUrl = "https://www.youtube.com/embed/{$videoId}?enablejsapi=1&rel=0&modestbranding=1";
+        } else {
+            // ቪዲዮው ዩቲዩብ ካልሆነ የገባውን ሊንክ ባለው መልኩ መጠቀም
+            $embedUrl = $videoUrl;
+        }
+    @endphp
+    <div class="video-wrap">
+        <iframe id="lesson-iframe" src="{{ $embedUrl }}"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+    </div>
+    </div>
         @else
         <div style="padding:60px 0;background:linear-gradient(135deg,#13131a,#1a1a24);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:var(--muted);">
             <div style="font-size:3rem;">🎥</div>
@@ -149,7 +159,7 @@
             <div>
                 <div class="inst-name">Teshe Yimer</div>
                 <div class="inst-role">Senior Full Stack Developer</div>
-                <div class="inst-bio">Full-Stack (Node.js, Express.js, PHP(laravel), React, Vue.js, Databases,API & DevOps) ባለሙያ • 4+ ዓመት ልምድ • 5,000+ ተማሪዎች</div>
+                <div class="inst-bio">Full-Stack (Node.js, Express.js, PHP(laravel), React, Vue.js, Databases,API & DevOps) ባለሙያ • 4+ ዓመት ልምድ • 5,000+ ተማሪዎች </div>
             </div>
         </div>
 
@@ -199,7 +209,7 @@
             <a href="{{ route('student.lesson', [$course->slug, $nextLesson->slug ?? $nextLesson->id]) }}"
                id="next-btn" class="btn btn-primary {{ $isCompleted ? '' : 'disabled' }}" 
                onclick="markAndNext(event, this.href)">
-                ቀጣይ → Next
+               ቀጣይ → Next
             </a>
             @else
             <a href="{{ route('student.dashboard') }}" class="btn btn-cyan">🏆 Course Complete!</a>
@@ -207,8 +217,8 @@
         </div>
     </div>
 </div>
-@endsection
 
+@endsection
 @push('scripts')
 <script src="https://www.youtube.com/iframe_api"></script>
 <script>
@@ -216,42 +226,6 @@ const LESSON_ID = {{ $lesson->id }};
 const COURSE_ID = {{ $course->id }};
 const IS_COMPLETED = {{ $isCompleted ? 'true' : 'false' }};
 const CSRF     = document.querySelector('meta[name=csrf-token]').content;
-
-// ── 1. የቀኝ ክሊክ እና F12 እገዳ ──
-document.addEventListener('contextmenu', event => event.preventDefault());
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'J')) || (e.ctrlKey && e.key === 'U')) {
-        e.preventDefault();
-        alert('ይህ ድርጊት በዚህ ድረ-ገጽ ላይ የተከለከለ ነው!');
-    }
-});
-
-// ── 2. የተለዋዋጭ የውሃ ምልክት (Dynamic Watermarking) ──
-window.addEventListener('DOMContentLoaded', () => {
-    const videoWrap = document.querySelector('.video-wrap');
-    if (videoWrap) {
-        const watermark = document.createElement('div');
-        watermark.style.position = 'absolute';
-        watermark.style.top = '20px';
-        watermark.style.left = '20px';
-        watermark.style.color = 'rgba(255, 255, 255, 0.35)';
-        watermark.style.fontSize = '14px';
-        watermark.style.fontWeight = 'bold';
-        watermark.style.pointerEvents = 'none';
-        watermark.style.zIndex = '9999';
-        watermark.innerText = '{{ auth()->user()->email ?? "TesheAi Academy Student" }}';
-        
-        videoWrap.style.position = 'relative';
-        videoWrap.appendChild(watermark);
-
-        setInterval(() => {
-            const randomTop = Math.floor(Math.random() * 80);
-            const randomLeft = Math.floor(Math.random() * 80);
-            watermark.style.top = randomTop + '%';
-            watermark.style.left = randomLeft + '%';
-        }, 5000);
-    }
-});
 
 function unlockCompletionButtons() {
     const btn = document.getElementById('complete-btn');
@@ -305,6 +279,7 @@ async function markAndNext(e, nextUrl) {
     }
 }
 
+// ── YouTube Iframe Player API Setup ────────────────────────
 let ytPlayer;
 function onYouTubeIframeAPIReady() {
     const iframe = document.getElementById('lesson-iframe');
@@ -320,12 +295,14 @@ function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerStateChange(event) {
+    // YT.PlayerState.ENDED = 0 (ቪዲዮው ሙሉ በሙሉ ሲያበቃ)
     if (event.data === YT.PlayerState.ENDED) {
         unlockCompletionButtons();
-        markComplete();
+        markComplete(); // አውቶማቲክ Mark Complete ያደርገዋል
     }
 }
 
+// ── Elapsed time for local video ──────────────────────────
 function fmtTime(s) {
     s = Math.floor(s);
     const m = Math.floor(s / 60);
@@ -348,6 +325,7 @@ if (video) {
         if (fill) fill.style.width = pct + '%';
         if (txt)  txt.textContent  = fmtTime(video.currentTime) + ' / ' + fmtTime(video.duration || 0);
 
+        // Save progress every 10 seconds
         if (Math.floor(video.currentTime) - lastSave >= 10) {
             lastSave = Math.floor(video.currentTime);
             fetch('{{ route("student.progress.update") }}', {
@@ -358,6 +336,7 @@ if (video) {
         }
     });
 
+    // Auto-mark complete when 90% watched
     video.addEventListener('timeupdate', () => {
         if (video.duration && (video.currentTime / video.duration) >= 0.9) {
             unlockCompletionButtons();
