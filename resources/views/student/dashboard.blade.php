@@ -23,15 +23,15 @@
 
     <!-- 🎥 የዌብሳይት አጠቃቀም ማስተዋወቂያ ቪዲዮ (ከሰርቨር በቀጥታ የሚጫወት) -->
     <div style="background:var(--bg2); border:1px solid var(--border); border-radius:16px; padding:20px; margin-bottom:40px; overflow:hidden;">
-        <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:12px; color:var(--text);">💡 የድረገጹ አጠቃቀም መመሪያ (How to use)</h3>
-        <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; background: #000;">
-            <video controls controlslist="nodownload" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" preload="metadata" playsinline webkit-playsinline x5-playsinline>
-                <!-- ቪዲዮው ከሰርቨርህ public ፎልደር በቀጥታ ይነበባል -->
-                <source src="{{ asset('tesheai.mp4') }}" type="video/mp4">
-                የእርስዎ ብራውዘር ቪዲዮውን መደገፍ አልቻለም።
-            </video>
-        </div>
+    <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:12px; color:var(--text);">💡 የድረገጹ አጠቃቀም መመሪያ (How to use)</h3>
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; background: #000;">
+        <video controls controlslist="nodownload" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" preload="metadata" playsinline webkit-playsinline x5-playsinline>
+            <!-- የ Cloudflare R2 Public URL እዚህ ጋር ይገባል -->
+            <source src="https://pub-b8c690518b7943c082308948e4154850.r2.dev/videos/tesheai_academy_fullstack_phase1_curricul" type="video/mp4">
+            የእርስዎ ብራውዘር ቪዲዮውን መደገፍ አልቻለም።
+        </video>
     </div>
+</div>
 
     @if($enrollments->isEmpty())
     <div style="text-align:center;padding:60px 20px; background:var(--bg2); border:1px solid var(--border); border-radius:16px; max-width:600px; margin:0 auto;">
