@@ -11,7 +11,7 @@
 .enroll-title { font-weight:700; font-size:1rem; margin-bottom:10px; }
 .enroll-progress-label { display:flex; justify-content:space-between; font-size:0.8rem; color:var(--muted); margin-bottom:6px; }
 
-/* 🛡️ የዩቲዩብ ሎጎዎችን እና ሊንኮችን ለመሸፈን የሚረዳ የ CSS ማስተካከያ */
+/* 🛡️ የተስተካከለ የቪዲዮ መሸፈኛ (Overlay) አሰራር */
 .video-container {
     position: relative;
     padding-bottom: 56.25%;
@@ -28,26 +28,26 @@
     height: 100%;
     border: 0;
 }
-/* የታችኛውን የዩቲዩብ ሎጎ እና ፖፕአፕ ማስጠንቀቂያ ለመሸፈን የሚረዳ ሽፋን */
+/* የታችኛውን ቀኝ ផ្នែក (Watch on YouTube / Logo) ሙሉ በሙሉ ለመሸፈን */
 .video-blocker-bottom {
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 130px;
-    height: 48px;
+    width: 160px;
+    height: 60px;
     background: transparent;
-    z-index: 10;
-    pointer-events: auto; /* ተማሪው ወደ ዩቲዩብ እንዳይገባ ሊንኩን ይዘጋል */
+    z-index: 20;
+    pointer-events: auto;
 }
-/* የላይኛውን የሰርጥ ስም እና ሎጎ ለመሸፈን */
+/* የላይኛውን ክፍል (YouTube Title እና Suggested Videos) ሙሉ በሙሉ ለመሸፈን */
 .video-blocker-top {
     position: absolute;
     top: 0;
     left: 0;
-    width: 200px;
-    height: 55px;
+    width: 100%;
+    height: 75px;
     background: transparent;
-    z-index: 10;
+    z-index: 20;
     pointer-events: auto;
 }
 </style>
