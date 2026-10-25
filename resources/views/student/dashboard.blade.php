@@ -61,17 +61,18 @@
         <p style="color:var(--muted);margin-top:8px;">{{ $enrollments->count() }} courses enrolled</p>
     </div>
 
-    <!-- 🎥 የዌብሳይት አጠቃቀም ማስተዋወቂያ ቪዲዮ (YouTube Embed with Overlays) -->
+    <!-- 🎥 የዌብሳይት አጠቃቀም ማስተዋወቂያ ቪዲዮ (YouTube Embed with Overlays & New ID) -->
     <div style="background:var(--bg2); border:1px solid var(--border); border-radius:16px; padding:20px; margin-bottom:40px; overflow:hidden;">
         <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:12px; color:var(--text);">💡 የድረገጹ አጠቃቀም መመሪያ (How to use)</h3>
         <div class="video-container">
             <!-- የላይኛውን ዩቲዩብ ሎጎ የሚሸፍን -->
             <div class="video-blocker-top"></div>
             
-            <!-- YouTube Iframe -->
-            <iframe src="https://www.youtube-nocookie.com/embed/r6CWylg4KGo?rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=1" 
-                    title="TesheAi Academy Introduction" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            <!-- YouTube Iframe with New Video ID & Security Parameters -->
+            <iframe src="https://www.youtube-nocookie.com/embed/r_DO6nZFx14?rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=1" 
+                    title="YouTube video player" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
                     allowfullscreen>
             </iframe>
 
