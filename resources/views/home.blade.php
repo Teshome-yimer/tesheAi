@@ -149,7 +149,7 @@
     <section class="section-gap">
         <div class="section-title">
             <h2>Meet Your Instructor</h2>
-            <p>Learn from industry experts / Get Certified – Only 10 Birr ▶️</p>
+            <p>Learn from industry experts / Get Certified ▶️</p>
         </div>
         <div class="feature-card" style="max-width:800px; margin:0 auto; text-align:center;">
             <h3>Teshome</h3>
