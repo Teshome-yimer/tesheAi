@@ -34,8 +34,8 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 310px;
-    height: 90px;
+    width: 300px;
+    height: 70px;
     background: transparent;
     z-index: 30;
     pointer-events: auto;
@@ -45,7 +45,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 95px;
+    height: 75px;
     background: transparent;
     z-index: 30;
     pointer-events: auto;
