@@ -20,8 +20,9 @@ class SecurityHeaders
             return redirect()->to('https://www.tesheai.com' . $request->getRequestUri(), 301);
         }
 
-        // 2. Alet Cloud ዶሜን ሆኖ ሲመጣ ወደ www.tesheai.com በራስ ሰር ማዞሪያ
-        if ($request->getHost() === 'tesheai-4313.app.aletcloud.com') {
+        // ተጠቃሚው ያለ www (tesheai.com) ወይም በ Alet Cloud ከገባ በስተቀር ሁሉም ወደ www.tesheai.com እንዲዞሩ
+        $host = $request->getHost();
+        if ($host === 'tesheai.com' || $host === 'tesheai-4313.app.aletcloud.com') {
             return redirect()->to('https://www.tesheai.com' . $request->getRequestUri(), 301);
         }
 
