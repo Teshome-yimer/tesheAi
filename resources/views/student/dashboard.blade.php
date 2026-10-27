@@ -60,7 +60,7 @@
     <div class="dash-header">
         <p style="color:var(--cyan);font-size:0.9rem;margin-bottom:6px;">👋 እንኳን ደህና መጡ / Welcome back</p>
         <h1 style="font-size:2rem;font-weight:900;">{{ auth()->user()->name }}</h1>
-        <p style="color:var(--muted);margin-top:8px;">{{ $enrollments->count() }} courses  ከፍለዋን ከታች start course የሚለውን ተጭነው ስልጠናውን ጀምር/ሪ </p>
+        <p style="color:var(--muted);margin-top:8px;">{{ $enrollments->count() }} courses  ከፍለዋን ከታች ( ▶ ስልጠናውን   አስጀምሩ) የሚለውን ተጭነው ስልጠናውን ጀምር/ሪ </p>
     </div>
 
     <!-- 🎥 የዌብሳይት አጠቃቀም ማስተዋወቂያ ቪዲዮ (YouTube Embed with Overlays & New ID) -->
@@ -107,7 +107,7 @@
             <div class="enroll-body">
                 <h3 class="enroll-title">{{ $enrollment->course->title }}</h3>
                 <div class="enroll-progress-label">
-                    <span>ምዝገባ ሂደት / Progress</span>
+                    <span>የከፈሉበት video ነው ያስጀምሩት</span>
                     <span>{{ $progress['percentage'] }}%</span>
                 </div>
                 <div class="progress-bar" style="margin-bottom:16px; background:var(--bg3); height:8px; border-radius:4px; overflow:hidden;">
@@ -120,7 +120,7 @@
                     @endif
                 </div>
                 <a href="{{ route('student.course', $enrollment->course->slug) }}" class="btn btn-primary" style="width:100%;justify-content:center;">
-                    {{ $progress['percentage'] > 0 ? '▶ ቀጥሉ / Continue' : '▶ Start Course' }}
+                    {{ $progress['percentage'] > 0 ? '▶ ስልጠናውን አስጀምሩ' : 'ስልጠናውን አስጀምሩ' }}
                 </a>
             </div>
         </div>
