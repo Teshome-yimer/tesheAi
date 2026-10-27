@@ -23,3 +23,13 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+# ==========================================
+# CORS Headers for Manifest and Static Files
+# ==========================================
+<IfModule mod_headers.c>
+    <FilesMatch "\.(manifest|webmanifest|json|css|js|woff|woff2|ttf|svg)$">
+        Header set Access-Control-Allow-Origin "*"
+        Header set Access-Control-Allow-Methods "GET, OPTIONS"
+    </FilesMatch>
+</IfModule>
