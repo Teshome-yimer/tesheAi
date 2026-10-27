@@ -57,7 +57,7 @@ $endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flas
             Log::error('Gemini API Error Response: ' . $response->body());
 
             return response()->json([
-                'reply' => 'የኤፒአይ ስህተት ተፈጥሯል (ኮድ: ' . $response->status() . ')'
+                'reply' => 'በአሁኑ ሰዓት ትንሽ የኔትወርክ መዘግየት አለ። የ TesheAi ረዳት ከጎንዎ አለ፤ ከላይ ያሉትን ኮርሶች በመመልከት መማር መቀጠል ወይም ጥያቄዎን ትንሽ ቆይተው እንደገና መሞከር ይችላሉ! ' . $response->status() . ''
             ], 200);
 
         } catch (\Exception $e) {
