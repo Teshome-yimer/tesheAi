@@ -22,14 +22,14 @@ class ChatbotController extends Controller
         }
 
         try {
-            $endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
+            // v1beta ፋንታ v1 በመጠቀም እና gemini-1.5-flash
+            $endpoint = "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent";
 
-            // AletCloud ኔትወርክ ከጉግል ጋር ያለውን ግንኙነት እንዲያቀልጥ cURL options እናስገባለን
             $response = Http::timeout(30)
                 ->withoutVerifying()
                 ->withOptions([
                     'curl' => [
-                        CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4, // ኔትወርኩ በ IPv4 እንዲያልፍ ማስገደድ
+                        CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
                     ],
                 ])
                 ->withHeaders([
@@ -53,17 +53,17 @@ class ChatbotController extends Controller
                 return response()->json(['reply' => $botReply], 200);
             }
 
-            // ኤፒአይው የተመለሰበትን ትክክለኛ የጉግል ስህተት ወደ ሰርቨር ሎግ እንመዝግባለን
-            Log::error('Gemini API Connection Error Response: ' . $response->body());
+            // ትክክለኛውን የጉግል ኤፒአይ ስህተት መልእክት ሎግ ላይ ለማየት
+            Log::error('Gemini API 404/Error Response: ' . $response->body());
 
             return response()->json([
-                'reply' => 'ይቅርታ፣ ከኤአይ ሰርቨር ጋር የሚደረገው ግንኙነት ታግዷል። (Error code: ' . $response->status() . ')'
+                'reply' => 'የኤፒአይ ስህተት አጋጥሟል (Status: ' . $response->status() . ')'
             ], 200);
 
         } catch (\Exception $e) {
-            Log::error('Chatbot Network Exception: ' . $e->getMessage());
+            Log::error('Chatbot Exception: ' . $e->getMessage());
             return response()->json([
-                'reply' => 'የኔትወርክ ማነቆ አጋጥሟል፡ ' . $e->getMessage()
+                'reply' => 'የኔትወርክ ችግር አጋጥሟል፡ ' . $e->getMessage()
             ], 200);
         }
     }
