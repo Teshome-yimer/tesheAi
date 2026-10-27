@@ -216,16 +216,27 @@ Route::get('/storage/{dir}/{filename}', function ($dir, $filename) {
         'Access-Control-Allow-Headers' => 'Content-Type',
     ]);
 });
-// Manifest Route (CORS እና ERR_FAILED እንዳይኖር በላራቬል በኩል የሚሰጥ)
+// Manifest Route - በ JSON መልክ በቀጥታ የ CORS ችግር ሳይኖረው እንዲሰራ
 Route::get('/images/site.webmanifest', function () {
-    $path = public_path('images/site.webmanifest');
-    
-    if (!file_exists($path)) {
-        abort(404);
-    }
+    $manifestData = [
+        "name" => "",
+        "short_name" => "",
+        "icons" => [
+            [
+                "src" => "/android-chrome-192x192.png",
+                "sizes" => "192x192",
+                "type" => "image/png"
+            ],
+            [
+                "src" => "/android-chrome-512x512.png",
+                "sizes" => "512x512",
+                "type" => "image/png"
+            ]
+        ],
+        "theme_color" => "#ffffff",
+        "background_color" => "#ffffff",
+        "display" => "standalone"
+    ];
 
-    return response()->file($path, [
-        'Content-Type' => 'application/manifest+json',
-        'Access-Control-Allow-Origin' => '*',
-    ]);
+    return response()->json($manifestData)->header('Access-Control-Allow-Origin', '*');
 });
