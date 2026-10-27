@@ -87,7 +87,7 @@
     <div style="text-align:center;padding:60px 20px; background:var(--bg2); border:1px solid var(--border); border-radius:16px; max-width:600px; margin:0 auto;">
         <div style="font-size:4rem;margin-bottom:16px;">🎓</div>
         <h2 style="font-size:1.3rem;font-weight:700;margin-bottom:12px;line-height:1.6;">
-            በነፃ ሰርተፍኬት (Certificate) ለማግኘት ከታች ያለውን በመጫወት ኮርሶቹን ይጀምሩ!
+             ሰርተፍኬት (Certificate) ለማግኘት ከታች ያለውን በመጫወት ኮርሶቹን ይጀምሩ!
         </h2>
         <p style="color:var(--muted);margin-bottom:24px;font-size:0.9rem;">
             ማስታወሻ፡ ሰርተፍኬት ለማግኘት የቪዲዮ ትምህርቶቹን ሙሉ በሙሉ መከታተል ይኖርብዎታል።
@@ -120,7 +120,7 @@
                     @endif
                 </div>
                 <a href="{{ route('student.course', $enrollment->course->slug) }}" class="btn btn-primary" style="width:100%;justify-content:center;">
-                    {{ $progress['percentage'] > 0 ? '▶ ስልጠናውን አስጀምሩ' : 'ስልጠናውን አስጀምሩ' }}
+                    {{ $progress['percentage'] > 0 ? '▶ ስልጠናውን አስጀምሩ' : '▶ ስልጠናውን አስጀምሩ' }}
                 </a>
             </div>
         </div>
