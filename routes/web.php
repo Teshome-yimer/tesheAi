@@ -219,8 +219,8 @@ Route::get('/storage/{dir}/{filename}', function ($dir, $filename) {
 // Manifest Route - በ JSON መልክ በቀጥታ የ CORS ችግር ሳይኖረው እንዲሰራ
 Route::get('/images/site.webmanifest', function () {
     $manifestData = [
-        "name" => "",
-        "short_name" => "",
+        "name" => "TesheAi Academy",
+        "short_name" => "TesheAi",
         "icons" => [
             [
                 "src" => "/android-chrome-192x192.png",
@@ -238,5 +238,7 @@ Route::get('/images/site.webmanifest', function () {
         "display" => "standalone"
     ];
 
-    return response()->json($manifestData)->header('Access-Control-Allow-Origin', '*');
+    return response()->json($manifestData)
+        ->header('Content-Type', 'application/manifest+json')
+        ->header('Access-Control-Allow-Origin', '*');
 });
