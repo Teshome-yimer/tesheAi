@@ -183,7 +183,7 @@
         <div class="instructor-card">
             <div class="inst-avatar">T</div>
             <div>
-                <div class="inst-name">Teshe Yimer</div>
+                <div class="inst-name">Teshome</div>
                 <div class="inst-role">Senior Full Stack Developer</div>
                 <div class="inst-bio">Full-Stack (Node.js, Express.js, PHP(laravel), React, Vue.js, Databases,API & DevOps) ባለሙያ • 4+ ዓመት ልምድ • 5,000+ ተማሪዎች </div>
             </div>
