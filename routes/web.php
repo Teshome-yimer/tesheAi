@@ -216,3 +216,16 @@ Route::get('/storage/{dir}/{filename}', function ($dir, $filename) {
         'Access-Control-Allow-Headers' => 'Content-Type',
     ]);
 });
+// Manifest Route (CORS እና ERR_FAILED እንዳይኖር በላራቬል በኩል የሚሰጥ)
+Route::get('/images/site.webmanifest', function () {
+    $path = public_path('images/site.webmanifest');
+    
+    if (!file_exists($path)) {
+        abort(404);
+    }
+
+    return response()->file($path, [
+        'Content-Type' => 'application/manifest+json',
+        'Access-Control-Allow-Origin' => '*',
+    ]);
+});
