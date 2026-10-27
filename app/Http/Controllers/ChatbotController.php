@@ -27,21 +27,21 @@ class ChatbotController extends Controller
         try {
             $endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent";
 
-            $response = Http::timeout(25)
-                ->withoutVerifying()
-                ->withHeaders([
-                    'Content-Type' => 'application/json',
-                    'X-goog-api-key' => $apiKey,
-                ])
-                ->post($endpoint, [
-                    'contents' => [
-                        [
-                            'parts' => [
-                                ['text' => "እርስዎ የ TesheAi አካዳሚ የኢ-ሊርኒንግ መድረክ AI ረዳት ነዎት። ለተጠቃሚው ጥያቄ በአጭሩና በጥሩ ሁኔታ በአማርኛ ወይም በእንግሊዝኛ ምላሽ ይስጡ። የተጠቃሚው መልእክት፦ " . $userMessage]
-                            ]
-                        ]
-                    ]
-                ]);
+          $response = Http::timeout(30)
+    ->withoutVerifying() // የ SSL ሰርተፍኬት ችግር እንዳይፈጥር
+    ->withHeaders([
+        'Content-Type' => 'application/json',
+        'x-goog-api-key' => $apiKey,
+    ])
+    ->post($endpoint, [
+        'contents' => [
+            [
+                'parts' => [
+                    ['text' => $userMessage]
+                ]
+            ]
+        ]
+    ]);
 
             if ($response->successful()) {
                 $data = $response->json();
