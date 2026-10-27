@@ -35,8 +35,8 @@ class SecurityHeaders
              . "img-src 'self' data: blob: https: https://pagead2.googlesyndication.com https://www.google.com; "
              . "font-src 'self' https: data:; "
              . "connect-src 'self' https: https://pagead2.googlesyndication.com https://ep2.adtrafficquality.google; "
-            // manifest-src እዚህ ጋር ተጨምሯል (የ site.webmanifest ስህተትን ለማስተካከል)
-             . "manifest-src 'self'; "
+           // manifest-src ን ከ 'self' በተጨማሪ ሙሉ ሊንክ እንዲፈቅድ ማድረግ
+             . "manifest-src 'self' https://tesheai.com https://www.tesheai.com; "
              // frame-src እና child-src በስልክ ላይ PDF viewer በ blob: እና data: እንዳይታገድ ይፈቅዳሉ
              . "frame-src 'self' data: blob: https://www.youtube.com https://www.youtube-nocookie.com https://drive.google.com https://docs.google.com https://player.vimeo.com https://*.bunnycdn.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://ep2.adtrafficquality.google https://www.google.com; "
              . "child-src 'self' data: blob: https://docs.google.com https://drive.google.com; "
