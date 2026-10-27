@@ -21,18 +21,17 @@ class ChatbotController extends Controller
             Log::error('Gemini API Key is missing in .env file.');
             return response()->json([
                 'reply' => 'ይቅርታ፣ የ ኤፒአይ ቁልፍ (API Key) በሰርቨሩ ላይ አልተገኘም።'
-            ]);
+            ], 200);
         }
 
         try {
-            // ከ Google AI Studio cURL quickstart ጋር በትክክል የሚመሳሰል Endpoint
             $endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent";
 
             $response = Http::timeout(25)
                 ->withoutVerifying()
                 ->withHeaders([
                     'Content-Type' => 'application/json',
-                    'X-goog-api-key' => $apiKey, // ከ cURL ጋር የተጣጣመ Header
+                    'X-goog-api-key' => $apiKey,
                 ])
                 ->post($endpoint, [
                     'contents' => [
@@ -50,19 +49,20 @@ class ChatbotController extends Controller
 
                 return response()->json([
                     'reply' => $botReply
-                ]);
+                ], 200);
             }
 
             Log::error('Gemini API Error: ' . $response->body());
             return response()->json([
                 'reply' => 'በአሁኑ ሰዓት ትንሽ የኔትወርክ መዘግየት አለ። የ TesheAi ረዳት ከጎንዎ አለ፤ ከላይ ያሉትን ኮርሶች በመመልከት መማር መቀጠል ወይም ጥያቄዎን ትንሽ ቆይተው እንደገና መሞከር ይችላሉ!'
-            ]);
+            ], 200);
 
         } catch (\Exception $e) {
             Log::error('Chatbot Exception: ' . $e->getMessage());
+            // 500 ፋንታ 200 እንመልሳለን፣ ይህም ብራውዘር ላይ 500 Server Error እንዳይመጣ ያደርጋል
             return response()->json([
-                'reply' => 'የኔትወርክ ወይም የሲስተም ችግር አጋጥሟል፡ ' . $e->getMessage()
-            ], 500);
+                'reply' => 'ይቅርታ፣ የኔትወርክ መዘግየት አጋጥሟል። እባክዎን ትንሽ ቆይተው እንደገና ይሞክሩ።'
+            ], 200);
         }
     }
 }
