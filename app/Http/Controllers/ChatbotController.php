@@ -22,8 +22,8 @@ class ChatbotController extends Controller
         }
 
         try {
-            // v1beta ፋንታ v1 በመጠቀም እና gemini-1.5-flash
-            $endpoint = "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent";
+            // ያዘዝከው ትክክለኛ የ cURL ዩአርኤል (gemini-flash-latest)
+            $endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent";
 
             $response = Http::timeout(30)
                 ->withoutVerifying()
@@ -34,7 +34,7 @@ class ChatbotController extends Controller
                 ])
                 ->withHeaders([
                     'Content-Type' => 'application/json',
-                    'x-goog-api-key' => $apiKey,
+                    'X-goog-api-key' => $apiKey, // የላከው ትክክለኛ ሄደር
                 ])
                 ->post($endpoint, [
                     'contents' => [
@@ -53,11 +53,11 @@ class ChatbotController extends Controller
                 return response()->json(['reply' => $botReply], 200);
             }
 
-            // ትክክለኛውን የጉግል ኤፒአይ ስህተት መልእክት ሎግ ላይ ለማየት
-            Log::error('Gemini API 404/Error Response: ' . $response->body());
+            // ኤፒአይው የተመለሰበትን ትክክለኛ ስህተት በሰርቨር ሎግ ላይ እንመዝግባለን
+            Log::error('Gemini API Error Response: ' . $response->body());
 
             return response()->json([
-                'reply' => 'የኤፒአይ ስህተት አጋጥሟል (Status: ' . $response->status() . ')'
+                'reply' => 'የኤፒአይ ስህተት ተፈጥሯል (ኮድ: ' . $response->status() . ')'
             ], 200);
 
         } catch (\Exception $e) {
