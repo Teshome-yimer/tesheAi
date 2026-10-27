@@ -15,53 +15,55 @@ class ChatbotController extends Controller
         ]);
 
         $userMessage = $request->input('message');
-        $apiKey = env('GEMINI_API_KEY') ?? config('services.gemini.key');
+        $apiKey = env('GEMINI_API_KEY');
 
         if (!$apiKey) {
-            Log::error('Gemini API Key is missing in .env file.');
-            return response()->json([
-                'reply' => 'ይቅርታ፣ የ ኤፒአይ ቁልፍ (API Key) በሰርቨሩ ላይ አልተገኘም።'
-            ], 200);
+            return response()->json(['reply' => 'የኤፒአይ ቁልፍ በሰርቨር አልተገኘም።'], 200);
         }
 
         try {
-            $endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent";
+            $endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
 
-          $response = Http::timeout(30)
-    ->withoutVerifying() // የ SSL ሰርተፍኬት ችግር እንዳይፈጥር
-    ->withHeaders([
-        'Content-Type' => 'application/json',
-        'x-goog-api-key' => $apiKey,
-    ])
-    ->post($endpoint, [
-        'contents' => [
-            [
-                'parts' => [
-                    ['text' => $userMessage]
-                ]
-            ]
-        ]
-    ]);
+            // AletCloud ኔትወርክ ከጉግል ጋር ያለውን ግንኙነት እንዲያቀልጥ cURL options እናስገባለን
+            $response = Http::timeout(30)
+                ->withoutVerifying()
+                ->withOptions([
+                    'curl' => [
+                        CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4, // ኔትወርኩ በ IPv4 እንዲያልፍ ማስገደድ
+                    ],
+                ])
+                ->withHeaders([
+                    'Content-Type' => 'application/json',
+                    'x-goog-api-key' => $apiKey,
+                ])
+                ->post($endpoint, [
+                    'contents' => [
+                        [
+                            'parts' => [
+                                ['text' => $userMessage]
+                            ]
+                        ]
+                    ]
+                ]);
 
             if ($response->successful()) {
                 $data = $response->json();
-                $botReply = $data['candidates'][0]['content']['parts'][0]['text'] ?? 'ምንም ምላሽ ማግኘት አልተቻለም።';
+                $botReply = $data['candidates'][0]['content']['parts'][0]['text'] ?? 'ምንም ምላሽ አልተገኘም።';
 
-                return response()->json([
-                    'reply' => $botReply
-                ], 200);
+                return response()->json(['reply' => $botReply], 200);
             }
 
-            Log::error('Gemini API Error: ' . $response->body());
+            // ኤፒአይው የተመለሰበትን ትክክለኛ የጉግል ስህተት ወደ ሰርቨር ሎግ እንመዝግባለን
+            Log::error('Gemini API Connection Error Response: ' . $response->body());
+
             return response()->json([
-                'reply' => 'በአሁኑ ሰዓት ትንሽ የኔትወርክ መዘግየት አለ። የ TesheAi ረዳት ከጎንዎ አለ፤ ከላይ ያሉትን ኮርሶች በመመልከት መማር መቀጠል ወይም ጥያቄዎን ትንሽ ቆይተው እንደገና መሞከር ይችላሉ!'
+                'reply' => 'ይቅርታ፣ ከኤአይ ሰርቨር ጋር የሚደረገው ግንኙነት ታግዷል። (Error code: ' . $response->status() . ')'
             ], 200);
 
         } catch (\Exception $e) {
-            Log::error('Chatbot Exception: ' . $e->getMessage());
-            // 500 ፋንታ 200 እንመልሳለን፣ ይህም ብራውዘር ላይ 500 Server Error እንዳይመጣ ያደርጋል
+            Log::error('Chatbot Network Exception: ' . $e->getMessage());
             return response()->json([
-                'reply' => 'ይቅርታ፣ የኔትወርክ መዘግየት አጋጥሟል። እባክዎን ትንሽ ቆይተው እንደገና ይሞክሩ።'
+                'reply' => 'የኔትወርክ ማነቆ አጋጥሟል፡ ' . $e->getMessage()
             ], 200);
         }
     }
