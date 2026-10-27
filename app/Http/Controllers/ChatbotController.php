@@ -4,67 +4,50 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 
 class ChatbotController extends Controller
 {
-    public function handleChat(Request $request)
+    public function sendMessage(Request $request)
     {
-        $request->validate([
-            'message' => 'required|string|max:1000',
-        ]);
-
         $userMessage = $request->input('message');
-        $apiKey = env('GEMINI_API_KEY');
+        $apiKey = env('OPENAI_API_KEY'); // AletCloud ላይ ያስገባኸው የ OpenAI ቁልፍ
 
         if (!$apiKey) {
-            return response()->json(['reply' => 'የኤፒአይ ቁልፍ በሰርቨር አልተገኘም።'], 200);
+            return response()->json(['error' => 'API Key አልተገኘም'], 500);
         }
 
         try {
-            // ያዘዝከው ትክክለኛ የ cURL ዩአርኤል (gemini-flash-latest)
-            // ከፍተኛ የጥያቄ መጠን የሚቀበል እና የተረጋጋ ሞዴል
-$endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent";
-            $response = Http::timeout(30)
-                ->withoutVerifying()
-                ->withOptions([
-                    'curl' => [
-                        CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
+            // ወደ OpenAI API ጥያቄ መላክ
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $apiKey,
+                'Content-Type'  => 'application/json',
+            ])->withoutVerifying() // SSL ችግር ካለ ለማለፍ
+              ->post('https://api.openai.com/v1/chat/completions', [
+                'model' => 'gpt-4o-mini', // በጣም ፈጣን እና ርካሽ የሆነው የ ChatGPT ሞዴል
+                'messages' => [
+                    [
+                        'role' => 'system',
+                        'content' => 'አንተ TesheAi Assistant ነህ። ለተማሪዎች እና ለተጠቃሚዎች በትህትና እና በጥራት በአማርኛ ወይም በእንግሊዝኛ ምላሽ የምትሰጥ ረዳት ነህ።'
                     ],
-                ])
-                ->withHeaders([
-                    'Content-Type' => 'application/json',
-                    'X-goog-api-key' => $apiKey, // የላከው ትክክለኛ ሄደር
-                ])
-                ->post($endpoint, [
-                    'contents' => [
-                        [
-                            'parts' => [
-                                ['text' => $userMessage]
-                            ]
-                        ]
+                    [
+                        'role' => 'user',
+                        'content' => $userMessage
                     ]
-                ]);
+                ],
+                'temperature' => 0.7,
+            ]);
 
             if ($response->successful()) {
-                $data = $response->json();
-                $botReply = $data['candidates'][0]['content']['parts'][0]['text'] ?? 'ምንም ምላሽ አልተገኘም።';
-
-                return response()->json(['reply' => $botReply], 200);
+                $botResponse = $response->json()['choices'][0]['message']['content'];
+                return response()->json(['reply' => $botResponse]);
+            } else {
+                return response()->json([
+                    'error' => 'የኤፒአይ ስህተት ተፈጥሯል (ኮድ: ' . $response->status() . ')'
+                ], $response->status());
             }
 
-            // ኤፒአይው የተመለሰበትን ትክክለኛ ስህተት በሰርቨር ሎግ ላይ እንመዝግባለን
-            Log::error('Gemini API Error Response: ' . $response->body());
-
-            return response()->json([
-                'reply' => 'በአሁኑ ሰዓት ትንሽ የኔትወርክ መዘግየት አለ። የ TesheAi ረዳት ከጎንዎ አለ፤ ከላይ ያሉትን ኮርሶች በመመልከት መማር መቀጠል ወይም ጥያቄዎን ትንሽ ቆይተው እንደገና መሞከር ይችላሉ! ' . $response->status() . ''
-            ], 200);
-
         } catch (\Exception $e) {
-            Log::error('Chatbot Exception: ' . $e->getMessage());
-            return response()->json([
-                'reply' => 'የኔትወርክ ችግር አጋጥሟል፡ ' . $e->getMessage()
-            ], 200);
+            return response()->json(['error' => 'የሰርቨር ስህተት፦ ' . $e->getMessage()], 500);
         }
     }
 }
