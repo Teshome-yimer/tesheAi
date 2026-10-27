@@ -24,8 +24,7 @@ class ChatbotController extends Controller
         try {
             // ያዘዝከው ትክክለኛ የ cURL ዩአርኤል (gemini-flash-latest)
             // ከፍተኛ የጥያቄ መጠን የሚቀበል እና የተረጋጋ ሞዴል
-$endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
-
+$endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent";
             $response = Http::timeout(30)
                 ->withoutVerifying()
                 ->withOptions([
