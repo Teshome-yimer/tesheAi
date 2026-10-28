@@ -15,32 +15,30 @@ class ChatbotController extends Controller
         ]);
 
         $userMessage = $request->input('message');
-        $apiKey = env('GEMINI_API_KEY');
+        $apiKey = env('GEMINI_API_KEY') ?? config('services.gemini.key');
 
         if (!$apiKey) {
-            return response()->json(['reply' => 'የኤፒአይ ቁልፍ በሰርቨር አልተገኘም።'], 200);
+            Log::error('Gemini API Key is missing in .env file.');
+            return response()->json([
+                'reply' => 'ይቅርታ፣ የ ኤፒአይ ቁልፍ (API Key) በሰርቨሩ ላይ አልተገኘም።'
+            ]);
         }
 
         try {
-            // ያዘዝከው ትክክለኛ የ cURL ዩአርኤል (gemini-flash-latest)
-            // ከፍተኛ የጥያቄ መጠን የሚቀበል እና የተረጋጋ ሞዴል
-$endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent";
-            $response = Http::timeout(30)
+            // ከ Google AI Studio cURL quickstart ጋር በትክክል የሚመሳሰል Endpoint
+            $endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent";
+
+            $response = Http::timeout(25)
                 ->withoutVerifying()
-                ->withOptions([
-                    'curl' => [
-                        CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
-                    ],
-                ])
                 ->withHeaders([
                     'Content-Type' => 'application/json',
-                    'X-goog-api-key' => $apiKey, // የላከው ትክክለኛ ሄደር
+                    'X-goog-api-key' => $apiKey, // ከ cURL ጋር የተጣጣመ Header
                 ])
                 ->post($endpoint, [
                     'contents' => [
                         [
                             'parts' => [
-                                ['text' => $userMessage]
+                                ['text' => "እርስዎ የ TesheAi አካዳሚ የኢ-ሊርኒንግ መድረክ AI ረዳት ነዎት። ለተጠቃሚው ጥያቄ በአጭሩና በጥሩ ሁኔታ በአማርኛ ወይም በእንግሊዝኛ ምላሽ ይስጡ። የተጠቃሚው መልእክት፦ " . $userMessage]
                             ]
                         ]
                     ]
@@ -48,23 +46,23 @@ $endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flas
 
             if ($response->successful()) {
                 $data = $response->json();
-                $botReply = $data['candidates'][0]['content']['parts'][0]['text'] ?? 'ምንም ምላሽ አልተገኘም።';
+                $botReply = $data['candidates'][0]['content']['parts'][0]['text'] ?? 'ምንም ምላሽ ማግኘት አልተቻለም።';
 
-                return response()->json(['reply' => $botReply], 200);
+                return response()->json([
+                    'reply' => $botReply
+                ]);
             }
 
-            // ኤፒአይው የተመለሰበትን ትክክለኛ ስህተት በሰርቨር ሎግ ላይ እንመዝግባለን
-            Log::error('Gemini API Error Response: ' . $response->body());
-
+            Log::error('Gemini API Error: ' . $response->body());
             return response()->json([
-                'reply' => 'በአሁኑ ሰዓት ትንሽ የኔትወርክ መዘግየት አለ። የ TesheAi ረዳት ከጎንዎ አለ፤ ከላይ ያሉትን ኮርሶች በመመልከት መማር መቀጠል ወይም ጥያቄዎን ትንሽ ቆይተው እንደገና መሞከር ይችላሉ! ' . $response->status() . ''
-            ], 200);
+                'reply' => 'በአሁኑ ሰዓት ትንሽ የኔትወርክ መዘግየት አለ። የ TesheAi ረዳት ከጎንዎ አለ፤ ከላይ ያሉትን ኮርሶች በመመልከት መማር መቀጠል ወይም ጥያቄዎን ትንሽ ቆይተው እንደገና መሞከር ይችላሉ!'
+            ]);
 
         } catch (\Exception $e) {
             Log::error('Chatbot Exception: ' . $e->getMessage());
             return response()->json([
-                'reply' => 'የኔትወርክ ችግር አጋጥሟል፡ ' . $e->getMessage()
-            ], 200);
+                'reply' => 'የኔትወርክ ወይም የሲስተም ችግር አጋጥሟል፡ ' . $e->getMessage()
+            ], 500);
         }
     }
 }
