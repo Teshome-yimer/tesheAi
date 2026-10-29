@@ -13,47 +13,14 @@ class DocumentController extends Controller
     {
         $query = Document::where('is_published', true);
 
+        // ተጠቃሚው ካቴጎሪ መርጦ ከሆነ ፊልተር እናደርጋለን (ዳታቤዝ ሳንነካ በ title ወይም description keyword ፈልጎ ማምጣት ይቻላል)
         if ($request->filled('category')) {
             $category = $request->input('category');
             
-            // የየራሳቸው የተለዩ እና የማይተላለፉ ቃላት (Keywords)
-            $keywords = match($category) {
-                'coding' => [
-                    'coding', 'code', 'programming', 'developer', 'development', 'software', 'engineer',
-                    'fullstack', 'full stack', 'backend', 'frontend', 'web', 'mobile', 'android', 'ios',
-                    'php', 'laravel', 'javascript', 'js', 'typescript', 'node', 'react', 'vue',
-                    'flutter', 'dart', 'html', 'css', 'sql', 'mysql', 'mongodb', 'python', 'java',
-                    'ኮዲንግ', 'ኮድ', 'ፕሮግራሚንግ', 'ሶፍትዌር', 'ዲቨሎፐር', 'ፉልስታክ', 'ዌብ', 'ሞባይል', 'አፕሊኬሽን', 'አፕ'
-                ],
-                'graphics' => [
-                    'graphics', 'graphic', 'design', 'designer', 'photoshop', 'illustrator', 'figma',
-                    'canva', 'ui', 'ux', 'branding', 'logo', 'poster', 'blender', '3d', 'vector',
-                    'ግራፊክስ', 'ዲዛይን', 'ፎቶሾፕ', 'ኢልስትሬተር', 'ፊግማ', 'ካንቫ', 'ሎጎ', 'ፖስተር', 'ስዕል', 'ንድፍ'
-                ],
-                'video' => [
-                    'video', 'editing', 'editor', 'premiere', 'after effects', 'capcut', 'davinci',
-                    'filmora', 'vfx', 'color grading', 'cinematic', 'youtube', 'reels', 'shorts',
-                    'ቪዲዮ', 'ኤዲቲንግ', 'ኤዲተር', 'ፕሪሚየር', 'ካፕካት', 'ዳቪንቺ', 'ዩቲዩብ', 'ሞንታጅ'
-                ],
-                'freshman' => [
-                    'freshman', 'university', 'college', 'module', 'handout', 'semester',
-                    'mathematics', 'physics', 'chemistry', 'biology', 'economics', 'psychology', 'logic',
-                    'ፍሬሽማን', 'ዩኒቨርሲቲ', 'ኮሌጅ', 'ሞጁል', 'ማስታወሻ', 'ፈተና', 'ሂሳብ', 'ፊዚክስ', 'ኬሚስትሪ', 'ባዮሎጂ'
-                ],
-                default => [$category]
-            };
-
-            // እያንዳንዱ ካቴጎሪ የራሱን ቃላት ብቻ በጥብቅ እንዲፈልግ ማድረግ
-            $query->where(function($q) use ($keywords) {
-                foreach ($keywords as $index => $keyword) {
-                    if ($index === 0) {
-                        $q->where('title', 'like', '%' . $keyword . '%')
-                          ->orWhere('description', 'like', '%' . $keyword . '%');
-                    } else {
-                        $q->orWhere('title', 'like', '%' . $keyword . '%')
-                          ->orWhere('description', 'like', '%' . $keyword . '%');
-                    }
-                }
+            // የካቴጎሪ ማጣሪያ (በምርጫህ መሰረት ኪዎርድ ፈልጎ እንዲያመጣ ማድረግ ይቻላል)
+            $query->where(function($q) use ($category) {
+                $q->where('title', 'like', '%' . $category . '%')
+                  ->orWhere('description', 'like', '%' . $category . '%');
             });
         }
 
