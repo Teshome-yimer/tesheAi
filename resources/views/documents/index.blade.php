@@ -24,8 +24,8 @@
         <a href="{{ route('documents.index', ['category' => 'graphics']) }}" class="btn {{ request('category') == 'graphics' ? 'btn-primary' : 'btn-secondary' }}" style="border-radius: 20px; padding: 6px 18px; font-size: 0.85rem;">
             🎨 Graphics Design
         </a>
-        <a href="{{ route('documents.index', ['category' => 'video']) }}" class="btn {{ request('category') == 'video' ? 'btn-primary' : 'btn-secondary' }}" style="border-radius: 20px; padding: 6px 18px; font-size: 0.85rem;">
-            🎥 Video Editing
+        <a href="{{ route('documents.index', ['category' => 'Marketing']) }}" class="btn {{ request('category') == 'video' ? 'btn-primary' : 'btn-secondary' }}" style="border-radius: 20px; padding: 6px 18px; font-size: 0.85rem;">
+            🎥 Digital Marketing
         </a>
         <a href="{{ route('documents.index', ['category' => 'freshman']) }}" class="btn {{ request('category') == 'freshman' ? 'btn-primary' : 'btn-secondary' }}" style="border-radius: 20px; padding: 6px 18px; font-size: 0.85rem;">
             📚 Freshman Exam 
