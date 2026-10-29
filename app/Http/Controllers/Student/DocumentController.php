@@ -4,15 +4,28 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Models\Document;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class DocumentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $documents = Document::where('is_published', true)
-            ->orderByDesc('created_at')
-            ->paginate(12);
+        $query = Document::where('is_published', true);
+
+        // ተጠቃሚው ካቴጎሪ መርጦ ከሆነ ፊልተር እናደርጋለን (ዳታቤዝ ሳንነካ በ title ወይም description keyword ፈልጎ ማምጣት ይቻላል)
+        if ($request->filled('category')) {
+            $category = $request->input('category');
+            
+            // የካቴጎሪ ማጣሪያ (በምርጫህ መሰረት ኪዎርድ ፈልጎ እንዲያመጣ ማድረግ ይቻላል)
+            $query->where(function($q) use ($category) {
+                $q->where('title', 'like', '%' . $category . '%')
+                  ->orWhere('description', 'like', '%' . $category . '%');
+            });
+        }
+
+        $documents = $query->orderByDesc('created_at')->paginate(12)->withQueryString();
+
         return view('documents.index', compact('documents'));
     }
 
@@ -33,7 +46,6 @@ class DocumentController extends Controller
             abort(404, 'File not found');
         }
 
-        // R2 / S3 ሲሆን በ Stream መልክ በቀጥታ ያነበዋል
         return response()->stream(function () use ($disk, $document) {
             echo $disk->get($document->file_path);
         }, 200, [
@@ -54,7 +66,6 @@ class DocumentController extends Controller
 
         $document->increment('download_count');
 
-        // ከ R2 / S3 በቀጥታ Download ያደርጋል
         return $disk->download(
             $document->file_path,
             str_replace('"', '', $document->title) . '.pdf'
