@@ -18,13 +18,13 @@
         <a href="{{ route('documents.index') }}" class="btn {{ !request('category') ? 'btn-primary' : 'btn-secondary' }}" style="border-radius: 20px; padding: 6px 18px; font-size: 0.85rem;">
             🔥 ሁሉንም / All
         </a>
-        <a href="{{ route('documents.index', ['category' => 'Programming']) }}" class="btn {{ request('category') == 'coding' ? 'btn-primary' : 'btn-secondary' }}" style="border-radius: 20px; padding: 6px 18px; font-size: 0.85rem;">
+        <a href="{{ route('documents.index', ['category' => 'Programming']) }}" class="btn {{ request('category') == 'Programming' ? 'btn-primary' : 'btn-secondary' }}" style="border-radius: 20px; padding: 6px 18px; font-size: 0.85rem;">
             💻 Programming
         </a>
         <a href="{{ route('documents.index', ['category' => 'graphics']) }}" class="btn {{ request('category') == 'graphics' ? 'btn-primary' : 'btn-secondary' }}" style="border-radius: 20px; padding: 6px 18px; font-size: 0.85rem;">
             🎨 Graphics Design
         </a>
-        <a href="{{ route('documents.index', ['category' => 'Marketing']) }}" class="btn {{ request('category') == 'Marketing' ? 'btn-primary' : 'btn-secondary' }}" style="border-radius: 20px; padding: 6px 18px; font-size: 0.85rem;">
+        <a href="{{ route('documents.index', ['category' => 'Social']) }}" class="btn {{ request('category') == 'Marketing' ? 'Social' : 'btn-secondary' }}" style="border-radius: 20px; padding: 6px 18px; font-size: 0.85rem;">
             🎥 Digital Marketing
         </a>
         <a href="{{ route('documents.index', ['category' => 'freshman']) }}" class="btn {{ request('category') == 'freshman' ? 'btn-primary' : 'btn-secondary' }}" style="border-radius: 20px; padding: 6px 18px; font-size: 0.85rem;">
