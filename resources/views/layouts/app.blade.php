@@ -457,11 +457,11 @@
             @endif
         @endauth
 
-        {{-- አዲሱ VIP አዝራር (ወደ ቴሌግራም ቻናል የሚወስድ) 
-        <a href="https://t.me/+qDjJMxPexn03NmQ8" target="_blank" rel="noopener noreferrer" class="vip-btn">
-            😎 Telegram Chat 
+        {{-- አዲሱ VIP አዝራር (ወደ ቴሌግራም ቻናል የሚወስድ)  --}}
+        <a href="https://t.me/+m2qvSypyTVo3YWI8" target="_blank" rel="noopener noreferrer" class="vip-btn">
+            😎 Telegram 
         </a>
-        --}}
+       
     </div>
 </div>
 
