@@ -48,7 +48,7 @@ class SecurityHeaders
              . "connect-src 'self' https: https://pagead2.googlesyndication.com https://ep2.adtrafficquality.quality https://ep2.adtrafficquality.google; "
              . "manifest-src 'self' https://tesheai.com https://www.tesheai.com; "
              // እዚህ ጋር አዲስ የተጨመሩት የ Google እና YouTube ዶሜኖች (accounts.google.com ወዘተ) ኤረሩን ሙሉ በሙሉ ያጠፉታል
-             . "frame-src 'self' data: blob: https: https://accounts.google.com https://www.youtube.com https://www.youtube-nocookie.com https://drive.google.com https://docs.google.com https://player.vimeo.com https://*.bunnycdn.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://ep2.adtrafficquality.google https://www.google.com; "
+             . "frame-src 'self' data: blob: https: https://www.youtube.com https://www.youtube-nocookie.com https://drive.google.com https://docs.google.com https://player.vimeo.com https://*.bunnycdn.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://ep2.adtrafficquality.google https://www.google.com; "
              . "child-src 'self' data: blob: https: https://accounts.google.com https://docs.google.com https://drive.google.com; "
              . "object-src 'self' data: blob: https://docs.google.com https://drive.google.com;";
 
