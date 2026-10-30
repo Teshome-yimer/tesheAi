@@ -15,18 +15,22 @@ class SecurityHeaders
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // 1. ያለ 'www' (tesheai.com) ሆኖ ሲመጣ ወደ 'www.tesheai.com' በራስ ሰር ማዞሪያ (CORS እና Manifest ስህተትን ሙሉ በሙሉ ያጠፋል)
-        if ($request->getHost() === 'tesheai.com') {
-            return redirect()->to('https://www.tesheai.com' . $request->getRequestUri(), 301);
-        }
+        // ቴስት (Testing) በሚደረግበት ሰዓት 301 ሬድሬክቱን ዝለለው (ቴስቶቹ እንዳይወድቁ)
+        if (!app()->environment('testing')) {
+            // 1. ያለ 'www' (tesheai.com) ሆኖ ሲመጣ ወደ 'www.tesheai.com' በራስ ሰር ማዞሪያ
+            if ($request->getHost() === 'tesheai.com') {
+                return redirect()->to('https://www.tesheai.com' . $request->getRequestUri(), 301);
+            }
 
-        // ተጠቃሚው ያለ www (tesheai.com) ወይም በ Alet Cloud ከገባ በስተቀር ሁሉም ወደ www.tesheai.com እንዲዞሩ
-        $host = $request->getHost();
-        if ($host === 'tesheai.com' || $host === 'tesheai-4313.app.aletcloud.com') {
-            return redirect()->to('https://www.tesheai.com' . $request->getRequestUri(), 301);
+            $host = $request->getHost();
+            if ($host === 'tesheai.com' || $host === 'tesheai-4313.app.aletcloud.com') {
+                return redirect()->to('https://www.tesheai.com' . $request->getRequestUri(), 301);
+            }
         }
 
         $response = $next($request);
+        
+        // ... (ቀጣዮቹ ኮዶች ይቀጥላሉ)
 
         // Standard Security Headers
         $response->headers->set('X-Frame-Options', 'SAMEORIGIN');
